@@ -59,7 +59,6 @@
                         <span class="username">Username</span> My new Yeezy's.
                     </p>
                 </div>
-
                 <div class="comments">
                     <p>
                         <span class="username">Youssoupha24</span> Nice shoes.
@@ -67,23 +66,21 @@
                     <p>
                         <span class="username">Blvckpvblo</span> Wanna trade with my Jordan IV?.
                     </p>
-
                 </div>
-                    <hr />
-                    <form class="form">
-                        <div class="heart">
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        </div>
+                <hr />
+                <form class="form">
+                    <div class="heart">
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    </div>
 
-                        <div class="add-comment">
-                            <input type="text" placeholder="Drop a comment..." />
-                        </div>
+                    <div class="add-comment">
+                        <input type="text" placeholder="Drop a comment..." />
+                    </div>
 
-                        <div class="options">
-                                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </div>
-
-                    </form>
+                    <div class="options">
+                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    </div>
+                </form>
             </div>
 
         </div>    
