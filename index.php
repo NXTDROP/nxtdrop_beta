@@ -1,4 +1,7 @@
-
+<?php 
+    session_start();
+    include "dbh.php";
+?>
 <!DOCTYPE html>
 <html>
 <title>
