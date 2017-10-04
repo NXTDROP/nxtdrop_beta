@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="content">
-                <img src="uploads/yeezy.jpg">
+                <img src="img/yeezy.jpg">
             </div>
 
             <div class="card-footer">
@@ -89,7 +89,7 @@
     </section>
 
     <section class="footer">
-        
+
     </section>
  </body>
 </html>
