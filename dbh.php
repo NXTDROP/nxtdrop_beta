@@ -1,8 +1,8 @@
 <?php
-    $hostname = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "loginsystem_test";
+    $hostname = "135.23.184.238";
+    $username = "datadrop";
+    $password = "(^@=t.Huu)FE";
+    $dbname = "nxtdrop_alpha_test";
 
     //Create connection to DB
     $conn = new mysqli($hostname, $username, $password, $dbname);

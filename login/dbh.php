@@ -1,17 +1,17 @@
 <?php
-    $hostname = "localhost";
-    $username =  "root";
-    $password = "";
-    $dbname = "loginsystem_test";
+    $hostname = "135.23.184.238";
+    $username = "datadrop";
+    $password = "(^@=t.Huu)FE";
+    $dbname = "nxtdrop_alpha_test";
 
-    //Create Connection
+    //Create connection to DB
     $conn = new mysqli($hostname, $username, $password, $dbname);
 
     //Check Connection
     if ($conn->connect_error) {
-        die("Connection Failed: " . $conn->connect_error);
+        die("Connection Failed:" . $conn->connection_error);
     }
     else {
-        /*echo "Connected successfully";*/
+        /*echo "Successfully connected!";*/
     }
 ?>
