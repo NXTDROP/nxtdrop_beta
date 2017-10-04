@@ -1,5 +1,5 @@
 <?php
-    $hostname = "135.23.184.238";
+    $hostname = "50.62.177.50";
     $username = "datadrop";
     $password = "(^@=t.Huu)FE";
     $dbname = "nxtdrop_alpha_test";
