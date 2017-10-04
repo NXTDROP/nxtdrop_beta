@@ -5,7 +5,7 @@
     $dbname = "loginsystem_test";
 
     //Create connection to DB
-    $conn = new sqli($hostname, $username, $password, $dbname);
+    $conn = new mysqli($hostname, $username, $password, $dbname);
 
     //Check Connection
     if ($conn->connect_error) {
