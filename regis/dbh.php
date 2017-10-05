@@ -1,5 +1,5 @@
 <?php
-    $hostname = "135.23.184.238";
+    $hostname = "160.153.75.102";
     $username = "datadrop";
     $password = "(^@=t.Huu)FE";
     $dbname = "nxtdrop_alpha_test";
@@ -9,7 +9,7 @@
 
     //Check Connection
     if ($conn->connect_error) {
-        die("Connection Failed:" . $conn->connection_error);
+        die("Connection Failed:".$conn->connection_error);
     }
     else {
         /*echo "Successfully connected!";*/
