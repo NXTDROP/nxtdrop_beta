@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <title>
-    NXTDROP: The Social Reselling Marketplace
+    NXTDROP: The Social Marketplace
 </title>
 <head>
     <link type="text/css" rel="stylesheet" href="main.css" />
