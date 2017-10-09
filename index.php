@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-    <a><img id ="logo"src="nxtdropmainlogo.png" height="20px"></a>
+    <a><img id ="logo"src="img/nxtdroplogo.png" height="20px"></a>
     <a href="home.html"><i class="fa fa-home" aria-hidden="true"></i></a>
         
     <!--<a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>-->
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="content">
-                <img src="img/yeezy.jpg">
+                <img src="uploads/yeezy.jpg">
             </div>
 
             <div class="card-footer">
