@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-    <a><img id ="logo"src="img/nxtdroplogo.png" height="20px"></a>
+    <a><img id ="logo"src="img/nxtdroplogo.png" height="25px"></a>
     <a href="home.html"><i class="fa fa-home" aria-hidden="true"></i></a>
         
     <!--<a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>-->
