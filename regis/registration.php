@@ -2,9 +2,9 @@
 
     include 'dbh.php';
 
-    $fName = mysqli_real_escape_string($conn, $_POST['fName']);
-    $lName = mysqli_real_escape_string($conn, $_POST['lName']);
-    $uName = mysqli_real_escape_string($conn, $_POST['uName']);
+    $fName = mysqli_real_escape_string($conn, $_POST['fname']);
+    $lName = mysqli_real_escape_string($conn, $_POST['lname']);
+    $uName = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
     $errorEmpty = false;
@@ -24,7 +24,7 @@
         echo "There was an error!";
     }
 
-    $sql = "SELECT u_email FROM user_info WHERE u_email = '$email';";
+    $sql = "SELECT email FROM users WHERE email = '$email';";
     $result = $conn->query($sql);
     $check = mysqli_num_rows($result);
     if($check > 0) {
@@ -33,19 +33,19 @@
     }
 
     if($errorEmpty == false && $errorEmail == false) {
-        $sql = "INSERT INTO user_info (u_fname, u_lname, username, u_email, u_pwd) VALUES ('$fName', '$lName', '$uName', '$email', '$pwd');";
+        $sql = "INSERT INTO users (first_name, last_name, username, email, pwd) VALUES ('$fName', '$lName', '$uName', '$email', '$pwd');";
         if (mysqli_query($conn, $sql)) {
-            $sql = "SELECT uid FROM user_info WHERE username = '$uName';";
+            $sql = "SELECT uid FROM users WHERE username = '$uName';";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             $uid = $row['uid'];
             $q = "INSERT INTO profile (uid, status) VALUES ('$uid', 0);";
             mysqli_query($conn, $q);
+            echo "<span class='success'>Account Created!</span>";
         }
         else {
             echo "<span class='erro'>Error. Try Later!</span>";
         }
-        echo "<span class='success'>Account Created!</span>";
     }
 
 ?>

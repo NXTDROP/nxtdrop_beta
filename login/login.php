@@ -1,8 +1,6 @@
 <?php
     include 'dbh.php';
 
-    $error = false;
-
     if(isset($_POST['submit'])) {
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);

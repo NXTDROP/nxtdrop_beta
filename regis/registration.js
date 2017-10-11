@@ -1,19 +1,26 @@
 $(document).ready(function() {
     $("#signup").submit(function(event) {
         event.preventDefault();
-        var fName = $("#fName").val();
-        var lName = $("#lName").val();
-        var uName = $("#uName").val();
+        var fname = $("#fname").val();
+        var lname = $("#lname").val();
+        var username = $("#username").val();
         var email = $("#email").val();
         var pwd = $("#pwd").val();
+        var cpwd = $("#cpwd").val();
         var submit = $("#submit").val();
-        $("#form-message").load("regis/registration.php", {
-            fName: fName,
-            lName: lName,
-            uName: uName,
-            email: email,
-            pwd: pwd,
-            submit: submit
-        });
+
+        if (cpwd != pwd) {
+            $("#form-message").text("Passwords don't match!");
+        }
+        else {
+            $("#form-message").load("regis/registration.php", {
+                fname: fname,
+                lname: lname,
+                username: username,
+                email: email,
+                pwd: pwd,
+                submit: submit
+            });
+        }
     });
 });
