@@ -89,7 +89,11 @@
     </section>
 
     <section class="footer">
-
+        <p>&copy NXTDROP Inc. 2017</p>
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Terms &amp Privacy</a></li>
+        </ul>
     </section>
  </body>
 </html>

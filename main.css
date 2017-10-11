@@ -183,3 +183,32 @@ input{
     width: 100%;
     border: 0px solid #fff
 }
+
+.footer {
+    height: 50px;
+    background: black;
+    color: white;
+    padding: 50px 0 0 0;
+}
+
+.footer p {
+    text-align: center;
+}
+
+.footer ul {
+    float: right;
+}
+
+.footer ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer ul li a:hover {
+    color: grey;
+}
