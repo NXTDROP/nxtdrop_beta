@@ -4,7 +4,7 @@
 }
 
 body{
-    background:#fff;
+    background-color:#FAFAFA;
 }
 
 header{
@@ -72,10 +72,8 @@ header a{
 }
 
 .container{
-    background-color:#FAFAFA;
     padding-top: 50px;
-    position: absolute;
-    width: 100%;
+    margin: 50px;
     top: 50px;
     bottom:0;
 }
