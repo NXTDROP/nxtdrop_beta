@@ -13,9 +13,10 @@
     </head>
 
     <body>
-        <form action="" method="POST">
+        <form action="login/login.php" method="POST">
             <p>Username: </p><input type="text" name="username" placeholder="Username">
             <p>Password: </p><input type="password" name="pwd" placeholder="Password">
+            <button type="submit" name="submit" id="submit">Sign Up</button>
         </form>
         <div><?php include('login/error.php'); ?></div>
         <form action="" method="POST" id="signup">
