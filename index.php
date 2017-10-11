@@ -10,6 +10,24 @@
 <head>
     <link type="text/css" rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script>
+        function more() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('#dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -27,7 +45,13 @@
         <input type="text" name="q" size="60" placeholder="Search" />
         </form>
     </div>
-    <a href="login.php"><i class="fa fa-ellipsis-h" aria-hidden="true" id="options"></i></a>
+    <div class="dropdown">
+        <i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn"></i>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="#">Settings</a>
+            <a href="#">Log Out</a>
+        </div>
+    </div>
     </header>
 
     <section class="container">

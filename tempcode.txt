@@ -1,3 +1,4 @@
 <!--<?php if(isset($_SESSION['uid'])) echo '<a><i class="fa fa-ellipsis-h" aria-hidden="true" id="options"></i></a>';
             else echo '<a href="login.php"><button>Sign Up</button></a>'; ?>-->
 
+<button onclick="more()" class="dropbtn">Dropdown</button>
