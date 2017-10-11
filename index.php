@@ -27,6 +27,7 @@
         <input type="text" name="q" size="60" placeholder="Search" />
         </form>
     </div>
+    <a href="login.php"><i class="fa fa-ellipsis-h" aria-hidden="true" id="options"></i></a>
     </header>
 
     <section class="container">
