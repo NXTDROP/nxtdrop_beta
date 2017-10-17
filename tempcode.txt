@@ -2,3 +2,5 @@
             else echo '<a href="login.php"><button>Sign Up</button></a>'; ?>-->
 
 <button onclick="more()" class="dropbtn">Dropdown</button>
+
+color: #aa0000

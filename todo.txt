@@ -1,0 +1,7 @@
+1) Fix Message in case password is wrong
+2) Fix registration Message
+3) Sign up or Login page if not connected yet
+
+
+IMPORTANT!!!!
+Responsive Design

@@ -33,6 +33,7 @@
     }
 
     if($errorEmpty == false && $errorEmail == false) {
+        $pwd = md5($pwd);
         $sql = "INSERT INTO users (first_name, last_name, username, email, pwd) VALUES ('$fName', '$lName', '$uName', '$email', '$pwd');";
         if (mysqli_query($conn, $sql)) {
             $sql = "SELECT uid FROM users WHERE username = '$uName';";

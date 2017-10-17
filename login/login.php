@@ -4,6 +4,7 @@
     if(isset($_POST['submit'])) {
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
+        $pwd = md5($pwd);
 
         $sql = "SELECT * FROM users WHERE username='$username' OR email='$username';";
         $result = $conn->query($sql);
