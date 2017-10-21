@@ -1,6 +1,9 @@
 1) Fix Message in case password is wrong
 2) Fix registration Message
 3) Sign up or Login page if not connected yet
+4) Profile Edit button
+5) Post page or post field
+6) Profile edit page
 
 
 IMPORTANT!!!!
