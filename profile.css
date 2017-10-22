@@ -148,8 +148,7 @@ hr {
     background-color: #aa0000;
     color: #fff;
 }
-}
-/*
+
 .container{
     padding-top: 50px;
     margin: 50px;
@@ -161,13 +160,13 @@ hr {
     background: #FFF;
     margin: 0 auto;
     width: 580px;*/
-    /*height: 580px; Feel free to uncomment*/
+    height: 580px;
     border: 1px solid #ccc;
     border-radius: 2px;
 }
 .card-header{
     padding: 10px;
-   /* padding-left: 25%;*/
+    padding-left: 25%;
 }
 
 .profile-img{
