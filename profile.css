@@ -97,6 +97,13 @@ header a{
 .show {display:block;}
 
 .container {
+    padding-top: 50px;
+    margin: 50px;
+    top: 50px;
+    bottom:0;
+}
+
+.container-top {
     background: rgb(199, 193, 193);
     width: 180px;
     height: 180px;
@@ -156,17 +163,18 @@ hr {
     bottom:0;
 }
 
-.card{
+.card {
     background: #FFF;
     margin: 0 auto;
-    width: 580px;*/
-    height: 580px;
-    border: 1px solid #ccc;
+    width: 580px;
+    /*height: 580px;*/
+    border: 1px solid #aa0000;
     border-radius: 2px;
 }
+
 .card-header{
     padding: 10px;
-    padding-left: 25%;
+    /*padding-left: 25%;*/
 }
 
 .profile-img{
