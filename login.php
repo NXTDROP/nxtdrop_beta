@@ -25,7 +25,7 @@
             <form action="login/login.php" method="POST" class="login-form">
                 <input type="text" name="username" placeholder="Username" required></br>
                 <input type="password" name="pwd" placeholder="Password" required></br>
-                <button type="submit" name="submit" id="submit">Sign Up</button>
+                <button type="submit" name="submit" id="submit">Login</button>
             </form>
             <div><?php include('login/error.php'); ?></div>
             <form action="" method="POST" id="signup" class="signup-form">
