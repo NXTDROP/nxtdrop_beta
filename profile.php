@@ -47,7 +47,7 @@
             <h2>Momar Cisse</h2>
             <h3>@momarcissex</h3>
             <p>God'Speed™ 👕 • they never loved us.</p>
-            <button class="edit-button">Edit Profile</button>
+            <a href="edit-profile.php"><button class="edit-button">Edit Profile</button></a>
         </div>
 
         <section class="container">
