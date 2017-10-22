@@ -1,4 +1,8 @@
-<?php include 'dbh.php'; session_start(); $error = false; ?>
+<?php 
+    include 'dbh.php';
+    session_start(); 
+    $error = false; 
+?>
 <!DOCTYPE html>
 
 <html>

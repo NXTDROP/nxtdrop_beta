@@ -25,7 +25,7 @@ header{
     height: 30px;
     border: 1px solid #fff;
     border-radius: 7px;
-    margin-right: 55px;
+    margin-right: 40px;
 }
 
 #search-bar input[type="text"] {
@@ -59,7 +59,7 @@ header a{
     /*width: 20%;*/
     display:inline-block;
     text-align: center;
-    margin: 0 11% 0 0;
+    margin: 0 10% 0 0;
 }
 
 .fa:hover{
@@ -238,3 +238,16 @@ input{
 .dropdown a:hover {background-color: #f1f1f1}
 
 .show {display:block;}
+
+.login-button {
+    width: 100px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+}
+
+.login-button:hover {
+    background-color: #aa0000;
+    color: #fff;
+}

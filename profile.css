@@ -136,6 +136,15 @@ hr {
 }
 
 .edit-button {
-    display: inline-block;
     margin-left: 800px;
+    width: 100px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+}
+
+.edit-button:hover {
+    background-color: #aa0000;
+    color: #fff;
 }

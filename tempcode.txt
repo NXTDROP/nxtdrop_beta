@@ -3,4 +3,14 @@
 
 <button onclick="more()" class="dropbtn">Dropdown</button>
 
-color: #aa0000
+color: #
+
+CREATE TABLE users(
+uid INT( 11 ) NOT NULL AUTO_INCREMENT ,
+first_name VARCHAR( 256 ) ,
+last_name VARCHAR( 256 ) ,
+username VARCHAR( 256 ) ,
+email VARCHAR( 256 ) ,
+pwd VARCHAR( 256 ) ,
+PRIMARY KEY ( uid )
+)

@@ -1,5 +1,6 @@
 <?php
     include 'dbh.php';
+    session_start();
 
     if(isset($_POST['submit'])) {
         $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -30,4 +31,3 @@
             }
         }
     }
-?>

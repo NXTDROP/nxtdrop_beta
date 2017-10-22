@@ -10,48 +10,38 @@
 <head>
     <link type="text/css" rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-    <script>
-        function more() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('#dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    </script>
+    <script type="text/javascript" src="js/menu-dropdown.js"></script>
 </head>
 <body>
     <header>
     <a><img id ="logo"src="img/nxtdroplogo.png" height="20px"></a>
-    <a href="home.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+    <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
         
     <!--<a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>-->
     <!--<div class="popup" onclick= "myFunction ()"><a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>
         <span class="popuptext" id="mypopup"> Popup text </span>
     </div>-->
-    <a href="likes.html"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-    <a href="profile.html"><i class="fa fa-user" aria-hidden="true"></i></a>
+    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+    <a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a>
     <div class="search-bar">
         <form action="search.php" method="GET" id="search-bar">
         <input type="text" name="q" size="60" placeholder="Search" />
         </form>
     </div>
-    <div class="dropdown">
-        <i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn"></i>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#">Settings</a>
-            <a href="login/logout.php">Log Out</a>
-        </div>
-    </div>
+    <?php
+        if(isset($_SESSION['uid'])) {
+            echo '<div class="dropdown">
+            <i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn"></i>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#">Settings</a>
+                <a href="login/logout.php">Log Out</a>
+            </div>
+        </div>';
+        }
+        else {
+            echo '<a href="login.php"><button class="login-button">Sign Up/Login</button></a>';
+        }
+    ?>
     </header>
 
     <section class="container">
