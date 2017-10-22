@@ -58,7 +58,7 @@
                         
                     <div class="profile-info">
                         <div class="name">Username</div>
-                        <div class="location">Toronto, Ontario</div>
+                <!--    <div class="location">Toronto, Ontario</div> change location to @username -->
 
                     </div>
 
