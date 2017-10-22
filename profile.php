@@ -1,3 +1,7 @@
+<?php 
+    session_start();
+    include "dbh.php";
+?>
 <!DOCTYPE html>
 
 <html>
@@ -58,8 +62,7 @@
                         
                     <div class="profile-info">
                         <div class="name">Username</div>
-                <!--    <div class="location">Toronto, Ontario</div> change location to @username -->
-
+                    <!--    <div class="location">Toronto, Ontario</div> change location to @username -->
                     </div>
 
                     <!--<div class="profile-img">

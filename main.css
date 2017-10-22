@@ -3,6 +3,11 @@
     margin: 0;
 }
 
+html {
+    font-family: 'Helvetica Neue', Helvetica, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo,
+    'ＭＳ Ｐゴシック', arial, sans-serif;
+}
+
 body{
     background-color:#FAFAFA;
 }
@@ -59,7 +64,7 @@ header a{
     /*width: 20%;*/
     display:inline-block;
     text-align: center;
-    margin: 0 10% 0 0;
+    margin: 0 9% 0 0;
 }
 
 .fa:hover{
