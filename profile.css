@@ -3,6 +3,11 @@
     margin: 0;
 }
 
+html {
+    font-family: 'Helvetica Neue', Helvetica, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo,
+    'ＭＳ Ｐゴシック', arial, sans-serif;
+}
+
 body{
     background-color:rgb(255, 255, 255);
 }
@@ -25,7 +30,7 @@ header{
     height: 30px;
     border: 1px solid #fff;
     border-radius: 7px;
-    margin-right: 55px;
+    margin-right: 40px;
 }
 
 #search-bar input[type="text"] {
@@ -59,7 +64,7 @@ header a{
     /*width: 20%;*/
     display:inline-block;
     text-align: center;
-    margin: 0 11% 0 0;
+    margin: 0 9% 0 0;
 }
 
 .fa:hover{
@@ -104,27 +109,36 @@ header a{
 }
 
 .container-top {
-    background: rgb(199, 193, 193);
-    width: 180px;
-    height: 180px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    margin-top: 80px;
-    margin-left: 20px;
+    margin-top: 64px;
+    padding: 25px;
+    border: 1px solid #f2f2f2;
+    overflow: hidden;
+    background: #fcfcfc;
+    box-shadow: 0px 0px 10px #888888;
 }
 
-.profile_img {
-    color:#FFFFFF;
-    padding-top: 50px;
-    margin: 50px;
-    bottom:0;
-    height: 100px;
+.container-top h2 {
+    font-size: 40px;
+}
+
+.container-top h3 {
+    font-size: 20px;
+}
+
+.container-top p {
+    margin-top: 50px;
+}
+
+.profile-img {
+    float: left;
+    margin-right: 50px;
+    width: 250px;
+    height: 250px;
 }
 
 .profile-info{
     display: inline-block;
 }
-
 
 .at{
     margin-left: 220px;
@@ -143,7 +157,8 @@ hr {
 }
 
 .edit-button {
-    margin-left: 800px;
+    margin-top: 86px;
+    float: right;
     width: 100px;
     height: 25px;
     background-color: #fff;
@@ -156,20 +171,14 @@ hr {
     color: #fff;
 }
 
-.container{
-    padding-top: 50px;
-    margin: 50px;
-    top: 50px;
-    bottom:0;
-}
-
 .card {
     background: #FFF;
     margin: 0 auto;
     width: 580px;
     /*height: 580px;*/
-    border: 1px solid #aa0000;
+    border: 1px solid #dddddd;
     border-radius: 2px;
+    box-shadow: 0px 0px 10px #888888;
 }
 
 .card-header{
@@ -177,7 +186,7 @@ hr {
     /*padding-left: 25%;*/
 }
 
-.profile-img{
+.post-profile-img{
     display: inline-block;
     background: red;
     height: 40px;
@@ -324,3 +333,16 @@ input{
 .dropdown a:hover {background-color: #f1f1f1}
 
 .show {display:block;}
+
+.login-button {
+    width: 100px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+}
+
+.login-button:hover {
+    background-color: #aa0000;
+    color: #fff;
+}
