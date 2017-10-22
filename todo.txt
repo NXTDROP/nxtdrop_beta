@@ -4,6 +4,7 @@
 4) Profile Edit button
 5) Post page or post field
 6) Profile edit page
+7) settings page
 
 
 IMPORTANT!!!!
