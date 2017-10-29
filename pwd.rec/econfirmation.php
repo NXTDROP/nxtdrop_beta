@@ -6,7 +6,7 @@
 
     if(isset($_POST['submit'])) {
         $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $sql = "SELECT * FROM user_info WHERE u_email='$email';";
+        $sql = "SELECT * FROM users WHERE email='$email';";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $uid = $row['uid'];
@@ -22,7 +22,7 @@
             $headers .= "Reply-To: " . $nd_email . "\r\n";
             $headers .= "CC: momar@nxtdrop.com";
 
-            $message = 'Please click the link below to change your password: http://localhost/NXTDROP%20WEBAPP/pwd.rec/newpwd.php?email='.$email.'&hash='.$hash.'';
+            $message = 'Please click the link below to change your password: http://localhost/nd-v1.00/pwd.rec/newpwd.php?email='.$email.'&hash='.$hash.'';
 
             if (mail($email, $subject, $message, $headers)) {
                 updateRecords($conn, $uid, $email, $hash);
@@ -30,6 +30,7 @@
             }
             else {
                 echo 'Failed to send email';
+                exit();
             }
 
         }
@@ -47,12 +48,12 @@
         if ($result->num_rows > 0) {
             $sql = "UPDATE pwdrecovery SET hash = '$hash' WHERE uid = '$uid';";
             mysqli_query($conn, $sql);
-            echo 'Records updated';
+            //echo 'Records updated';
         }
         else if ($result->num_rows < 1) {
             $sql = "INSERT INTO pwdrecovery (uid, email,hash) VALUES ('$uid', '$email', '$hash');";
             mysqli_query($conn, $sql);
-            echo 'Records updated';
+            //echo 'Records updated';
         }
         else {
             echo 'Failed to update records';

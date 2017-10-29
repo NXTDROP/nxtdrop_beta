@@ -29,6 +29,7 @@
             </form>
             <div><?php include('login/error.php'); ?></div>
             <form action="" method="POST" id="signup" class="signup-form">
+                <a href="forgot-password.php">Forgot Password?</a>
                 <p>Don't have an account?</p>
                 <input type="text" name="fname" id="fname" placeholder="First Name" required></br>
                 <input type="text" name="lname" id="lname" placeholder="Last Name" required></br>

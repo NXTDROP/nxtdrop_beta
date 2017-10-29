@@ -2,8 +2,8 @@
 
     include 'dbh.php';
 
-    $pwd =  mysqli_real_escape_string($conn, $_POST['pwd']);
-    $cPwd =  mysqli_real_escape_string($conn, $_POST['cPwd']);
+    $pwd =  md5(mysqli_real_escape_string($conn, $_POST['pwd']));
+    $cPwd =  md5(mysqli_real_escape_string($conn, $_POST['cPwd']));
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $hash = mysqli_real_escape_string($conn, $_POST['hash']);
     $errorEmpty = false;
@@ -44,7 +44,7 @@
     }
 
     function updateRecords($conn, $pwd, $email) {
-        $sql = "UPDATE user_info SET u_pwd = '$pwd' WHERE u_email = '$email';";
+        $sql = "UPDATE users SET pwd = '$pwd' WHERE email = '$email';";
         mysqli_query($conn, $sql);
         echo "<span class='success'>Password changed.</span>";
         
