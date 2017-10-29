@@ -23,7 +23,7 @@
             <!--<div class="popup" onclick= "myFunction ()"><a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>
                 <span class="popuptext" id="mypopup"> Popup text </span>
             </div>-->
-            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <a href="likes.php"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
             <a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a>
             <div class="search-bar">
                 <form action="search.php" method="GET" id="search-bar">
