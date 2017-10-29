@@ -25,11 +25,11 @@
             <form action="login/login.php" method="POST" class="login-form">
                 <input type="text" name="username" placeholder="Username" required></br>
                 <input type="password" name="pwd" placeholder="Password" required></br>
-                <button type="submit" name="submit" id="submit">Login</button>
+                <button type="submit" name="submit" id="submit">Login</button></br></br>
+                <p><a href="forgot-password.php">Forgot Password?</a></p>
             </form>
             <div><?php include('login/error.php'); ?></div>
             <form action="" method="POST" id="signup" class="signup-form">
-                <a href="forgot-password.php">Forgot Password?</a>
                 <p>Don't have an account?</p>
                 <input type="text" name="fname" id="fname" placeholder="First Name" required></br>
                 <input type="text" name="lname" id="lname" placeholder="Last Name" required></br>
