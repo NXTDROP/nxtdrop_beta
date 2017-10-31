@@ -248,9 +248,11 @@ input{
 
 .login-button {
     width: 100px;
+    margin-left: 55px;
     height: 25px;
     background-color: #fff;
     border: 1px solid #aa0000;
+    border-radius: 12px;
     color: #aa0000;
 }
 
@@ -265,6 +267,7 @@ input{
     height: 25px;
     background-color: #fff;
     border: 1px solid #aa0000;
+    border-radius: 12px;
     color: #aa0000;
 }
 
@@ -307,12 +310,12 @@ input{
 
 .post_main h2 {
     text-align: center;
-    border-bottom: 1px solid #aa0000;
+    border-bottom: 1px solid #afafaf;
     padding: 10px 0;
 }
 
 .post_content {
-    background: #f27979;
+    background: #FAFAFA;
     padding-bottom: 10px;
 }
 
@@ -368,7 +371,7 @@ textarea {
     margin-right: 1.5%;
     background-color: #e53232;
     border: 1px;
-    border-radius: 6px;
+    border-radius: 12px;
     color: #fff;
     margin-bottom: 15px;
 }

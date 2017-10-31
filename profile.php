@@ -13,20 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/menu-dropdown.js"></script>
-        <script>
-            $(document).ready(function(){
-                $(".call_modal").click(function(){
-                    $(".modal").fadeIn();
-                    $(".modal_main").show();
-                });
-            });
-            $(document).ready(function(){
-                $(".close").click(function(){
-                    $(".modal").fadeOut();
-                    $(".modal_main").fadeOut();
-                });
-            });
-        </script>     
+        <script type="text/javascript" src="js/post-popup.js"></script>     
     </head>
 
     <body>
@@ -55,12 +42,8 @@
             </div>
             <?php
                 if(isset($_SESSION['uid'])) {
-                    echo '<div class="dropdown">
-                    <i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn"></i>
-                    <div id="myDropdown" class="dropdown-content">
-                        <a href="login/logout.php">Log Out</a>
-                    </div>
-                </div>';
+                    echo '<button class="call_post">New Drop</button>
+                    <div class="dropdown"><i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn"></i><div id="myDropdown" class="dropdown-content"><a href="login/logout.php">Log Out</a></div></div>';
                 }
                 else {
                     echo '<a href="login.php"><button class="login-button">Sign Up/Login</button></a>';
@@ -138,6 +121,21 @@
 
             </div>    
         </section>
+
+        <div class="post">
+            <div class="post_close close"></div>
+            <div class="post_main">
+                <h2>New Drop</h2>
+                <div class="post_content">
+                    <form action="" method="POST" id="post" class="post-form">
+                        <textarea name="caption" placeholder="Enter Description" id="caption"></textarea>
+                        <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                        <label for="file"><i class="fa fa-picture-o" aria-hidden="true"></i></label>
+                        <button type="submit" name="submit" id="submit">Drop</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <section class="footer">
             <p>&copy NXTDROP Inc. 2017</p>

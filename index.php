@@ -12,20 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/menu-dropdown.js"></script>
-        <script>
-            $(document).ready(function(){
-                $(".call_post").click(function(){
-                    $(".post").fadeIn();
-                    $(".post_main").show();
-                });
-            });
-            $(document).ready(function(){
-                $(".close").click(function(){
-                    $(".post").fadeOut();
-                    $(".post_main").fadeOut();
-                });
-            });
-        </script>
+        <script type="text/javascript" src="js/post-popup.js"></script>
     </head>
     <body>
         <header>
@@ -118,33 +105,10 @@
             </div>    
         </section>
 
-        <script>
-            var inputs = document.querySelectorAll( '.inputfile' );
-Array.prototype.forEach.call( inputs, function( input )
-{
-	var label	 = input.nextElementSibling,
-		labelVal = label.innerHTML;
-
-	input.addEventListener( 'change', function( e )
-	{
-		var fileName = '';
-		if( this.files && this.files.length > 1 )
-			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-		else
-			fileName = e.target.value.split( '\\' ).pop();
-
-		if( fileName )
-			label.querySelector( 'span' ).innerHTML = fileName;
-		else
-			label.innerHTML = labelVal;
-	});
-});
-        </script>
-
         <div class="post">
             <div class="post_close close"></div>
             <div class="post_main">
-                <h2>Post new Drop</h2>
+                <h2>New Drop</h2>
                 <div class="post_content">
                     <form action="" method="POST" id="post" class="post-form">
                         <textarea name="caption" placeholder="Enter Description" id="caption"></textarea>
