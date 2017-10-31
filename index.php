@@ -41,7 +41,6 @@
             echo '<div class="dropdown">
             <i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn"></i>
             <div id="myDropdown" class="dropdown-content">
-                <a href="#">Settings</a>
                 <a href="login/logout.php">Log Out</a>
             </div>
         </div>';
