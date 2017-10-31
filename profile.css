@@ -30,7 +30,7 @@ header{
     height: 30px;
     border: 1px solid #fff;
     border-radius: 7px;
-    margin-right: 40px;
+    margin-right: 50px;
 }
 
 #search-bar input[type="text"] {
@@ -318,14 +318,14 @@ input{
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 100px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
 }
 
 .dropdown-content a {
-    color: black;
+    font-size: 15px;
+    color: #aa0000;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
