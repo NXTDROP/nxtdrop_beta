@@ -30,7 +30,7 @@ header{
     height: 30px;
     border: 1px solid #fff;
     border-radius: 7px;
-    margin-right: 40px;
+    margin-right: 50px;
 }
 
 #search-bar input[type="text"] {
@@ -229,14 +229,14 @@ input{
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 100px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
 }
 
 .dropdown-content a {
-    color: black;
+    font-size: 15px;
+    color: #aa0000;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -257,4 +257,124 @@ input{
 .login-button:hover {
     background-color: #aa0000;
     color: #fff;
+}
+
+.call_post {
+    margin-right: 55px;
+    width: 100px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+}
+
+.call_post:hover {
+    background-color: #aa0000;
+    color: #fff;
+}
+
+.post {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+.post_close {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+}
+
+.close {
+    cursor: pointer;
+}
+
+.post_main {
+    width: 50%;
+    height: 200px;
+    background: #fff;
+    z-index: 4;
+    position: fixed;
+    top: 35%;
+    border-radius: 4px;
+    left: 25%;
+    display: none;
+}
+
+.post_main h2 {
+    text-align: center;
+    border-bottom: 1px solid #aa0000;
+    padding: 10px 0;
+}
+
+.post_content {
+    background: #f27979;
+    padding-bottom: 10px;
+}
+
+textarea {
+    font-size: 16px;
+    width: 95%;
+    height: 100px;
+    resize: none;
+    padding: 5px 5px;
+    margin: 10px 1.5%;
+    border-radius: 6px;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.70em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+    margin-left: 1.5%;
+}
+
+.inputfile + label {
+    cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile + label + i:hover {
+    color: red;
+}
+
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+	pointer-events: none;
+}
+
+.post-form button {
+    width: 15%;
+    height: 1.75em;
+    margin-top: 3px;
+    float: right;
+    margin-right: 1.5%;
+    background-color: #e53232;
+    border: 1px;
+    border-radius: 6px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.post-form button:hover {
+    color: #fff;
+    background: #aa0000;
+    cursor: pointer;
 }
