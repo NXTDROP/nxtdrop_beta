@@ -2,15 +2,15 @@
     session_start();
     include 'dbh.php';
 
-    $caption = mysqli_real_escape_string($conn, $_POST['cap']);
+    $caption = mysqli_real_escape_string($conn, $_POST['caption']);
     $date = date("Y-m-d H:i:s", time());
 
-    $pic = $_FILES['pic'];
-    $fileName = $_FILES['pic']['name'];
-    $fileTmpName = $_FILES['pic']['tmp_name'];
-    $fileSize = $_FILES['pic']['size'];
-    $fileError = $_FILES['pic']['error'];
-    $fileType = $_FILES['pic']['type'];
+    $pic = $_FILES['file'];
+    $fileName = $_FILES['file']['name'];
+    $fileTmpName = $_FILES['file']['tmp_name'];
+    $fileSize = $_FILES['file']['size'];
+    $fileError = $_FILES['file']['error'];
+    $fileType = $_FILES['file']['type'];
 
     $fileExt = explode('.', $fileName);
     $fileActualExt = strtolower(end($fileExt));
@@ -37,7 +37,7 @@
                             $fileNewName = $uid.uniqid('', true).".".$fileActualExt;
                             $fileDestination = 'uploads/p'.$fileNewName;
                             move_uploaded_file($fileTmpName, "../".$fileDestination);
-                            $sql = "INSERT INTO posts (uid, caption, pic, p_date) VALUES ('$uid', '$caption', '$fileDestination', '$date');";
+                            $sql = "INSERT INTO posts (uid, caption, pic, pdate) VALUES ('$uid', '$caption', '$fileDestination', '$date');";
                             if (mysqli_query($conn, $sql)) {
                                 echo "<span class='success'>Posted!</span>";
                                 updateNumPosts($uid, $conn);

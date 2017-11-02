@@ -26,7 +26,7 @@
         <?php
             if(isset($_SESSION['uid'])) {
                 echo '<a href="likes.php"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                <a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a>';
+                <a href="profile.php?u='.$_SESSION['username'].'"><i class="fa fa-user" aria-hidden="true"></i></a>';
             }
             else {
                 echo '<a href="login.php"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
@@ -50,67 +50,80 @@
         ?>
         </header>
 
-        <section class="container">
-            <div class="card">
-                <div class="card-header">
-                    <div class="profile-img">
-                    </div>
-                        
-                    <div class="profile-info">
-                        <div class="name"><p>Username</p></div>
-                        <!--<div class="location">Toronto, Ontario</div>-->
-
-                    </div>
-
-                    <!--<div class="profile-img">
-                    </div> -->
-
-                    <div class="time">
-                        <p>1hr</p>
-                    </div>
-                </div>
-                <div class="content">
-                    <img src="uploads/yeezy.jpg">
-                </div>
-
-                <div class="card-footer">
-                    <div class="likes"><p>1,000 likes</p></div>
-
-                    <div class="description">
-                        <p><span class="username">Username</span> My new Yeezy's.</p>
-                    </div>
-                    <!--<div class="comments">
-                        <p>
-                            <span class="username">Youssoupha24</span> Nice shoes.
-                        </p>
-                        <p>
-                            <span class="username">Blvckpvblo</span> Wanna trade with my Jordan IV?.
-                        </p>
-                    </div>-->
-                    <hr />
-                    <form class="form">
-                        <div class="heart">
-                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        </div>
-                        <div class="options">
-                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                        </div>
-
-                        <!--<div class="add-comment">
-                            <input type="text" placeholder="Drop a comment..." />
-                        </div>-->
-                    </form>
-                </div>
-
-            </div>    
-        </section>
+        <div id="posts-container">
+            <?php
+                $sql = "SELECT * FROM posts, users WHERE posts.uid = users.uid ORDER BY posts.pdate DESC LIMIT 2;";
+                $result = mysqli_query($conn, $sql);
+                if (!mysqli_num_rows($result) > 0) {
+                    echo '<p id="no_post">No Posts Available!</p>';
+                }
+                else {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<section class="container">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="profile-img">
+                                </div>
+                                    
+                                <div class="profile-info">
+                                    <div class="name"><p><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></p></div>
+                                    <!--<div class="location">Toronto, Ontario</div>-->
+            
+                                </div>
+            
+                                <!--<div class="profile-img">
+                                </div> -->
+            
+                                <div class="time">
+                                    <p>'.$row['pdate'].'</p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <img src="'.$row['pic'].'">
+                            </div>
+            
+                            <div class="card-footer">
+                                <div class="likes"><p>'.$row['likes'].' likes</p></div>
+            
+                                <div class="description">
+                                    <p><span class="username">'.$row['username'].'</span> '.$row['caption'].'</p>
+                                </div>
+                                <!--<div class="comments">
+                                    <p>
+                                        <span class="username">Youssoupha24</span> Nice shoes.
+                                    </p>
+                                    <p>
+                                        <span class="username">Blvckpvblo</span> Wanna trade with my Jordan IV?.
+                                    </p>
+                                </div>-->
+                                <hr />
+                                <form class="form">
+                                    <div class="heart">
+                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="options">
+                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                    </div>
+            
+                                    <!--<div class="add-comment">
+                                        <input type="text" placeholder="Drop a comment..." />
+                                    </div>-->
+                                </form>
+                            </div>
+            
+                        </div>    
+                    </section>';
+                    }
+                }
+            ?>
+        </div>
 
         <div class="post">
             <div class="post_close close"></div>
             <div class="post_main">
                 <h2>New Drop</h2>
                 <div class="post_content">
-                    <form action="" method="POST" id="post" class="post-form">
+                    <form action="post/post.php" method="POST" enctype="multipart/form-data" id="post" class="post-form">
                         <textarea name="caption" placeholder="Enter Description" id="caption"></textarea>
                         <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
                         <label for="file"><i class="fa fa-picture-o" aria-hidden="true"></i></label>
