@@ -86,7 +86,7 @@
                                 <div class="likes"><p>'.$row['likes'].' likes</p></div>
             
                                 <div class="description">
-                                    <p><span class="username">'.$row['username'].'</span> '.$row['caption'].'</p>
+                                    <p><span class="username"><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</p>
                                 </div>
                                 <!--<div class="comments">
                                     <p>
