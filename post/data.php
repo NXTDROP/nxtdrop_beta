@@ -1,7 +1,6 @@
 <?php
     include 'dbh.php';
     $commentNewCount = $_POST['commentNewCount'];
-    echo "<p>BOOOOOOOY</p>";
 
     $sql = "SELECT * FROM posts ORDER BY p_date DESC LIMIT $commentNewCount;";
     $result = mysqli_query($conn, $sql);

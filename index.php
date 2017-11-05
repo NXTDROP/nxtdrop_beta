@@ -13,6 +13,7 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/menu-dropdown.js"></script>
         <script type="text/javascript" src="js/post-popup.js"></script>
+        <script type="text/javascript" src="js/delete-post.js"></script>
     </head>
     <body>
         <header>
@@ -52,14 +53,14 @@
 
         <div id="posts-container">
             <?php
-                $sql = "SELECT * FROM posts, users WHERE posts.uid = users.uid ORDER BY posts.pdate DESC LIMIT 2;";
+                $sql = "SELECT * FROM posts, users WHERE posts.uid = users.uid ORDER BY posts.pdate DESC LIMIT 5;";
                 $result = mysqli_query($conn, $sql);
                 if (!mysqli_num_rows($result) > 0) {
                     echo '<p id="no_post">No Posts Available!</p>';
                 }
                 else {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<section class="container">
+                        echo '<section class="container post-'.$row['pid'].'">
                         <div class="card">
                             <div class="card-header">
                                 <div class="profile-img">
@@ -96,27 +97,56 @@
                                         <span class="username">Blvckpvblo</span> Wanna trade with my Jordan IV?.
                                     </p>
                                 </div>-->
-                                <hr />
-                                <form class="form">
-                                    <div class="heart">
-                                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                <hr />';
+                                if (isset($_SESSION['uid']) && $_SESSION['uid'] == $row['uid']) {
+                                    echo '
+                                    <div class="post_form_bottom">
+                                        <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
+                                        <div class="heart">
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        </div>
+                                        <div onclick="delete_('.$row['pid'].')" class="remove">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="flag">
+                                            <i class="fa fa-flag" aria-hidden="true"></i>
+                                        </div>
+                
+                                        <!--<div class="add-comment">
+                                            <input type="text" placeholder="Drop a comment..." />
+                                        </div>-->
                                     </div>
-                                    <div class="options">
-                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                </div>
+                
+                            </div>    
+                            </section>';
+                                }
+                                else {
+                                    echo '
+                                    <div class="post_form_bottom">
+                                        <input type="hidden" name="pid" value="'.$row['pid'].'">
+                                        <div class="heart">
+                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="flag">
+                                            <i class="fa fa-flag" aria-hidden="true"></i>
+                                        </div>
+                
+                                        <!--<div class="add-comment">
+                                            <input type="text" placeholder="Drop a comment..." />
+                                        </div>-->
                                     </div>
-            
-                                    <!--<div class="add-comment">
-                                        <input type="text" placeholder="Drop a comment..." />
-                                    </div>-->
-                                </form>
-                            </div>
-            
-                        </div>    
-                    </section>';
+                                </div>
+                
+                            </div>    
+                            </section>';
+                                }
                     }
                 }
             ?>
         </div>
+
+        <p id="message"></p>
 
         <div class="post">
             <div class="post_close close"></div>
@@ -125,7 +155,7 @@
                 <div class="post_content">
                     <form action="post/post.php" method="POST" enctype="multipart/form-data" id="post" class="post-form">
                         <textarea name="caption" placeholder="Enter Description" id="caption"></textarea>
-                        <input type="file" name="file" id="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                        <input type="file" name="file" id="file" class="inputfile" accept="image/*" data-multiple-caption="{count} files selected" multiple />
                         <label for="file"><i class="fa fa-picture-o" aria-hidden="true"></i></label>
                         <button type="submit" name="submit" id="submit">Drop</button>
                     </form>
@@ -134,8 +164,8 @@
         </div>
 
         <section class="footer">
-            <p>&copy NXTDROP Inc. 2017</p>
             <ul>
+                <li><p>&copy NXTDROP Inc. 2017</p></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Terms &amp Privacy</a></li>
             </ul>
