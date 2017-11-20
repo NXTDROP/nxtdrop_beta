@@ -15,10 +15,10 @@
             echo "<span class='error'>Fill in all the fields!</span>";
             $errorEmpty = true;
         }
-        elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        /*elseif(filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<span class='error'>Enter valid E-mail!</span>";
             $errorEmail = true;
-        }
+        }*/
     }
     else {
         echo "There was an error!";
@@ -45,7 +45,7 @@
             echo "<span class='success'>Account Created!</span>";
         }
         else {
-            echo "<span class='erro'>Error. Try Later!</span>";
+            echo "<span class='error'>Error. Try Later!</span>";
         }
     }
 
@@ -65,7 +65,7 @@
         $("#email").addClass("input-error");
     }
     if(errorEmpty == false && errorEmail == false) {
-        $("#fName, #lName, #uName, #email, #pwd").val("");
+        $("#fname, #lname, #username, #email, #pwd, #cpwd").val("");
     }
 
 </script>

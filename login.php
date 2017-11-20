@@ -1,7 +1,6 @@
 <?php 
     include 'dbh.php';
-    session_start(); 
-    $error = false; 
+    session_start();
 ?>
 <!DOCTYPE html>
 
@@ -37,7 +36,7 @@
                 <input type="text" name="username" id="username" placeholder="Username" required></br>
                 <input type="password" name="pwd" id="pwd" placeholder="Password" required></br>
                 <input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password" required></br>
-                <button type="submit" name="submit" id="submit">Create Account</button>
+                <button type="submit" name="submit" id="submit">Create Account</button></br>
                 <p id="form-message"></p>
             </form>
         </div>

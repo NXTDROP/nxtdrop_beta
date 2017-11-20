@@ -16,7 +16,7 @@
         else {
             if($row = mysqli_fetch_assoc($result)) {
                 if($row['pwd'] != $pwd) {
-                    $error = true;
+                    header("Location: ../login.php?login=error");
                 }
                 elseif($row['pwd'] == $pwd) {
                     $_SESSION['uid'] = $row['uid'];

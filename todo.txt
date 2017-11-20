@@ -1,9 +1,10 @@
-1) Fix Message in case password is wrong
-2) Fix registration Message
-3) Sign up or Login page if not connected yet*
-4) Profile Edit button*
-5) Post page or post field
-6) Profile edit page*
+3) Make like button work
+4) Make flag button work
+5) Insert php in Like Page
+6) Search Bar
+7) Time Display
+8) Mobile Design***
+9) Merge all css files into ONE!!!
 
 
 IMPORTANT!!!!

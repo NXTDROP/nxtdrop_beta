@@ -10,7 +10,8 @@ $(document).ready(function() {
         var submit = $("#submit").val();
 
         if (cpwd != pwd) {
-            $("#form-message").text("Passwords don't match!");
+            $("#form-message").addClass("error").text("Passwords don't match!");
+            $("#pwd, #cpwd").addClass("input-error");
         }
         else {
             $("#form-message").load("regis/registration.php", {
