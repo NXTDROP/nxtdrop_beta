@@ -11,7 +11,9 @@
     if (isset($_SESSION['uid'])) {
         if ($_SESSION['uid'] == $row['uid']) {
             $sql = "DELETE FROM posts WHERE pid= '$pid';";
-            mysqli_query($conn, $sql);
+            if (mysqli_query($conn, $sql)) {
+                updateNumPosts($_SESSION['uid'], $conn);
+            }
             return false;
         }
         else {
@@ -20,5 +22,12 @@
     }
     else {
         return true;
+    }
+
+    function updateNumPosts($uid, $conn) {
+        $sql = "SELECT posts FROM profile WHERE uid='$uid'";                                
+        $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+        $posts = $result['posts'] - 1;
+        mysqli_query($conn, "UPDATE profile SET posts = '$posts' WHERE uid ='$uid';");
     }
 ?>

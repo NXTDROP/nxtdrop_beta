@@ -43,6 +43,7 @@
                                 echo "<span class='success'>Posted!</span>";
                                 updateNumPosts($uid, $conn);
                                 header("Location: ../index.php");
+                                die;
                             }
                             else {
                                 echo "<span class='error'>There was an error. Try later!</span>";

@@ -6,10 +6,22 @@
 html {
     font-family: 'Helvetica Neue', Helvetica, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo,
     'ＭＳ Ｐゴシック', arial, sans-serif;
+    position: relative;
+    min-height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #aa0000;
 }
 
 body{
-    background-color:rgb(255, 255, 255);
+    background-color:#FAFAFA;
+    height: 100%;
+}
+
+#posts-container {
+    margin: 100px 0 150px 0;
 }
 
 header{
@@ -75,6 +87,13 @@ header a{
    color: black;
     
 }
+
+.container{
+    margin: 50px;
+    top: 50px;
+    bottom:0;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -100,13 +119,6 @@ header a{
 .dropdown a:hover {background-color: #f1f1f1}
 
 .show {display:block;}
-
-.container {
-    padding-top: 50px;
-    margin: 50px;
-    top: 50px;
-    bottom:0;
-}
 
 .container-top {
     margin-top: 64px;
@@ -147,11 +159,10 @@ header a{
 }
 
 .name{
-    margin-left: 220px;
-    font-size: 22px;
-    color: #111;
+    font-size: 14px;
     font-weight: 700;
 }
+
 hr {
     margin-top: 15px;
 }
@@ -189,7 +200,7 @@ hr {
 
 .post-profile-img{
     display: inline-block;
-    background: red;
+    background: #888888;
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -249,7 +260,7 @@ hr {
     padding: 0 0 5px 0;
 }
 
-.form{
+.post_form_bottom {
     padding-top: 15px;
 }
 
@@ -267,6 +278,24 @@ hr{
     display: inline-block;
     padding: 5px;
     font-weight: 15px;
+}
+
+.remove {
+    width: 2.75%;
+    float: right;
+    padding-top: 2px;
+    position: relative;
+    display: inline-block;    
+    margin-left: 47.25%;
+}
+
+.remove button {
+    background: none;
+    border: none;
+}
+
+.flag {
+    float: right;
 }
 
 .options{
@@ -465,4 +494,8 @@ textarea {
     color: #fff;
     background: #aa0000;
     cursor: pointer;
+}
+
+#no_post {
+    text-align: center;
 }

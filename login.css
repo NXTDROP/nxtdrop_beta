@@ -72,3 +72,17 @@ form p {
 .login-form a:hover {
     color: #aa0000;
 }
+
+.error {
+    text-align: center; 
+    color: red;
+}
+
+.success {
+    text-align: center;
+    color: green;
+}
+
+.input-error {
+    border-color: red;
+}
