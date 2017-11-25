@@ -2,6 +2,10 @@ function more() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
+function profile_pop() {
+    document.getElementById("profile-picture").classList.toggle("show");
+}
+
 window.onclick = function(event) {
     if (!event.target.matches('#dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");

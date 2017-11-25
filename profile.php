@@ -1,6 +1,11 @@
 <?php 
     session_start();
     include "dbh.php";
+    //include("inc/upload-profile-picture.php");
+
+    if (!isset($_SESSION['uid'])) {
+        header("Location: login.php");
+    }
 ?>
 <!DOCTYPE html>
 
@@ -14,7 +19,8 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/menu-dropdown.js"></script>
         <script type="text/javascript" src="js/post-popup.js"></script>
-        <script type="text/javascript" src="js/delete-post.js"></script>    
+        <script type="text/javascript" src="js/delete-post.js"></script>
+        <script type="text/javascript" src="js/profile-picture.js"></script>   
     </head>
 
     <body>
@@ -53,19 +59,18 @@
         </header>
         
         <div class="container-top">
-            <div class="profile-img"><img style='height: 100%; width: 100%; object-fit: cover' src="uploads/yeezy.jpg"></div>
-            <h2>Momar Cisse</h2>
-            <h3>@momarcissex</h3>
-            <p>God'Speed™ 👕 • they never loved us.</p>
+            <?php include("inc/profile-info.php"); ?>
             <?php
-                if(isset($_SESSION['uid'])) {
+                if(isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
                     echo '<a href="edit-profile.php"><button class="edit-button">Edit Profile</button></a>';
                 }
             ?>
             
         </div>
 
+
         <div id="posts-container">
+        <!--<input type="file" name="file" id="input" accept="image/*"/>-->
             <?php
                 $sql = "SELECT * FROM users WHERE username = '".$_GET['u']."';";
                 $result = mysqli_query($conn, $sql);
@@ -81,7 +86,7 @@
                         echo '<section class="container post-'.$row['pid'].'">
                         <div class="card">
                             <div class="card-header">
-                                <div class="post-profile-img">
+                                <div class="post-profile-img"><img class="post-small-img" src="'.$status.'">
                                 </div>
                                     
                                 <div class="profile-info">
@@ -167,19 +172,19 @@
         <p id="message"></p>
 
         <div class="post">
-        <div class="post_close close"></div>
-        <div class="post_main">
-            <h2>New Drop</h2>
-            <div class="post_content">
-                <form action="post/post.php" method="POST" enctype="multipart/form-data" id="post" class="post-form">
-                    <textarea name="caption" placeholder="Enter Description" id="caption"></textarea>
-                    <input type="file" name="file" id="file" class="inputfile" accept="image/*" data-multiple-caption="{count} files selected" multiple />
-                    <label for="file"><i class="fa fa-picture-o" aria-hidden="true"></i></label>
-                    <button type="submit" name="submit" id="submit">Drop</button>
-                </form>
+            <div class="post_close close"></div>
+            <div class="post_main">
+                <h2>New Drop</h2>
+                <div class="post_content">
+                    <form action="post/post.php" method="POST" enctype="multipart/form-data" id="post" class="post-form">
+                        <textarea name="caption" placeholder="Enter Description" id="caption"></textarea>
+                        <input type="file" name="file" id="file" class="inputfile" accept="image/*" data-multiple-caption="{count} files selected" multiple />
+                        <label for="file"><i class="fa fa-picture-o" aria-hidden="true"></i></label>
+                        <button type="submit" name="submit" id="submit">Drop</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
         <section class="footer">
             <ul>

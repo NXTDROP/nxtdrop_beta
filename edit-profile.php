@@ -3,6 +3,11 @@
     session_start();
 
     if (isset($_SESSION['uid'])) {
+        $query = "SELECT bio FROM profile WHERE uid=".$_SESSION['uid'].";";
+        $result = mysqli_query($conn, $query);
+        $r = mysqli_fetch_assoc($result);
+        $bio = $r['bio'];
+        
         if (isset($_POST['change-pwd'])) {
             $opwd = md5(mysqli_real_escape_string($conn, $_POST['opwd']));
             $pwd = $_SESSION['pwd'];
@@ -49,7 +54,7 @@
         }
     }
     else {
-        echo "<span class='error'>You're not connected!</span>";
+        header("Location: login.php");
     }
 
     function updatePassword($conn, $pwd, $email) {
@@ -86,11 +91,11 @@
         
         <div class="container">
             <form action="" method="POST" class="login-form">
-                <input type="text" name="first_name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['fname'];?>" required></br>
-                <input type="text" name="last_name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['lname'];?>" required></br>
-                <input type="text" name="email" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['email'];?>"required></br>
-                <input type="text" name="username" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['username'];?>"required></br>
-                <textarea name="bio" placeholder="Bio"></textarea></br>
+                <input type="text" name="first_name" placeholder="First Name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['fname'];?>" required></br>
+                <input type="text" name="last_name" placeholder="Last Name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['lname'];?>" required></br>
+                <input type="text" name="email" placeholder="Email" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['email'];?>"required></br>
+                <input type="text" name="username" placeholder="Username" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['username'];?>"required></br>
+                <textarea name="bio" placeholder="Bio"><?php if (isset($_SESSION['uid'])) echo $bio; ?></textarea></br>
                 <button type="submit" name="submit" id="submit">Save Changes</button>
             </form>
             </br></br>
@@ -101,7 +106,7 @@
                 <button type="submit" name="change-pwd" id="change-pwd">Change Password</button>
             </form>
             </br></br>
-            <a href="profile.php"><p>Back to Profile</p></a>
+            <a href="profile.php?u=<?php echo $_SESSION['username'];?>"><p>Back to Profile</p></a>
         </div>
     </body>
 </html>

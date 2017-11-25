@@ -1,6 +1,10 @@
 <?php 
     session_start();
     include "dbh.php";
+
+    if (!isset($_SESSION['uid'])) {
+        header("Location: login.php");
+    }
 ?>
 <!DOCTYPE html>
 <html>
