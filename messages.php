@@ -43,10 +43,21 @@
                 </header>
                 
                 <div class="chat_box">
-                    <div class="chat_head">Messages</div>
+                    <div class="chat_head">
+                        <p>Messages</p>
+                        <button class="message_button">New Message</button>
+
+                    </div>
                         <div class="chat_body">
-                            <div class="user">Teezy</div>
-                            <div class="user2">Yusuf</div>
+                            <div class="user 1">Teezy
+                                <div class="last_text 1">Yeah sure man.</div>
+                                <div class="time 1">30 s</div>
+                            </div>
+
+                            <div class="user 2">Yusuf
+                            <div class="last_text 2">Sup</div>
+                            <div class="time 2">1h</div>
+                            </div>
                         </div>
                 </div>
 
