@@ -11,11 +11,13 @@
                 }
                 else {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $query = "SELECT pid FROM likes WHERE liked_by = ".$_SESSION['uid']." AND pid = ".$row['pid'].";";
-                        $q_result = mysqli_query($conn, $query);
-                        $q_row = mysqli_fetch_assoc($q_result);
-                        if ($row['pid'] == $q_row['pid']) $like_class = 'fa fa-heart';
-                        else $like_class = 'fa fa-heart-o';
+                        if (isset($_SESSION['uid'])) {
+                            $query = "SELECT pid FROM likes WHERE liked_by = ".$_SESSION['uid']." AND pid = ".$row['pid'].";";
+                            $q_result = mysqli_query($conn, $query);
+                            $q_row = mysqli_fetch_assoc($q_result);
+                            if ($row['pid'] == $q_row['pid']) $like_class = 'fa fa-heart';
+                            else $like_class = 'fa fa-heart-o';
+                        }
 
                         echo '<section class="container post-'.$row['pid'].'">
                         <div class="card">
