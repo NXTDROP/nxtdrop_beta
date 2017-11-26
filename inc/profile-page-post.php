@@ -1,63 +1,10 @@
-<?php 
-    session_start();
-    include "dbh.php";
-
-    if (!isset($_SESSION['uid'])) {
-        header("Location: login.php");
-    }
-?>
-<!DOCTYPE html>
-<html>
-    <title>
-        NXTDROP: The Social Marketplace
-    </title>
-    <head>
-        <link type="text/css" rel="stylesheet" href="main.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="js/menu-dropdown.js"></script>
-        <script type="text/javascript" src="js/post-popup.js"></script>
-        <script type="text/javascript" src="js/delete-post.js"></script>
-    </head>
-    <body>
-        <header>
-        <a><img id ="logo"src="img/nxtdroplogo.png" height="20px"></a>
-        <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
-            
-        <!--<a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>-->
-        <!--<div class="popup" onclick= "myFunction ()"><a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>
-            <span class="popuptext" id="mypopup"> Popup text </span>
-        </div>-->
-        <?php
-            if(isset($_SESSION['uid'])) {
-                echo '<a href="likes.php"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                <a href="profile.php?u='.$_SESSION['username'].'"><i class="fa fa-user" aria-hidden="true"></i></a>';
-            }
-            else {
-                echo '<a href="login.php"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                <a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a>';
-            }
-        ?>
-        <div class="search-bar">
-            <form action="search.php" method="GET" id="search-bar">
-            <input type="text" name="q" size="60" placeholder="Search" />
-            </form>
-        </div>
-        <?php
-            if(isset($_SESSION['uid'])) {
-                echo '<button class="call_post">New Drop</button>
-                <div class="dropdown"><i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn"></i><div id="myDropdown" class="dropdown-content"><a href="login/logout.php">Log Out</a></div></div>';
-                
-            }
-            else {
-                echo '<a href="login.php"><button class="login-button">Sign Up/Login</button></a>';
-            }
-        ?>
-        </header>
-
-        <div id="posts-container">
+<div id="posts-container">
             <?php
-                $sql = "SELECT * FROM posts, users WHERE posts.uid = users.uid ORDER BY posts.pdate DESC LIMIT 5;";
+                $sql = "SELECT * FROM users WHERE username = '".$_GET['u']."';";
+                $result = mysqli_query($conn, $sql);
+                $r = mysqli_fetch_assoc($result);
+                $u_id = $r['uid'];
+                $sql = "SELECT * FROM posts, users WHERE posts.uid = ".$u_id." AND users.username = '".$_GET['u']."' ORDER BY posts.pdate DESC LIMIT 5;";
                 $result = mysqli_query($conn, $sql);
                 if (!mysqli_num_rows($result) > 0) {
                     echo '<p id="no_post">No Posts Available!</p>';
@@ -67,7 +14,7 @@
                         echo '<section class="container post-'.$row['pid'].'">
                         <div class="card">
                             <div class="card-header">
-                                <div class="profile-img">
+                                <div class="post-profile-img"><img class="post-small-img" src="'.$status.'">
                                 </div>
                                     
                                 <div class="profile-info">
@@ -149,30 +96,3 @@
                 }
             ?>
         </div>
-
-        <p id="message"></p>
-
-        <div class="post">
-            <div class="post_close close"></div>
-            <div class="post_main">
-                <h2>New Drop</h2>
-                <div class="post_content">
-                    <form action="post/post.php" method="POST" enctype="multipart/form-data" id="post" class="post-form">
-                        <textarea name="caption" placeholder="Enter Description" id="caption"></textarea>
-                        <input type="file" name="file" id="file" class="inputfile" accept="image/*" data-multiple-caption="{count} files selected" multiple />
-                        <label for="file"><i class="fa fa-picture-o" aria-hidden="true"></i></label>
-                        <button type="submit" name="submit" id="submit">Drop</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <section class="footer">
-            <ul>
-                <li><p>&copy NXTDROP Inc. 2017</p></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Terms &amp Privacy</a></li>
-            </ul>
-        </section>
-    </body>
-</html>

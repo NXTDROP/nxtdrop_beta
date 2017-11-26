@@ -6,7 +6,6 @@
     $caption = mysqli_real_escape_string($conn, $_POST['caption']);
     $date = date("Y-m-d H:i:s", time());
 
-    $pic = $_FILES['file'];
     $fileName = $_FILES['file']['name'];
     $fileTmpName = $_FILES['file']['tmp_name'];
     $fileSize = $_FILES['file']['size'];
@@ -28,7 +27,7 @@
             echo 'There was an error';
         }
         else {
-            if (empty($pic)) {
+            if (empty($_FILES['file']['name'])) {
                 echo "<span class='error'>Upload Picture.</span>";
             }
             else {
