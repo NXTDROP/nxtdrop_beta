@@ -1,3 +1,4 @@
+<div class="container-top">
 <?php
 
     $sql = "SELECT uid FROM users WHERE username = '".$_GET['u']."';";
@@ -39,4 +40,9 @@
         <p></p>';
     }
 
+    if(isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
+        echo '<a href="edit-profile.php"><button class="edit-button">Edit Profile</button></a>';
+    }
+
 ?>
+</div>
