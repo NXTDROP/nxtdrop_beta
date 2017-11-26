@@ -1,6 +1,6 @@
 <div id="posts-container">
 <?php
-    $sql = "SELECT * FROM posts, likes, users, profile WHERE posts.pid = likes.pid AND likes.liked_by = 1 AND users.uid = likes.posted_by AND profile.uid = likes.posted_by;";
+    $sql = "SELECT * FROM posts, likes, users, profile WHERE posts.pid = likes.pid AND likes.liked_by = ".$_SESSION['uid']." AND users.uid = likes.posted_by AND profile.uid = likes.posted_by;";
     $result = mysqli_query($conn, $sql);
 
     if (!mysqli_num_rows($result) > 0) {
