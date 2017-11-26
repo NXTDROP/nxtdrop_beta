@@ -118,11 +118,31 @@ header a{
 
 .chat_head {
     cursor: pointer;
-    background: #aa0000;
+    background: rgb(230, 224, 224);
     padding: 20px;
     height: 25px;
-    color: white;
+    color: black;
     border-radius: 5px;
+}
+
+p {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.message_button {
+    margin: 0px 0px 0px 10px;
+    width: 100px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+
+}
+
+.message_button:hover {
+    background-color: #aa0000;
+    color: #fff;
 }
 
 .chat_body {
@@ -130,9 +150,12 @@ header a{
 }
 
 .user {
-    padding: 20px 25px;
+    padding: 25px 50px;
     background: rgb(238, 234, 234);
     cursor: pointer;
+    border-bottom: groove 1px; 
+    height: 20px;
+    font-weight: bold;
 }
 
 .user:hover {
@@ -140,7 +163,18 @@ header a{
     color: white;
 }
 
-.user2 {
+.last_text {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.time {
+    float: right;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+/*.user2 {
     padding: 20px 25px;
     background: rgb(238, 234, 234);
     cursor: pointer;
@@ -149,7 +183,7 @@ header a{
 .user2:hover {
     background: #aa0000;
     color: white;
-}
+}*/
 
 .user:before {
     content:"";
@@ -157,11 +191,11 @@ header a{
     background: #aa0000;
     width: 10px;
     height: 10px;
-    left: 350px;
+    left: 40px;
     border-radius: 5px;
 }
 
-.user2:before {
+/*.user2:before {
     content:"";
     position: absolute;
     background: #aa0000;
@@ -169,7 +203,7 @@ header a{
     height: 10px;
     left: 350px;
     border-radius: 5px;
-}
+}*/
 
 .msg_box {
     margin: 90px 250px 0px 0px;

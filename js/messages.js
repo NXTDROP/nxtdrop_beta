@@ -7,7 +7,7 @@ $(document).ready(function(){
         $('.msg_box').hide();
     });
 
-    $(".user").click(function()
+    $(".user ").click(function()
     {
         $('.msg_box').show();
         $('.msg_box2').hide();
@@ -18,7 +18,7 @@ $(document).ready(function(){
         $('.msg_box2').hide();
     });
 
-    $(".user2").click(function()
+    $(".user 2").click(function()
     {
         $('.msg_box2').show();
         $('.msg_box').hide();
