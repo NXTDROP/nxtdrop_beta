@@ -91,6 +91,14 @@ header a{
     color: #aa0000;
 }
 
+.fa-heart:hover {
+    cursor: pointer;
+}
+
+.fa-heart-o:hover {
+    cursor: pointer;
+}
+
 .container{
     margin: 50px;
     top: 50px;
