@@ -92,6 +92,10 @@ header a{
     
 }
 
+.fa-heart {
+    color: #aa0000;
+}
+
 .container{
     margin: 50px;
     top: 50px;

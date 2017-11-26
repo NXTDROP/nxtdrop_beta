@@ -20,7 +20,8 @@
         <script type="text/javascript" src="js/menu-dropdown.js"></script>
         <script type="text/javascript" src="js/post-popup.js"></script>
         <script type="text/javascript" src="js/delete-post.js"></script>
-        <script type="text/javascript" src="js/profile-picture.js"></script>   
+        <script type="text/javascript" src="js/profile-picture.js"></script>
+        <script type="text/javascript" src="js/like-unlike-post.js"></script>   
     </head>
 
     <body>

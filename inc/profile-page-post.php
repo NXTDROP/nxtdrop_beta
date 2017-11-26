@@ -11,6 +11,12 @@
                 }
                 else {
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $query = "SELECT pid FROM likes WHERE liked_by = ".$_SESSION['uid']." AND pid = ".$row['pid'].";";
+                        $q_result = mysqli_query($conn, $query);
+                        $q_row = mysqli_fetch_assoc($q_result);
+                        if ($row['pid'] == $q_row['pid']) $like_class = 'fa fa-heart';
+                        else $like_class = 'fa fa-heart-o';
+
                         echo '<section class="container post-'.$row['pid'].'">
                         <div class="card">
                             <div class="card-header">
@@ -50,48 +56,48 @@
                                 </div>-->
                                 <hr />';
                                 if (isset($_SESSION['uid']) && $_SESSION['uid'] == $row['uid']) {
-                                    echo '
-                                    <div class="post_form_bottom">
-                                        <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
-                                        <div class="heart">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        </div>
-                                        <div onclick="delete_('.$row['pid'].')" class="remove">
-                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="flag">
-                                            <i class="fa fa-flag" aria-hidden="true"></i>
-                                        </div>
+                    echo '
+                    <div class="post_form_bottom">
+                    <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
+                    <div class="heart">';
+                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')"></i>';
+                    echo '</div>
+                    <div onclick="delete_('.$row['pid'].')" class="remove">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                    <div class="flag">
+                    <i class="fa fa-flag" aria-hidden="true"></i>
+                    </div>
+                    
+                    <!--<div class="add-comment">
+                    <input type="text" placeholder="Drop a comment..." />
+                    </div>-->
+                    </div>
+                    </div>
+                    
+                    </div>    
+                    </section>';
+                }
+                else {
+                    echo '
+                    <div class="post_form_bottom">
+                    <input type="hidden" name="pid" value="'.$row['pid'].'">
+                    <div class="heart">';
+                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')"></i>';
+                    echo '</div>
+                    <div class="flag">
+                    <i class="fa fa-flag" aria-hidden="true"></i>
+                    </div>
                 
-                                        <!--<div class="add-comment">
-                                            <input type="text" placeholder="Drop a comment..." />
-                                        </div>-->
-                                    </div>
-                                </div>
+                    <!--<div class="add-comment">
+                    <input type="text" placeholder="Drop a comment..." />
+                    </div>-->
+                    </div>
+                    </div>
                 
-                            </div>    
-                            </section>';
-                                }
-                                else {
-                                    echo '
-                                    <div class="post_form_bottom">
-                                        <input type="hidden" name="pid" value="'.$row['pid'].'">
-                                        <div class="heart">
-                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="flag">
-                                            <i class="fa fa-flag" aria-hidden="true"></i>
-                                        </div>
-                
-                                        <!--<div class="add-comment">
-                                            <input type="text" placeholder="Drop a comment..." />
-                                        </div>-->
-                                    </div>
-                                </div>
-                
-                            </div>    
-                            </section>';
-                                }
+                    </div>    
+                    </section>';
+                }
                     }
                 }
             ?>

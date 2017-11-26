@@ -85,7 +85,10 @@ header a{
 
 .fa{
    color: black;
-    
+}
+
+.fa-heart {
+    color: #aa0000;
 }
 
 .container{
