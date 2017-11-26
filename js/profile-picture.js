@@ -16,4 +16,13 @@ $(document).ready(function() {
             }
         });
     });
+    $("#remove").click(function(){
+        $.ajax({
+            url: "inc/delete-profile-picture.php",
+            success: function(response){
+                $('#myprofile').attr('src',response);
+                $('.post-small-img').attr('src',response);
+            }
+        });
+    });
 });
