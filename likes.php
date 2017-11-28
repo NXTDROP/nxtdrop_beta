@@ -1,6 +1,7 @@
 <?php 
     session_start();
     include "dbh.php";
+    include "inc/time.php";
 
     if (!isset($_SESSION['uid'])) {
         header("Location: login.php");

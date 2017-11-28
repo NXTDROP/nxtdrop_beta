@@ -35,7 +35,7 @@
                                 </div> -->
             
                                 <div class="time">
-                                    <p>'.$row['pdate'].'</p>
+                                    <p>'.getPostTime($row['pdate']).'</p>
                                 </div>
                             </div>
                             <div class="content">
