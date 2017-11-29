@@ -43,7 +43,7 @@
                             </div>
             
                             <div class="card-footer">
-                                <div class="likes"><p>'.$row['likes'].' likes</p></div>
+                            <div class="likes"><p id="likes-'.$row['pid'].'">'.$row['likes'].' <i class="fa fa-heart aria-hidden="true" style="color:#a8a8a8;"></i></p></div>
             
                                 <div class="description">
                                     <p><span class="username"><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</p>
@@ -62,13 +62,13 @@
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
                     <div class="heart">';
-                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')"></i>';
+                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
                     echo '</div>
                     <div onclick="delete_('.$row['pid'].')" class="remove">
-                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
                     </div>
                     <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true"></i>
+                    <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
                     </div>
                     
                     <!--<div class="add-comment">
@@ -85,10 +85,10 @@
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart">';
-                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')"></i>';
+                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
                     echo '</div>
                     <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true"></i>
+                    <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
                     </div>
                 
                     <!--<div class="add-comment">

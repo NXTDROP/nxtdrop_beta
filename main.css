@@ -99,6 +99,14 @@ header a{
     cursor: pointer;
 }
 
+.fa-flag:hover {
+    cursor: pointer;
+}
+
+.fa-times:hover {
+    cursor: pointer;
+}
+
 .container{
     margin: 50px;
     top: 50px;
@@ -176,8 +184,12 @@ header a{
     font-size: 14px;
 }
 .likes{
-    color: red;
+    color: #a8a8a8;
     padding-bottom: 10px;
+}
+
+.likes p {
+    font-size: 14px;
 }
 
 .comments p{
