@@ -2,7 +2,7 @@
 {
     margin: 0;
     padding: 0;
-    outline: none;
+    list-style: none;
 }
 
 header{
@@ -68,6 +68,11 @@ header a{
    color: black;
     
 }
+
+.fa-times:hover {
+    cursor: pointer;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -110,14 +115,13 @@ header a{
 .chat_box {
     background: rgb(230, 224, 224);
     width:350px;
-    height: 100%;
+    height: 550px;
     margin: 90px 0px 0px 25px;
     border-radius: 5px;
     float: left;
 }
 
 .chat_head {
-    cursor: pointer;
     background: rgb(230, 224, 224);
     padding: 20px;
     height: 25px;
@@ -125,13 +129,14 @@ header a{
     border-radius: 5px;
 }
 
-p {
+.chat_head p {
+    float: left;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .message_button {
-    margin: 0px 0px 0px 10px;
+    float: right;
     width: 100px;
     height: 25px;
     background-color: #fff;
@@ -150,17 +155,23 @@ p {
 }
 
 .user {
-    padding: 25px 50px;
+    padding: 20px;
     background: rgb(238, 234, 234);
     cursor: pointer;
     border-bottom: groove 1px; 
-    height: 20px;
+    height: 50px;
     font-weight: bold;
 }
 
 .user:hover {
-    background: #aa0000;
+    background: #000;
     color: white;
+}
+
+#from {
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
 }
 
 .last_text {
@@ -174,65 +185,37 @@ p {
     font-size: 13px;
 }
 
-/*.user2 {
-    padding: 20px 25px;
-    background: rgb(238, 234, 234);
-    cursor: pointer;
+.time:hover {
+    text-decoration: underline;
 }
 
-.user2:hover {
-    background: #aa0000;
-    color: white;
-}*/
-
-.user:before {
-    content:"";
-    position: absolute;
-    background: #aa0000;
-    width: 10px;
-    height: 10px;
-    left: 40px;
-    border-radius: 5px;
+.fa-circle {
+    float: right;
+    color: #aa0000;
 }
-
-/*.user2:before {
-    content:"";
-    position: absolute;
-    background: #aa0000;
-    width: 10px;
-    height: 10px;
-    left: 350px;
-    border-radius: 5px;
-}*/
 
 .msg_box {
-    margin: 90px 250px 0px 0px;
-    width: 700px;
-    height: 100%;
+    margin: 90px 100px 0px 0px;
+    width: 850px;
+    height: 550px;
     float: right;
     border-radius: 5px;
 }
 
 .msg_head {
-    cursor: pointer;
     height: 25px;
     background: rgb(230, 224, 224);
     padding: 20px;
-    color: #aa0000;
     border-radius: 5px;
 }
 
 .close {
+    font-size: 20px;
     float: right;
 }
 
-.close:hover {
-    background:#aa0000;
-    color: white;
-}
-
 .msg_body {
-    height: 450px;
+    height: 400px;
     background: white;
     font-size: 14px;
     overflow: auto;
@@ -240,7 +223,8 @@ p {
 }
 
 .msg_input {
-    height: 75px;
+    height: 85px;
+    padding: 3px;
     width: 100%;
     resize: none;
     margin-bottom: 50px;
@@ -276,7 +260,6 @@ p {
 }
 
 .msg_head2 {
-    cursor: pointer;
     height: 25px;
     background: rgb(230, 224, 224);
     padding: 20px;
@@ -286,11 +269,6 @@ p {
 
 .close2 {
     float: right;
-}
-
-.close2:hover {
-    background:#aa0000;
-    color: white;
 }
 
 .msg_body2 {
@@ -327,4 +305,35 @@ p {
     background: rgb(230, 224, 224);
     position: relative; 
     border-radius: 50px;
+}
+
+.footer {
+    width: 100%;
+    height: 25px;
+    color: #aa0000;
+    padding: 50px 0 0 0;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer ul li p {
+    font-size: 16px;
+}
+
+.footer ul {
+    float: left;
+}
+
+.footer ul li {
+    display: inline-block;
+    margin: 0 30px;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: #aa0000;
+}
+
+.footer ul li a:hover {
+    color: grey;
 }

@@ -12,84 +12,61 @@
     </head>
 
     <body>
-            <header>
-                    <a><img id ="logo"src="img/nxtdroplogo.png" height="20px"></a>
-                    <a href="index.php"><i class="fa fa-home" aria-hidden="true"></i></a>
-                        
-                    <?php
-                        if(isset($_SESSION['uid'])) {
-                            echo '<a href="likes.php"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            <a href="profile.php"><i class="fa fa-user" aria-hidden="true"></i></a>';
-                        }
-                        else {
-                            echo '<a href="login.php"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            <a href="login.php"><i class="fa fa-user" aria-hidden="true"></i></a>';
-                        }
-                    ?>
-                    <div class="search-bar">
-                        <form action="search.php" method="GET" id="search-bar">
-                        <input type="text" name="q" size="60" placeholder="Search" />
-                        </form>
-                    </div>
-                    <?php
-                        if(isset($_SESSION['uid'])) {
-                            echo '<button class="call_post">New Drop</button>
-                            <div class="dropdown"><i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn"></i><div id="myDropdown" class="dropdown-content"><a href="login/logout.php">Log Out</a></div></div>';
-                        }
-                        else {
-                            echo '<a href="login.php"><button class="login-button">Sign Up/Login</button></a>';
-                        }
-                    ?>
-                </header>
+        <?php include('inc/header-body.php'); ?>
                 
-                <div class="chat_box">
-                    <div class="chat_head">
-                        <p>Messages</p>
-                        <button class="message_button">New Message</button>
-
-                    </div>
-                        <div class="chat_body">
-                            <div class="user 1">Teezy
-                                <div class="last_text 1">Yeah sure man.</div>
-                                <div class="time 1">30 s</div>
-                            </div>
-
-                            <div class="user 2">Yusuf
-                            <div class="last_text 2">Sup</div>
-                            <div class="time 2">1h</div>
-                            </div>
-                        </div>
+        <div class="chat_box">
+            <div class="chat_head">
+                <p>Messages</p>
+                <button class="message_button">New Message</button>
+            </div>
+            <div class="chat_body">
+                <div class="user 1">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    <ul>
+                        <li><h2>Teezy</h2></li>
+                        <li><p class="last_text 1">Yeah sure man.</p></li>
+                    </ul>
+                    <p class="time 1">30 s</p>
                 </div>
 
-                <div class="msg_box">
-                    <div class="msg_head">Teezy
-                        <div class="close">X</div>
-                    </div>
-                    <div class="msg_body">
-                        <div class="msg_a">Yoo! Wanna trade these Yeezy?</div>
-                        <div class="msg_b">Yeah sure man.</div>
-                        <div class="msg_insert"></div>
-                    </div>
-                    <div class="msg_footer"><textarea class="msg_input">Send Message</textarea></div> 
-                </div>
+                <!--<div class="user 2">Yusuf
+                    <div class="last_text 2">Sup</div>
+                    <div class="time 2">1h</div>
+                </div>-->
+            </div>
+        </div>
 
-                <div class="msg_box2">
-                    <div class="msg_head2">Yusuf
-                        <div class="close2">X</div>
-                    </div>
-                    <div class="msg_body2">
-                        <div class="msg_a2">Wassup?</div>
-                        <div class="msg_b2">Sup</div>
-                        <div class="msg_insert2"></div>
-                    </div>
-                    <div class="msg_footer2"><textarea class="msg_input2">Send Message</textarea></div> 
-                </div>
+        <div class="msg_box">
+            <div class="msg_head"><p id="from">Teezy</p>
+                <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
+            </div>
+            <div class="msg_body">
+                <div class="msg_a">Yoo! Wanna trade these Yeezy?</div>
+                <div class="msg_b">Yeah sure man.</div>
+                <div class="msg_insert"></div>
+            </div>
+            <textarea class="msg_input" placeholder="Enter Message..."></textarea>
+        </div>
+
+        <div class="msg_box2">
+            <div class="msg_head2">Yusuf
+                <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
+            </div>
+            <div class="msg_body2">
+                <div class="msg_a2">Wassup?</div>
+                <div class="msg_b2">Sup</div>
+                <div class="msg_insert2"></div>
+            </div>
+            <textarea class="msg_input2" placeholder="Enter Message..."></textarea>
+        </div>
+
+        <section class="footer">
+            <ul>
+                <li><p>&copy NXTDROP Inc. 2017</p></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Terms &amp Privacy</a></li>
+            </ul>
+        </section>
                 
     </body>
-
-
-
-
-
-
 </html>
