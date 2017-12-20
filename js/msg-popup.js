@@ -1,0 +1,12 @@
+$(document).ready(function(){
+    $(".message_button").click(function(){
+        $(".msg_pop").fadeIn();
+        $(".msg_main").show();
+    });
+});
+$(document).ready(function(){
+    $(".close").click(function(){
+        $(".msg_pop").fadeOut();
+        $(".msg_main").fadeOut();
+    });
+});

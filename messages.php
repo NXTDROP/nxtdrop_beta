@@ -1,3 +1,13 @@
+<?php 
+    session_start();
+    include "dbh.php";
+    include "inc/time.php";
+
+    if (!isset($_SESSION['uid'])) {
+        header("Location: login.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <title>
@@ -7,7 +17,10 @@
             <link type="text/css" rel="stylesheet" href="messages.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
             <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="js/menu-dropdown.js"></script>
+            <script type="text/javascript" src="js/post-popup.js"></script>
             <script src="js/messages.js"></script>
+            <script src="js/msg-popup.js"></script>    
 
     </head>
 
@@ -59,6 +72,9 @@
             </div>
             <textarea class="msg_input2" placeholder="Enter Message..."></textarea>
         </div>
+
+        <?php include('inc/new-msg.php'); ?>
+        <?php include('inc/new-drop-pop.php'); ?>
 
         <section class="footer">
             <ul>
