@@ -63,6 +63,7 @@
                 <div class="msg_insert1"></div>
             </div>
             <textarea class="msg_input" id="1" placeholder="Enter Message..."></textarea>
+            <i class="fa fa-paper-plane fa-lg" aria-hidden="true" onclick="send(1)"></i>
         </div>
 
         <div class="msg_box" id="msg2">
@@ -75,6 +76,7 @@
                 <div class="msg_insert2"></div>
             </div>
             <textarea class="msg_input" id="2" placeholder="Enter Message..."></textarea>
+            <i class="fa fa-paper-plane fa-lg" aria-hidden="true" onclick="send(2)"></i>
         </div>
 
         <?php include('inc/new-msg.php'); ?>
