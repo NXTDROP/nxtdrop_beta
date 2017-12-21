@@ -33,44 +33,48 @@
                 <button class="message_button">New Message</button>
             </div>
             <div class="chat_body">
-                <div class="user 1">
+                <div class="user" onclick="show(msg1);">
                     <i class="fa fa-circle" aria-hidden="true"></i>
                     <ul>
                         <li><h2>Teezy</h2></li>
-                        <li><p class="last_text 1">Yeah sure man.</p></li>
+                        <li><p class="last_text">Yeah sure man.</p></li>
                     </ul>
-                    <p class="time 1">30 s</p>
+                    <p class="time">30s</p>
                 </div>
 
-                <!--<div class="user 2">Yusuf
-                    <div class="last_text 2">Sup</div>
-                    <div class="time 2">1h</div>
-                </div>-->
+                <div class="user" onclick="show(msg2);">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    <ul>
+                        <li><h2>Yusuf</h2></li>
+                        <li><p class="last_text">Sup</p></li>
+                    </ul>
+                    <div class="time">1h</div>
+                </div>
             </div>
         </div>
 
-        <div class="msg_box">
+        <div class="msg_box" id="msg1">
             <div class="msg_head"><p id="from">Teezy</p>
                 <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
             </div>
-            <div class="msg_body">
+            <div class="msg_body" id="body1">
                 <div class="msg_a">Yoo! Wanna trade these Yeezy?</div>
                 <div class="msg_b">Yeah sure man.</div>
-                <div class="msg_insert"></div>
+                <div class="msg_insert1"></div>
             </div>
-            <textarea class="msg_input" placeholder="Enter Message..."></textarea>
+            <textarea class="msg_input" id="1" placeholder="Enter Message..."></textarea>
         </div>
 
-        <div class="msg_box2">
-            <div class="msg_head2">Yusuf
+        <div class="msg_box" id="msg2">
+            <div class="msg_head"><p id="from">Yusuf</p>
                 <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
             </div>
-            <div class="msg_body2">
-                <div class="msg_a2">Wassup?</div>
-                <div class="msg_b2">Sup</div>
+            <div class="msg_body" id="body2">
+                <div class="msg_a">Wassup?</div>
+                <div class="msg_b">Sup</div>
                 <div class="msg_insert2"></div>
             </div>
-            <textarea class="msg_input2" placeholder="Enter Message..."></textarea>
+            <textarea class="msg_input" id="2" placeholder="Enter Message..."></textarea>
         </div>
 
         <?php include('inc/new-msg.php'); ?>

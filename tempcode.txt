@@ -14,3 +14,25 @@ email VARCHAR( 256 ) ,
 pwd VARCHAR( 256 ) ,
 PRIMARY KEY ( uid )
 )
+
+    $(".close").click(function()
+    {
+        $('.msg_box').hide();
+    });
+
+    $(".user ").click(function()
+    {
+        $('.msg_box').show();
+        $('.msg_box2').hide();
+    });
+
+    $(".close2").click(function()
+    {
+        $('.msg_box2').hide();
+    });
+
+    $(".user 2").click(function()
+    {
+        $('.msg_box2').show();
+        $('.msg_box').hide();
+    });

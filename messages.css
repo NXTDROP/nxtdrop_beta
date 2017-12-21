@@ -5,6 +5,23 @@
     list-style: none;
 }
 
+html {
+    font-family: 'Helvetica Neue', Helvetica, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo,
+    'ＭＳ Ｐゴシック', arial, sans-serif;
+    position: relative;
+    min-height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: #aa0000;
+}
+
+body{
+    background-color:#FAFAFA;
+    height: 100%;
+}
+
 header{
     background:#fff;
     border-bottom: 2px solid #EBE9E9;
@@ -115,8 +132,8 @@ header a{
 .chat_box {
     background: rgb(230, 224, 224);
     width: 25%;
-    height: 550px;
-    margin: 7% 1% 0 2%;
+    height: 560px;
+    margin: 7% 1% 8% 2%;
     border-radius: 5px;
     float: left;
 }
@@ -220,6 +237,7 @@ header a{
     font-size: 14px;
     overflow: auto;
     overflow-x: hidden;
+    padding: 5px 25px;
 }
 
 .msg_input {
@@ -235,89 +253,29 @@ header a{
 
 .msg_a {
     margin-left: 250px;
-    margin-top: 15px;
     padding: 12px;
+    margin-bottom: 5px;
     background: #aa0000;
     position: relative;
     color: white;
-    border-radius: 50px;
+    border-radius: 25px;
 }
 .msg_b {
     margin-right: 250px;
     padding: 12px;
-    margin-top: 15px;
+    margin-bottom: 5px;
     background: rgb(230, 224, 224);
     position: relative; 
-    border-radius: 50px;
-}
-
-.msg_box2 {
-    margin: 90px 250px 0px 0px;
-    width: 700px;
-    height: 100%;
-    float: right;
-    border-radius: 5px;
-}
-
-.msg_head2 {
-    height: 25px;
-    background: rgb(230, 224, 224);
-    padding: 20px;
-    color: #aa0000;
-    border-radius: 5px;
-}
-
-.close2 {
-    float: right;
-}
-
-.msg_body2 {
-    height: 450px;
-    background: white;
-    font-size: 14px;
-    overflow: auto;
-    overflow-x: hidden;
-}
-
-.msg_input2 {
-    height: 75px;
-    width: 100%;
-    resize: none;
-    margin-bottom: 50px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.msg_a2 {
-    margin-left: 250px;
-    margin-top: 15px;
-    padding: 12px;
-    background: #aa0000;
-    position: relative;
-    color: white;
-    border-radius: 50px;
-}
-.msg_b2 {
-    margin-right: 250px;
-    padding: 12px;
-    margin-top: 15px;
-    background: rgb(230, 224, 224);
-    position: relative; 
-    border-radius: 50px;
+    border-radius: 25px;
 }
 
 .footer {
     width: 100%;
-    height: 25px;
+    height: 50px;
     color: #aa0000;
     padding: 50px 0 0 0;
     position: absolute;
-    bottom: 0;
-}
-
-.footer ul li p {
-    font-size: 16px;
+    bottom:0;
 }
 
 .footer ul {
