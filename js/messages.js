@@ -24,6 +24,16 @@ $(document).ready(function(){
     $('.msg_input').on('keydown', function(){
         $(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
     });
+
+    $('#to').focus(function(){
+        $('#result').fadeIn();
+        $('#result').show();
+    });
+
+    $('#to').blur(function(){
+        $('#result').fadeOut();
+        $('#result').hide();
+    });
 });
 
 function show(element) {

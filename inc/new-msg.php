@@ -2,13 +2,28 @@
     $(document).ready(function(){
         $('#to').keyup(function(){
             var name = $(this).val();
-            console.log(name);
             $.post('inc/search_users.php', {name: name}, function(data){
-                $('div#result').css({'display':'block'});
                 $('div#result').html(data);
             });
         });
-    });    
+
+        $('#send').click(function(){
+            var msg = $('.new_msg_input').val();
+            var to = $('#to').val();
+            alert(msg + " " + to);
+            $.post('inc/send_newmsg.php', {to: to, msg: msg}, function(data){
+                if (data == '') {
+                    $('#to').val('');
+                    $('.new_msg_input').val('');
+                    $(".msg_pop").fadeOut();
+                    $(".msg_main").fadeOut();
+                }
+                else {
+                    $('#error_msg').html(data);
+                }
+            });
+        });
+    });
 </script>
 
 <div class="msg_pop">
@@ -22,6 +37,7 @@
                 </form>
                 <div id="result"></div>
                 <textarea class="new_msg_input" placeholder="Enter Message..." required></textarea>
+                <p id="error_msg"></p>
                 <button type="submit" name="send" id="send">Send Message</button>
         </div>
     </div>       

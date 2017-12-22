@@ -378,27 +378,35 @@ header a{
 
 .msg_content h3 {
     font-size:12px;
-    margin-left: 2%;
+    margin-left: 1.5%;
 }
 
 .msg_content input[name='to'] {
     width: 50%;
-    margin-left: 2%;
+    margin-left: 1.5%;
     border: 1px solid #afafaf;
     border-radius: 5px;
 }
 
+#error_msg {
+    font-size: 12px;
+    margin-left: 1.5%;
+    float: left;
+    color: red;
+}
+
 #result {
-    width: 48.5%;
-    margin-left: 1%;
+    width: 23.5%;
+    margin-left: 0.75%;
     position: fixed;
     z-index: 20;
+    display: none;
 }
 
 #user {
     border: 1px solid silver;
     cursor: pointer;
-    width: 48%;
+    width: 100%;
     padding: 10px;
     background: #fff;
     font-size: 12px;
