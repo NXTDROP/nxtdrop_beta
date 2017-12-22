@@ -17,6 +17,8 @@
             <link type="text/css" rel="stylesheet" href="messages.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
             <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="typeahead.min.js"></script>
             <script type="text/javascript" src="js/menu-dropdown.js"></script>
             <script type="text/javascript" src="js/post-popup.js"></script>
             <script src="js/messages.js"></script>
@@ -29,7 +31,7 @@
                 
         <div class="chat_box">
             <div class="chat_head">
-                <p>Messages</p>
+                <p>Inbox</p>
                 <button class="message_button">New Message</button>
             </div>
             <div class="chat_body">

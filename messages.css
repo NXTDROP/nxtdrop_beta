@@ -159,6 +159,7 @@ header a{
     background-color: #fff;
     border: 1px solid #aa0000;
     color: #aa0000;
+    border-radius: 20px;
 
 }
 
@@ -315,7 +316,6 @@ header a{
 
 .msg_main {
     width: 50%;
-    height: 400px;
     background: #fff;
     z-index: 4;
     position: fixed;
@@ -332,8 +332,80 @@ header a{
 }
 
 .msg_content {
+    padding: 10px;
     background: #FAFAFA;
-    padding-bottom: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.msg_content label {
+    margin-left: 10px;
+}
+
+.msg_content input[name="to"] {
+    width: 50%;
+    height: 20px;
+    padding: 5px;
+}
+
+.new_msg_input {
+    height: 85px;
+    resize: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.msg_content #send {
+    float: right;
+}
+
+#send {
+    margin-right: 3.5%;
+    margin-bottom: 1%;
+    background: #fff;
+    border: 1px solid #aa0000;
+    padding: 1%;
+    color: #aa0000;
+    border-radius: 12px;
+}
+
+#send:hover {
+    color: #fff;
+    background: #aa0000;
+}
+
+.msg_content h3 {
+    font-size:12px;
+    margin-left: 2%;
+}
+
+.msg_content input[name='to'] {
+    width: 50%;
+    margin-left: 2%;
+    border: 1px solid #afafaf;
+    border-radius: 5px;
+}
+
+#result {
+    width: 48.5%;
+    margin-left: 1%;
+    position: fixed;
+    z-index: 20;
+}
+
+#user {
+    border: 1px solid silver;
+    cursor: pointer;
+    width: 48%;
+    padding: 10px;
+    background: #fff;
+    font-size: 12px;
+}
+
+#user:hover {
+    background: #afafaf;
 }
 
 .call_post {
@@ -388,6 +460,16 @@ header a{
 .post_content {
     background: #FAFAFA;
     padding-bottom: 10px;
+}
+
+textarea {
+    font-size: 16px;
+    width: 95%;
+    height: 100px;
+    resize: none;
+    padding: 5px 5px;
+    margin: 10px 1.5%;
+    border-radius: 6px;
 }
 
 .msg_box textarea {
@@ -462,54 +544,6 @@ header a{
 p {
     font-weight: bold;
     font-size: 20px;
-}
-
-#new-search-bar {
-    width: 50%;
-    height: 30px;
-    border: 1px solid #fff;
-    border-radius: 7px;
-    margin: 15px 0px 0px 150px;
-
-}
-
-#new-search-bar input[type="text"] {
-    background: white no-repeat 10px 6px ;
-    outline: none;
-    border: 0 none;
-    font: bold 12px Arial, Helvetica, Sans-serif;
-    width: 350px;
-    padding: 6px 15px 6px 35px;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
-    -webkit-transition: all 0.7s ease 0s;
-    -moz-transition: all 0.7s ease 0s;  
-    -o-transition: all 0.7s ease 0s;
-    transition: all 0.7s ease 0s;
-}
-
-#new-search-bar input[type="text"]:focus {
-    background: #F3F1F1 no-repeat 10px 6px ;
-    color: #6a6f75;
-    width: 350px;
-    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
-    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0px rgba(0, 0, 0, 0.9) inset;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0px rgba(0, 0, 0, 0.9) inset;
-    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-}
-
-.new-msg_input {
-    height: 85px;
-    padding: 3px;
-    width: 105%;
-    resize: none;
-    margin-bottom: 50px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin-top: 40px;
 }
 
 .send_button {
