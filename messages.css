@@ -195,6 +195,7 @@ header a{
 .last_text {
     font-size: 12px;
     font-weight: normal;
+    margin-top: 5px;
 }
 
 .time {
@@ -412,8 +413,17 @@ header a{
     font-size: 12px;
 }
 
+ul li h2 {
+    color: #aa0000;
+}
+
 #user:hover {
     background: #afafaf;
+}
+
+#no_inbox {
+    text-align: center;
+    margin-top: 20px;
 }
 
 .call_post {

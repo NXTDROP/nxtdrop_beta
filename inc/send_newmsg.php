@@ -8,6 +8,7 @@
     $to = $_POST['to'];
     $msg = $_POST['msg'];
     $from = $_SESSION['username'];
+    $chat_id = md5($to.''.$from);
 
     $query = "SELECT username FROM users WHERE username = '$to';";
     $result = mysqli_query($conn, $query);
@@ -29,7 +30,7 @@
                     echo 'Enter a message';
                 }
                 else {
-                    $query = "INSERT INTO messages (u_to, u_from, message, time_sent) VALUES ('$to', '$from', '$msg', '$date');";
+                    $query = "INSERT INTO messages (chat_id, u_to, u_from, message, time_sent) VALUES ('$chat_id', '$to', '$from', '$msg', '$date');";
                     if (!mysqli_query($conn, $query)) {
                         echo 'Cannot send your message.';
                     }
