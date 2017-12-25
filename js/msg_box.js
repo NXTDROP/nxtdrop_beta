@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('.msg_input').keydown(function(e) {
         if (e.keyCode == 13) {
             e.preventDefault();
+            clearTimeout(renew);
             send(true);
         }
     });
@@ -13,6 +14,7 @@ $(document).ready(function() {
     });
 
     $('.msg_input').on('keydown', function(){
+        clearTimeout(renew);
         $(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
     });
 });
@@ -31,7 +33,7 @@ function send(mode) {
                     url: 'inc/send_newmsg.php',
                     data: {to: to, msg: msg, new: 'false'},
                     success: function(data) {
-                        $('#u_tofrom').html(data);
+                        
                     }
                 });
             }
@@ -48,7 +50,7 @@ function send(mode) {
                     url: 'inc/send_newmsg.php',
                     data: {to: to, msg: msg, new: 'false'},
                     success: function(data) {
-                        $('#u_tofrom').html(data);
+                        
                     }
                 });
             }
