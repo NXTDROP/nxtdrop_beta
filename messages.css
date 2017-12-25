@@ -506,6 +506,10 @@ textarea {
     float: right;
 }
 
+.fa-paper-plane:hover {
+    cursor: pointer;
+}
+
 .inputfile {
 	width: 0.1px;
 	height: 0.1px;

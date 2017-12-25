@@ -5,16 +5,9 @@ $(document).ready(function() {
     });
 
     $('.msg_input').keydown(function(e) {
-        var msg= $(this).val();
         if (e.keyCode == 13) {
             e.preventDefault();
-            if (msg != "") {
-                if (/\S/.test(msg)) {
-                    $(this).val("");
-                    $("<div class='msg_a'>"+msg+"</div>").insertBefore('.msg_insert');
-                    $('#body').scrollTop($('#body')[0].scrollHeight);
-                }
-            }
+            send(true);
         }
     });
 
@@ -23,14 +16,42 @@ $(document).ready(function() {
     });
 });
 
-function send() {
+function send(mode) {
     var msg = $('.msg_input').val();
-    if (msg != "") {
-        if (/\S/.test(msg)) {
-            $(this).val("");
-            $("<div class='msg_a'>"+msg+"</div>").insertBefore('.msg_insert');
-            $('#body').scrollTop($('#body')[0].scrollHeight);
-            $('.msg_input').val('');
+    var to = $('#u_tofrom').text();
+    if (mode == true) {
+        if (msg != "") {
+            if (/\S/.test(msg)) {
+                $("<div class='msg_a'>"+msg+"</div>").insertBefore('.msg_insert');
+                $('#body').scrollTop($('#body')[0].scrollHeight);
+                $('.msg_input').val('');
+                $.ajax({
+                    type: 'POST',
+                    url: 'inc/send_newmsg.php',
+                    data: {to: to, msg: msg, new: 'true'},
+                    success: function() {
+                        
+                    }
+                });
+            }
         }
     }
+    else {
+        if (msg != "") {
+            if (/\S/.test(msg)) {
+                $("<div class='msg_a'>"+msg+"</div>").insertBefore('.msg_insert');
+                $('#body').scrollTop($('#body')[0].scrollHeight);
+                $('.msg_input').val('');
+                $.ajax({
+                    type: 'POST',
+                    url: 'inc/send_newmsg.php',
+                    data: {to: to, msg: msg, new: 'false'},
+                    success: function() {
+                        
+                    }
+                });
+            }
+        }
+    }
+    
 }

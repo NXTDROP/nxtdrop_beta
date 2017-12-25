@@ -7,8 +7,8 @@
 
     $to = $_POST['to'];
     $msg = $_POST['msg'];
+    $new = $_POST['new'];
     $from = $_SESSION['username'];
-    $chat_id = md5($to.''.$from);
 
     $query = "SELECT username FROM users WHERE username = '$to';";
     $result = mysqli_query($conn, $query);
@@ -30,7 +30,17 @@
                     echo 'Enter a message';
                 }
                 else {
-                    $query = "INSERT INTO messages (chat_id, u_to, u_from, message, time_sent) VALUES ('$chat_id', '$to', '$from', '$msg', '$date');";
+                    if ($new == true) {
+                        $chat_id = md5($to.''.$from);
+                        $query = "INSERT INTO messages (chat_id, u_to, u_from, message, time_sent) VALUES ('$chat_id', '$to', '$from', '$msg', '$date');";
+                    }
+                    else {
+                        $query = "SELECT chat_id FROM messages WHERE u_to = $to AND u_from = $from OR u_to = $from AND u_from = $to;";
+                        $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
+                        $chat_id = $result['chat_id'];
+                        $query = "INSERT INTO messages (chat_id, u_to, u_from, message, time_sent) VALUES ('$chat_id', '$to', '$from', '$msg', '$date');";
+                    }
+
                     if (!mysqli_query($conn, $query)) {
                         echo 'Cannot send your message.';
                     }

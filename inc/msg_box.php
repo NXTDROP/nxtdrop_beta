@@ -1,4 +1,3 @@
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="js/msg_box.js"></script>
 <?php
     session_start();
@@ -9,7 +8,7 @@
     $sql = "SELECT * FROM messages WHERE chat_id = '$chat_id' ORDER BY time_sent ASC LIMIT 15;";
     $result = mysqli_query($conn, $sql);
     echo '<div class="msg_box">
-    <div class="msg_head"><p id="from"><a href="profile.php?u='.$to_from.'">'.$to_from.'</a></p>
+    <div class="msg_head"><p id="from"><a href="profile.php?u='.$to_from.'" id="u_tofrom">'.$to_from.'</a></p>
         <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
     </div>
     <div class="msg_body" id="body">';
@@ -24,7 +23,7 @@
     echo '<div class="msg_insert"></div>
     </div>
     <textarea class="msg_input" placeholder="Enter Message..."></textarea>
-    <i class="fa fa-paper-plane fa-lg" aria-hidden="true" onclick="send()"></i>
+    <i class="fa fa-paper-plane fa-lg" aria-hidden="true" onclick="send(false)"></i>
 </div>';
 ?>
 
