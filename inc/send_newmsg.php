@@ -30,7 +30,7 @@
                     echo 'Enter a message';
                 }
                 else {
-                    if ($new == true) {
+                    if ($new == 'true') {
                         $chat_id = md5($to.''.$from);
                         $query = "INSERT INTO messages (chat_id, u_to, u_from, message, time_sent) VALUES ('$chat_id', '$to', '$from', '$msg', '$date');";
                     }
