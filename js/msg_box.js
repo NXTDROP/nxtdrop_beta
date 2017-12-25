@@ -46,7 +46,7 @@ function send(mode) {
                     type: 'POST',
                     url: 'inc/send_newmsg.php',
                     data: {to: to, msg: msg, new: 'false'},
-                    success: function() {
+                    success: function(data) {
                         $('#u_tofrom').html(data);
                     }
                 });
