@@ -33,10 +33,9 @@
                     if ($new == 'true') {
                         $chat_id = md5($to.''.$from);
                         $query = "INSERT INTO messages (chat_id, u_to, u_from, message, time_sent) VALUES ('$chat_id', '$to', '$from', '$msg', '$date');";
-                        echo $chat_id;
                     }
                     else {
-                        $query = "SELECT DISTINCT chat_id FROM messages WHERE u_to = '$to_from' AND u_from = '$username' OR u_to = '$username' AND u_from = '$to_from';";
+                        $query = "SELECT DISTINCT chat_id FROM messages WHERE u_to = '$to' AND u_from = '$username' OR u_to = '$username' AND u_from = '$to';";
                         $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
                         $chat_id = $result['chat_id'];
                         $query = "INSERT INTO messages (chat_id, u_to, u_from, message, time_sent) VALUES ('$chat_id', '$to', '$from', '$msg', '$date');";
