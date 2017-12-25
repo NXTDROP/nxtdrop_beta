@@ -1,14 +1,15 @@
 $(document).ready(function() {
-    $(".close").click(function()
-    {
-        $('.msg_box').remove();
-    });
-
     $('.msg_input').keydown(function(e) {
         if (e.keyCode == 13) {
             e.preventDefault();
             send(true);
         }
+    });
+
+    $(".close").click(function()
+    {
+        $('.msg_box').remove();
+        clearTimeout(renew);
     });
 
     $('.msg_input').on('keydown', function(){

@@ -213,6 +213,10 @@ header a{
     color: #aa0000;
 }
 
+.fa-circle:hover {
+    color: rgb(238, 234, 234);
+}
+
 .msg_box {
     margin: 7% 7% 0px 0px;
     width: 60%;

@@ -1,4 +1,28 @@
 <script src="js/msg_box.js"></script>
+<<script>
+var renew;
+function updateMsg() {
+    console.log('call updateMsg');
+    var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
+    $.ajax({
+        type: 'POST',
+        url: 'inc/update_msg.php',
+        data: {to_from: to_from},
+        success: function(data) {
+            $('.msg_body').html(data);
+            $('.fa-circle').attr('class', '');
+        },
+        complete: function(data) {
+            renew = setTimeout(function() {
+                updateMsg(to_from);
+            }, 10000);
+        }
+    });
+}
+
+updateMsg();
+</script>
+
 <?php
     session_start();
     include 'dbh.php';
@@ -14,16 +38,20 @@
         <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
     </div>
     <div class="msg_body" id="body">';
-    while ($row = mysqli_fetch_assoc($result)) {
+    /*while ($row = mysqli_fetch_assoc($result)) {
         if ($row['u_from'] == $username) {
             echo '<div class="msg_a">'.$row['message'].'</div>';
         }
         else {
             echo '<div class="msg_b">'.$row['message'].'</div>';
+            if ($row['opened'] == 0) {
+                $id = $row['id'];
+                mysqli_query($conn, "UPDATE messages SET opened='1' WHERE id='$id';");
+            }
         }
     }
-    echo '<div class="msg_insert"></div>
-    </div>
+    echo '<div class="msg_insert"></div>*/
+    echo '</div>
     <textarea class="msg_input" placeholder="Enter Message..."></textarea>
     <i class="fa fa-paper-plane fa-lg" aria-hidden="true" onclick="send(false)"></i>
 </div>';
