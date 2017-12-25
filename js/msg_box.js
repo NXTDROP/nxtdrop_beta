@@ -28,8 +28,8 @@ function send(mode) {
                 $.ajax({
                     type: 'POST',
                     url: 'inc/send_newmsg.php',
-                    data: {to: to, msg: msg, new: 'true'},
-                    success: function() {
+                    data: {to: to, msg: msg, new: mode},
+                    success: function(data) {
                         
                     }
                 });
@@ -45,7 +45,7 @@ function send(mode) {
                 $.ajax({
                     type: 'POST',
                     url: 'inc/send_newmsg.php',
-                    data: {to: to, msg: msg, new: 'false'},
+                    data: {to: to, msg: msg, new: mode},
                     success: function() {
                         
                     }
