@@ -25,14 +25,14 @@ function send(mode) {
                 $("<div class='msg_a'>"+msg+"</div>").insertBefore('.msg_insert');
                 $('#body').scrollTop($('#body')[0].scrollHeight);
                 $('.msg_input').val('');
-                /*$.ajax({
+                $.ajax({
                     type: 'POST',
                     url: 'inc/send_newmsg.php',
                     data: {to: to, msg: msg, new: 'false'},
                     success: function(data) {
 
                     }
-                });*/
+                });
             }
         }
     }
@@ -42,14 +42,14 @@ function send(mode) {
                 $("<div class='msg_a'>"+msg+"</div>").insertBefore('.msg_insert');
                 $('#body').scrollTop($('#body')[0].scrollHeight);
                 $('.msg_input').val('');
-                /*$.ajax({
+                $.ajax({
                     type: 'POST',
                     url: 'inc/send_newmsg.php',
                     data: {to: to, msg: msg, new: 'false'},
                     success: function() {
                         
                     }
-                });*/
+                });
             }
         }
     }
