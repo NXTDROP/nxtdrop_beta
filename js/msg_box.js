@@ -30,7 +30,7 @@ function send(mode) {
                     url: 'inc/send_newmsg.php',
                     data: {to: to, msg: msg, new: 'false'},
                     success: function(data) {
-
+                        $('#u_tofrom').html(data);
                     }
                 });
             }
@@ -47,7 +47,7 @@ function send(mode) {
                     url: 'inc/send_newmsg.php',
                     data: {to: to, msg: msg, new: 'false'},
                     success: function() {
-                        
+                        $('#u_tofrom').html(data);
                     }
                 });
             }
