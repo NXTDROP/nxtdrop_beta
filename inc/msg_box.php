@@ -7,8 +7,8 @@
     $result = mysqli_fetch_array(mysqli_query($conn, $query));
     $numMsg = $result[0];
 ?>
-<script src="js/msg_box.js"></script>
-<script>
+<script type="text/javascript" src="js/msg_box.js"></script>
+<script type="text/javascript">
 var renew;
 var numData =  9;
 var scroll = true;
@@ -21,7 +21,7 @@ $('.msg_body').scroll(function() {
 });
 
 function updateMsg() {
-    console.log('call updateMsg');
+    //console.log('call updateMsg');
     var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
     $.ajax({
         type: 'POST',

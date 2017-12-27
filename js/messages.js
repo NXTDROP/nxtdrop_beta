@@ -21,7 +21,7 @@ function show(to_from) {
             $('.fa-circle').attr('class', '');
         }
     });
-    console.log('ajax called');   
+    //console.log('ajax called');   
 }
 
 /*$('.message').load(
