@@ -1,3 +1,10 @@
+<script type="text/javascript">
+    $('.user').click(function() {
+        clearTimeout(renewBody);
+        //console.log('clearTimeout(renewBody)');
+    });
+</script>
+
 <?php
     session_start();
     include 'dbh.php';
@@ -42,8 +49,9 @@
                 $to_from = $row['u_to'];
             }
             $user = "'".$to_from."'";
-            echo '<div class="user" onclick="show('.$user.');">
-            <i class="'.$class.'" aria-hidden="true"></i>
+            $chat_id = "'".$row['chat_id']."'";
+            echo '<div class="user" onclick="show('.$user.', '.$chat_id.');">
+            <i class="'.$class.'" id="'.$row['chat_id'].'" aria-hidden="true"></i>
             <ul>
                 <li><h2>'.$to_from.'</h2></li>
                 <li><p class="last_text">'.$row['message'].'</p></li>

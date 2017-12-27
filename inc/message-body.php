@@ -14,7 +14,7 @@
 <script type="text/javascript">
     var renewBody;
     function updateBody() {
-        console.log('call updateBody');
+        //console.log('call updateBody');
         $.ajax({
             type: 'POST',
             url: 'inc/update_msg_body.php',

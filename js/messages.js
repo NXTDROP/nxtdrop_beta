@@ -10,15 +10,15 @@ $(document).ready(function(){
     });
 });
 
-function show(to_from) {
+function show(to_from, id) {
     //$('.msg_box').remove();
     $.ajax({
         type: 'POST',
         url: 'inc/msg_box.php',
-        data: {to_from: to_from},
+        data: {to_from: to_from, id: id},
         success: function(data) {
             $('.message').html(data);
-            $('.fa-circle').attr('class', '');
+            $('#'+id).attr('class', '');
         }
     });
     //console.log('ajax called');   

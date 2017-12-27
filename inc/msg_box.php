@@ -2,6 +2,7 @@
     session_start();
     include 'dbh.php';
     $to_from = $_POST['to_from'];
+    $id = $_POST['id'];
     $username = $_SESSION['username'];
     $query = "SELECT COUNT(*) FROM messages WHERE u_to = '$to_from' AND u_from = '$username' OR u_to = '$username' AND u_from = '$to_from';";
     $result = mysqli_fetch_array(mysqli_query($conn, $query));
@@ -21,15 +22,16 @@ $('.msg_body').scroll(function() {
 });
 
 function updateMsg() {
-    console.log('call updateMsg');
+    //console.log('call updateMsg');
     var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
+    var id = <?php echo "'".$id."'"; ?>;
     $.ajax({
         type: 'POST',
         url: 'inc/update_msg.php',
         data: {to_from: to_from, numData: numData},
         success: function(data) {
             $('.msg_body').html(data);
-            $('.fa-circle').attr('class', '');
+            $('#'+id).attr('class', '');
             if (scroll) {
                 $('.msg_body').scrollTop(1000);
                 scroll = false;
@@ -45,7 +47,7 @@ function updateMsg() {
         }
     });
 }
-
+updateBody();
 updateMsg();
 
 $(".msg_body").scroll(function() {
