@@ -31,7 +31,7 @@ updateMsg();
     $query = "SELECT DISTINCT chat_id FROM messages WHERE u_to = '$to_from' AND u_from = '$username' OR u_to = '$username' AND u_from = '$to_from';";
     $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
     $chat_id = $result['chat_id'];
-    $sql = "SELECT * FROM messages WHERE chat_id = '$chat_id' ORDER BY time_sent ASC LIMIT 15;";
+    $sql = "SELECT * FROM (SELECT * FROM messages WHERE chat_id = '$chat_id' ORDER BY time_sent DESC LIMIT 15) AS ORDER BY time_sent ASC;";
     $result = mysqli_query($conn, $sql);
     echo '<div class="msg_box">
     <div class="msg_head"><p id="from"><a href="profile.php?u='.$to_from.'" id="u_tofrom">'.$to_from.'</a></p>
