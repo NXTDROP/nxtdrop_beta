@@ -3,6 +3,7 @@
     
     function getPostTime($data) {
         //$ip = getLocalIp();
+        date_default_timezone_set("UTC");
 
         $ip = "68.82.13.180";
         $url = "http://ip-api.com/json/".$ip;
