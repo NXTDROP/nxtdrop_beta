@@ -1,11 +1,10 @@
-<?php
-    function getLocalIp() { return gethostbyname(trim(`hostname`)); }
-    
+<?php    
     function getPostTime($data) {
-        //$ip = getLocalIp();
         date_default_timezone_set("UTC");
 
-        $ip = "68.82.13.180";
+        $json = file_get_contents("https://api.ipify.org/?format=json");
+        $json_data = json_decode($json, true);
+        $ip = $json_data['ip'];
         $url = "http://ip-api.com/json/".$ip;
         $json = file_get_contents($url);
         $json_data = json_decode($json, true);
