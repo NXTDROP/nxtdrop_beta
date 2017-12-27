@@ -12,7 +12,7 @@
         <div class="message"></div>
 
 <script type="text/javascript">
-    var renew;
+    var renewBody;
     function updateBody() {
         console.log('call updateBody');
         $.ajax({
@@ -22,7 +22,7 @@
                 $('.chat_body').html(data);
             },
             complete: function() {
-                renew = setTimeout(function() {
+                renewBody = setTimeout(function() {
                     updateBody();
                 }, 10000);
             }

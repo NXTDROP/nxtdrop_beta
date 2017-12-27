@@ -2,7 +2,6 @@ $(document).ready(function() {
     $('.msg_input').keydown(function(e) {
         if (e.keyCode == 13) {
             e.preventDefault();
-            clearTimeout(renew);
             send(true);
         }
     });
@@ -14,7 +13,6 @@ $(document).ready(function() {
     });
 
     $('.msg_input').on('keydown', function(){
-        clearTimeout(renew);
         $(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
     });
 });
