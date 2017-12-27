@@ -1,12 +1,11 @@
 <?php
-
     session_start();
     date_default_timezone_set("UTC"); 
     include 'dbh.php';
     $date = date("Y-m-d H:i:s", time());
 
     $to = $_POST['to'];
-    $msg = $_POST['msg'];
+    $msg = mysqli_real_escape_string($conn, $_POST['msg']);
     $new = $_POST['new'];
     $from = $_SESSION['username'];
 
