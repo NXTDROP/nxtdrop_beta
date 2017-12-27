@@ -1,26 +1,53 @@
 <script src="js/msg_box.js"></script>
 <<script>
 var renew;
+var numData =  15;
+var scroll = true;
 function updateMsg() {
     console.log('call updateMsg');
     var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
     $.ajax({
         type: 'POST',
         url: 'inc/update_msg.php',
-        data: {to_from: to_from},
+        data: {to_from: to_from, numData: numData},
         success: function(data) {
             $('.msg_body').html(data);
             $('.fa-circle').attr('class', '');
+            if (scroll) {
+                $('.msg_body').scrollTop(1000);
+                scroll = false;
+            }
         },
         complete: function(data) {
             renew = setTimeout(function() {
-                updateMsg(to_from);
+                updateMsg();
             }, 10000);
         }
     });
 }
 
 updateMsg();
+
+$(".msg_body").scroll(function() {
+    if($(".msg_body").scrollTop() == $(".msg_body").height() - $(".msg_body").height()) {
+        var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
+        numData = numData + 15;
+        $.ajax({
+            type: 'POST',
+            url: 'inc/update_msg.php',
+            data: {to_from: to_from, numData: numData},
+            success: function(data) {
+                $('.msg_body').html(data);
+            },
+            complete: function(data) {
+                renew = setTimeout(function() {
+                    updateMsg(to_from);
+                }, 10000);
+            }
+        });
+    }
+});
+
 </script>
 
 <?php
