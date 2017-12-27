@@ -49,7 +49,7 @@ function updateMsg() {
 updateMsg();
 
 $(".msg_body").scroll(function() {
-    if($(".msg_body").scrollTop() == $(".msg_body").height() - $(".msg_body").height()) {
+    if($(".msg_body").scrollTop() == $(".msg_body").height() - $(".msg_body").height() && numData < <?php echo $numMsg; ?>) {
         var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
         numData = numData + 9;
         var height = $('.msg_body').height();
@@ -59,12 +59,7 @@ $(".msg_body").scroll(function() {
             data: {to_from: to_from, numData: numData},
             success: function(data) {
                 $('.msg_body').html(data);
-                if (numData < <?php echo $numMsg+9; ?>) {
-                    $('.msg_body').scrollTop(height);
-                }
-                else {
-                    $('.msg_body').scrollTop(0);
-                }
+                $('.msg_body').scrollTop(height);
             },
             complete: function(data) {
                 renew = setTimeout(function() {
