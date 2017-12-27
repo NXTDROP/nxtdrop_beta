@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('.msg_input').keydown(function(e) {
         if (e.keyCode == 13) {
             e.preventDefault();
+            numData = numData + 1;
             send(true);
         }
     });
@@ -31,7 +32,7 @@ function send(mode) {
                     url: 'inc/send_newmsg.php',
                     data: {to: to, msg: msg, new: 'false'},
                     success: function(data) {
-                        
+                        numData = numData + 1;
                     }
                 });
             }

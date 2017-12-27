@@ -21,7 +21,7 @@ $('.msg_body').scroll(function() {
 });
 
 function updateMsg() {
-    //console.log('call updateMsg');
+    console.log('call updateMsg');
     var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
     $.ajax({
         type: 'POST',
