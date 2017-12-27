@@ -22,7 +22,7 @@
         }
         else {
             echo '<div class="msg_b">'.$row['message'].'</div>';
-            if ($row['opened'] == 0) {
+            if ($row['opened'] == 0 && $row['u_to'] == $username) {
                 $id = $row['id'];
                 mysqli_query($conn, "UPDATE messages SET opened='1' WHERE id='$id';");
             }
