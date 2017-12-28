@@ -9,11 +9,13 @@
     <?php
         if(isset($_SESSION['uid'])) {
             echo '<a href="likes.php"><i class="fa fa-heart-o" aria-hidden="true" title="Liked Drop"></i></a>
-            <a href="profile.php?u='.$_SESSION['username'].'"><i class="fa fa-user" aria-hidden="true" title="Profile"></i></a>';
+            <a href="profile.php?u='.$_SESSION['username'].'"><i class="fa fa-user" aria-hidden="true" title="Profile"></i></a>
+            <a href="messages.php"><i class="fa fa-envelope" aria-hidden="true" title="Direct Messages"></i></a>';
         }
         else {
             echo '<a href="login.php"><i class="fa fa-heart-o" aria-hidden="true" title="Liked Drop"></i></a>
-            <a href="login.php"><i class="fa fa-user" aria-hidden="true" title="Profile"></i></a>';
+            <a href="login.php"><i class="fa fa-user" aria-hidden="true" title="Profile"></i></a>
+            <a href="login.php"><i class="fa fa-envelope" aria-hidden="true" title="Direct Messages"></i></a>';
         }
     ?>
     <div class="search-bar">

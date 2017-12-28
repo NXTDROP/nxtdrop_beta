@@ -67,7 +67,7 @@
                     <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
                     </div>
                     <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
+                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].', '.$row['uid'].')" title="Report Drop"></i>
                     </div>
                     
                     <!--<div class="add-comment">
@@ -87,7 +87,7 @@
                     echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
                     echo '</div>
                     <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
+                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].', '.$row['uid'].')" title="Report Drop"></i>
                     </div>
                 
                     <!--<div class="add-comment">

@@ -11,7 +11,7 @@ function like(id, pid, posted_by, likes) {
                 $("#likes-"+pid).html(result['likes'] + ' <i class="fa fa-heart aria-hidden="true" style="color:#a8a8a8;"></i>');
             },
             error: function() {
-                alert("error");
+                alert("Error 101.");
             }
         });
     }
@@ -27,8 +27,19 @@ function like(id, pid, posted_by, likes) {
                 $("#likes-"+pid).html(result['likes'] + ' <i class="fa fa-heart aria-hidden="true" style="color:#a8a8a8;"></i>');
             },
             error: function() {
-                alert("error");
+                alert("Error 101.");
             }
         });
     }
+}
+
+function flag(pid, posted_by) {
+    $.ajax({
+        type: 'POST',
+        url: 'post/flag.php',
+        data: {pid: pid, posted_by: posted_by},
+        error: function() {
+            alert('Error 101.');
+        }
+    });
 }
