@@ -9,6 +9,7 @@
     $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
     $errorEmpty = false;
     $errorEmail = false;
+    $errorUsername = false;
 
     if(isset($_POST['submit'])) {
         if(empty($fName) || empty($lName) || empty($uName) || empty($email) || empty($pwd)) {
@@ -32,7 +33,15 @@
         $errorEmail = true;
     }
 
-    if($errorEmpty == false && $errorEmail == false) {
+    $sql = "SELECT username FROM users WHERE username = '$uName';";
+    $result = $conn->query($sql);
+    $check = mysqli_num_rows($result);
+    if ($check > 0) {
+        echo "<span class='error'>Username already used!</span>";
+        $errorUsername = true;
+    }
+
+    if($errorEmpty == false && $errorEmail == false && $errorUsername == false) {
         $pwd = md5($pwd);
         $sql = "INSERT INTO users (first_name, last_name, username, email, pwd) VALUES ('$fName', '$lName', '$uName', '$email', '$pwd');";
         if (mysqli_query($conn, $sql)) {

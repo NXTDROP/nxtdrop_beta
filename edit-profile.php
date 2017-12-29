@@ -38,7 +38,20 @@
                 echo "<span class='error'>Field all required fields!</span>";
             }
             else {
-                updateRecords($conn, $fname, $lname, $email, $username, $bio);
+                $sql = "SELECT username FROM users WHERE username = '$username';";
+                $result = $conn->query($sql);
+                $check = mysqli_num_rows($result);
+                if ($check < 1) {
+                    updateRecords($conn, $fname, $lname, $email, $username, $bio);   
+                }
+                else {
+                    if ($username == $_SESSION['username']) {
+                        updateRecords($conn, $fname, $lname, $email, $username, $bio);   
+                    }
+                    else {
+                        echo "<span class='error'>Username already used!</span>";
+                    }
+                }
                 $uid = $_SESSION['uid'];
                 $sql = "SELECT * FROM users WHERE uid='$uid';";
                 $result = $conn->query($sql);
