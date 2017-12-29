@@ -4,6 +4,6 @@
 
     while ($r = mysqli_fetch_assoc($query)) {
         $name = "'".$r['username']."'";
-        echo '<li class="user_r">'.$r['username'].'</li>';
+        echo '<span></span><li class="user_r">'.$r['username'].'</li>';
     }
 ?>

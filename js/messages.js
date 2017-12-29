@@ -1,9 +1,4 @@
 $(document).ready(function(){
-    $('#to').focus(function(){
-        $('#result').fadeIn();
-        $('#result').show();
-    });
-
     $('#to').blur(function(){
         $('#result').fadeOut(1000);
     });

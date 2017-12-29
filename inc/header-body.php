@@ -21,11 +21,6 @@
         bottom: 2.25px;
     }
     </style>
-            
-    <!--<a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>-->
-    <!--<div class="popup" onclick= "myFunction ()"><a href="search.html"><i class="fa fa-search" aria-hidden="true"></i></a>
-        <span class="popuptext" id="mypopup"> Popup text </span>
-    </div>-->
     <?php
         if(isset($_SESSION['uid'])) {
             $username = $_SESSION['username'];
@@ -48,10 +43,33 @@
             <a href="login.php"><i class="fa fa-envelope" aria-hidden="true" title="Direct Messages"></i></a>';
         }
     ?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#search').keyup(function() {
+                var name = $(this).val();
+                if (name != '') {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'inc/search_users.php',
+                        data: {name: name},
+                        success: function(data) {
+                            $('.search_result').fadeIn(100);
+                            $('.search_result').html(data);
+                        }
+                    });
+                }
+            });
+
+            $('#search').blur(function(){
+                $('.search_result').fadeOut(500);
+            });
+        });
+    </script>
     <div class="search-bar">
-        <form action="search.php" method="GET" id="search-bar">
-        <input type="text" name="q" size="60" placeholder="Search" />
+        <form action="" method="GET" id="search-bar">
+            <input type="text" name="q" id="search" autocomplete="off" spellcheck="false" size="60" placeholder="Search NXTDROP" />
         </form>
+        <div class="search_result"></div>
     </div>
     <?php
         if(isset($_SESSION['uid'])) {
