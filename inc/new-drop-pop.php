@@ -9,6 +9,8 @@
                         <label for="file"><i class="fa fa-picture-o" aria-hidden="true"></i></label>
                         <button type="submit" name="submit" id="submit">Drop</button>
                     </form>
+                    <img id="preview"/>
+                    <button name="cancel" id="cancel_preview">Cancel</button>
                 </div>
             </div>
 </div>

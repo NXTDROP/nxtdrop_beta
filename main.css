@@ -343,7 +343,7 @@ input{
 
 .post_main {
     width: 50%;
-    height: 200px;
+    height: auto;
     background: #fff;
     z-index: 4;
     position: fixed;
@@ -351,6 +351,7 @@ input{
     border-radius: 4px;
     left: 25%;
     display: none;
+    padding-bottom: 5px;
 }
 
 .post_main h2 {
@@ -429,4 +430,31 @@ textarea {
 
 #no_post {
     text-align: center;
+}
+
+#preview {
+    height: 125px;
+    object-fit: cover;
+    margin: 10px 0 0 10px;
+    display: none;
+    float: left;
+}
+
+#cancel_preview {
+    width: 10%;
+    height: 1.75em;
+    float: left;
+    margin-left: 1.5%;
+    margin-top: 112px;
+    background-color: #e53232;
+    border: 1px;
+    border-radius: 12px;
+    color: #fff;
+    display: none;
+}
+
+#cancel_preview:hover {
+    color: #fff;
+    background: #aa0000;
+    cursor: pointer;
 }
