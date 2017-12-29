@@ -1,6 +1,6 @@
 function delete_(pid) {
-    var conf = confirm("Are you sure?");
-    if (conf) {
+    var conf = confirm("You are about to delete this drop. Are you sure?");
+    if (conf == true) {
         $.ajax({
             type: "GET",
             url: "post/delete-post.php",

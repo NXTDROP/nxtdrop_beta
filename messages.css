@@ -99,15 +99,16 @@ header a{
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 80px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    margin-right: 5px;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    font-size: 12px;
+    color: #aa0000;
+    padding: 6px 8px;
     text-decoration: none;
     display: block;
 }

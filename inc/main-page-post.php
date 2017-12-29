@@ -84,10 +84,10 @@
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart">';
-                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
+                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" title="Likes"></i>';
                     echo '</div>
                     <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].', '.$row['uid'].')" title="Report Drop"></i>
+                    <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
                     </div>
                 
                     <!--<div class="add-comment">
