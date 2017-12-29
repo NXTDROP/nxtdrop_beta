@@ -38,13 +38,13 @@ header{
     display: inline-block;
     width: 400px;
     height: 30px;
-    border-radius: 7px;
     margin-right: 50px;
 }
 
 input[name='q'] {
     width: 400px;
     padding: 6px 15px;
+    border: 1px solid #afafaf;
 }
 
 header a{
@@ -394,12 +394,12 @@ header a{
     font-size: 12px;
 }
 
-ul li h2 {
-    color: #aa0000;
-}
-
 .user_r:hover {
     background: #afafaf;
+}
+
+ul li h2 {
+    color: #aa0000;
 }
 
 #no_inbox {

@@ -63,6 +63,11 @@
             $('#search').blur(function(){
                 $('.search_result').fadeOut(500);
             });
+
+            $(document).on('click', 'li', function() {
+                $('#search').val($(this).text());
+                $('#result').fadeOut();
+            });
         });
     </script>
     <div class="search-bar">
