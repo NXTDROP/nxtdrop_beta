@@ -1,12 +1,9 @@
 <?php
     include 'dbh.php';
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE username LIKE '%".$_POST['name']."%' LIMIT 5");
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE username LIKE '%".$_POST['name']."%' LIMIT 10");
 
-    foreach($query as $key) {
-?>
-
-<div id="user"><span><?php echo $key['username']; ?></span></div>
-
-<?php
+    while ($r = mysqli_fetch_assoc($query)) {
+        $name = "'".$r['username']."'";
+        echo '<li class="user_r">'.$r['username'].'</li>';
     }
 ?>

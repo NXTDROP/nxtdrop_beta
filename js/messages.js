@@ -5,8 +5,7 @@ $(document).ready(function(){
     });
 
     $('#to').blur(function(){
-        $('#result').fadeOut();
-        $('#result').hide();
+        $('#result').fadeOut(1000);
     });
 });
 
@@ -22,6 +21,11 @@ function show(to_from, id) {
         }
     });
     //console.log('ajax called');   
+}
+
+function select(name) {
+    alert('select');
+    $('#to').val(name);
 }
 
 /*$('.message').load(

@@ -2,8 +2,14 @@
     $(document).ready(function(){
         $('#to').keyup(function(){
             var name = $(this).val();
-            $.post('inc/search_users.php', {name: name}, function(data){
-                $('div#result').html(data);
+            $.ajax({
+                type: 'POST',
+                url: 'inc/search_users.php',
+                data: {name: name},
+                success: function(data){
+                    $('#result').fadeIn();
+                    $('#result').html(data);
+                }
             });
         });
 
@@ -22,6 +28,11 @@
                     $('#error_msg').html(data);
                 }
             });
+        });
+
+        $(document).on('click', 'li', function() {
+            $('#to').val($(this).text());
+            $('#result').fadeOut();
         });
     });
 </script>

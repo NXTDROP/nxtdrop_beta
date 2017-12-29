@@ -405,11 +405,10 @@ header a{
     width: 23.5%;
     margin-left: 0.75%;
     position: fixed;
-    z-index: 20;
     display: none;
 }
 
-#user {
+.user_r {
     border: 1px solid silver;
     cursor: pointer;
     width: 100%;
@@ -422,7 +421,7 @@ ul li h2 {
     color: #aa0000;
 }
 
-#user:hover {
+.user_r:hover {
     background: #afafaf;
 }
 
