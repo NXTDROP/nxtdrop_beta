@@ -49,7 +49,7 @@
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
             $uid = $row['uid'];
-            $q = "INSERT INTO profile (uid, status) VALUES ('$uid', 0);";
+            $q = "INSERT INTO profile (uid) VALUES ('$uid');";
             mysqli_query($conn, $q);
             echo "<span class='success'>Account Created!</span>";
         }

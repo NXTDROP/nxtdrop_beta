@@ -398,6 +398,11 @@ header a{
     background: #afafaf;
 }
 
+.user_r span {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
 ul li h2 {
     color: #aa0000;
 }

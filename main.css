@@ -456,3 +456,8 @@ textarea {
 .user_r:hover {
     background: #afafaf;
 }
+
+.user_r span {
+    margin-right: 10px;
+    margin-top: 5px;
+}

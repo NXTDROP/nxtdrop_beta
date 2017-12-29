@@ -58,6 +58,9 @@
                         }
                     });
                 }
+                else {
+                    $('.search_result').fadeOut();
+                }
             });
 
             $('#search').blur(function(){
@@ -66,7 +69,6 @@
 
             $(document).on('click', 'li', function() {
                 $('#search').val($(this).text());
-                $('#result').fadeOut();
             });
         });
     </script>
