@@ -42,6 +42,7 @@
                 });
             });
         </script>
+        <script type="text/javascript" src="js/dm_icon.js"></script>
     </head>
     <body>
         <?php include('inc/header-body.php'); ?>

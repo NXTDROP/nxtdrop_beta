@@ -20,7 +20,8 @@
             <script type="text/javascript" src="js/menu-dropdown.js"></script>
             <script type="text/javascript" src="js/post-popup.js"></script>
             <script src="js/messages.js"></script>
-            <script src="js/msg-popup.js"></script>    
+            <script src="js/msg-popup.js"></script>
+            <script type="text/javascript" src="js/dm_icon.js"></script> 
 
     </head>
 
