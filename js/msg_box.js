@@ -30,7 +30,7 @@ function send(mode) {
                 $.ajax({
                     type: 'POST',
                     url: 'inc/send_newmsg.php',
-                    data: {to: to, msg: msg, new: 'false'},
+                    data: {to: to, msg: msg},
                     success: function(data) {
                         numData = numData + 1;
                     }
@@ -47,9 +47,9 @@ function send(mode) {
                 $.ajax({
                     type: 'POST',
                     url: 'inc/send_newmsg.php',
-                    data: {to: to, msg: msg, new: 'false'},
+                    data: {to: to, msg: msg},
                     success: function(data) {
-                        
+                        numData = numData + 1;
                     }
                 });
             }

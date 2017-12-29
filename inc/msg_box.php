@@ -4,7 +4,7 @@
     $to_from = $_POST['to_from'];
     $id = $_POST['id'];
     $username = $_SESSION['username'];
-    $query = "SELECT COUNT(*) FROM messages WHERE u_to = '$to_from' AND u_from = '$username' OR u_to = '$username' AND u_from = '$to_from';";
+    $query = "SELECT COUNT(*) FROM messages WHERE chat_id = '$id';";
     $result = mysqli_fetch_array(mysqli_query($conn, $query));
     $numMsg = $result[0];
 ?>
@@ -23,12 +23,11 @@ $('.msg_body').scroll(function() {
 
 function updateMsg() {
     //console.log('call updateMsg');
-    var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
     var id = <?php echo "'".$id."'"; ?>;
     $.ajax({
         type: 'POST',
         url: 'inc/update_msg.php',
-        data: {to_from: to_from, numData: numData},
+        data: {id: id, numData: numData},
         success: function(data) {
             $('.msg_body').html(data);
             $('#'+id).attr('class', '');
@@ -52,13 +51,13 @@ updateMsg();
 
 $(".msg_body").scroll(function() {
     if($(".msg_body").scrollTop() == $(".msg_body").height() - $(".msg_body").height() && numData < <?php echo $numMsg; ?>) {
-        var to_from = <?php echo "'".$_POST['to_from']."'"; ?>;
+        var id = <?php echo "'".$id."'"; ?>;
         numData = numData + 9;
         var height = $('.msg_body').height();
         $.ajax({
             type: 'POST',
             url: 'inc/update_msg.php',
-            data: {to_from: to_from, numData: numData},
+            data: {id: id, numData: numData},
             success: function(data) {
                 $('.msg_body').html(data);
                 $('.msg_body').scrollTop(height);

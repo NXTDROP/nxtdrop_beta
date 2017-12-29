@@ -9,19 +9,19 @@
     session_start();
     include 'dbh.php';
     include 'time.php';
-    $username = $_SESSION['username'];
+    $uid = $_SESSION['uid'];
     $query = 'SELECT * FROM messages
     INNER JOIN
     (
       SELECT MAX(id) as id FROM ( 
         SELECT MAX(id) as id, u_to as contact
         FROM messages
-        WHERE u_from ="'.$username.'"
+        WHERE u_from ="'.$uid.'"
         GROUP BY u_to
         UNION ALL
         SELECT MAX(id) as id, u_from as contact
         FROM messages
-        WHERE u_to="'.$username.'"
+        WHERE u_to="'.$uid.'"
         GROUP BY u_from
       ) t GROUP BY contact
     ) d
@@ -35,18 +35,20 @@
     else {
         while ($row = mysqli_fetch_assoc($result)) {
 
-            if ($row['opened'] == 1 || $row['u_from'] == $username) {
+            if ($row['opened'] == 1 || $row['u_from'] == $uid) {
                 $class = '';
             }
             else {
                 $class = 'fa fa-circle';
             }
 
-            if ($row['u_to'] == $username) {
-                $to_from = $row['u_from'];
+            if ($row['u_to'] == $_SESSION['uid']) {
+                $to_from = $_SESSION['username'];
             }
             else {
                 $to_from = $row['u_to'];
+                $r = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE uid = '$to_from';"));
+                $to_from = $r['username'];
             }
             $user = "'".$to_from."'";
             $chat_id = "'".$row['chat_id']."'";
