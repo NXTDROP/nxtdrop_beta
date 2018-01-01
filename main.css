@@ -1,61 +1,155 @@
 *{
-    padding: 0;
-    margin: 0;
     list-style: none;
 }
 
-html {
-    font-family: 'Helvetica Neue', Helvetica, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo,
-    'ＭＳ Ｐゴシック', arial, sans-serif;
-    position: relative;
-    min-height: 100%;
+body{
+    font: 15px/1.5 Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #f4f4f4;
+    overflow: scroll;
 }
+
+@media only screen and (min-width: 1098px) and (max-width: 1246px) {
+    #logo {
+        margin: 0 11% 0 6%!important;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1097px) {
+    #logo {
+        margin: 0 11% 0 6%!important;
+    }
+
+    header a {
+        margin-right: 5.3%!important;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    #logo {
+        margin: 0 8% 0 3%!important;
+    }
+
+    header a {
+        margin-right: 4.5%!important;
+    }
+
+    .search-bar {
+        width: 150px!important;
+    }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 767px) {
+    #logo {
+        margin: 0 0.5% 0 0!important;
+        height: 10px!important;
+    }
+
+    header a {
+        margin-right: .75%!important;
+    }
+
+    .search-bar {
+        width: 50px!important;
+    }
+
+    input[name='q'] {
+        padding: 3px 6px!important;
+        font-size: 6px!important;
+    }
+
+    .call_post {
+        margin-right: 1%!important;
+        font-size: 8px;
+        padding: 0px!important;
+        height: 15px!important;
+    }
+}
+
+#logo {
+    margin: 0 14% 0 9%;
+    height: 20px;
+}
+
+header{
+    background-color: #fff;
+    padding-top: 15px;
+    min-height: 48px;
+    margin: 0;
+    border-bottom: 1px solid #afafaf;
+    box-shadow: 0px 0px 10px #888888;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+}
+
+header a{
+    margin-right: 6.301%;
+}
+
+.container-header {
+    width: 75%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2.5%;
+}
+
+.search-bar {
+    width: 200px;
+    display: inline-block;
+    margin-right: 5%;
+}
+
+input[name='q'] {
+    width: 100%;
+    padding: 6px 12px;
+    border: 1px solid #000;
+}
+
+.call_post {
+    margin-right: 2.5%;
+    background: #fff;
+    color: #aa0000;
+    border: 1px solid #aa0000;
+    border-radius: 12px;
+    padding: 2px 1px;
+    height: 30px;
+}
+
+.call_post:hover {
+    background: #aa0000;
+    color: #fff;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background: #dddddd;
+    border: 1px solid #a8a8a8;
+}
+
+.dropdown-content a {
+    padding: 5px;
+    width: 25px;
+    color: #000;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
 
 a {
     text-decoration: none;
     color: #aa0000;
 }
 
-body{
-    background-color:#FAFAFA;
-    height: 100%;
-}
-
 #posts-container {
     margin: 100px 0 150px 0;
-}
-
-header{
-    background:#fff;
-    border-bottom: 2px solid #EBE9E9;
-    padding: 15px;
-    font-size: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; 
-    z-index: 20;
-}
-
-.search-bar {
-    display: inline-block;
-    width: 400px;
-    height: 30px;
-    border-radius: 7px;
-    margin-right: 50px;
-}
-
-input[name='q'] {
-    width: 400px;
-    padding: 6px 15px;
-    border: 1px solid #afafaf;
-}
-
-header a{
-    /*width: 20%;*/
-    display:inline-block;
-    text-align: center;
-    margin: 0 7% 0 0;
 }
 
 .fa:hover{
@@ -247,31 +341,6 @@ input{
     color: grey;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 80px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    margin-right: 5px;
-}
-
-.dropdown-content a {
-    font-size: 12px;
-    color: #aa0000;
-    padding: 6px 8px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #f1f1f1}
-
 .show {display:block;}
 
 .login-button {
@@ -285,21 +354,6 @@ input{
 }
 
 .login-button:hover {
-    background-color: #aa0000;
-    color: #fff;
-}
-
-.call_post {
-    margin-right: 55px;
-    width: 100px;
-    height: 25px;
-    background-color: #fff;
-    border: 1px solid #aa0000;
-    border-radius: 12px;
-    color: #aa0000;
-}
-
-.call_post:hover {
     background-color: #aa0000;
     color: #fff;
 }
@@ -439,7 +493,7 @@ textarea {
 }
 
 .search_result {
-    width: 25%;
+    width: 250px;
     position: fixed;
     display: none;
 }
