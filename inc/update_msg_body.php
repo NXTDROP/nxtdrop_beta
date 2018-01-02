@@ -43,7 +43,9 @@
             }
 
             if ($row['u_to'] == $_SESSION['uid']) {
-                $to_from = $_SESSION['username'];
+                $to_from = $row['u_from'];
+                $r = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE uid = '$to_from';"));
+                $to_from = $r['username'];
             }
             else {
                 $to_from = $row['u_to'];

@@ -67,7 +67,7 @@
                     $('.search_result').fadeOut(500);
                 });
 
-                $(document).on('click', 'li', function() {
+                $(document).on('click', 'li.user_r', function() {
                     $('#search').val($(this).text());
                 });
 

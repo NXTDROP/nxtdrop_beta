@@ -288,14 +288,13 @@
 }
 
 html {
+    position: relative;
     min-height: 100%;
 }
 
 body {
     font: 15px/1.5 Arial, Helvetica, sans-serif;
-    padding: 0;
-    margin: 0;
-    background-color: #f4f4f4;
+    background-color: #FAFAFA;
     height: 100%;
 }
 
@@ -322,7 +321,6 @@ header{
     background-color: #fff;
     padding-top: 15px;
     min-height: 48px;
-    margin: 0;
     border-bottom: 1px solid #afafaf;
     box-shadow: 0px 0px 10px #888888;
     position: fixed;
@@ -345,7 +343,7 @@ header a{
 .search-bar {
     width: 250px;
     display: inline-block;
-    margin-right: 5.33%;
+    margin-right: 4.33%;
 }
 
 input[name='q'] {
@@ -361,7 +359,7 @@ input[name='q'] {
     color: #aa0000;
     border: 1px solid #aa0000;
     border-radius: 12px;
-    padding: 2px 1px;
+    padding: 2px 4px;
     height: 30px;
 }
 
@@ -465,9 +463,302 @@ a {
     display: inline-block;
 }
 
-.time{
-   float: right;
-   top: 10px;
+/* DM **/
+
+.chat_box {
+    background: rgb(230, 224, 224);
+    width: 25%;
+    height: 560px;
+    margin: 7% 1% 8% 2%;
+    border-radius: 5px;
+    float: left;
+}
+
+.chat_head {
+    background: rgb(230, 224, 224);
+    padding: 20px;
+    height: 25px;
+    color: black;
+    border-radius: 5px;
+}
+
+.chat_head p {
+    float: left;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.message_button {
+    float: right;
+    width: 100px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+    border-radius: 20px;
+
+}
+
+.message_button:hover {
+    background-color: #aa0000;
+    color: #fff;
+}
+
+.chat_body {
+    height: 525px;
+}
+
+.user {
+    padding: 20px;
+    background: rgb(238, 234, 234);
+    cursor: pointer;
+    border-bottom: groove 1px; 
+    height: 50px;
+    font-weight: bold;
+}
+
+.user:hover {
+    background: #000;
+    color: white;
+}
+
+.user .time {
+    margin-top: 5px;
+}
+
+#from {
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+}
+
+.last_text {
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+#no_inbox {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.msg_pop {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+.msg_close {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+}
+
+.msg_main {
+    width: 50%;
+    background: #fff;
+    z-index: 4;
+    position: fixed;
+    top: 35%;
+    border-radius: 4px;
+    left: 25%;
+    display: none;
+}
+
+.msg_main h2 {
+    text-align: center;
+    border-bottom: 1px solid #afafaf;
+    padding: 10px 0;
+}
+
+.msg_content {
+    padding: 10px;
+    background: #FAFAFA;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.msg_content label {
+    margin-left: 10px;
+}
+
+.msg_content input[name="to"] {
+    width: 50%;
+    height: 20px;
+    padding: 5px;
+}
+
+.new_msg_input {
+    height: 85px;
+    resize: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.msg_content #send {
+    float: right;
+}
+
+#send {
+    margin-right: 3.5%;
+    margin-bottom: 1%;
+    background: #fff;
+    border: 1px solid #aa0000;
+    padding: 1%;
+    color: #aa0000;
+    border-radius: 12px;
+}
+
+#send:hover {
+    color: #fff;
+    background: #aa0000;
+}
+
+.msg_content h3 {
+    font-size:12px;
+    margin-left: 1.5%;
+}
+
+.msg_content input[name='to'] {
+    width: 50%;
+    margin-left: 1.5%;
+    border: 1px solid #afafaf;
+    border-radius: 5px;
+}
+
+#error_msg {
+    font-size: 12px;
+    margin-left: 1.5%;
+    float: left;
+    color: red;
+}
+
+#result {
+    width: 23.5%;
+    margin-left: 0.75%;
+    position: fixed;
+    display: none;
+}
+
+.user_r {
+    border: 1px solid silver;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    font-size: 12px;
+}
+
+.user_r:hover {
+    background: #afafaf;
+}
+
+.user_r span {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.msg_box {
+    margin: 7% 7% 0px 0px;
+    width: 60%;
+    height: 560px;
+    float: right;
+    border-radius: 5px;
+}
+
+.msg_head {
+    height: 25px;
+    background: rgb(230, 224, 224);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.close {
+    font-size: 20px;
+    float: right;
+}
+
+.msg_body {
+    height: 400px;
+    background: white;
+    font-size: 14px;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 5px 25px;
+}
+
+.msg_input {
+    height: 85px;
+    padding: 3px;
+    width: 100%;
+    resize: none;
+    margin-bottom: 50px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.msg_a {
+    margin-left: 250px;
+    padding: 12px;
+    margin-bottom: 5px;
+    background: #aa0000;
+    position: relative;
+    color: white;
+    border-radius: 25px;
+    word-break: break-all;
+}
+.msg_b {
+    margin-right: 250px;
+    padding: 12px;
+    margin-bottom: 5px;
+    background: rgb(230, 224, 224);
+    position: relative; 
+    border-radius: 25px;
+}
+
+.msg_box textarea {
+    margin-top: 7.4%;
+    font-size: 12px;
+    width: 90%;
+    height: 30px;
+    resize: none;
+    padding: 5px 5px;
+    border-radius: 6px;
+    float: left;
+}
+
+.fa-paper-plane {
+    margin: 8.8% 3% 0 0;
+    float: right;
+}
+
+.fa-paper-plane:hover {
+    cursor: pointer;
+}
+
+ul li h2 {
+    color: #aa0000;
+}
+
+/* GLOBAL **/
+
+.time {
+    float: right;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.time:hover {
+    text-decoration: underline;
 }
 
 .location{
@@ -562,6 +853,8 @@ input{
     width: 100%;
     height: 50px;
     color: #aa0000;
+    padding: 50px 0 0 0;
+    position: absolute;
     bottom:0;
 }
 
@@ -572,6 +865,11 @@ input{
 .footer ul li {
     display: inline-block;
     margin: 0 30px;
+}
+
+.footer ul li p {
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .footer ul li a {
@@ -591,6 +889,7 @@ input{
     border-radius: 12px;
     color: #aa0000;
     height: 30px;
+    padding: 2px 4px;
 }
 
 .login-button:hover {
