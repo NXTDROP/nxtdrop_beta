@@ -19,7 +19,7 @@
                         echo '<section class="container post-'.$row['pid'].'">
                 <div class="card">
                 <div class="card-header">
-                <div class="profile-img"><img class="post-small-img" src="'.$row['status'].'">
+                <div class="profile-img-index"><img class="post-small-img" src="'.$row['status'].'">
                 </div>
                                     
                 <div class="profile-info">
