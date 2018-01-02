@@ -38,6 +38,19 @@
     .login-button {
         font-size: 12px;
     }
+
+    .chat_box {
+        margin-top: 10%!important;
+    }
+
+    .msg_box {
+        margin-top: 10%!important;
+    }
+
+    .post_main {
+        width: 80%!important;
+        left: 10%!important;
+    }
 }
 
 @media only screen and (min-width: 760px) and (max-width: 800px) {
@@ -56,6 +69,19 @@
 
     .dropdown-content {
         font-size: 12px;
+    }
+
+    .chat_box {
+        margin-top: 10%!important;
+    }
+
+    .msg_box {
+        margin-top: 10%!important;
+    }
+
+    .post_main {
+        width: 80%!important;
+        left: 10%!important;
     }
 }
 
@@ -81,6 +107,23 @@
 
     .card {
         width: 80%!important;
+    }
+
+    .chat_box {
+        margin-top: 10%!important;
+        margin-bottom: 10%!important;
+    }
+
+    .msg_box textarea {
+        width: 80%!important;
+    }
+
+    .msg_box {
+        margin-top: 10%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
     }
 }
 
@@ -170,6 +213,27 @@
         margin-right: 15px!important;
     }
 
+    .chat_box {
+        margin-top: 20%!important;
+    }
+
+    .msg_box {
+        margin-top: 20%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
+    }
+
+    .msg_main {
+        width: 100%!important;
+        left: 0!important;
+    }
+
+    .post_main {
+        width: 100%!important;
+        left: 0%!important;
+    }
 }
 
 @media only screen and (min-width: 733px) and (max-width: 736px) {
@@ -192,6 +256,30 @@
 
     .card {
         width: 80%!important;
+    }
+
+    .chat_box {
+        margin-top: 12%!important;
+        margin-bottom: 10%!important;
+    }
+
+    .msg_box {
+        margin-top: 12%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
+    }
+
+    .msg_main {
+        width: 80%!important;
+        left: 10%!important;
+        top: 25%!important;
+    }
+
+    .post_main {
+        width: 100%!important;
+        left: 0%!important;
     }
 }
 
@@ -217,6 +305,34 @@
         width: 90%!important;
     }
 
+    .chat_box {
+        margin-top: 12%!important;
+        margin-bottom: 10%!important;
+    }
+
+    .msg_box {
+        margin-top: 12%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
+    }
+
+    .msg_main {
+        width: 80%!important;
+        left: 10%!important;
+        top: 20%!important;
+    }
+
+    .post_main {
+        width: 95%!important;
+        left: 2.5%!important;
+        top: 30%!important;
+    }
+
+    #caption {
+        width: 95%!important;
+    }
 }
 
 @media only screen and (min-width: 560px) and (max-width: 640px) {
@@ -272,7 +388,48 @@
         width: 100px!important;
         height: 100px!important;
         margin-right: 15px!important;
-    }    
+    }
+
+    .chat_box {
+        margin-top: 16%!important;
+        margin-bottom: 20%!important;
+    }
+
+    .msg_box textarea {
+        width: 80%!important;
+    }
+
+    .msg_box {
+        margin-top: 16%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
+    }
+
+    .msg_main {
+        width: 80%!important;
+        left: 10%!important;
+        top: 20%!important;
+    }
+
+    .msg_main h2 {
+        padding: 0px 0!important;
+    }
+
+    .msg_content h3 {
+        font-size: 10px!important;
+    }
+
+    .post_main {
+        width: 80%!important;
+        left: 10%!important;
+        top: 22.5%!important;
+    }
+
+    #caption {
+        width: 95%!important;
+    }
 }
 
 @media only screen and (min-width: 530px) and (max-width: 560px) {
@@ -328,7 +485,48 @@
         width: 100px!important;
         height: 100px!important;
         margin-right: 15px!important;
-    }  
+    }
+
+    .chat_box {
+        margin-top: 16%!important;
+        margin-bottom: 20%!important;
+    }
+
+    .msg_box textarea {
+        width: 85%!important;
+    }
+
+    .msg_box {
+        margin-top: 16%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
+    }
+
+    .msg_main {
+        width: 80%!important;
+        left: 10%!important;
+        top: 21%!important;
+    }
+
+    .msg_main h2 {
+        padding: 0px 0!important;
+    }
+
+    .msg_content h3 {
+        font-size: 10px!important;
+    }
+
+    .post_main {
+        width: 80%!important;
+        left: 10%!important;
+        top: 22.5%!important;
+    }
+
+    #caption {
+        width: 93%!important;
+    }
 }
 
 @media only screen and (max-width: 412px) {
@@ -421,6 +619,38 @@
         height: 100px!important;
         margin-right: 15px!important;
     }
+
+    .chat_box {
+        margin-top: 18%!important;
+        margin-bottom: 20%!important;
+    }
+
+    .msg_box textarea {
+        width: 80%!important;
+    }
+
+    .msg_box {
+        margin-top: 18%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
+    }
+
+    .msg_main {
+        width: 100%!important;
+        left: 0%!important;
+        top: 20%!important;
+    }
+
+    .post_main {
+        width: 95%!important;
+        left: 2.5%!important;
+    }
+
+    #caption {
+        width: 93%!important;
+    }
 }
 
 @media only screen and (max-width: 384px) {
@@ -480,6 +710,33 @@
         height: 100px!important;
         margin-right: 15px!important;
     }
+
+    .chat_box {
+        margin-top: 20%!important;
+        margin-bottom: 15%!important;
+    }
+
+    .msg_box {
+        margin-top: 20%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
+    }
+
+    .msg_main {
+        width: 100%!important;
+        left: 0!important;
+    }
+
+    .post_main {
+        width: 95%!important;
+        left: 2.5%!important;
+    }
+
+    #caption {
+        width: 93%!important;
+    }
 }
 
 @media only screen and (max-width: 360px) {
@@ -509,6 +766,23 @@
 
     .footer ul li a {
         font-size: 12px!important;
+    }
+
+    .chat_box {
+        margin-top: 22%!important;
+        margin-bottom: 20%!important;
+    }
+
+    .msg_box textarea {
+        width: 80%!important;
+    }
+
+    .msg_box {
+        margin-top: 22%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
     }
 }
 
@@ -556,6 +830,23 @@
 
     .profile-img-profile {
         margin-right: 15px!important;
+    }
+
+    .chat_box {
+        margin-top: 25%!important;
+        margin-bottom: 20%!important;
+    }
+
+    .msg_box textarea {
+        width: 80%!important;
+    }
+
+    .msg_box {
+        margin-top: 25%!important;
+    }
+
+    .fa-paper-plane {
+        margin-right: 0!important;
     }
 }
 
@@ -1156,11 +1447,10 @@ textarea {
 
 .chat_box {
     background: rgb(230, 224, 224);
-    width: 25%;
+    width: 80%;
     height: 560px;
-    margin: 7% 1% 8% 2%;
+    margin: 6% auto;
     border-radius: 5px;
-    float: left;
 }
 
 .chat_head {
@@ -1226,7 +1516,7 @@ textarea {
     font-size: 12px;
     font-weight: normal;
     margin-top: 5px;
-    width: 250px;
+    width: 70%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1378,10 +1668,9 @@ textarea {
 }
 
 .msg_box {
-    margin: 7% 7% 0px 0px;
-    width: 60%;
+    margin: 6% auto;
+    width: 80%;
     height: 560px;
-    float: right;
     border-radius: 5px;
 }
 
@@ -1418,7 +1707,8 @@ textarea {
 }
 
 .msg_a {
-    margin-left: 250px;
+    margin-left: 45%;
+    width: 55%;
     padding: 12px;
     margin-bottom: 5px;
     background: #aa0000;
@@ -1428,7 +1718,8 @@ textarea {
     word-break: break-all;
 }
 .msg_b {
-    margin-right: 250px;
+    margin-right: 45%;
+    width: 55%;
     padding: 12px;
     margin-bottom: 5px;
     background: rgb(230, 224, 224);
@@ -1438,7 +1729,7 @@ textarea {
 }
 
 .msg_box textarea {
-    margin-top: 7.4%;
+    margin-top: 3.5%;
     font-size: 12px;
     width: 90%;
     height: 30px;
@@ -1449,7 +1740,7 @@ textarea {
 }
 
 .fa-paper-plane {
-    margin: 8.8% 3% 0 0;
+    margin: 4.9% 3% 0 0;
     float: right;
 }
 

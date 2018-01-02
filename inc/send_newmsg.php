@@ -8,7 +8,6 @@
     $r = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE username = '$to_from';"));
     $to = $r['uid'];
     $msg = mysqli_real_escape_string($conn, $_POST['msg']);
-    $new = $_POST['new'];
     $from = $_SESSION['uid'];
 
     $query = "SELECT username FROM users WHERE username = '$to_from';";

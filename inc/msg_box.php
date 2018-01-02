@@ -46,7 +46,6 @@ function updateMsg() {
         }
     });
 }
-updateBody();
 updateMsg();
 
 $(".msg_body").scroll(function() {

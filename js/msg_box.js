@@ -10,6 +10,7 @@ $(document).ready(function() {
     $(".close").click(function()
     {
         $('.msg_box').remove();
+        $('body').load('messages.php');
         clearTimeout(renew);
     });
 

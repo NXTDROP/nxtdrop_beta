@@ -13,6 +13,7 @@ function show(to_from, id) {
         success: function(data) {
             $('.message').html(data);
             $('#'+id).attr('class', '');
+            $('.chat_box').hide();
         }
     });
     //console.log('ajax called');   
