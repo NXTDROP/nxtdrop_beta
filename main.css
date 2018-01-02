@@ -78,6 +78,10 @@
         padding: 0px!important;
         font-size: 12px;
     }
+
+    .card {
+        width: 80%!important;
+    }
 }
 
 @media only screen and (min-width: 413px) and (max-width: 414px) {
@@ -117,6 +121,55 @@
         font-size: 9px!important;
     }
 
+    .container {
+        margin: 25px!important;
+    }
+
+    .card {
+        width: 100%!important;
+    }
+
+    .footer ul li {
+        margin: 0 15px!important;
+    }
+
+    .footer ul li p {
+        font-size: 14px!important;
+    }
+
+    .footer ul li a {
+        font-size: 12px!important;
+    }
+
+    .container-top h2 {
+        font-size: 14px!important;
+        height: 19px!important;
+    }
+
+    .container-top h3 {
+        font-size: 14px!important;
+        height: 17px!important;
+    }
+
+    .container-top p {
+        margin-top: 15px!important;
+        height: 15px!important;
+        font-size: 10px!important;
+    }
+
+    .edit-button {
+        margin-top: 35px!important;
+        width: 60px!important;
+        height: 15px!important;
+        font-size: 10px;
+    }
+
+    .profile-img-profile {
+        width: 100px!important;
+        height: 100px!important;
+        margin-right: 15px!important;
+    }
+
 }
 
 @media only screen and (min-width: 733px) and (max-width: 736px) {
@@ -135,6 +188,10 @@
 
     .dropdown-content {
         font-size: 12px;
+    }
+
+    .card {
+        width: 80%!important;
     }
 }
 
@@ -155,6 +212,11 @@
     .dropdown-content {
         font-size: 12px;
     }
+
+    .card {
+        width: 90%!important;
+    }
+
 }
 
 @media only screen and (min-width: 560px) and (max-width: 640px) {
@@ -174,6 +236,43 @@
     .dropdown-content {
         font-size: 12px;
     }
+
+    .card {
+        width: 90%!important;
+    }
+    
+    .container-top {
+        margin-bottom: -50px;
+    }
+
+    .container-top h2 {
+        font-size: 14px!important;
+        height: 19px!important;
+    }
+
+    .container-top h3 {
+        font-size: 14px!important;
+        height: 17px!important;
+    }
+
+    .container-top p {
+        margin-top: 15px!important;
+        height: 15px!important;
+        font-size: 10px!important;
+    }
+
+    .edit-button {
+        margin-top: 35px!important;
+        width: 60px!important;
+        height: 15px!important;
+        font-size: 10px;
+    }
+
+    .profile-img-profile {
+        width: 100px!important;
+        height: 100px!important;
+        margin-right: 15px!important;
+    }    
 }
 
 @media only screen and (min-width: 530px) and (max-width: 560px) {
@@ -193,6 +292,43 @@
     .dropdown-content {
         font-size: 12px;
     }
+
+    .card {
+        width: 90%!important;
+    }
+
+    .container-top {
+        margin-bottom: -50px;
+    }
+
+    .container-top h2 {
+        font-size: 14px!important;
+        height: 19px!important;
+    }
+
+    .container-top h3 {
+        font-size: 14px!important;
+        height: 17px!important;
+    }
+
+    .container-top p {
+        margin-top: 15px!important;
+        height: 15px!important;
+        font-size: 10px!important;
+    }
+
+    .edit-button {
+        margin-top: 35px!important;
+        width: 60px!important;
+        height: 15px!important;
+        font-size: 10px;
+    }
+
+    .profile-img-profile {
+        width: 100px!important;
+        height: 100px!important;
+        margin-right: 15px!important;
+    }  
 }
 
 @media only screen and (max-width: 412px) {
@@ -233,11 +369,116 @@
         width: 100px!important;
     }
 
+    .container {
+        margin: 15px!important;
+    }
+
+    .card {
+        width: 100%!important;
+    }
+
+    .footer ul li {
+        margin: 0 15px!important;
+    }
+
+    .footer ul li p {
+        font-size: 14px!important;
+    }
+
+    .footer ul li a {
+        font-size: 12px!important;
+    }
+
+    .container-top {
+        margin-bottom: -50px;
+    }
+
+    .container-top h2 {
+        font-size: 14px!important;
+        height: 19px!important;
+    }
+
+    .container-top h3 {
+        font-size: 14px!important;
+        height: 17px!important;
+    }
+
+    .container-top p {
+        margin-top: 15px!important;
+        height: 15px!important;
+        font-size: 10px!important;
+    }
+
+    .edit-button {
+        margin-top: 35px!important;
+        width: 60px!important;
+        height: 15px!important;
+        font-size: 10px;
+    }
+
+    .profile-img-profile {
+        width: 100px!important;
+        height: 100px!important;
+        margin-right: 15px!important;
+    }
 }
 
 @media only screen and (max-width: 384px) {
     header a {
         margin-right: 4%!important;
+    }
+
+    .container {
+        margin: 15px!important;
+    }
+
+    .card {
+        width: 100%!important;
+    }
+
+    .footer ul li {
+        margin: 0 15px!important;
+    }
+
+    .footer ul li p {
+        font-size: 14px!important;
+    }
+
+    .footer ul li a {
+        font-size: 12px!important;
+    }
+
+    .container-top {
+        margin-bottom: -50px;
+    }
+
+    .container-top h2 {
+        font-size: 14px!important;
+        height: 19px!important;
+    }
+
+    .container-top h3 {
+        font-size: 14px!important;
+        height: 17px!important;
+    }
+
+    .container-top p {
+        margin-top: 15px!important;
+        height: 15px!important;
+        font-size: 10px!important;
+    }
+
+    .edit-button {
+        margin-top: 35px!important;
+        width: 60px!important;
+        height: 15px!important;
+        font-size: 10px;
+    }
+
+    .profile-img-profile {
+        width: 100px!important;
+        height: 100px!important;
+        margin-right: 15px!important;
     }
 }
 
@@ -256,6 +497,18 @@
 
     .login-button {
         font-size: 10px;
+    }
+
+    .footer ul li {
+        margin: 0 7.5px!important;
+    }
+
+    .footer ul li p {
+        font-size: 14px!important;
+    }
+
+    .footer ul li a {
+        font-size: 12px!important;
     }
 }
 
@@ -281,6 +534,29 @@
         font-size: 8px;
     }
 
+    .container {
+        margin: 15px!important;
+    }
+    
+    .card {
+        width: 100%!important;
+    }
+
+    .footer ul li {
+        margin: 0 7.5px!important;
+    }
+
+    .footer ul li p {
+        font-size: 12px!important;
+    }
+
+    .footer ul li a {
+        font-size: 10px!important;
+    }
+
+    .profile-img-profile {
+        margin-right: 15px!important;
+    }
 }
 
 /******************************************* RESPONSIVE DESIGN END *********************************************/
@@ -437,8 +713,7 @@ a {
 .card {
     background: #FFF;
     margin: 0 auto;
-    width: 580px;
-    /*height: 580px;*/
+    width: 50%;
     border: 1px solid #dddddd;
     border-radius: 2px;
     box-shadow: 0px 0px 10px #888888;
@@ -446,7 +721,6 @@ a {
 
 .card-header{
     padding: 10px;
-   /* padding-left: 25%;*/
 }
 
 .time {
@@ -737,6 +1011,10 @@ textarea {
     width: 200px;
     position: fixed;
     display: none;
+}
+
+.caption {
+    overflow-wrap: break-word;
 }
 
 /******************************************* GLOBAL END *********************************************/
@@ -1156,6 +1434,7 @@ textarea {
     background: rgb(230, 224, 224);
     position: relative; 
     border-radius: 25px;
+    word-break: break-all;
 }
 
 .msg_box textarea {

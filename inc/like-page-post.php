@@ -19,87 +19,84 @@
             }
             
             echo '<section class="container post-'.$row['pid'].'">
-            <div class="card">
-            <div class="card-header">
-            <div class="profile-img"><img class="post-small-img" src="'.$row['status'].'">
-            </div>
-                                
-            <div class="profile-info">
-            <div class="name"><p><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></p></div>
-            <!--<div class="location">Toronto, Ontario</div>-->
-        
-            </div>
-        
-            <!--<div class="profile-img">
-            </div> -->
-        
-            <div class="time">
-            <p>'.getPostTime($row['pdate']).'</p>
-            </div>
-            </div>
-            <div class="content">
-            <img src="'.$row['pic'].'">
-            </div>
-        
-            <div class="card-footer">
-            <div class="likes"><p id="likes-'.$row['pid'].'">'.$row['likes'].' <i class="fa fa-heart aria-hidden="true" style="color:#a8a8a8;"></i></p></div>
-        
-            <div class="description">
-            <p><span class="username"><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</p>
-            </div>
-            <!--<div class="comments">
-            <p>
-            <span class="username">Youssoupha24</span> Nice shoes.
-            </p>
-            <p>
-            <span class="username">Blvckpvblo</span> Wanna trade with my Jordan IV?.
-            </p>
-            </div>-->
-            <hr />';
-            if (isset($_SESSION['uid']) && $_SESSION['uid'] == $row['uid']) {
-                echo '
-                <div class="post_form_bottom">
-                <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
-                <div class="heart">';
-                echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
-                echo '</div>
-                <div onclick="delete_('.$row['pid'].')" class="remove">
-                <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
+                <div class="card">
+                <div class="card-header">
+                <div class="profile-img-index"><img class="post-small-img" src="'.$row['status'].'">
                 </div>
-                <div class="flag">
-                <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
-                </div>
-                
-                <!--<div class="add-comment">
-                <input type="text" placeholder="Drop a comment..." />
-                </div>-->
-                </div>
-                </div>
-                
-                </div>    
-                </section>';
-            }
-            else {
-                echo '
-                <div class="post_form_bottom">
-                <input type="hidden" name="pid" value="'.$row['pid'].'">
-                <div class="heart">';
-                echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
-                echo '</div>
-                <div class="flag">
-                <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
+                                    
+                <div class="profile-info">
+                <div class="name"><p><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></p></div>
+                <!--<div class="location">Toronto, Ontario</div>-->
+            
                 </div>
             
-                <!--<div class="add-comment">
-                <input type="text" placeholder="Drop a comment..." />
-                </div>-->
+                <div class="time">
+                <p>'.getPostTime($row['pdate']).'</p>
                 </div>
+                </div>
+                <div class="content">
+                <img src="'.$row['pic'].'">
                 </div>
             
-                </div>    
-                </section>';
+                <div class="card-footer">
+                <div class="likes"><p id="likes-'.$row['pid'].'">'.$row['likes'].' <i class="fa fa-heart aria-hidden="true" style="color:#a8a8a8;"></i></p></div>
+            
+                <div class="description">
+                <p><span class="username"><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></span><span class="caption"> '.$row['caption'].'</span></p>
+                </div>
+                <!--<div class="comments">
+                <p>
+                <span class="username">Youssoupha24</span> Nice shoes.
+                </p>
+                <p>
+                <span class="username">Blvckpvblo</span> Wanna trade with my Jordan IV?.
+                </p>
+                </div>-->
+                <hr />';
+                if (isset($_SESSION['uid']) && $_SESSION['uid'] == $row['uid']) {
+                    echo '
+                    <div class="post_form_bottom">
+                    <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
+                    <div class="heart">';
+                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
+                    echo '</div>
+                    <div onclick="delete_('.$row['pid'].')" class="remove">
+                    <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
+                    </div>
+                    <div class="flag">
+                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].', '.$row['uid'].')" title="Report Drop"></i>
+                    </div>
+                    
+                    <!--<div class="add-comment">
+                    <input type="text" placeholder="Drop a comment..." />
+                    </div>-->
+                    </div>
+                    </div>
+                    
+                    </div>    
+                    </section>';
+                }
+                else {
+                    echo '
+                    <div class="post_form_bottom">
+                    <input type="hidden" name="pid" value="'.$row['pid'].'">
+                    <div class="heart">';
+                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" title="Likes"></i>';
+                    echo '</div>
+                    <div class="flag">
+                    <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
+                    </div>
+                
+                    <!--<div class="add-comment">
+                    <input type="text" placeholder="Drop a comment..." />
+                    </div>-->
+                    </div>
+                    </div>
+                
+                    </div>    
+                    </section>';
+                }
             }
         }
-    }
-?>
+    ?>
 </div>

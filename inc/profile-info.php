@@ -19,7 +19,7 @@
     echo '<div class="profile-img-profile" onclick="profile_pop()"><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
     }
     else {
-        echo '<div class="profile-img-profile" onclick="profile_pop()"><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
+        echo '<div class="profile-img-profile" onclick="profile_pop()"><img id="myprofile" style="object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
     }
 
     $sql = "SELECT * FROM profile, users WHERE profile.uid=$u_id AND users.username='".$_GET['u']."';";

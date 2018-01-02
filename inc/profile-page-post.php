@@ -45,9 +45,9 @@
                             <div class="card-footer">
                             <div class="likes"><p id="likes-'.$row['pid'].'">'.$row['likes'].' <i class="fa fa-heart aria-hidden="true" style="color:#a8a8a8;"></i></p></div>
             
-                                <div class="description">
-                                    <p><span class="username"><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</p>
-                                </div>
+                            <div class="description">
+                            <p><span class="username"><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></span><span class="caption"> '.$row['caption'].'</span></p>
+                            </div>
                                 <!--<div class="comments">
                                     <p>
                                         <span class="username">Youssoupha24</span> Nice shoes.
