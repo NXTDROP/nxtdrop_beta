@@ -151,7 +151,7 @@ header a{
     font-size: 16px;
 }
 
-.profile-img {
+.profile-img-profile {
     float: left;
     margin-right: 50px;
     width: 250px;
@@ -160,7 +160,7 @@ header a{
     z-index: 10;
 }
 
-.profile-img:hover {
+.profile-img-profile:hover {
     border: 1px solid #aa0000;
     cursor: pointer;
 }

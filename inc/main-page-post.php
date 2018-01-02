@@ -21,7 +21,7 @@
                 echo '<section class="container post-'.$row['pid'].'">
                 <div class="card">
                 <div class="card-header">
-                <div class="profile-img"><img class="post-small-img" src="'.$row['status'].'">
+                <div class="profile-img-index"><img class="post-small-img" src="'.$row['status'].'">
                 </div>
                                     
                 <div class="profile-info">
@@ -29,9 +29,6 @@
                 <!--<div class="location">Toronto, Ontario</div>-->
             
                 </div>
-            
-                <!--<div class="profile-img">
-                </div> -->
             
                 <div class="time">
                 <p>'.getPostTime($row['pdate']).'</p>
