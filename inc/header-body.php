@@ -70,6 +70,14 @@
             $(document).on('click', 'li', function() {
                 $('#search').val($(this).text());
             });
+
+            $('#search').keydown(function(e) {
+                if(e.keyCode == 13) {
+                    e.preventDefault();
+                    var q = $(this).val();
+                    window.location="http://localhost/nd-v1.00/search.php?q="+q;
+                }
+            });
         });
     </script>
     <div class="search-bar">

@@ -25,6 +25,20 @@ body{
     margin: 100px 0 150px 0;
 }
 
+#posts-container-search {
+    margin: 50px 325px 150px 0;
+    float: right;
+}
+
+.container-users {
+    margin: 95px 0 0 25px;
+    float: left;
+}
+
+.container-users h2 {
+    margin-bottom: 25px;
+}
+
 header{
     background:#fff;
     border-bottom: 2px solid #EBE9E9;
@@ -411,6 +425,10 @@ textarea {
     text-align: center;
 }
 
+#no_post_search {
+    margin: 50px 320px 0 0;
+}
+
 #preview {
     height: 125px;
     object-fit: cover;
@@ -439,7 +457,7 @@ textarea {
 }
 
 .search_result {
-    width: 25%;
+    width: 410px;
     position: fixed;
     display: none;
 }
