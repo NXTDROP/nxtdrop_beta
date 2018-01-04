@@ -23,8 +23,8 @@
         </style>
         <?php
             if(isset($_SESSION['uid'])) {
-                $username = $_SESSION['username'];
-                $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) FROM messages WHERE u_to = '$username' AND opened = '0';"));
+                $uid = $_SESSION['uid'];
+                $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) FROM messages, users WHERE u_to = '$uid' AND opened = '0';"));
                 if ($result['COUNT(*)'] > 0) {
                     $message_icon = '<span class="fa-stack has-badge" data-count="">
                     <i class="fa fa-envelope fa-stack-1x"></i>

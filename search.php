@@ -17,6 +17,8 @@
         <script type="text/javascript" src="js/delete-post.js"></script>
         <script type="text/javascript" src="js/like-unlike-post.js"></script>
         <script type="text/javascript">
+            var numData = 5;
+            var q = <?php echo "'".$_GET['q']."'"; ?>;
             function previewImage (input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -40,15 +42,36 @@
                     $('#preview').hide();
                     $('#cancel_preview').hide();
                 });
+
+                var num = <?php include 'dbh.php'; echo mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE username LIKE '%".$_GET['q']."%'")); ?>;
+
+                if (numData >= num) {
+                    $('.load_users').hide();
+                }
+
+                $('.load_users').click(function() {
+                    numData = numData + 5;
+                    $.ajax({
+                        type: 'POST',
+                        url: 'inc/upload-search-users-results.php',
+                        data: {numData: numData, q: q},
+                        success: function(data) {
+                            $('#container-users').html(data);
+                        },
+                        error: function() {
+                            console.log('error');
+                        }
+                    });
+                });
             });
         </script>
         <script type="text/javascript" src="js/dm_icon.js"></script>
     </head>
     <body>
         <?php include('inc/header-body.php'); ?>
+        <?php include('inc/search-users-results.php'); ?>
 
         <?php include('inc/search-body.php'); ?>
-        <?php include('inc/search-users-results.php'); ?>
 
         <p id="message"></p>
 

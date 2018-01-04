@@ -36,3 +36,27 @@ PRIMARY KEY ( uid )
         $('.msg_box2').show();
         $('.msg_box').hide();
     });
+
+    .user_r {
+    border: 1px solid silver;
+    cursor: pointer;
+    width: 100%;
+    background: #fff;
+    overflow: auto;
+}
+
+.user_r:hover {
+    background: #000;
+}
+
+.user_r img {
+    float: left;
+    height: 28px;
+    width: 28px;
+    border-radius: 50px;
+    margin: 2% 5% 2% 2%;
+}
+
+.user_r span {
+    font-size: 20px;
+}
