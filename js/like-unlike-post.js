@@ -32,17 +32,3 @@ function like(id, pid, posted_by, likes) {
         });
     }
 }
-
-function flag(pid, posted_by) {
-    var answer =  confirm('Are you sure you want to flag this drop?');
-    if (answer == true) {
-        $.ajax({
-            type: 'POST',
-            url: 'post/flag.php',
-            data: {pid: pid, posted_by: posted_by},
-            error: function() {
-                alert('There was an error.');
-            }
-        });
-    }
-}

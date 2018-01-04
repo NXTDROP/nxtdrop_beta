@@ -19,11 +19,6 @@ function show(to_from, id) {
     //console.log('ajax called');   
 }
 
-function select(name) {
-    alert('select');
-    $('#to').val(name);
-}
-
 /*$('.message').load(
     "inc/msg_box.php", 
     {to_from: to_from}, 

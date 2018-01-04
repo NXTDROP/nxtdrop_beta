@@ -62,7 +62,7 @@
                     echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
                     echo '</div>
                     <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].', '.$row['uid'].')" title="Report Drop"></i>
+                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
                     </div>
                     <div onclick="delete_('.$row['pid'].')" class="remove">
                     <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
@@ -83,13 +83,13 @@
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart_noremove">';
-                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" title="Likes"></i>';
+                    echo '<i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i>';
                     echo '</div>
                     <div class="direct_message">
                     <i class="fa fa-envelope-o" aria-hidden="true" onclick="send('.$u.')" title="Send DM"></i>
                     </div>
                     <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].', '.$row['uid'].')" title="Report Drop"></i>
+                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
                     </div>
                 
                     <!--<div class="add-comment">

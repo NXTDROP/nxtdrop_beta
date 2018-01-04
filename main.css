@@ -888,7 +888,7 @@ body {
 }
 
 #logo {
-    margin: 0 13% 0 13%;
+    margin: 0 12% 0 12%;
     height: 20px;
 }
 
@@ -1831,3 +1831,111 @@ ul li h2 {
 }
 
 /******************************************* SEARCH END *********************************************/
+
+/******************************************* FLAG *******************************************/
+
+.flag_pop {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+.flag_close {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+}
+
+.flag_main {
+    width: 50%;
+    background: #fff;
+    z-index: 4;
+    position: fixed;
+    top: 35%;
+    border-radius: 4px;
+    left: 25%;
+    display: none;
+}
+
+.flag_main h2 {
+    text-align: center;
+    border-bottom: 1px solid #afafaf;
+    padding: 10px 0;
+}
+
+.flag_content {
+    padding: 10px;
+    background: #FAFAFA;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.flag_content label {
+    margin-left: 10px;
+}
+
+.flag_content input[name="to"] {
+    width: 50%;
+    height: 20px;
+    padding: 5px;
+}
+
+.flag_content h3 {
+    font-size:12px;
+    margin-left: 1.5%;
+}
+
+.flag_content input[name='to'] {
+    width: 50%;
+    margin-left: 1.5%;
+    border: 1px solid #afafaf;
+    border-radius: 5px;
+}
+
+.flag_content #send_report {
+    float: right;
+}
+
+.report_input {
+    height: 85px;
+    resize: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#count {
+    font-size: 12px;
+    margin-left: 1.5%;
+    float: left;
+    color: #aa0000;
+}
+
+#send_report {
+    margin-right: 3.5%;
+    margin-bottom: 1%;
+    background: #fff;
+    border: 1px solid #aa0000;
+    padding: 1%;
+    color: #aa0000;
+    border-radius: 12px;
+}
+
+#send_report:hover {
+    color: #fff;
+    background: #aa0000;
+}
+
+#error_report {
+    font-size: 12px;
+    margin-left: 1.5%;
+    float: left;
+    color: red;
+}
+
+/******************************************* FLAG END *************************************************/

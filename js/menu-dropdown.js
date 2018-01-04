@@ -1,9 +1,20 @@
+$(document).ready(function() {
+    $('.profile-img-profile').click(function() {
+        if($('.profile-picture').css('display') == 'none') {
+            $('.profile-picture').show();
+        }
+        else {
+            $('.profile-picture').hide();
+        }
+    });
+});
+
 function more() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
 function profile_pop() {
-    document.getElementById("profile-picture").classList.toggle("show");
+    $('.profile-picture').show();
 }
 
 window.onclick = function(event) {
