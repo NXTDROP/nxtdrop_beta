@@ -1,3 +1,29 @@
+<script type="text/javascript">
+            function previewImage (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#preview').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $(document).ready(function() {
+                $(".inputfile").change(function() {
+                    previewImage(this);
+                    $('#preview').show();
+                    $('#cancel_preview').show();
+                });
+
+                $('#cancel_preview').click(function() {
+                    $('.inputfile').val('');
+                    $('#preview').hide();
+                    $('#cancel_preview').hide();
+                });
+            });
+        </script>
 <div class="post">
             <div class="post_close close"></div>
             <div class="post_main">

@@ -966,7 +966,7 @@ a {
 }
 
 #posts-container {
-    margin: 100px 0 100px 0;
+    margin: 100px 0 25px 0;
 }
 
 .fa:hover{
@@ -1325,6 +1325,23 @@ textarea {
     color: rgb(238, 234, 234);
 }
 
+.load_drop {
+    width: 15%;
+    margin: 0% 42.5% 10% 42.5%;
+    background: #fff;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+.load_drop:hover {
+    background: #aa0000;
+    color: #fff;
+    cursor: pointer;
+}
+
 /******************************************* GLOBAL END *********************************************/
 
 
@@ -1439,7 +1456,12 @@ textarea {
 }
 
 .input-profile {
-    display: none;
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
 }
 
 .post-profile-img{

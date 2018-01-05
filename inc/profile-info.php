@@ -13,7 +13,8 @@
     if ($status == "") $status = 'uploads/user.png';    
     if (isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
         echo '<ul class="profile-picture" id="profile-picture">
-        <label for="file"><input type="file" name="file" id="input" class="input-profile" accept="image/*"/><li>Upload Photo</li></label>
+        <input type="file" name="profile_p" id="input" class="input-profile" accept="image/*"/>
+        <label for="input"><li>Upload Photo</li></label>
         <li id="remove">Remove Profile Picture</li>
     </ul>';
     echo '<div class="profile-img-profile" onclick=""><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';

@@ -1,6 +1,9 @@
-<div id="posts-container">
-    <?php
-        $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = users.uid AND users.uid = profile.uid ORDER BY posts.pdate DESC LIMIT 1;";
+<?php
+        session_start();
+        include 'dbh.php';
+        include 'time.php';
+        $count = $_POST['count'];
+        $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = users.uid AND users.uid = profile.uid ORDER BY posts.pdate DESC LIMIT $count;";
         $result = mysqli_query($conn, $sql);
 
         if (!mysqli_num_rows($result) > 0) {
@@ -126,6 +129,3 @@
             }
         }
     ?>
-</div>
-
-<button class="load_drop">More Drops</button>

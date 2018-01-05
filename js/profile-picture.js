@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $("input[type='file']").change(function(){
-        var file_data = $(".inputfile").prop('files')[0];
+    $('.input-profile').change(function(){
+        var file_data = $('.input-profile').prop('files')[0];
         var form_data = new FormData();                     // Create a form
         form_data.append('file', file_data);           // append file to form
         $.ajax({
