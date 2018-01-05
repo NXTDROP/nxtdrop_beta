@@ -2,6 +2,8 @@
     session_start();
     include "dbh.php";
     include "inc/time.php";
+    date_default_timezone_set("UTC");
+    $_SESSION['timestamp'] = date("Y-m-d H:i:s", time());
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,11 +20,67 @@
         <script type="text/javascript" src="js/delete-post.js"></script>
         <script type="text/javascript" src="js/like-unlike-post.js"></script>
         <script type="text/javascript" src="js/dm_icon.js"></script>
-        <script type="text/javascript" src="js/more_drop.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var count = 15;
+                $(window).scroll(function() {
+                    var scroll = $(window).scrollTop();
+                });
+
+                $('.load_drop').click(function() {
+                    count += 15;
+                    $.ajax({
+                        type: 'POST',
+                        url: 'inc/main-page-post.php',
+                        data: {count: count},
+                        success: function(data) {
+                            $('#posts-container').html(data);
+                            $(window).scrollTop(scroll);
+                        }
+                    });
+                });
+
+                $('.refresh').click(function() {
+                    $('.refresh').html('<i class="fa fa-refresh fa-spin fa-2x" aria-hidden="true">');
+                    $.ajax({
+                        url: 'inc/refresh-drop-page.php',
+                        type: 'POST',
+                        data: {count: count},
+                        success: function(data) {
+                            $('#posts-container').html(data);
+                            $(window).scrollTop(0);
+                        },
+                        complete: function() {
+                            $('.refresh').html('<i class="fa fa-refresh fa-2x" aria-hidden="true">');
+                        }
+                    });
+                });
+
+                function drop(count) {
+                    $.ajax({
+                        url: 'inc/main-page-post.php',
+                        type: 'POST',
+                        data: {count: count},
+                        success: function(data) {
+                            $('#posts-container').html(data);
+                            $(window).scrollTop(scroll);
+                        },
+                        complete: function() {
+                            var renew = setTimeout(function() {
+                                drop(count);
+                            }, 10000);
+                        }
+                    });
+                }
+                drop(count);
+            });    
+        </script>
     </head>
     <body>
+        <div class="refresh"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></div>
         <?php include('inc/header-body.php'); ?>
-        <?php include('inc/main-page-post.php'); ?>
+        <div id="posts-container">
+        </div>
 
         <p id="message"></p>
 

@@ -966,7 +966,11 @@ a {
 }
 
 #posts-container {
-    margin: 100px 0 25px 0;
+    margin: 0px 0 100px 0;
+}
+
+#posts-container-like {
+    margin: 100px 0 100px 0;
 }
 
 .fa:hover{
@@ -1093,12 +1097,12 @@ hr{
 
 .heart{
     float: left;
-    margin: 0 44.5% 0 0;
+    margin: 0 41.5% 0 0;
 }
 
 .heart_noremove {
     float: left;
-    margin: 0 44% 0 0;
+    margin: 0 41% 0 0;
 }
 
 .remove {
@@ -1112,11 +1116,11 @@ hr{
 
 .flag {
     float: right;
-    margin: 0 0 0 44%;
+    margin: 0 0 0 45.5%;
 }
 
 .direct_message {
-    float: left;
+    float: right;
 }
 
 input{
@@ -1327,7 +1331,7 @@ textarea {
 
 .load_drop {
     width: 15%;
-    margin: 0% 42.5% 10% 42.5%;
+    margin: 0% 42.5% 4% 42.5%;
     background: #fff;
     border: 1px solid #aa0000;
     color: #aa0000;
@@ -1341,6 +1345,33 @@ textarea {
     color: #fff;
     cursor: pointer;
 }
+
+.refresh {
+    margin: 100px auto 0 auto;
+    width: 1.98%;
+}
+
+.refresh:hover {
+    cursor: pointer;
+}
+
+.fa-stack[count]:after{
+    position:absolute;
+    right:0%;
+    top:0%;
+    margin: 0 0 50% 50%;
+    content: attr(count);
+    font-size:50%;
+    padding:.6em;
+    border-radius:999px;
+    line-height:.75em;
+    color: white;
+    background:rgba(255,0,0,.85);
+    text-align:center;
+    min-width:2em;
+    font-weight:bold;
+  }
+
 
 /******************************************* GLOBAL END *********************************************/
 

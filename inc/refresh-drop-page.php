@@ -2,6 +2,7 @@
         session_start();
         include 'dbh.php';
         include 'time.php';
+        $_SESSION['timestamp'] = date("Y-m-d H:i:s", time());
         $count = $_POST['count'];
         $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = users.uid AND users.uid = profile.uid ORDER BY posts.pdate DESC LIMIT $count;";
         $result = mysqli_query($conn, $sql);
@@ -127,5 +128,11 @@
                     </section>';
                 }
             }
+        }
+        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;")) >= $count) {
+            echo '<button class="load_drop">More Drops</button>';
+        }
+        else {
+            echo '';
         }
     ?>

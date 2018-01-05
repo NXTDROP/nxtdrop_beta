@@ -18,48 +18,39 @@
     $allowed = array('jpg', 'jpeg', 'png');
 
     if (!isset($_SESSION['uid'])) {
-        echo "<span class='error'>You're not connected. Please log in.</span>";
+        echo "You're not connected. Please log in.";
     }
     else {
         $uid = $_SESSION['uid'];
-        
-        if (!isset($_POST['submit'])) {
-            echo 'There was an error';
+        if (empty($_FILES['file']['name'])) {
+            echo "Upload Picture.";
         }
         else {
-            if (empty($_FILES['file']['name'])) {
-                echo "<span class='error'>Upload Picture.</span>";
-            }
-            else {
-                if(in_array($fileActualExt, $allowed)) {
-                    if ($fileError === 0) {
-                        if ($fileSize < 1000000) {
-                            $fileNewName = $uid.uniqid('', true).".".$fileActualExt;
-                            $fileDestination = 'uploads/p'.$fileNewName;
-                            move_uploaded_file($fileTmpName, "../".$fileDestination);
-                            $sql = "INSERT INTO posts (uid, caption, pic, pdate) VALUES ('$uid', '$caption', '$fileDestination', '$date');";
-                            if (mysqli_query($conn, $sql)) {
-                                echo "<span class='success'>Posted!</span>";
-                                updateNumPosts($uid, $conn);
-                                header("Location: ../index.php");
-                                die;
-                            }
-                            else {
-                                echo "<span class='error'>There was an error. Try later!</span>";
-                            }
+            if(in_array($fileActualExt, $allowed)) {
+                if ($fileError === 0) {
+                    if ($fileSize < 1000000) {
+                        $fileNewName = $uid.uniqid('', true).".".$fileActualExt;
+                        $fileDestination = 'uploads/p'.$fileNewName;
+                        move_uploaded_file($fileTmpName, "../".$fileDestination);
+                        $sql = "INSERT INTO posts (uid, caption, pic, pdate) VALUES ('$uid', '$caption', '$fileDestination', '$date');";
+                        if (mysqli_query($conn, $sql)) {
+                            echo "Posted!";
+                            updateNumPosts($uid, $conn);
                         }
                         else {
-                            echo 'Your file is too big!';
+                            echo "There was an error. Try later!";
                         }
                     }
                     else {
-                        echo 'There was an error uploading your file!';
+                        echo 'Your file is too big!';
                     }
                 }
                 else {
-                    echo 'You cannot upload files of this type!';
+                    echo 'There was an error uploading your file!';
                 }
-                
+            }
+            else {
+                echo 'You cannot upload files of this type!';
             }
         }
     }

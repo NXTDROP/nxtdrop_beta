@@ -7,7 +7,7 @@ function like(id, pid, posted_by, likes) {
             success: function (result) {
                 $("#"+id).removeClass("fa-heart-o");
                 $("#"+id).addClass("fa-heart");
-                $("#likes-"+pid).html(result + ' <i class="fa fa-heart aria-hidden="true" style="color:#a8a8a8;"></i>');
+                $("#likes-"+pid).attr('count', result);
             },
             error: function(data) {
                 alert("Error 101.");
@@ -23,7 +23,7 @@ function like(id, pid, posted_by, likes) {
             success: function (result) {
                 $("#"+id).removeClass("fa-heart");
                 $("#"+id).addClass("fa-heart-o");
-                $("#likes-"+pid).html(result + ' <i class="fa fa-heart aria-hidden="true" style="color:#a8a8a8;"></i>');
+                $("#likes-"+pid).attr('count', result);
             },
             error: function(data) {
                 alert("Error 101.");
