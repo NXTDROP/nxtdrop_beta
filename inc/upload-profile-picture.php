@@ -42,7 +42,7 @@
             }
         }
         else {
-            echo "error102";
+            die;
         }
     }
 
