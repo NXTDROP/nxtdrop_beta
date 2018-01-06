@@ -23,6 +23,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 var count = 15;
+
                 $(window).scroll(function() {
                     var scroll = $(window).scrollTop();
                 });

@@ -1119,7 +1119,7 @@ hr{
 }
 
 .direct_message {
-    float: right;
+    float: left;
 }
 
 input{
@@ -1356,18 +1356,18 @@ textarea {
 
 .fa-stack[count]:after{
     position:absolute;
-    right:0%;
-    top:0%;
+    right: 5%;
+    bottom: 16%;
     margin: 0 0 50% 50%;
     content: attr(count);
-    font-size:50%;
-    padding:.6em;
-    border-radius:999px;
+    font-size:75%;
+    padding:.4em;
+    border-radius:50px;
     line-height:.75em;
     color: white;
-    background:rgba(255,0,0,.85);
+    background:#aa0000;
     text-align:center;
-    min-width:2em;
+    min-width:.4em;
     font-weight:bold;
   }
 
