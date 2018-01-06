@@ -23,6 +23,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 var count = 15;
+                $('.refresh').html('<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true">').css('margin-top', '300px');
 
                 $(window).scroll(function() {
                     var scroll = $(window).scrollTop();
@@ -65,6 +66,7 @@
                         success: function(data) {
                             $('#posts-container').html(data);
                             $(window).scrollTop(scroll);
+                            $('.refresh').html('<i class="fa fa-refresh fa-2x" aria-hidden="true">').css('margin-top', '100px');
                         },
                         complete: function() {
                             var renew = setTimeout(function() {
@@ -78,8 +80,8 @@
         </script>
     </head>
     <body>
-        <div class="refresh"><i class="fa fa-refresh fa-2x" aria-hidden="true" title="Refresh"></i></div>
         <?php include('inc/header-body.php'); ?>
+        <div class="refresh"></div>
         <div id="posts-container">
         </div>
 

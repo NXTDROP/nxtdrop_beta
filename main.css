@@ -1357,10 +1357,10 @@ textarea {
 .fa-stack[count]:after{
     position:absolute;
     right: 5%;
-    bottom: 16%;
+    bottom: 21%;
     margin: 0 0 50% 50%;
     content: attr(count);
-    font-size:75%;
+    font-size:60%;
     padding:.4em;
     border-radius:50px;
     line-height:.75em;

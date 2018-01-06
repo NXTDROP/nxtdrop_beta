@@ -2,6 +2,7 @@
         session_start();
         include 'dbh.php';
         include 'time.php';
+        include 'num_conversion.php';
         $count = $_POST['count'];
         $timestamp = $_SESSION['timestamp'];
         $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = users.uid AND users.uid = profile.uid AND posts.pdate <= '$timestamp' ORDER BY posts.pdate DESC LIMIT $count;";
@@ -60,7 +61,7 @@
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
                     <div class="heart">';
-                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.$row['likes'].'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
+                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
                     echo '</div>
                     <div class="flag">
                     <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
@@ -84,7 +85,7 @@
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart_noremove">';
-                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.$row['likes'].'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
+                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
                     echo '</div>
                     <div class="direct_message">
                     <i class="fa fa-envelope-o" aria-hidden="true" onclick="send('.$u.')" title="Send DM"></i>
@@ -166,7 +167,7 @@
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
                     <div class="heart">';
-                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.$row['likes'].'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
+                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
                     echo '</div>
                     <div class="flag">
                     <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
@@ -190,7 +191,7 @@
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart_noremove">';
-                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.$row['likes'].'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
+                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
                     echo '</div>
                     <div class="direct_message">
                     <i class="fa fa-envelope-o" aria-hidden="true" onclick="send('.$u.')" title="Send DM"></i>
