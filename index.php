@@ -77,7 +77,7 @@
         </script>
     </head>
     <body>
-        <div class="refresh"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></div>
+        <div class="refresh"><i class="fa fa-refresh fa-2x" aria-hidden="true" title="Refresh"></i></div>
         <?php include('inc/header-body.php'); ?>
         <div id="posts-container">
         </div>

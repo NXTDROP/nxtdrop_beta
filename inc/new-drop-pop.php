@@ -39,8 +39,8 @@
                         success: function(data){
                             $('.inputfile').val('');
                             $('#caption').val('');
-                            $('.post').fadeOut();
-                            $('.post_main').fadeOut();
+                            $('.post').fadeOut(1000);
+                            $('.post_main').fadeOut(1000);
                             console.log(data);
                         },
                         error: function(data) {
