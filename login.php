@@ -29,7 +29,7 @@
                 <p><a href="forgot-password.php">Forgot Password?</a></p>
             </div>
             <p class="error_login"></p>
-            <div action="" method="POST" id="signup" class="signup-form">
+            <form action="" method="POST" id="signup" class="signup-form">
                 <p>Don't have an account?</p>
                 <input type="text" name="fname" id="fname" placeholder="First Name" required></br>
                 <input type="text" name="lname" id="lname" placeholder="Last Name" required></br>
@@ -39,7 +39,7 @@
                 <input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password" required></br>
                 <button type="submit" name="submit" id="submit">Create Account</button></br>
                 <p id="form-message"></p>
-            </div>
+            </form>
         </div>
     </body>
 </html>

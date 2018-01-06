@@ -63,9 +63,6 @@
                     <div class="heart">';
                     echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
                     echo '</div>
-                    <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
-                    </div>
                     <div onclick="delete_('.$row['pid'].')" class="remove">
                     <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
                     </div>
@@ -169,9 +166,6 @@
                     <div class="heart">';
                     echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
                     echo '</div>
-                    <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
-                    </div>
                     <div onclick="delete_('.$row['pid'].')" class="remove">
                     <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
                     </div>

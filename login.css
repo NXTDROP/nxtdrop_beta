@@ -53,6 +53,16 @@ input {
     margin-bottom: 8px;
 }
 
+form {
+    display: inline-block;
+    margin: 0 25px;
+}
+
+form p {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
 .login-form {
     display: inline-block;
     margin: 0 25px;
