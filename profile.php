@@ -36,6 +36,7 @@
         <p id="message"></p>
 
         <?php include('inc/new-drop-pop.php'); ?>
+        <?php include('inc/flag-post.php'); ?>
 
         <section class="footer">
             <ul>

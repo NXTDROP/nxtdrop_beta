@@ -4,8 +4,8 @@
         <style>
         .fa-stack[data-count]:after{
             position:absolute;
-            right:0%;
-            top:1%;
+            right:5%;
+            top:25%;
             content: attr(data-count);
             font-size:30%;
             padding:.6em;
@@ -14,7 +14,7 @@
             color: white;
             background:rgba(255,0,0,.85);
             text-align:center;
-            min-width:2em;
+            min-width:0.5em;
             font-weight:bold;
         }
         .fa-stack {

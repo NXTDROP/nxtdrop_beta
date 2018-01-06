@@ -84,12 +84,11 @@
         <div class="refresh"></div>
         <div id="posts-container">
         </div>
-
-        <p id="message"></p>
-
         <?php include('inc/new-drop-pop.php'); ?>
         <?php include('inc/new-msg-post.php'); ?>
         <?php include('inc/flag-post.php'); ?>
+
+        <p id="message"></p>
 
         <section class="footer">
             <ul>

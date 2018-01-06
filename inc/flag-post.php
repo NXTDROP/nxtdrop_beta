@@ -2,6 +2,8 @@
     var user_id;
     function flag(pid) {
         post_id = pid;
+        $(".flag_pop").fadeIn();
+        $(".flag_main").show();
     }
 
     $(document).ready(function(){
@@ -22,11 +24,6 @@
                     }
                 });
             }
-        });
-
-        $('.fa-flag').click(function() {
-            $(".flag_pop").fadeIn();
-            $(".flag_main").show();
         });
 
         $(".close").click(function(){

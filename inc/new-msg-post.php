@@ -2,6 +2,8 @@
     var user_id;
     function send(uid) {
         user_id = uid;
+        $(".msg_pop").fadeIn();
+        $(".msg_main").show();
     }
 
     $(document).ready(function(){
@@ -19,11 +21,6 @@
                     $('#error_msg').html(data);
                 }
             });
-        });
-
-        $('.fa-envelope-o').click(function() {
-            $(".msg_pop").fadeIn();
-            $(".msg_main").show();
         });
 
         $(".close").click(function(){
