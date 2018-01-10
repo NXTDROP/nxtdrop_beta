@@ -50,7 +50,7 @@
                     if (name != '') {
                         $.ajax({
                             type: 'POST',
-                            url: 'inc/search_users.php',
+                            url: 'inc/search_bar.php',
                             data: {name: name},
                             success: function(data) {
                                 $('.search_result').fadeIn(100);

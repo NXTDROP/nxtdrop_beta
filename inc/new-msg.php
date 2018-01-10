@@ -30,7 +30,7 @@
             });
         });
 
-        $(document).on('click', 'li', function() {
+        $(document).on('click', '.user_r', function() {
             $('#to').val($(this).text());
             $('#result').fadeOut();
         });

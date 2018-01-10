@@ -8,6 +8,6 @@
             $result['status'] = 'uploads/user.png';
         }
         $name = "'".$r['username']."'";
-        echo '<div class="user_r"><a><img style="object-fit: cover; z-index: 0;" src="'.$result['status'].'">'.$r['username'].'</a></div>';
+        echo '<div class="user_r"><a href="profile.php?u='.$r['username'].'"><img style="object-fit: cover; z-index: 0;" src="'.$result['status'].'">@'.$r['username'].'</a></div>';
     }
 ?>

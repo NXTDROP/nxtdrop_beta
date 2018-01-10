@@ -8,7 +8,7 @@
                 $sql = "SELECT * FROM posts, users WHERE posts.uid = ".$u_id." AND users.username = '".$_GET['u']."' ORDER BY posts.pdate DESC;";
                 $result = mysqli_query($conn, $sql);
                 if (!mysqli_num_rows($result) > 0) {
-                    echo '<p id="no_post">No Posts Available!</p>';
+                    echo '<p id="no_post_profile">No Posts Available!</p>';
                 }
                 else {
                     while ($row = mysqli_fetch_assoc($result)) {
