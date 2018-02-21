@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'dbh.php';
+    include '../dbh.php';
     $to_from = $_POST['to_from'];
     $id = $_POST['id'];
     $username = $_SESSION['username'];
@@ -74,7 +74,7 @@ $(".msg_body").scroll(function() {
 
 <?php
     echo '<div class="msg_box">
-    <div class="msg_head"><p id="from"><a href="profile.php?u='.$to_from.'" id="u_tofrom">'.$to_from.'</a></p>
+    <div class="msg_head"><p id="from"><a href="u/'.$to_from.'" id="u_tofrom">'.$to_from.'</a></p>
         <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
     </div>
     <div class="msg_body" id="body">';

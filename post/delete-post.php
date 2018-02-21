@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'dbh.php';
+    include '../dbh.php';
 
     $pid = mysqli_real_escape_string($conn, $_GET['pid']);
     $sql = "SELECT * FROM posts WHERE pid='$pid';";

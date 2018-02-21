@@ -10,6 +10,7 @@
         NXTDROP: The Social Marketplace
     </title>
     <head>
+        <base href="http://nxtdrop.com/">
         <link type="text/css" rel="stylesheet" href="forgot-password.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -17,7 +18,7 @@
 
     <body>
         <header>
-            <a href="index.php"><img id ="logo"src="img/nxtdroplogo.png" width="125px"></a>
+            <a href="home"><img id ="logo"src="img/nxtdroplogo.png" width="125px"></a>
         </header>
         
         <div class="container">
@@ -26,7 +27,7 @@
                 <button type="submit" name="submit" id="submit">Send Reset E-mail</button>
             </form>
             </br></br>
-            <a href="profile.php"><p>Cancel</p></a>
+            <a href="login_signup"><p>Cancel</p></a>
             <div> <?php include('pwd.rec/error.php'); ?> </div>
         </div>
     </body>

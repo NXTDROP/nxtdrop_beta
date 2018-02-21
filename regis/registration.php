@@ -1,6 +1,6 @@
 <?php
 
-    include 'dbh.php';
+    include '../dbh.php';
 
     $fName = mysqli_real_escape_string($conn, $_POST['fname']);
     $lName = mysqli_real_escape_string($conn, $_POST['lname']);

@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    include 'dbh.php';
+    include '../dbh.php';
 
     if (isset($_SESSION['uid'])) {
         $fileName = $_FILES['file']['name'];

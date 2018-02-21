@@ -1,5 +1,5 @@
 <?php
-    include 'dbh.php';
+    include '../dbh.php';
 
     $confEmailError = false;
     $activate = false;
@@ -22,7 +22,7 @@
             $headers .= "Reply-To: " . $nd_email . "\r\n";
             $headers .= "CC: momar@nxtdrop.com";
 
-            $message = 'Please click the link below to change your password: http://localhost/nd-v1.00/pwd.rec/newpwd.php?email='.$email.'&hash='.$hash.'';
+            $message = 'Please click the link below to change your password: http://nxtdrop.com/pwd.rec/newpwd.php?email='.$email.'&hash='.$hash.'';
 
             if (mail($email, $subject, $message, $headers)) {
                 updateRecords($conn, $uid, $email, $hash);

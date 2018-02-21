@@ -1,6 +1,6 @@
 <header>
     <div class="container-header">
-        <a href="index.php"><i class="fa fa-home" aria-hidden="true" title="Home"></i></a>
+        <a href="home"><i class="fa fa-home" aria-hidden="true" title="Home"></i></a>
         <style>
         .fa-stack[data-count]:after{
             position:absolute;
@@ -33,14 +33,14 @@
                 else {
                     $message_icon = '<span><i class="fa fa-envelope" aria-hidden="true" title="Direct Messages"></i></span>';
                 }
-                echo '<a href="likes.php"><i class="fa fa-heart-o" aria-hidden="true" title="Liked Drop"></i></a>
-                <a href="profile.php?u='.$_SESSION['username'].'"><i class="fa fa-user" aria-hidden="true" title="Profile"></i></a>
-                <a href="messages.php" class="dm_icon">'.$message_icon.'</a>';
+                echo '<a href="likes"><i class="fa fa-heart-o" aria-hidden="true" title="Liked Drop"></i></a>
+                <a href="u/'.$_SESSION['username'].'"><i class="fa fa-user" aria-hidden="true" title="Profile"></i></a>
+                <a href="inbox" class="dm_icon">'.$message_icon.'</a>';
             }
             else {
-                echo '<a href="login.php"><i class="fa fa-heart-o" aria-hidden="true" title="Liked Drop"></i></a>
-                <a href="login.php"><i class="fa fa-user" aria-hidden="true" title="Profile"></i></a>
-                <a href="login.php"><i class="fa fa-envelope" aria-hidden="true" title="Direct Messages"></i></a>';
+                echo '<a href="login_signup"><i class="fa fa-heart-o" aria-hidden="true" title="Liked Drop"></i></a>
+                <a href="login_signup"><i class="fa fa-user" aria-hidden="true" title="Profile"></i></a>
+                <a href="login_signup"><i class="fa fa-envelope" aria-hidden="true" title="Direct Messages"></i></a>';
             }
         ?>
         <script type="text/javascript">
@@ -75,7 +75,7 @@
                     if (e.keyCode == 13) {
                         e.preventDefault();
                         var q = $('#search').val();
-                        window.location.replace("search.php?q="+q);
+                        window.location.replace("search/"+q);
                     }
                 });
             });
@@ -99,7 +99,7 @@
                 </form>
                 <div class="search_result"></div>
             </div>
-                <a href="login.php"><button class="login-button">Sign Up/Login</button></a>';
+                <a href="login_signup"><button class="login-button">Sign Up/Login</button></a>';
             }
         ?>
     </div>

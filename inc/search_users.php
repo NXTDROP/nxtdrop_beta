@@ -1,5 +1,5 @@
 <?php
-    include 'dbh.php';
+    include '../dbh.php';
     $query = mysqli_query($conn, "SELECT * FROM users WHERE username LIKE '%".$_POST['name']."%' LIMIT 10");
     while ($r = mysqli_fetch_assoc($query)) {
         $uid = $r['uid'];

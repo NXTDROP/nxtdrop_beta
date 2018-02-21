@@ -7,7 +7,7 @@
 
 <?php
     session_start();
-    include 'dbh.php';
+    include '../dbh.php';
     include 'time.php';
     $uid = $_SESSION['uid'];
     $query = 'SELECT * FROM messages

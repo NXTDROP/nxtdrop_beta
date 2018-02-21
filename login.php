@@ -9,6 +9,7 @@
         NXTDROP: The Social Marketplace
     </title>
     <head>
+        <base href="http://nxtdrop.com/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="login.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -19,7 +20,7 @@
 
     <body>
         <header>
-            <a href="index.php"><img id ="logo"src="img/nxtdroplogo.png" width="125px"></a>
+            <a href="home"><img id ="logo"src="img/nxtdroplogo.png" width="125px"></a>
         </header>
         
         <div class="container">
@@ -27,7 +28,7 @@
                 <input type="text" name="username" placeholder="Username" required></br>
                 <input type="password" name="pwd" placeholder="Password" required></br>
                 <button type="submit" name="submit" id="submit_login">Login</button></br></br>
-                <p><a href="forgot-password.php">Forgot Password?</a></p>
+                <p><a href="forgot_password">Forgot Password?</a></p>
             </div>
             <p class="error_login"></p>
             <form action="" method="POST" id="signup" class="signup-form">
@@ -38,6 +39,8 @@
                 <input type="text" name="username" id="username" placeholder="Username" required></br>
                 <input type="password" name="pwd" id="pwd" placeholder="Password" required></br>
                 <input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password" required></br>
+                <input type="checkbox" name="check" id="check" required>
+                <label for="check">Accept <a href="terms" target="_blank">Terms of Use</a> and <a href="privacy" target="_blank">Privacy Policy</a>.</label></br>
                 <button type="submit" name="submit" id="submit">Create Account</button></br>
                 <p id="form-message"></p>
             </form>

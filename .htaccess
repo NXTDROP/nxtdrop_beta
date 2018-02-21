@@ -1,0 +1,32 @@
+# Turn Rewrite Engine
+RewriteEngine On
+
+#Rewrite for index.php
+RewriteRule ^home index.php [NC,L]
+
+#Rewrite for likes.php
+RewriteRule ^likes likes.php [NC,L]
+
+#Rewrite for login.php
+RewriteRule ^login_signup login.php [NC,L]
+
+#Rewrite for messages.php
+RewriteRule ^inbox messages.php [NC,L]
+
+#Rewrite for profile.php?u=xxxxxx
+RewriteRule ^u/([0-9a-zA-Z_-]+) profile.php?u=$1 [NC,L]
+
+#Rewrite for search.php?q=xxxxx
+RewriteRule ^search/([0-9a-zA-Z_-]+) search.php?q=$1 [NC,L]
+
+#Rewrite for edit-profile.php
+RewriteRule ^edit_profile edit-profile.php [NC,L]
+
+#Rewrite for TofU.php
+RewriteRule ^terms TofU.php [NC,L]
+
+#Rewrite for privacy.php
+RewriteRule ^privacy privacy.php [NC,L]
+
+#Rewrite for forgot-password.php
+RewriteRule ^forgot_password forgot-password.php [NC,L]

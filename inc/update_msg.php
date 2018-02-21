@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'dbh.php';
+    include '../dbh.php';
     $chat_id = $_POST['id'];
     
     if (isset($_POST['numData'])) {

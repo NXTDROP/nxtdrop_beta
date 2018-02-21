@@ -5,7 +5,7 @@
     include "inc/time.php";
 
     if (!isset($_SESSION['uid'])) {
-        header("Location: login.php");
+        header("Location: ../login_signup");
     }
 ?>
 <!DOCTYPE html>
@@ -15,6 +15,7 @@
         NXTDROP: The Social Marketplace
     </title>
     <head>
+        <base href="http://nxtdrop.com/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="main.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -40,9 +41,9 @@
 
         <section class="footer">
             <ul>
-                <li><p>&copy NXTDROP Inc. 2017</p></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Terms &amp Privacy</a></li>
+                <li><p>&copy NXTDROP Inc. 2018</p></li>
+                <li><a href="terms">Terms of Use</a></li>
+                <li><a href="privacy">Privacy</a></li>
             </ul>
         </section>
 

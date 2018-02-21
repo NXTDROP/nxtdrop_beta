@@ -27,7 +27,7 @@
             </div>
                                 
             <div class="profile-info">
-            <div class="name"><p><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></p></div>
+            <div class="name"><p><a href="u/'.$row['username'].'">'.$row['username'].'</a></p></div>
             <!--<div class="location">Toronto, Ontario</div>-->
         
             </div>
@@ -127,7 +127,7 @@
             </div>
                                 
             <div class="profile-info">
-            <div class="name"><p><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></p></div>
+            <div class="name"><p><a href="u/'.$row['username'].'">'.$row['username'].'</a></p></div>
             <!--<div class="location">Toronto, Ontario</div>-->
         
             </div>
@@ -143,7 +143,7 @@
             <div class="card-footer">
         
             <div class="description">
-            <p><span class="username"><a href="profile.php?u='.$row['username'].'">'.$row['username'].'</a></span><span class="caption"> '.$row['caption'].'</span></p>
+            <p><span class="username"><a href="u/'.$row['username'].'">'.$row['username'].'</a></span><span class="caption"> '.$row['caption'].'</span></p>
             </div>
             <!--<div class="comments">
             <p>

@@ -1,6 +1,6 @@
 <?php
 
-    include 'dbh.php';
+    include '../dbh.php';
 
     $pwd =  md5(mysqli_real_escape_string($conn, $_POST['pwd']));
     $cPwd =  md5(mysqli_real_escape_string($conn, $_POST['cPwd']));

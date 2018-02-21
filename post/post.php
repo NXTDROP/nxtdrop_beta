@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'dbh.php';
+    include '../dbh.php';
 
     date_default_timezone_set("UTC"); 
     $caption = mysqli_real_escape_string($conn, $_POST['caption']);

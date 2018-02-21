@@ -37,7 +37,7 @@
     }
 
     if(isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
-        echo '<a href="edit-profile.php"><button class="edit-button">Edit Profile</button></a>';
+        echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a>';
     }
 
 ?>

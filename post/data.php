@@ -1,5 +1,5 @@
 <?php
-    include 'dbh.php';
+    include '../dbh.php';
     $commentNewCount = $_POST['commentNewCount'];
 
     $sql = "SELECT * FROM posts ORDER BY p_date DESC LIMIT $commentNewCount;";

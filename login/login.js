@@ -8,7 +8,7 @@ $(document).ready(function() {
             data: {username: username, pwd: pwd},
             success: function(data) {
                 if (data == '') {
-                    window.location.replace('index.php?login=success');
+                    window.location.replace('home');
                 }
                 else {
                     $('.error_login').html(data).css('color', 'red');
@@ -28,7 +28,7 @@ $(document).ready(function() {
                 data: {username: username, pwd: pwd},
                 success: function(data) {
                     if (data == '') {
-                        window.location.replace('index.php?login=success');
+                        window.location.replace('home');
                     }
                     else {
                         $('.error_login').html(data).css('color', 'red');
@@ -49,7 +49,7 @@ $(document).ready(function() {
                 data: {username: username, pwd: pwd},
                 success: function(data) {
                     if (data == '') {
-                        window.location.replace('index.php?login=success');
+                        window.location.replace('home');
                     }
                     else {
                         $('.error_login').html(data).css('color', 'red');

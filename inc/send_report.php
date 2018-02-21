@@ -1,7 +1,7 @@
 <?php
     session_start();
     date_default_timezone_set("UTC"); 
-    include 'dbh.php';
+    include '../dbh.php';
     $date = date("Y-m-d H:i:s", time());
 
     $report = mysqli_real_escape_string($conn, $_POST['report']);

@@ -1,5 +1,5 @@
 <?php
-    include 'dbh.php';
+    include '../dbh.php';
     session_start();
 
     $username = mysqli_real_escape_string($conn, $_POST['username']);

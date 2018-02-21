@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include 'dbh.php';
+    include '../dbh.php';
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
     /*$query = "SELECT COUNT(pid) FROM likes WHERE pid = 1;";
