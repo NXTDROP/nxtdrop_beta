@@ -90,7 +90,7 @@
                 <div class="search_result"></div>
             </div>
                 <button class="call_post">New Drop</button>
-                <div class="dropdown"><i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn" title="Log Out"></i><div id="myDropdown" class="dropdown-content"><a href="login/logout.php">Log Out</a></div></div>';   
+                <div class="dropdown"><i onclick="more()" class="fa fa-ellipsis-h" aria-hidden="true" id="dropbtn" title="Log Out"></i><div id="myDropdown" class="dropdown-content"><a href="logout">Log Out</a></div></div>';   
             }
             else {
                 echo '<div class="search-bar">

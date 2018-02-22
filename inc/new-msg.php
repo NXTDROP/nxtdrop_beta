@@ -16,7 +16,6 @@
         $('#send').click(function(){
             var msg = $('.new_msg_input').val();
             var to = $('#to').val();
-            alert(msg + " " + to);
             $.post('inc/send_newmsg.php', {to: to, msg: msg}, function(data){
                 if (data == '') {
                     $('#to').val('');
