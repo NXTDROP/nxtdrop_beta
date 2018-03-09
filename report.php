@@ -9,7 +9,8 @@
         NXTDROP: The Social Marketplace
     </title>
     <head>
-        <link type="text/css" rel="stylesheet" href="report.css" />
+        <base href="https://nxtdrop.com/">
+        <link type="text/css" rel="stylesheet" href="stylesheet_report.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script>

@@ -11,6 +11,7 @@
         NXTDROP: The Social Marketplace
     </title>
     <head>
+        <base href="https://nxtdrop.com/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="main.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -23,7 +24,7 @@
     <body>
         <?php include('inc/header-body.php'); ?>
         <div class="terms_body">
-            <h1>NXTDROP Terms of Use</h1>
+            <h1>NXTDROP Privacy</h1>
             <h2>Effective date: January 22, 2018.</h2></br></br>
             <h3>1.    TERMS OF USE</h3>
             <p>This privacy policy as well as our Terms of Use found here: <a href="terms">www.nxtdrop.com/terms</a> (“<b>Terms of Use</b>”) govern your access of the NXTDROP, Inc. Web App., whether: (a) accessed on a computer connected to the internet at www.nxtdrop.com (the “<b>Site</b>”); or (b) by mobile phone (individually and collectively, (a) and (b) are the “NXTDROP, Inc. Web App.”), as owned and operated by NXTDROP, Inc.(“<b>NXTDROP</b>”), an Ontario corporation having its registered address at Toronto, Ontario (referred to in these Terms as “<b>we</b>”, “<b>us</b>” or the “<b>Company</b>”). Terms capitalized but not defined in this Privacy Policy have the meanings set out in the Terms of Use. </p></br></br>
