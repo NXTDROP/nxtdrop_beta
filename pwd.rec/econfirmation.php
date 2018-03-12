@@ -22,7 +22,7 @@
             $headers .= "Reply-To: " . $nd_email . "\r\n";
             $headers .= "CC: momar@nxtdrop.com";
 
-            $message = 'Please click the link below to change your password: http://nxtdrop.com/pwd.rec/newpwd.php?email='.$email.'&hash='.$hash.'';
+            $message = 'Please click the link below to change your password: https://nxtdrop.com/pwd.rec/newpwd.php?email='.$email.'&hash='.$hash.'';
 
             if (mail($email, $subject, $message, $headers)) {
                 updateRecords($conn, $uid, $email, $hash);
@@ -42,7 +42,7 @@
     }
 
     function updateRecords($conn, $uid, $email, $hash) {
-        $sql = "SELECT * FROM pwdrecovery WHERE email='$email';";
+        $sql = "SELECT * FROM pwdrecovery WHERE email= '$email';";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -51,7 +51,7 @@
             //echo 'Records updated';
         }
         else if ($result->num_rows < 1) {
-            $sql = "INSERT INTO pwdrecovery (uid, email,hash) VALUES ('$uid', '$email', '$hash');";
+            $sql = "INSERT INTO pwdrecovery (uid, email, hash) VALUES ('$uid', '$email', '$hash');";
             mysqli_query($conn, $sql);
             //echo 'Records updated';
         }

@@ -52,6 +52,7 @@
             $q = "INSERT INTO profile (uid) VALUES ('$uid');";
             mysqli_query($conn, $q);
             echo "<span class='success'>Account Created!</span>";
+            include '../welcome.php';
         }
         else {
             echo "<span class='error'>Error. Try Later!</span>";
