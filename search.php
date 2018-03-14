@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <title>
-        NXTDROP: The Social Marketplace
+    NXTDROP: The Fashion Trade Centre
     </title>
     <head>
         <base href="https://nxtdrop.com/">
