@@ -27,6 +27,11 @@
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['pwd'] = $row['pwd'];
+                date_default_timezone_set("UTC"); 
+                $date = date("Y-m-d H:i:s", time());
+                $uid = $_SESSION['uid'];
+                $sql = "UPDATE users SET last_connected = '$date' WHERE uid = '$uid'";
+                mysqli_query($conn, $sql);
             }
         }
     }

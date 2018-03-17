@@ -1,6 +1,8 @@
 <?php
 
     include '../dbh.php';
+    date_default_timezone_set("UTC"); 
+    $date = date("Y-m-d H:i:s", time());
 
     $fName = mysqli_real_escape_string($conn, $_POST['fname']);
     $lName = mysqli_real_escape_string($conn, $_POST['lname']);
@@ -43,7 +45,7 @@
 
     if($errorEmpty == false && $errorEmail == false && $errorUsername == false) {
         $pwd = md5($pwd);
-        $sql = "INSERT INTO users (first_name, last_name, username, email, pwd) VALUES ('$fName', '$lName', '$uName', '$email', '$pwd');";
+        $sql = "INSERT INTO users (first_name, last_name, username, email, pwd, account_created) VALUES ('$fName', '$lName', '$uName', '$email', '$pwd', '$date');";
         if (mysqli_query($conn, $sql)) {
             $sql = "SELECT uid FROM users WHERE username = '$uName';";
             $result = $conn->query($sql);
