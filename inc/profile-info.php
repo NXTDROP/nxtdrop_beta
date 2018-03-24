@@ -10,18 +10,9 @@
     $result = mysqli_query($conn, $sql);
     $r = mysqli_fetch_assoc($result);
     $status = $r['status'];
-    if ($status == "") $status = 'uploads/user.png';    
-    if (isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
-        echo '<ul class="profile-picture" id="profile-picture">
-        <input type="file" name="profile_p" id="input" class="input-profile" accept="image/*"/>
-        <label for="input"><li>Upload Photo</li></label>
-        <li id="remove">Remove Profile Picture</li>
-    </ul>';
-    echo '<div class="profile-img-profile" onclick=""><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
-    }
-    else {
-        echo '<div class="profile-img-profile" onclick=""><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
-    }
+    if ($status == "") $status = 'uploads/user.png';
+    
+    echo '<div class="profile-img-profile"><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
 
     $sql = "SELECT * FROM profile, users WHERE profile.uid=$u_id AND users.username='".$_GET['u']."';";
     $result = mysqli_query($conn, $sql);

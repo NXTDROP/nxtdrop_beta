@@ -3,16 +3,20 @@
     include "dbh.php";
     //include("inc/upload-profile-picture.php");
     include "inc/time.php";
-
-    if (!isset($_SESSION['uid'])) {
-        header("Location: ../login_signup");
+    $username = $_GET['u'];
+    $query = "SELECT * FROM users WHERE username='$username';";
+    $result = mysqli_query($conn, $query);
+    if ($data = mysqli_fetch_assoc($result)) {
+        $fullname = $data['first_name'].' '.$data['last_name'];
     }
 ?>
 <!DOCTYPE html>
 
 <html>
     <title>
-    NXTDROP: The Fashion Trade Centre
+    <?php
+        echo ''.$fullname.'&#8217s closet &#x25FE ('.$username.') &#x25FE NXTDROP: THE FASHION TRADE CENTER';
+    ?>
     </title>
     <head>
         <base href="https://nxtdrop.com/">

@@ -97,6 +97,53 @@
         <link type="text/css" rel="stylesheet" href="edit-profile.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script>
+            function previewImage (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#profile_picture').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            function remove() {
+                $('#change_pp').css('display', 'none');
+            }
+
+            $(document).ready(function() {
+                $('.inputfile').change(function() {
+                    previewImage(this);
+                    $('#change_pp').css('display', 'block');
+                });
+
+                $('#change_pp').click(function() {
+                    var file_data = $('.inputfile').prop('files')[0];
+                    var form_data = new FormData();                     // Create a form
+                    form_data.append('file', file_data);           // append file to form
+                    $.ajax({
+                        url: "inc/upload-profile-picture.php",
+                        type: 'POST',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,                         
+                        success: function(data){
+                            $('#change_pp').css('background-color', 'green');
+                            $('#change_pp').html('New Profile Picture Saved');
+                            timeoutID = window.setTimeout(remove, 10000);
+                            console.log(data);
+                        },
+                        error: function(data) {
+                            console.log(data);
+                        }
+                    });
+                });
+            });
+        </script>
     </head>
 
     <body>
@@ -106,15 +153,31 @@
         
         <div class="container">
             <form action="" method="POST" class="login-form">
+                <h2>Profile Info</h2>
                 <input type="text" name="first_name" placeholder="First Name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['fname'];?>" required></br>
                 <input type="text" name="last_name" placeholder="Last Name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['lname'];?>" required></br>
                 <input type="text" name="email" placeholder="Email" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['email'];?>"required></br>
                 <input type="text" name="username" placeholder="Username" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['username'];?>"required></br>
                 <textarea name="bio" placeholder="Bio"><?php if (isset($_SESSION['uid'])) echo $bio; ?></textarea></br>
-                <button type="submit" name="submit" id="submit">Save Changes</button>
+                <button type="submit" name="submit" id="submit">Save Changes</button></br></br>
             </form>
-            </br></br>
+            <h2>Current Profile Picture</h2>
+                <?php
+                    $uid = $_SESSION['uid'];
+                    $sql = "SELECT * FROM profile WHERE uid = $uid;";
+                    $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+                    if ($result['status'] == '') {
+                        echo '<img id="profile_picture" src="https://nxtdrop.com/uploads/user.png"></br>';
+                    }
+                    else {
+                        echo '<img id="profile_picture" src="https://nxtdrop.com/'.$result['status'].'"></br>';
+                    }
+                    ?>
+                <input type="file" name="file" id="file" class="inputfile" accept="image/*" data-multiple-caption="{count} files selected" multiple />
+                <label for="file" title="Change Profile Picture"><i class="fa fa-picture-o" aria-hidden="true"></i></label></br>
+                <button id="change_pp">Save New Profile Picture</button></br>
             <form action="" method="POST" class="change-pwd-form">
+                <h2>Change Password</h2>
                 <input type="password" name="opwd" placeholder="Enter Old Password" required></br>
                 <input type="password" name="npwd" placeholder="Enter New Password" required></br>
                 <input type="password" name="cpwd" placeholder="Confirm Password" required></br>
