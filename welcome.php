@@ -172,7 +172,7 @@
             </div>
 
             <div class="email_footer">
-                <p>We look forward to bring a better and safer experience trading items. Thank you for joining us in this journey.</p>
+                <p>We are looking forward to bring you a better and safer experience. Thank you for joining us in this journey.</p>
                 <p id="six" title="Toronto, Ontario, Canada">Love from the 6IX</p>
                 <ul>
                     <li><p><a href="https://www.instagram.com/nxtdrop/"><img class="image" src="https://nxtdrop.com/img/instagram.png" title="Instagram"/></a></p></li>

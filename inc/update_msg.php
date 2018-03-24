@@ -14,10 +14,26 @@
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         if ($row['u_from'] == $_SESSION['uid']) {
-            echo '<div class="msg_a">'.$row['message'].'</div>';
+            if ($row['pic_url'] == '') {
+                echo '<div class="msg_a">'.$row['message'].'</div>';
+            }
+            else {
+                echo '<div class="msg_a_img"><img src="'.$row['pic_url'].'" /></div>';
+                if ($row['message'] != '') {
+                    echo '<div class="msg_a">'.$row['message'].'</div>';
+                }
+            }
         }
         else {
-            echo '<div class="msg_b">'.$row['message'].'</div>';
+            if ($row['pic_url'] == '') {
+                echo '<div class="msg_b">'.$row['message'].'</div>';
+            }
+            else {
+                echo '<div class="msg_b_img"><img src="'.$row['pic_url'].'" /></div>';
+                if ($row['message'] != '') {
+                    echo '<div class="msg_b">'.$row['message'].'</div>';
+                }
+            }
             if ($row['opened'] == 0 && $row['u_to'] == $_SESSION['uid']) {
                 $id = $row['id'];
                 mysqli_query($conn, "UPDATE messages SET opened='1' WHERE id='$id';");

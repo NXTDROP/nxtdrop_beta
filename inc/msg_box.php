@@ -31,18 +31,18 @@ function updateMsg() {
         success: function(data) {
             $('.msg_body').html(data);
             $('#'+id).attr('class', '');
+        },
+        complete: function(data) {
             if (scroll) {
-                $('.msg_body').scrollTop(1000);
+                $('.msg_body').animate({scrollTop: 5000}, 2500);
                 scroll = false;
             }
             else {
                 $('.msg_body').scrollTop(scroll_t);
             }
-        },
-        complete: function(data) {
             renew = setTimeout(function() {
                 updateMsg();
-            }, 10000);
+            }, 5000);
         }
     });
 }
@@ -59,12 +59,12 @@ $(".msg_body").scroll(function() {
             data: {id: id, numData: numData},
             success: function(data) {
                 $('.msg_body').html(data);
-                $('.msg_body').scrollTop(height);
             },
             complete: function(data) {
+                $('.msg_body').scrollTop(height);
                 renew = setTimeout(function() {
                     updateMsg(to_from);
-                }, 10000);
+                }, 5000);
             }
         });
     }
@@ -78,35 +78,11 @@ $(".msg_body").scroll(function() {
         <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
     </div>
     <div class="msg_body" id="body">';
-    /*while ($row = mysqli_fetch_assoc($result)) {
-        if ($row['u_from'] == $username) {
-            echo '<div class="msg_a">'.$row['message'].'</div>';
-        }
-        else {
-            echo '<div class="msg_b">'.$row['message'].'</div>';
-            if ($row['opened'] == 0) {
-                $id = $row['id'];
-                mysqli_query($conn, "UPDATE messages SET opened='1' WHERE id='$id';");
-            }
-        }
-    }
-    echo '<div class="msg_insert"></div>*/
     echo '</div>
-    <textarea class="msg_input" placeholder="Enter Message..."></textarea>
-    <i class="fa fa-paper-plane fa-lg" aria-hidden="true" onclick="send(false)"></i>
+    <textarea class="msg_input" placeholder="Write a message..."></textarea>
+    <i class="fa fa-paper-plane fa-lg" aria-hidden="true" onclick="send()"></i>
+    <input type="file" name="file" id="file" class="inputfiles" accept="image/*" data-multiple-caption="{count} files selected" multiple />
+    <label for="file"><i class="fa fa-picture-o" aria-hidden="true"></i></label>
+    
 </div>';
 ?>
-
-        
-        <!--<div class="msg_box">
-            <div class="msg_head"><p id="from"><a href="profile.php?u=user1">User 1</a></p>
-                <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
-            </div>
-            <div class="msg_body" id="body1">
-                <div class="msg_a">Yoo! Wanna trade these Yeezy?</div>
-                <div class="msg_b">Yeah sure man.</div>
-                <div class="msg_insert1"></div>
-            </div>
-            <textarea class="msg_input" id="1" placeholder="Enter Message..."></textarea>
-            <i class="fa fa-paper-plane fa-lg" aria-hidden="true" onclick="send(1)"></i>
-        </div>-->

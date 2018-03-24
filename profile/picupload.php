@@ -20,7 +20,7 @@
 
         if(in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
-                if ($fileSize < 1000000) {
+                if ($fileSize < 10000000) {
                     $fileNewName = $uid.".".$fileActualExt;
                     $fileDestination = '../uploads/profile'.$fileNewName;
                     move_uploaded_file($fileTmpName, $fileDestination);

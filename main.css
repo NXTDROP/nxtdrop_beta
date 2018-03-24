@@ -99,6 +99,10 @@
     .user_r a {
         font-size: 20px!important;
     }
+
+    .msg_box textarea {
+        width: 75%!important;
+    }
 }
 
 @media only screen and (min-width: 950px) and (max-width: 960px) {
@@ -131,7 +135,7 @@
     }
 
     .msg_box textarea {
-        width: 80%!important;
+        width: 70%!important;
     }
 
     .msg_box {
@@ -237,6 +241,10 @@
         margin-top: 20%!important;
     }
 
+    .msg_box textarea {
+        width: 70%!important;
+    }
+
     .fa-paper-plane {
         margin-right: 0!important;
     }
@@ -258,6 +266,11 @@
     .user_r img {
         width: 22px!important;
         height: 22px!important;
+    }
+
+    .preview_main {
+        width: 75% !important;
+        left: 12.5% !important;
     }
 }
 
@@ -315,6 +328,10 @@
     .user_r a {
         font-size: 20px!important;
     }
+
+    .preview_main {
+        top: 20% !important;
+    }
 }
 
 @media only screen and (min-width: 660px) and (max-width: 732px) {
@@ -370,6 +387,12 @@
 
     .user_r a {
         font-size: 20px!important;
+    }
+
+    .preview_main {
+        top: 20% !important;
+        width: 25% !important;
+        left: 37.5% !important;
     }
 }
 
@@ -430,7 +453,7 @@
     }
 
     .msg_box textarea {
-        width: 80%!important;
+        width: 70%!important;
     }
 
     .msg_box {
@@ -527,7 +550,7 @@
     }
 
     .msg_box textarea {
-        width: 85%!important;
+        width: 75%!important;
     }
 
     .msg_box {
@@ -660,7 +683,7 @@
     }
 
     .msg_box textarea {
-        width: 80%!important;
+        width: 70%!important;
     }
 
     .msg_box {
@@ -780,6 +803,12 @@
         width: 22px!important;
         height: 22px!important;
     }
+
+    .preview_main {
+        top: 15% !important;
+        width: 75% !important;
+        left: 12.5% !important;
+    }
 }
 
 @media only screen and (max-width: 360px) {
@@ -817,7 +846,7 @@
     }
 
     .msg_box textarea {
-        width: 80%!important;
+        width: 70%!important;
     }
 
     .msg_box {
@@ -881,7 +910,7 @@
     }
 
     .msg_box textarea {
-        width: 80%!important;
+        width: 70%!important;
     }
 
     .msg_box {
@@ -1283,6 +1312,40 @@ textarea {
 }
 
 .inputfile + label * {
+	pointer-events: none;
+}
+
+.inputfiles {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfiles + label {
+    font-size: 1.70em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+    margin-left: 1.5%;
+}
+
+.inputfiles + label {
+    cursor: pointer; /* "hand" cursor */
+}
+
+.inputfiles + label + i:hover {
+    color: red;
+}
+
+.inputfiles:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfiles + label * {
 	pointer-events: none;
 }
 
@@ -1807,6 +1870,19 @@ textarea {
     border-radius: 25px;
     word-break: break-all;
 }
+
+.msg_a_img {
+    margin-left: 77%;
+    width: 25%;
+    position: relative; 
+    word-break: break-all;
+}
+
+.msg_a_img img {
+    width: 100%;
+    border-radius: 25px;
+}
+
 .msg_b {
     margin-right: 45%;
     width: 55%;
@@ -1818,10 +1894,21 @@ textarea {
     word-break: break-all;
 }
 
+.msg_b_img {
+    width: 25%;
+    position: relative; 
+    word-break: break-all;
+}
+
+.msg_b_img img {
+    width: 100%;
+    border-radius: 25px;
+}
+
 .msg_box textarea {
     margin-top: 3.5%;
     font-size: 12px;
-    width: 90%;
+    width: 85%;
     height: 30px;
     resize: none;
     padding: 5px 5px;
@@ -1829,8 +1916,13 @@ textarea {
     float: left;
 }
 
+.msg_box label {
+    margin: 3.5% 3% 0 0;
+    float: right;
+}
+
 .fa-paper-plane {
-    margin: 4.9% 3% 0 0;
+    margin: 4.5% 3% 0 0;
     float: right;
 }
 
@@ -1840,6 +1932,87 @@ textarea {
 
 ul li h2 {
     color: #aa0000;
+}
+
+.preview {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+
+.preview_close {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+}
+
+.preview_main {
+    width: 25%;
+    height: auto;
+    background: #fff;
+    z-index: 15;
+    position: fixed;
+    top: 10%;
+    border-radius: 4px;
+    left: 37.5%;
+    display: none;
+    padding-bottom: 5px;
+}
+
+.preview_main h2 {
+    text-align: center;
+    border-bottom: 1px solid #afafaf;
+    padding: 10px 0;
+}
+
+.preview_content {
+    background: #FAFAFA;
+    padding-bottom: 10px;
+}
+
+#preview_send {
+    width: 75%;
+    margin: 0 12.5%;
+}
+
+#preview_close {
+    width: 25%;
+    height: 2em;
+    float: left;
+    margin-left: 1.5%;
+    background-color: #e53232;
+    border: 1px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 12px;
+}
+
+#preview_close:hover {
+    color: #fff;
+    background: #aa0000;
+    cursor: pointer;
+}
+
+#preview_cancel {
+    width: 25%;
+    height: 2em;
+    float: right;
+    margin-right: 1.5%;
+    background-color: #e53232;
+    border: 1px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 12px;
+}
+
+#preview_cancel:hover {
+    color: #fff;
+    background: #aa0000;
+    cursor: pointer;
 }
 
 /******************************************* DM END *********************************************/

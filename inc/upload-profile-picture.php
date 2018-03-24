@@ -16,8 +16,8 @@
 
         if (!empty($fileName)) {
             if(in_array($fileActualExt, $allowed)) {
-                if ($fileError === 0) {
-                    if ($fileSize < 1000000) {
+                //if ($fileError === 0) {
+                    if ($fileSize < 10000000) {
                         $fileNewName = $uid.uniqid('', true).".".$fileActualExt;
                         $fileDestination = 'uploads/pp'.$fileNewName;
                         move_uploaded_file($fileTmpName, "../".$fileDestination);
@@ -32,10 +32,10 @@
                     else {
                         echo 'Your file is too big!';
                     }
-                }
+                /*}
                 else {
                     echo 'There was an error uploading your file!';
-                }
+                }*/
             }
             else {
                 echo 'You cannot upload files of this type!';

@@ -34,6 +34,7 @@
 
         <?php include('inc/new-msg.php'); ?>
         <?php include('inc/new-drop-pop.php'); ?>
+        <?php include('inc/image_preview.php'); ?>
 
         <section class="footer">
             <ul>

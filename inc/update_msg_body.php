@@ -57,9 +57,14 @@
             echo '<div class="user" onclick="show('.$user.', '.$chat_id.');">
             <i class="'.$class.'" id="'.$row['chat_id'].'" aria-hidden="true"></i>
             <ul>
-                <li><h2>'.$to_from.'</h2></li>
-                <li><p class="last_text">'.$row['message'].'</p></li>
-            </ul>
+                <li><h2>'.$to_from.'</h2></li>';
+            if ($row['message'] == '' && $row['pic_url'] != '') {
+                echo '<li><p class="last_text">Image</p></li>';
+            }
+            else {
+                echo '<li><p class="last_text">'.$row['message'].'</p></li>';
+            }
+            echo '</ul>
             <p class="time">'.getPostTime($row['time_sent']).'</p>
             </div>';
         }

@@ -13,6 +13,8 @@
             $sql = "DELETE FROM posts WHERE pid= '$pid';";
             if (mysqli_query($conn, $sql)) {
                 updateNumPosts($_SESSION['uid'], $conn);
+                $sql = "DELETE FROM likes WHERE pid = '$pid';";
+                mysqli_query($conn, $sql);
             }
             return false;
         }
