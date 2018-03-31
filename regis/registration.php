@@ -13,7 +13,7 @@
     $errorUsername = false;
 
     if(isset($_POST['submit'])) {
-        if(empty($name) || empty($lName) || empty($uName) || empty($email) || empty($pwd)) {
+        if (empty($uName) || empty($email) || empty($pwd)) {
             echo "Fill in all the fields!";
             $errorEmpty = true;
         }
