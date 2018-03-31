@@ -228,10 +228,10 @@
                 }
             }
         }
-        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;")) >= 15) {
+        /*if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;")) >= 15) {
             echo '<button class="load_drop">More Drops</button>';
         }
         else {
             echo '';
-        }
+        }*/
 ?>

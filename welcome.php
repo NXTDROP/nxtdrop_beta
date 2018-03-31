@@ -162,7 +162,7 @@
             </div>  
 
             <div class="email_body">
-                <h1>Dear '.$fName.',</h1>
+                <h1>Dear '.$name.',</h1>
                 <p> Welcome to WOO! WOO! WOO! WOO! Raindrop! NXTDROP! <b>The Fashion Trade Center</b>. The place where you can find people willing to <b>trade fashion items</b>. Thank you for joining our community, and we hope that you will have a good time trading items with our members. If you experience any issues, please contact our <a href="mailto:support@nxtdrop.com" title="Contact our Support Team">support team.</a>
                 As a new member of our community, we would be glad to receive your feedback from time to time in order to improve the platform and its features. You can <b>send us feedback</b> @ <a href="https://nxtdrop.com/feedback" title="Send us Feedback">nxtdrop.com/feeback</a>.</p>
                 

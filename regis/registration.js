@@ -1,8 +1,11 @@
+function redirectToProfile (u) {
+    window.location.replace('u/'+u);
+}
+
 $(document).ready(function() {
     $("#signup").submit(function(event) {
         event.preventDefault();
-        var fname = $("#fname").val();
-        var lname = $("#lname").val();
+        var name = $("#name").val();
         var username = $("#username").val();
         var email = $("#email").val();
         var pwd = $("#pwd").val();
@@ -14,13 +17,33 @@ $(document).ready(function() {
             $("#pwd, #cpwd").addClass("input-error");
         }
         else {
-            $("#form-message").load("regis/registration.php", {
-                fname: fname,
-                lname: lname,
-                username: username,
-                email: email,
-                pwd: pwd,
-                submit: submit
+            var form_data = new FormData();
+            form_data.append('name', name);
+            form_data.append('username', username);
+            form_data.append('email', email);
+            form_data.append('pwd', pwd);
+            form_data.append('submit', submit);
+            $.ajax({
+                url: "regis/registration.php",
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success: function(data) {
+                    if (data == '') {
+                        $('#name').val('');
+                        $('#username').val('');
+                        $('#email').val('');
+                        $('#pwd').val('');
+                        $('#cpwd').val('');
+                        $('#form-message').addClass('success').text("Account Created!");
+                        timeoutID = window.setTimeout(redirectToProfile(username), 2000);
+                    }
+                    else {
+                        $('#form-message').addClass('error').text(data);
+                    }
+                }
             });
         }
     });

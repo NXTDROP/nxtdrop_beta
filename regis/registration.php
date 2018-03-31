@@ -4,8 +4,7 @@
     date_default_timezone_set("UTC"); 
     $date = date("Y-m-d H:i:s", time());
 
-    $fName = mysqli_real_escape_string($conn, $_POST['fname']);
-    $lName = mysqli_real_escape_string($conn, $_POST['lname']);
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
     $uName = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
@@ -14,8 +13,8 @@
     $errorUsername = false;
 
     if(isset($_POST['submit'])) {
-        if(empty($fName) || empty($lName) || empty($uName) || empty($email) || empty($pwd)) {
-            echo "<span class='error'>Fill in all the fields!</span>";
+        if(empty($name) || empty($lName) || empty($uName) || empty($email) || empty($pwd)) {
+            echo "Fill in all the fields!";
             $errorEmpty = true;
         }
         /*elseif(filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -31,7 +30,7 @@
     $result = $conn->query($sql);
     $check = mysqli_num_rows($result);
     if($check > 0) {
-        echo "<span class='error'>E-mail already used!</span>";
+        echo "E-mail already used!";
         $errorEmail = true;
     }
 
@@ -39,13 +38,13 @@
     $result = $conn->query($sql);
     $check = mysqli_num_rows($result);
     if ($check > 0) {
-        echo "<span class='error'>Username already used!</span>";
+        echo "Username already used!";
         $errorUsername = true;
     }
 
     if($errorEmpty == false && $errorEmail == false && $errorUsername == false) {
         $pwd = md5($pwd);
-        $sql = "INSERT INTO users (first_name, last_name, username, email, pwd, account_created) VALUES ('$fName', '$lName', '$uName', '$email', '$pwd', '$date');";
+        $sql = "INSERT INTO users (name, username, email, pwd, account_created) VALUES ('$name', '$uName', '$email', '$pwd', '$date');";
         if (mysqli_query($conn, $sql)) {
             $sql = "SELECT uid FROM users WHERE username = '$uName';";
             $result = $conn->query($sql);
@@ -53,31 +52,23 @@
             $uid = $row['uid'];
             $q = "INSERT INTO profile (uid) VALUES ('$uid');";
             mysqli_query($conn, $q);
-            echo "<span class='success'>Account Created!</span>";
             include '../welcome.php';
+            
+            session_start();
+            $_SESSION['uid'] = $uid;
+            $_SESSION['name'] = $name;
+            $_SESSION['username'] = $uName;
+            $_SESSION['email'] = $email;
+            $_SESSION['pwd'] = $pwd;
+            date_default_timezone_set("UTC"); 
+            $date = date("Y-m-d H:i:s", time());
+            $uid = $_SESSION['uid'];
+            $sql = "UPDATE users SET last_connected = '$date' WHERE uid = '$uid'";
+            mysqli_query($conn, $sql);
         }
         else {
-            echo "<span class='error'>Error. Try Later!</span>";
+            echo "Error. Try Later!";
         }
     }
 
 ?>
-
-<script>
-
-    $("#fName, #lName, #uName, #email, #pwd").removeClass("input-error");
-
-    var errorEmpty = "<?php echo $errorEmpty; ?>";
-    var errorEmail = "<?php echo $errorEmail; ?>";
-
-    if(errorEmpty == true) {
-        $("#fName, #lName, #uName, #email, #pwd").addClass("input-error");
-    }
-    if(errorEmail == true) {
-        $("#email").addClass("input-error");
-    }
-    if(errorEmpty == false && errorEmail == false) {
-        $("#fname, #lname, #username, #email, #pwd, #cpwd").val("");
-    }
-
-</script>

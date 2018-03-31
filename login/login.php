@@ -22,8 +22,7 @@
             }
             elseif($row['pwd'] == $pwd) {
                 $_SESSION['uid'] = $row['uid'];
-                $_SESSION['fname'] = $row['first_name'];
-                $_SESSION['lname'] = $row['last_name'];
+                $_SESSION['name'] = $row['name'];
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['pwd'] = $row['pwd'];

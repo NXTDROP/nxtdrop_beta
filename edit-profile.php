@@ -28,13 +28,12 @@
         }
 
         if (isset($_POST['submit'])) {
-            $fname = mysqli_real_escape_string($conn, $_POST['first_name']);
-            $lname = mysqli_real_escape_string($conn, $_POST['last_name']);
+            $name = mysqli_real_escape_string($conn, $_POST['name']);
             $email = mysqli_real_escape_string($conn, $_POST['email']);
             $username = mysqli_real_escape_string($conn, $_POST['username']);
             $bio = mysqli_real_escape_string($conn, $_POST['bio']);
 
-            if (empty($fname) || empty($lname) || empty($email) || empty($username)) {
+            if (empty($email) || empty($username)) {
                 echo "<span class='error'>Field all required fields!</span>";
             }
             else {
@@ -42,11 +41,11 @@
                 $result = $conn->query($sql);
                 $check = mysqli_num_rows($result);
                 if ($check < 1) {
-                    updateRecords($conn, $fname, $lname, $email, $username, $bio);   
+                    updateRecords($conn, $name, $email, $username, $bio);   
                 }
                 else {
                     if ($username == $_SESSION['username']) {
-                        updateRecords($conn, $fname, $lname, $email, $username, $bio);   
+                        updateRecords($conn, $name, $email, $username, $bio);   
                     }
                     else {
                         echo "<span class='error'>Username already used!</span>";
@@ -58,8 +57,7 @@
                 $check = mysqli_num_rows($result);
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['uid'] = $row['uid'];
-                $_SESSION['fname'] = $row['first_name'];
-                $_SESSION['lname'] = $row['last_name'];
+                $_SESSION['name'] = $row['name'];
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['pwd'] = $row['pwd'];
@@ -76,9 +74,9 @@
         echo "<span class='success'>Password changed.</span>";
     }
 
-    function updateRecords($conn, $fname, $lname, $email, $username, $bio) {
+    function updateRecords($conn, $name, $email, $username, $bio) {
         $uid = $_SESSION['uid'];
-        $sql = "UPDATE users SET first_name = '$fname', last_name = '$lname', email = '$email', username = '$username' WHERE uid = '$uid';";
+        $sql = "UPDATE users SET name = '$name', email = '$email', username = '$username' WHERE uid = '$uid';";
         $sql2 = "UPDATE profile SET bio = '$bio' WHERE uid = '$uid';";
         mysqli_query($conn, $sql);
         mysqli_query($conn, $sql2);
@@ -92,7 +90,7 @@
     NXTDROP: The Fashion Trade Centre
     </title>
     <head>
-        <base href="https://nxtdrop.com/">
+        <base href="https://nxtdrop.com/">        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="edit-profile.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -144,6 +142,21 @@
                 });
             });
         </script>
+        </script>
+        <!-- Facebook Pixel Code -->
+        <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1908028209510021');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1908028209510021&ev=PageView&noscript=1"/></noscript>
+        <!-- End Facebook Pixel Code -->
     </head>
 
     <body>
@@ -154,8 +167,7 @@
         <div class="container">
             <form action="" method="POST" class="login-form">
                 <h2>Profile Info</h2>
-                <input type="text" name="first_name" placeholder="First Name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['fname'];?>" required></br>
-                <input type="text" name="last_name" placeholder="Last Name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['lname'];?>" required></br>
+                <input type="text" name="name" placeholder="First Name" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['name'];?>"></br>
                 <input type="text" name="email" placeholder="Email" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['email'];?>"required></br>
                 <input type="text" name="username" placeholder="Username" value="<?php if (isset($_SESSION['uid'])) echo $_SESSION['username'];?>"required></br>
                 <textarea name="bio" placeholder="Bio"><?php if (isset($_SESSION['uid'])) echo $bio; ?></textarea></br>

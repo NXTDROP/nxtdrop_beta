@@ -16,6 +16,21 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="regis/registration.js"></script>
         <script type="text/javascript" src="login/login.js"></script>
+        </script>
+        <!-- Facebook Pixel Code -->
+        <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod? n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1908028209510021');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1908028209510021&ev=PageView&noscript=1"/></noscript>
+        <!-- End Facebook Pixel Code -->
     </head>
 
     <body>
@@ -33,12 +48,11 @@
             <p class="error_login"></p>
             <form action="" method="POST" id="signup" class="signup-form">
                 <p>Don't have an account?</p>
-                <input type="text" name="fname" id="fname" placeholder="First Name" required></br>
-                <input type="text" name="lname" id="lname" placeholder="Last Name" required></br>
-                <input type="text" name="email" id="email" placeholder="Email" required></br>
-                <input type="text" name="username" id="username" placeholder="Username" required></br>
-                <input type="password" name="pwd" id="pwd" placeholder="Password" required></br>
-                <input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password" required></br>
+                <input type="text" name="name" id="name" placeholder="Name"></br>
+                <input type="text" name="email" id="email" placeholder="Email [Required]" required></br>
+                <input type="text" name="username" id="username" placeholder="Username [Required]" required></br>
+                <input type="password" name="pwd" id="pwd" placeholder="Password [Required]" required></br>
+                <input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password [Required]" required></br>
                 <input type="checkbox" name="check" id="check" required>
                 <label for="check">Accept <a href="terms" target="_blank">Terms of Use</a> and <a href="privacy" target="_blank">Privacy Policy</a>.</label></br>
                 <button type="submit" name="submit" id="submit">Create Account</button></br>
