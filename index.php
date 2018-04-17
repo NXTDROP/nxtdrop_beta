@@ -35,6 +35,7 @@
                 $('.load_drop').click(function() {
                     clearTimeout(renew);
                     count += 15;
+                    $(this).html('Loading...');
                     drop(30);
                 });
 
