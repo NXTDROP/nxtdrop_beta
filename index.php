@@ -79,6 +79,8 @@
                         }
                     });
                 }
+                $(".invite").fadeIn();
+                $(".invite_main").show();
                 drop(count);
             });    
         </script>
@@ -113,6 +115,7 @@
         <?php include('inc/new-drop-pop.php'); ?>
         <?php include('inc/new-msg-post.php'); ?>
         <?php include('inc/flag-post.php'); ?>
+        <?php include('inc/invite/popup.php') ?>
 
         <p id="message"></p>
 
