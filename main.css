@@ -938,7 +938,7 @@ html {
 }
 
 body {
-    font: 15px/1.5 Arial, Helvetica, sans-serif;
+    font: 15px/1.5 Verdana, Geneva, Tahoma, sans-serif;
     background-color: #FAFAFA;
     height: 100%;
 }
@@ -1484,6 +1484,35 @@ textarea {
 
 .profile-info{
     display: inline-block;
+    width: 20%;
+}
+
+.follow_button {
+    width: 100%;
+    font-size: 10px;
+    color: #fff;
+    background: #aa0000;
+    border: 1px solid #aa0000;
+    border-radius: 8px;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+}
+
+.follow_button:hover {
+    cursor: pointer;
+    color: #aa0000;
+    background: #fff;
+}
+
+.follow_disabled {
+    width: 100%;
+    font-size: 10px;
+    color: #fff;
+    background: #d5d5d5;
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
 }
 
 /******************************************* INDEX END *********************************************/
@@ -1603,6 +1632,48 @@ textarea {
     text-align: center;
     margin-top: 50px;
 }
+
+#follow {
+    color: #fff;
+    font-size: 16px;
+    width: 10%;
+    padding: 5px;
+    background: #aa0000;
+    border: 1px solid #aa0000;
+    text-align: center;
+    margin-top: 4.38%;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+}
+
+#follow:hover {
+    background: #fff;
+    color: #aa0000;
+}
+
+#unfollow {
+    color: #aa0000;
+    font-size: 16px;
+    width: 10%;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #aa0000;
+    text-align: center;
+    margin-top: 4.38%;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+}
+
+#unfollow:hover {
+    background: #aa0000;
+    color: #fff;
+}
+
+
 
 /******************************************* PROFILE END *********************************************/
 

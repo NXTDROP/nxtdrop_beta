@@ -77,7 +77,7 @@
             $(".invite_main").fadeOut();
         });
 
-        $("#email").keyup(function() {
+        $("#email").keydown(function() {
             var n = $(this).val().length;
             if (n > 10) {
                 $("#invite").attr("disabled", false);
@@ -92,17 +92,35 @@
         });
 
         $("#invite").mouseenter(function () {
-            $("#invite").css('color', '#aa0000');
-            $("#invite").css('background-color', '#fff');
+            var n = $('#email').val().length;
+            if (n > 10) {
+                $("#invite").css('color', '#aa0000');
+                $("#invite").css('background-color', '#fff');
+            }
         });
 
         $("#invite").mouseleave(function () {
-            $("#invite").css('color', '#fff');
-            $("#invite").css('background-color', '#aa0000');
+            var n = $('#email').val().length;
+            if (n > 10) {
+                $("#invite").css('color', '#fff');
+                $("#invite").css('background-color', '#aa0000');
+            }
         });
 
         $("#invite").click(function () {
-            alert($("#email").val());
+            var email = $('#email').val();
+            $('#invite').html('Wait...');
+            $.ajax({
+                type: 'POST',
+                url: '/inc/invite/send_invitation.php',
+                data: {email:email},
+                success: function(data) {
+                    $('#invite').html(data);
+                },
+                error: function() {
+                    $('#invite').hmtl('Error. Try Later!');
+                }
+            });
         });
     });
 </script>
