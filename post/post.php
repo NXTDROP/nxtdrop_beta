@@ -11,10 +11,31 @@
     }
     else {
         $uid = $_SESSION['uid'];
+        $type = $_POST['type'];
+
+        switch ($type) {
+            case 'S':
+                $post_type = 'sale';
+                break;
+            case 'T':
+                $post_type = 'trade';
+                break;
+            case 'L':
+                $post_type = 'request';
+                break;
+            case 'ST':
+                $post_type = 'sale/trade';
+                break;
+            case 'O':
+                $post_type = 'other';
+                break;
+            default:
+                $post_type = 'other';
+        }
+
         if (empty($_FILES['file']['name'])) {
-            $sql = "INSERT INTO posts (uid, caption, pic, pdate) VALUES ('$uid', '$caption', '', '$date');";
+            $sql = "INSERT INTO posts (uid, caption, pic, pdate, type) VALUES ('$uid', '$caption', '', '$date', '$post_type');";
             if (mysqli_query($conn, $sql)) {
-                echo "Posted!";
                 updateNumPosts($uid, $conn);
             }
             else {
@@ -39,9 +60,8 @@
                         $fileNewName = $uid.uniqid('', true).".".$fileActualExt;
                         $fileDestination = 'uploads/p'.$fileNewName;
                         move_uploaded_file($fileTmpName, "../".$fileDestination);
-                        $sql = "INSERT INTO posts (uid, caption, pic, pdate) VALUES ('$uid', '$caption', '$fileDestination', '$date');";
+                        $sql = "INSERT INTO posts (uid, caption, pic, pdate, type) VALUES ('$uid', '$caption', '$fileDestination', '$date', '$post_type');";
                         if (mysqli_query($conn, $sql)) {
-                            echo "Posted!";
                             updateNumPosts($uid, $conn);
                         }
                         else {

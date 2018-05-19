@@ -55,6 +55,24 @@
                     });
                 }
             });
+
+            var rating = $('#rating').text();
+
+            if (rating >= 0.0 && rating <= 3.49) {
+                $('.fa-star').css('color', '#aa0000');
+            }
+            else if (rating >= 3.50 && rating <= 3.99) {
+                $('.fa-star').css('color', '#bb743c');
+            }
+            else if (rating >= 4.00 && rating <= 4.49) {
+                $('.fa-star').css('color', '#a3a3a3');
+            }
+            else if (rating >= 4.50 && rating <= 5.00) {
+                $('.fa-star').css('color', '#D4AF37');
+            }
+            else {
+                $('.fa-star').css('color', 'white');
+            }
         });
     </script>
 <?php
@@ -71,32 +89,34 @@
     $status = $r['status'];
     if ($status == "") $status = 'uploads/user.png';
     
-    echo '<div class="profile-img-profile"><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
+    echo '<div class="profile-img-profile"><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="https://nxtdrop.com/'.$status.'"></div>';
 
     $sql = "SELECT * FROM profile, users WHERE profile.uid=$u_id AND users.username='".$_GET['u']."';";
     $result = mysqli_query($conn, $sql);
     if ($row = mysqli_fetch_assoc($result)) {
-        echo '<h2>'.$row['name'].'</h2></br>
-        <h3>@'.$row['username'].'</h3>
-        <p>'.$row['bio'].'</p>'; 
+        echo '<span id="username">'.$row['username'].'</span> &#x25FE ';
         $sql = "SELECT * FROM following WHERE user_id='$user_id' AND follower_id='$u_id'";
         $result = $conn->query($sql);
-        if ($result->num_rows < 1) {
-            echo '<button class="follow_unfollow" id="follow">+ Follow</button>';
+        if ($_GET['u'] != $_SESSION['username']) {
+            if ($result->num_rows < 1) {
+                echo '<span class="follow_unfollow" id="follow">+ Follow</span></br></br>';
+            }
+            else {
+                echo '<span class="follow_unfollow" id="unfollow">- Unfollow</span></br></br>';
+            }
         }
         else {
-            echo '<button class="follow_unfollow" id="unfollow">- Unfollow</button>';
+            echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a></br></br>';
         }
+        $num_following = $conn->query("SELECT * FROM following WHERE user_id='$user_id'")->num_rows;
+        $num_followers = $conn->query("SELECT * FROM following WHERE follower_id='$user_id'")->num_rows;
+        if ($_GET['u'] == $_SESSION['username']) {
+            echo '<span id="followers"><b id="followers_num">'.$num_followers.'</b> Followers</span><span id="following"><b id="following_num">'.$num_following.'</b> Following</span> &#x25FE <span><b id="rating">2.61</b> <i class="fa fa-star fa-3x" aria-hidden="true"></i></span></br></br></br>';
+        }
+        else {
+            echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">2.61</b> <i class="fa fa-star fa-3x" aria-hidden="true"></i></span></br></br></br>';
+        }
+        echo '<span id="fullname">'.$row['name'].'</span> &#x25FE <span id="biography">'.$row['bio'].'</span>';
     }
-    else {
-        echo '<h2></h2>
-        <h3></h3>
-        <p></p>';
-    }
-
-    if(isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
-        echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a>';
-    }
-
 ?>
 </div>

@@ -14,6 +14,8 @@
     $result = mysqli_query($conn, $query);
     $row = mysqli_num_rows($result);
 
+    $offer = false;
+
     if (!empty($_FILES['file']['name'])) {
         $fileName = $_FILES['file']['name'];
         $fileTmpName = $_FILES['file']['tmp_name'];
@@ -49,7 +51,21 @@
         }
     }
     else {
-        $fileDestination = '';
+        if (isset($_POST['post_id'])) {
+            $pid = $_POST['post_id'];
+            $sql = "SELECT * FROM posts WHERE pid='$pid';";
+            if ($r = mysqli_query($conn, $sql)) {
+                $result = mysqli_fetch_assoc($r);
+                $fileDestination = $result['pic'];
+                $offer = true;
+            }
+            else {
+                echo 'Error. Try Later!';
+            }
+        }
+        else {
+            $fileDestination = '';
+        }
     }
 
     if (!isset($_SESSION['uid'])) {
@@ -82,7 +98,14 @@
                     }
 
                     if (!mysqli_query($conn, $query)) {
-                        echo 'Cannot send your message.';
+                        echo 'Cannot send your message. Check Internet Connection!';
+                    }
+                    else {
+                        if ($offer) {
+                            $pid = $_POST['post_id'];
+                            $notif_query = "INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$pid', '$from', '$to', 'offer', '$date');";
+                            mysqli_query($conn, $notif_query);
+                        }
                     }
                 }
             }

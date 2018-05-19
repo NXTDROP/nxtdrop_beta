@@ -47,14 +47,14 @@
                 echo '<section class="container post-'.$row['pid'].'">
                 <div class="card">
                 <div class="card-header">
-                <div class="profile-img-index"><img class="post-small-img" src="'.$row['status'].'">
-                </div>
                                     
                 <div class="profile-info">
-                <div class="name"><p><a href="u/'.$row['username'].'">'.$row['username'].'</a></p></div>';
+                <div class="profile-img-index"><img class="post-small-img" src="https://nxtdrop.com/'.$row['status'].'">
+                </div>
+                <div class="name"><span><a href="u/'.$row['username'].'">'.$row['username'].'</a></span></div>';
                 
                 if (isset($_SESSION['uid'])) {
-                    if (isFriend($row['username']) == true) {
+                    if (isFriend($row['username']) == true && $_SESSION['uid'] != $row['uid']) {
                         echo '<div class="follow"><button class="follow_button" id="follow_'.$row['username'].'" onclick="follow('.$username.')" title="Follow">+ Follow</button></div>';
                     }
                 }
@@ -73,7 +73,7 @@
 
                 if ($row['pic'] != '') {
                     echo '<div class="content">
-                    <img src="'.$row['pic'].'">
+                    <img src="https://nxtdrop.com/'.$row['pic'].'">
                     </div>';
                 }
             
@@ -98,8 +98,22 @@
                     <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
                     <div class="heart">';
                     echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
-                    echo '</div>
-                    <div onclick="delete_('.$row['pid'].')" class="remove">
+                    echo '</div>';
+                    
+                    if ($row['uid'] != 'request') {
+                        $type = 0;
+                        echo '<div class="sold_button">
+                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD?</button>
+                    </div>';
+                    }
+                    else {
+                        $type = 1;
+                        echo '<div class="sold_button">
+                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
+                    </div>';
+                    }
+
+                    echo '<div onclick="delete_('.$row['pid'].')" class="remove">
                     <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
                     </div>
                     
@@ -114,6 +128,7 @@
                     } 
                     else {
                         $u = "'".$row['username']."'";
+                        $pid = $row['pid'];
                         echo '
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
@@ -121,7 +136,7 @@
                     echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
                     echo '</div>
                     <div class="direct_message">
-                    <i class="fa fa-envelope-o" aria-hidden="true" onclick="send('.$u.')" title="Send DM"></i>
+                    <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
                     </div>
                     <div class="flag">
                     <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>

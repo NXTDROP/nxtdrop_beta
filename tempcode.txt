@@ -60,3 +60,29 @@ PRIMARY KEY ( uid )
 .user_r span {
     font-size: 20px;
 }
+
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        echo '<h2>'.$row['name'].'</h2></br>
+        <h3>@'.$row['username'].'</h3>
+        <p>'.$row['bio'].'</p>'; 
+        $sql = "SELECT * FROM following WHERE user_id='$user_id' AND follower_id='$u_id'";
+        $result = $conn->query($sql);
+        if($_GET['u'] == $_SESSION['username']) {
+            if ($result->num_rows < 1) {
+                echo '<button class="follow_unfollow" id="follow">+ Follow</button>';
+            }
+            else {
+                echo '<button class="follow_unfollow" id="unfollow">- Unfollow</button>';
+            }
+        }
+    }
+    else {
+        echo '<h2></h2>
+        <h3></h3>
+        <p></p>';
+    }
+
+    if(isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
+        echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a>';
+    }
