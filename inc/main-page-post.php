@@ -103,7 +103,7 @@
                     if ($row['uid'] != 'request') {
                         $type = 0;
                         echo '<div class="sold_button">
-                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD?</button>
+                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
                     </div>';
                     }
                     else {

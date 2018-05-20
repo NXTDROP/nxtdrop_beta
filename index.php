@@ -96,6 +96,8 @@
                 }
                 $(".invite").fadeIn();
                 $(".invite_main").show();
+                $(".transaction_review_pop").fadeIn();
+                $(".transaction_review_main").show();
                 drop(count);
             });    
         </script>
@@ -139,6 +141,7 @@
         <?php include('inc/flag-post.php'); ?>
         <?php include('inc/invite/popup.php') ?>
         <?php include('inc/sold_pop.php') ?>
+        <?php include('inc/buyer_transaction_confirmation.php') ?>
 
         <p id="message"></p>
 

@@ -4,25 +4,29 @@
     include '../dbh.php';
     $date = date("Y-m-d H:i:s", time());
 
-    $target_id = $_POST['target_id'];
-    $pricing = mysqli_real_escape_string($conn, $_POST['price']);
-    $comment = mysqli_real_escape_string($conn, $_POST['comment']);
+    $buyer_username = $_POST['buyer_username'];
+    $post_id = $_POST['post_id'];
+    $price = mysqli_real_escape_string($conn, $_POST['price']);
+    $seller_comment = mysqli_real_escape_string($conn, $_POST['seller_comment']);
+
+    $row = mysqli_fetch_assoc($conn->query("SELECT * FROM users WHERE username = '$buyer_username'"));
+    $buyer_id = $row['uid'];
 
     if (!isset($_SESSION['uid'])) {
         echo 'Error. Try Later!';
     }
     else {
-        $user_id = $_SESSION['uid'];
+        $seller_id = $_SESSION['uid'];
 
-        if ($target_id == '') {
+        if ($buyer_id == '') {
             echo 'You must select a user!';
         }
         else {
-            if (!mysqli_query($conn, "INSERT INTO transactions (user_id, target_id, price, comment) VALUES ('$user_id', '$target_id', '$price', '$comment')")) {
+            if (!mysqli_query($conn, "INSERT INTO transactions (seller_ID, buyer_ID, price, seller_ID, post_ID) VALUES ('$seller_id', '$buyer_id', '$price', '$seller_comment', '$post_id')")) {
                 echo 'Error. Try Later!';
             }
             else {
-                echo 'Work';
+                echo $buyer_id;
             }
         }
     }
