@@ -2,6 +2,8 @@
     var seller_id;
     var username;
     var post_id;
+    var seller_rating;
+
     function sold(pid, type) {
         post_id = pid;
         post_type = type;
@@ -11,9 +13,35 @@
         else {
             $("#merchant_header").html('BOUGHT FROM (Click to select):');
         }
-        $('.users_info').css('background', '#fff');
+
+        $.ajax({
+            url: 'inc/transaction/users_report_display.php',
+            type: 'GET',
+            success: function(data) {
+                $('.users_dm').html(data);
+            }
+        });
+        
         $(".transaction_pop").fadeIn();
         $(".transaction_main").show();
+    }
+
+    function s_rating(star_num) {
+        seller_rating = star_num;
+        for (var i = 1; i <= 5; i++) {
+            if (star_num == 3) {
+                alert('NO 3s ALLOWED. PLEASE RATE AGAIN.');
+                return;
+            }
+            else if (i <= star_num) {
+                $('#star-'+i).attr('class', 'fa fa-star fa-2x');
+                $('#star-'+i).css('color', '#aa0000');
+            }
+            else {
+                $('#star-'+i).attr('class', 'fa fa-star-o fa-2x');
+                $('#star-'+i).css('color', '#000');
+            }
+        }
     }
 
     function select(u) {
@@ -29,30 +57,38 @@
         $('#send_transaction_report').click(function() {
             var form_data = new FormData(); // Create a form
             form_data.append('price', $('#pricing').val());
-            form_data.append('seller_comment', $('#comment').val());
+            form_data.append('seller_comment', $('#seller_comment').val());
             form_data.append('buyer_username', username);
             form_data.append('post_id', post_id);
-            $.ajax({
-                url: 'inc/send_transaction_report.php',
-                type: 'POST',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                success: function(data){
-                    if (data == '') {
-                        $('#pricing').val('');
-                        $('#comment').val('');
-                        $('#send_transaction_report').attr('disabled', true);
-                        $('#send_transaction_report').css('background', '#e6e1e1');
-                        $(".transaction_pop").fadeOut(1000);
-                        $(".transaction_main").fadeOut(1000);
+            form_data.append('seller_rating', seller_rating);
+            //alert('Price: ' + $('#pricing').val() + ' Seller Comment: ' + $('#seller_comment').val() + ' Buyer Username: ' + username + ' Post ID: ' + post_id + ' Seller Rating: ' + seller_rating);
+            if (seller_rating != 1 || seller_rating != 2 || seller_rating != 3 || seller_rating != 4 || seller_rating != 5) {
+                    alert('RATE BUYER PLEASE.');
+            }
+            else {
+                alert(seller_rating);
+                $.ajax({
+                    url: 'inc/send_transaction_report.php',
+                    type: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    success: function(data){
+                        if (data == '') {
+                            $('#pricing').val('');
+                            $('#seller_comment').val('');
+                            $('#send_transaction_report').attr('disabled', true);
+                            $('#send_transaction_report').css('background', '#e6e1e1');
+                            $(".transaction_pop").fadeOut(1000);
+                            $(".transaction_main").fadeOut(1000);
+                        }
+                        else {
+                            alert(data);
+                        }
                     }
-                    else {
-                        alert(data);
-                    }
-                }
-            });
+                });
+            }
         });
 
         $(".close").click(function(){
@@ -61,7 +97,7 @@
             $('#send_transaction_report').attr('disabled', true);
             $('#send_transaction_report').css('background', '#e6e1e1');
             $('#pricing').val('');
-            $('#comment').val('');
+            $('#seller_comment').val('');
         });
 
         $('#cancel_transaction_report').click(function() {
@@ -70,7 +106,7 @@
             $('#send_transaction_report').attr('disabled', true);
             $('#send_transaction_report').css('background', '#e6e1e1');
             $('#pricing').val('');
-            $('#comment').val('');
+            $('#seller_comment').val('');
         });
     });
 </script>
@@ -83,10 +119,6 @@
             <div class="transaction_merchant">
                 <p id="merchant_header"></p>
                 <div class="users_dm">
-                    <div class="users_info" id="user-nxtdrop" onclick="select('nxtdrop')">
-                        <img src="https://nxtdrop.com/img/nxtdroplogo.png" alt="User" id="user_info_img">
-                        <span>nxtdrop</span>
-                    </div>
                 </div>
             </div>
 
@@ -98,7 +130,16 @@
                     </div>
                     <input type="number" class="form-control" placeholder="Price (OPTIONAL)" id="pricing" aria-label="Price" aria-describedby="basic-addon1">
                 </div>
-                <textarea name="comment" id="comment" placeholder="Add comment... (OPTIONAL)"></textarea>
+                <p id="rate_buyer">RATE BUYER</p>
+                <p id="nothree">We're enforcing a 'No 3s Allowed Policy' because we believe that a 'neutral' feedback can be misleading.</p>
+                <ul id="rating_stars">
+                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-1" onclick="s_rating(1)"></i></li>
+                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-2" onclick="s_rating(2)"></i></li>
+                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-3" onclick="s_rating(3)"></i></li>
+                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-4" onclick="s_rating(4)"></i></li>
+                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-5" onclick="s_rating(5)"></i></li>
+                </ul>
+                <textarea name="comment" id="seller_comment" placeholder="Add comment... (OPTIONAL)"></textarea>
             </div>
 
             <button id="send_transaction_report">DONE</button>

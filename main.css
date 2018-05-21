@@ -1201,7 +1201,6 @@ hr{
 }
 
 .sold_button button {
-    margin-left: 22%;
     color: #aa0000;
     border: 1px solid #aa0000;
     font-size: 11px;
@@ -2538,6 +2537,7 @@ ul li h2 {
     position: fixed;
     top: 0;
     display: none;
+    z-index: 20;
 }
 
 .transaction_close {
@@ -2586,7 +2586,7 @@ ul li h2 {
     height: 80%;
 }
 
-#comment {
+#seller_comment {
     border: 1px solid #e6e1e1;
     padding: 5px;
     border-radius: 3px;
@@ -2672,6 +2672,7 @@ ul li h2 {
     position: fixed;
     top: 0;
     display: none;
+    z-index: 20!important;
 }
 
 .transaction_review_close {
@@ -2685,12 +2686,13 @@ ul li h2 {
 .transaction_review_main {
     width: 40%;
     background: #fff;
-    z-index: 4;
     position: fixed;
-    top: 10%;
+    top: 2.5%;
     border-radius: 4px;
     left: 30%;
     display: none;
+    overflow: auto;
+    height: 95%;
 }
 
 .transaction_review_main h2 {
@@ -2748,6 +2750,12 @@ ul li h2 {
 }
 
 #rate_seller {
+    color: #000;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+#rate_buyer {
     color: #000;
     font-weight: 700;
     margin-bottom: 0;

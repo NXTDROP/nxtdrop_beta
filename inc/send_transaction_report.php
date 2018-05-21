@@ -5,6 +5,7 @@
     $date = date("Y-m-d H:i:s", time());
 
     $buyer_username = $_POST['buyer_username'];
+    $seller_rating = $_POST['seller_rating'];
     $post_id = $_POST['post_id'];
     $price = mysqli_real_escape_string($conn, $_POST['price']);
     $seller_comment = mysqli_real_escape_string($conn, $_POST['seller_comment']);
@@ -22,11 +23,8 @@
             echo 'You must select a user!';
         }
         else {
-            if (!mysqli_query($conn, "INSERT INTO transactions (seller_ID, buyer_ID, price, seller_ID, post_ID) VALUES ('$seller_id', '$buyer_id', '$price', '$seller_comment', '$post_id')")) {
+            if (!mysqli_query($conn, "INSERT INTO transactions (seller_ID, buyer_ID, price, seller_ID, post_ID, seller_rating) VALUES ('$seller_id', '$buyer_id', '$price', '$seller_comment', '$post_id', '$seller_rating')")) {
                 echo 'Error. Try Later!';
-            }
-            else {
-                echo $buyer_id;
             }
         }
     }

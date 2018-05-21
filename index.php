@@ -96,8 +96,6 @@
                 }
                 $(".invite").fadeIn();
                 $(".invite_main").show();
-                $(".transaction_review_pop").fadeIn();
-                $(".transaction_review_main").show();
                 drop(count);
             });    
         </script>

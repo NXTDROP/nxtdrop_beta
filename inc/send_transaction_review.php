@@ -28,9 +28,6 @@
             if (!mysqli_query($conn, "UPDATE transactions SET buyer_comment = '$buyer_comment', buyer_rating = '$buyer_id', buyer_confirmation = 1 WHERE transaction_ID = '$transaction_id'")) {
                 echo 'Error. Try Later.';
             }
-            else {
-                echo 'work';
-            }
         }
     }
 ?>
