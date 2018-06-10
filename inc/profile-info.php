@@ -5,7 +5,7 @@
         }
 
         function unfollow() {
-            $('.follow_unfollow').html('- Unfollow');            
+            $('.follow_unfollow').html('- Unfollow');     
         }
 
         $(document).ready(function() {
@@ -58,10 +58,10 @@
 
             var rating = $('#rating').text();
 
-            if (rating >= 0.0 && rating <= 3.49) {
+            if (rating >= 0.0 && rating <= 2.99) {
                 $('.fa-star').css('color', '#aa0000');
             }
-            else if (rating >= 3.50 && rating <= 3.99) {
+            else if (rating >= 3.00 && rating <= 3.99) {
                 $('.fa-star').css('color', '#bb743c');
             }
             else if (rating >= 4.00 && rating <= 4.49) {
@@ -71,7 +71,9 @@
                 $('.fa-star').css('color', '#D4AF37');
             }
             else {
-                $('.fa-star').css('color', 'white');
+                $('#star-rating').removeClass('fa-star');
+                $('#star-rating').addClass('fa-star-o');
+                $('#star-rating').css('color', '#f4f2f2');
             }
         });
     </script>
@@ -81,7 +83,6 @@
     $result = mysqli_query($conn, $sql);
     $r = mysqli_fetch_assoc($result);
     $u_id = $r['uid'];
-    $user_id = $_SESSION['uid'];
 
     $sql = "SELECT status FROM profile WHERE uid=$u_id;";
     $result = mysqli_query($conn, $sql);
@@ -94,28 +95,44 @@
     $sql = "SELECT * FROM profile, users WHERE profile.uid=$u_id AND users.username='".$_GET['u']."';";
     $result = mysqli_query($conn, $sql);
     if ($row = mysqli_fetch_assoc($result)) {
-        echo '<span id="username">'.$row['username'].'</span> &#x25FE ';
-        $sql = "SELECT * FROM following WHERE user_id='$user_id' AND follower_id='$u_id'";
-        $result = $conn->query($sql);
-        if ($_GET['u'] != $_SESSION['username']) {
-            if ($result->num_rows < 1) {
-                echo '<span class="follow_unfollow" id="follow">+ Follow</span></br></br>';
+        echo '<span id="username">'.$row['username'].'</span>';
+        if (isset($_SESSION['uid'])) {
+            echo ' &#x25FE ';
+            $user_id = $_SESSION['uid'];
+            $sql = "SELECT * FROM following WHERE user_id='$user_id' AND follower_id='$u_id'";
+            $result = $conn->query($sql);
+            if ($_GET['u'] != $_SESSION['username']) {
+                if ($result->num_rows < 1) {
+                    echo '<span class="follow_unfollow" id="follow">+ Follow</span></br></br>';
+                }
+                else {
+                    echo '<span class="follow_unfollow" id="unfollow">- Unfollow</span></br></br>';
+                }
             }
             else {
-                echo '<span class="follow_unfollow" id="unfollow">- Unfollow</span></br></br>';
+                echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a></br></br>';
             }
         }
         else {
-            echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a></br></br>';
+            echo '</br></br>';
         }
-        $num_following = $conn->query("SELECT * FROM following WHERE user_id='$user_id'")->num_rows;
-        $num_followers = $conn->query("SELECT * FROM following WHERE follower_id='$user_id'")->num_rows;
-        if ($_GET['u'] == $_SESSION['username']) {
-            echo '<span id="followers"><b id="followers_num">'.$num_followers.'</b> Followers</span><span id="following"><b id="following_num">'.$num_following.'</b> Following</span> &#x25FE <span><b id="rating">2.61</b> <i class="fa fa-star fa-3x" aria-hidden="true"></i></span></br></br></br>';
+        $num_following = $conn->query("SELECT * FROM following WHERE user_id='$u_id'")->num_rows;
+        $num_followers = $conn->query("SELECT * FROM following WHERE follower_id='$u_id'")->num_rows;
+        $seller_query = $conn->query("SELECT * FROM transactions WHERE seller_ID = '$u_id'");
+        $buyer_query = $conn->query("SELECT * FROM transactions WHERE buyer_ID = '$u_id'");
+        $num_rating = $seller_query->num_rows + $buyer_query->num_rows;
+        $seller_result = mysqli_fetch_assoc($seller_query);
+        $buyer_result = mysqli_fetch_assoc($buyer_query);
+        $rating_agg = $seller_result['buyer_rating'] + $buyer_result['seller_rating'];
+        if ($num_rating == 0) {
+            $user_rating = 'N/A';
         }
         else {
-            echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">2.61</b> <i class="fa fa-star fa-3x" aria-hidden="true"></i></span></br></br></br>';
+            $user_rating = $rating_agg / $num_rating;
         }
+
+        echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fa fa-star fa-3x" aria-hidden="true"></i></span></br></br></br>';
+
         echo '<span id="fullname">'.$row['name'].'</span> &#x25FE <span id="biography">'.$row['bio'].'</span>';
     }
 ?>

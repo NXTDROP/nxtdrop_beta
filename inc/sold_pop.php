@@ -80,6 +80,10 @@
                             $('#seller_comment').val('');
                             $('#send_transaction_report').attr('disabled', true);
                             $('#send_transaction_report').css('background', '#e6e1e1');
+                            for (var i = 1; i <= 5; i++) {
+                                $('#star-'+i).attr('class', 'fa fa-star-o fa-2x');
+                                $('#star-'+i).css('color', '#000');
+                            }
                             $(".transaction_pop").fadeOut(1000);
                             $(".transaction_main").fadeOut(1000);
                         }
@@ -98,6 +102,10 @@
             $('#send_transaction_report').css('background', '#e6e1e1');
             $('#pricing').val('');
             $('#seller_comment').val('');
+            for (var i = 1; i <= 5; i++) {
+                $('#star-'+i).attr('class', 'fa fa-star-o fa-2x');
+                $('#star-'+i).css('color', '#000');
+            }
         });
 
         $('#cancel_transaction_report').click(function() {
@@ -107,6 +115,10 @@
             $('#send_transaction_report').css('background', '#e6e1e1');
             $('#pricing').val('');
             $('#seller_comment').val('');
+            for (var i = 1; i <= 5; i++) {
+                $('#star-'+i).attr('class', 'fa fa-star-o fa-2x');
+                $('#star-'+i).css('color', '#000');
+            }
         });
     });
 </script>

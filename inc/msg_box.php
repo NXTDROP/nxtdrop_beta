@@ -52,7 +52,7 @@ $(".msg_body").scroll(function() {
     if($(".msg_body").scrollTop() == $(".msg_body").height() - $(".msg_body").height() && numData < <?php echo $numMsg; ?>) {
         var id = <?php echo "'".$id."'"; ?>;
         numData = numData + 9;
-        var height = $('.msg_body').height();
+        var height = $('.msg_body').height() + 150;
         $.ajax({
             type: 'POST',
             url: 'inc/update_msg.php',
@@ -61,7 +61,7 @@ $(".msg_body").scroll(function() {
                 $('.msg_body').html(data);
             },
             complete: function(data) {
-                $('.msg_body').scrollTop(height);
+                $('.msg_body').animate({scrollTop: 75}, 250);
                 renew = setTimeout(function() {
                     updateMsg(to_from);
                 }, 5000);
@@ -75,7 +75,7 @@ $(".msg_body").scroll(function() {
 <?php
     echo '<div class="msg_box">
     <div class="msg_head"><p id="from"><a href="u/'.$to_from.'" id="u_tofrom">'.$to_from.'</a></p>
-        <div class="close"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
+        <div class="close-box"><i class="fa fa-times" aria-hidden="true" title="Close Chat"></i></div>
     </div>
     <div class="msg_body" id="body">';
     echo '</div>

@@ -25,7 +25,7 @@
             $row = mysqli_fetch_assoc($conn->query("SELECT * FROM transactions WHERE buyer_ID = '$buyer_id' AND seller_ID = '$seller_id' AND post_ID = '$post_id'"));
             $transaction_id = $row['transaction_ID'];
             
-            if (!mysqli_query($conn, "UPDATE transactions SET buyer_comment = '$buyer_comment', buyer_rating = '$buyer_id', buyer_confirmation = 1 WHERE transaction_ID = '$transaction_id'")) {
+            if (!mysqli_query($conn, "UPDATE transactions SET buyer_comment = '$buyer_comment', buyer_rating = '$buyer_id', confirmation_date = '$date' WHERE transaction_ID = '$transaction_id'")) {
                 echo 'Error. Try Later.';
             }
         }

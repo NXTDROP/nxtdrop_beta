@@ -23,7 +23,7 @@
             echo 'You must select a user!';
         }
         else {
-            if (!mysqli_query($conn, "INSERT INTO transactions (seller_ID, buyer_ID, price, seller_ID, post_ID, seller_rating) VALUES ('$seller_id', '$buyer_id', '$price', '$seller_comment', '$post_id', '$seller_rating')")) {
+            if (!mysqli_query($conn, "INSERT INTO transactions (seller_ID, buyer_ID, price, seller_ID, post_ID, seller_rating, report_date) VALUES ('$seller_id', '$buyer_id', '$price', '$seller_comment', '$post_id', '$seller_rating', '$date')")) {
                 echo 'Error. Try Later!';
             }
         }

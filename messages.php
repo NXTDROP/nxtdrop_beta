@@ -14,17 +14,34 @@
     NXTDROP: The Fashion Trade Centre
     </title>
     <head>
-            <base href="https://nxtdrop.com/">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link type="text/css" rel="stylesheet" href="main.css" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-            <script type="text/javascript" src="js/menu-dropdown.js"></script>
-            <script type="text/javascript" src="js/post-popup.js"></script>
-            <script src="js/messages.js"></script>
-            <script src="js/msg-popup.js"></script>
-            <script type="text/javascript" src="js/dm_icon.js"></script> 
-            </script>
+        <!--<base href="https://nxtdrop.com/">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CSS -->
+        <link type="text/css" rel="stylesheet" href="main.css" /> 
+
+        <!-- Bootstrap 4 Jquery & Popper.js -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap 4 CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+        <!-- Font-Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+        <!-- Jquery Library -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+        <!-- Javascripts -->
+        <script type="text/javascript" src="js/menu-dropdown.js"></script>
+        <script type="text/javascript" src="js/post-popup.js"></script>
+        <script type="text/javascript" src="js/messages.js"></script>
+        <script type="text/javascript" src="js/msg-popup.js"></script>
+        <script type="text/javascript" src="js/dm_icon.js"></script> 
+        </script>
+
         <!-- Facebook Pixel Code -->
         <script>
         !function(f,b,e,v,n,t,s)
@@ -42,21 +59,13 @@
     </head>
 
     <body>
-        <?php include('inc/header-body.php'); ?>
+        <?php include('inc/navbar/navbar.php'); ?>
                 
         <?php include('inc/message-body.php'); ?>
 
         <?php include('inc/new-msg.php'); ?>
-        <?php include('inc/new-drop-pop.php'); ?>
+        <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/image_preview.php'); ?>
-
-        <section class="footer">
-            <ul>
-                <li><p>&copy NXTDROP Inc. 2018</p></li>
-                <li><a href="terms">Terms of Use</a></li>
-                <li><a href="privacy">Privacy</a></li>
-            </ul>
-        </section>
                 
     </body>
 </html>

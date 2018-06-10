@@ -7,18 +7,17 @@ $(document).ready(function() {
         }
     });
 
-    $(".close").click(function()
-    {
-        $('.msg_box').remove();
-        $('body').load('messages.php');
-        clearTimeout(renew);
-    });
-
     $('.msg_input').on('keydown', function(){
         var img = $('.inputfiles').val();
         if (img == '') {
             $(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
         }
+    });
+
+    $(".close-box").click(function() {
+        $('.msg_box').hide();
+        $('.chat_box').show();
+        clearTimeout(renew);
     });
 
     $('.inputfiles').change(function() {
@@ -60,6 +59,7 @@ function send() {
             $('#body').scrollTop($('#body')[0].scrollHeight);
             $('.msg_input').val('');
             $('.inputfiles').val('');
+            clearTimeout(renew);
             $.ajax({
                 type: 'POST',
                 url: 'inc/send_newmsg.php',
@@ -87,6 +87,7 @@ function send() {
             $('#body').scrollTop($('#body')[0].scrollHeight);
             $('.msg_input').val('');
             $('.inputfiles').val('');
+            clearTimeout(renew);
             $.ajax({
                 type: 'POST',
                 url: 'inc/send_newmsg.php',

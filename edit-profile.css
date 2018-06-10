@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-    width: 300px;
+    width: 40%;
     padding: 20px 0;
     background-color: #fff;
     border-radius: 7px;
@@ -34,7 +34,8 @@ header a img {
 }
 
 button {
-    width: 100%;
+    width: 30%;
+    margin-left: 35%;
     height: 30px;
     background-color: #aa0000;
     border: none;
@@ -46,19 +47,21 @@ button:hover {
 }
 
 input {
-    width: 250px;
+    width: 80%;
     padding: 0 5px;
     height: 35px;
+    margin-left: 10%;
     margin-bottom: 8px;
 }
 
 form {
     display: inline-block;
-    margin: 0 25px;
+    width: 100%;
 }
 
 textarea {
-    width: 100%;
+    width: 80%;
+    margin-left: 10%;
     height: 75px;
     resize: none;
     padding: 5px 5px;

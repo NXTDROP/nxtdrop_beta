@@ -28,5 +28,18 @@
             }
         });
     }
+
+    function show(to_from, id) {
+        $.ajax({
+            type: 'POST',
+            url: 'inc/msg_box.php',
+            data: {to_from: to_from, id: id},
+            success: function(data) {
+                $('.message').html(data);
+                $('#'+id).attr('class', '');
+                $('.chat_box').hide();
+            }
+        });
+    }
     updateBody();
 </script>

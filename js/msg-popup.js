@@ -1,12 +1,11 @@
 $(document).ready(function(){
     $(".message_button").click(function(){
-        $(".msg_pop").fadeIn();
-        $(".msg_main").show();
+        $(".new_msg_pop").fadeIn();
+        $(".new_msg_main").show();
     });
-});
-$(document).ready(function(){
+
     $(".close").click(function(){
-        $(".msg_pop").fadeOut();
-        $(".msg_main").fadeOut();
+        $(".new_msg_pop").fadeOut();
+        $(".new_msg_main").fadeOut();
     });
 });

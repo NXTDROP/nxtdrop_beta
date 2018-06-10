@@ -106,7 +106,7 @@
                         <div class="post_preview">
                             <img src="img/no_image_available.jpeg" id="post_preview">
                         </div>
-                        <input type="file" name="file" id="file" class="inputfile" accept="image/*" data-multiple-caption="{count} files selected" multiple />
+                        <input type="file" name="file[]" id="file" class="inputfile" accept="image/*" data-multiple-caption="{count} files selected" multiple />
                         <label for="file"><button id="post_upload_button">Upload Image</button></label>
                         <button id="post_remove_button">Remove Image</button>
                         <p><b>*** Image Only Required When Selling or Trading.</b></p>

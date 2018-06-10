@@ -1,7 +1,6 @@
 <?php 
     session_start();
     include "dbh.php";
-    include "inc/time.php";
     date_default_timezone_set("UTC");
     $_SESSION['timestamp'] = date("Y-m-d H:i:s", time());
     $num_post = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;"));
@@ -15,7 +14,7 @@
         <!--<base href="https://nxtdrop.com/">-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- CSS -->
-        <link type="text/css" rel="stylesheet" href="main.css" /> 
+        <link type="text/css" rel="stylesheet" href="main.css" />
 
         <!-- Bootstrap 4 Jquery & Popper.js -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -32,16 +31,13 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
         <!-- Javasripts -->
-        <script type="text/javascript" src="js/menu-dropdown.js"></script>
-        <script type="text/javascript" src="js/post-popup.js"></script>
         <script type="text/javascript" src="js/delete-post.js"></script>
         <script type="text/javascript" src="js/like-unlike-post.js"></script>
-        <script type="text/javascript" src="js/dm_icon.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 var renew;
-                var count = 15;
-                $('.refresh').html('<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true">').css('margin-top', '300px');
+                var count = 10;
+                $('.refresh').html('<i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true">').css('margin-top', '80px');
 
                 $(window).scroll(function() {
                     var scroll = $(window).scrollTop();
@@ -49,9 +45,9 @@
 
                 $('.load_drop').click(function() {
                     clearTimeout(renew);
-                    count += 15;
+                    count += 10;
                     $(this).html('Loading...');
-                    drop(30);
+                    drop(count);
                 });
 
                 $('.refresh').click(function() {
@@ -90,12 +86,12 @@
                             }
                             renew = setTimeout(function() {
                                 drop(count);
-                            }, 10000);
+                            }, 20000);
                         }
                     });
                 }
-                $(".invite").fadeIn();
-                $(".invite_main").show();
+                /*$(".invite").fadeIn();
+                $(".invite_main").show();*/
                 drop(count);
             });    
         </script>
@@ -117,7 +113,7 @@
     </head>
 
     <body>
-        <?php include('inc/header-body.php'); ?>
+        <?php include('inc/navbar/navbar.php'); ?>
 
         <?php include('inc/carousel.php'); ?>
 
@@ -139,16 +135,10 @@
         <?php include('inc/flag-post.php'); ?>
         <?php include('inc/invite/popup.php') ?>
         <?php include('inc/sold_pop.php') ?>
+        <?php include('inc/search_pop.php') ?>
         <?php include('inc/buyer_transaction_confirmation.php') ?>
 
         <p id="message"></p>
 
-        <section class="footer">
-            <ul>
-                <li><p>&copy NXTDROP Inc. 2018</p></li>
-                <li><a href="terms">Terms of Use</a></li>
-                <li><a href="privacy">Privacy</a></li>
-            </ul>
-        </section>
     </body>
 </html>

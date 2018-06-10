@@ -49,13 +49,12 @@
                 <div class="card-header">
                                     
                 <div class="profile-info">
-                <div class="profile-img-index"><img class="post-small-img" src="https://nxtdrop.com/'.$row['status'].'">
-                </div>
+                <div class="profile-img-index"><img class="post-small-img" src="https://nxtdrop.com/'.$row['status'].'"></div>
                 <div class="name"><span><a href="u/'.$row['username'].'">'.$row['username'].'</a></span></div>';
                 
                 if (isset($_SESSION['uid'])) {
                     if (isFriend($row['username']) == true && $_SESSION['uid'] != $row['uid']) {
-                        echo '<div class="follow"><button class="follow_button" id="follow_'.$row['username'].'" onclick="follow('.$username.')" title="Follow">+ Follow</button></div>';
+                        echo '<div class="follow"><button class="follow_button" id="follow_'.$row['username'].'" onclick="follow('.$username.')" title="Follow '.$row['username'].'">+ Follow</button></div>';
                     }
                 }
                 else {
@@ -80,7 +79,7 @@
                 echo '<div class="card-footer">
             
                 <div class="description">
-                <p><span class="caption"> '.$row['caption'].'</span></p>
+                <p><span class="caption"><span class="name_caption"><a href="u/'.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</span></p>
                 </div>
                 <!--<div class="comments">
                 <p>
@@ -94,62 +93,62 @@
                 if (isset($_SESSION['uid'])) {
                     if ($_SESSION['uid'] == $row['uid']) {
                         echo '
-                    <div class="post_form_bottom">
-                    <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
-                    <div class="heart">';
-                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
-                    echo '</div>';
+                        <div class="post_form_bottom">
+                        <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
+                        <div class="heart">';
+                        echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
+                        echo '</div>';
                     
-                    if ($row['uid'] != 'request') {
-                        $type = 0;
-                        echo '<div class="sold_button">
-                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
-                    </div>';
-                    }
-                    else {
-                        $type = 1;
-                        echo '<div class="sold_button">
-                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
-                    </div>';
-                    }
+                        if ($row['uid'] != 'request') {
+                            $type = 0;
+                            echo '<div class="sold_button">
+                        <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
+                        </div>';
+                        }
+                        else {
+                            $type = 1;
+                            echo '<div class="sold_button">
+                        <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
+                        </div>';
+                        }
 
-                    echo '<div onclick="delete_('.$row['pid'].')" class="remove">
-                    <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
-                    </div>
-                    
-                    <!--<div class="add-comment">
-                    <input type="text" placeholder="Drop a comment..." />
-                    </div>-->
-                    </div>
-                    </div>
-                    
-                    </div>    
-                    </section>';
+                        echo '<div onclick="delete_('.$row['pid'].')" class="remove">
+                        <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
+                        </div>
+                        
+                        <!--<div class="add-comment">
+                        <input type="text" placeholder="Drop a comment..." />
+                        </div>-->
+                        </div>
+                        </div>
+                        
+                        </div>    
+                        </section>';
                     } 
                     else {
                         $u = "'".$row['username']."'";
                         $pid = $row['pid'];
                         echo '
-                    <div class="post_form_bottom">
-                    <input type="hidden" name="pid" value="'.$row['pid'].'">
-                    <div class="heart_noremove">';
-                    echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
-                    echo '</div>
-                    <div class="direct_message">
-                    <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
-                    </div>
-                    <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
-                    </div>
-                
-                    <!--<div class="add-comment">
-                    <input type="text" placeholder="Drop a comment..." />
-                    </div>-->
-                    </div>
-                    </div>
-                
-                    </div>    
-                    </section>';
+                        <div class="post_form_bottom">
+                        <input type="hidden" name="pid" value="'.$row['pid'].'">
+                        <div class="heart_noremove">';
+                        echo '<span class="fa-stack has-badge" id="likes-'.$row['pid'].'" count="'.likes($row['likes']).'"><i class="'.$like_class.'" aria-hidden="true" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i></span>';
+                        echo '</div>
+                        <div class="direct_message">
+                        <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
+                        </div>
+                        <div class="flag">
+                        <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
+                        </div>
+                    
+                        <!--<div class="add-comment">
+                        <input type="text" placeholder="Drop a comment..." />
+                        </div>-->
+                        </div>
+                        </div>
+                    
+                        </div>    
+                        </section>';
                     }
                     
                 }
