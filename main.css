@@ -13,7 +13,7 @@
 
 /* IPHONE6/7/8 */
 
-@media all and (min-width: 375px) and (max-width: 413px) {
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
     .navbar {
         padding: 0.5rem 0.3rem!important;    
     }
@@ -95,9 +95,87 @@
     }
 }
 
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .navbar {
+        padding: 0.5rem 0.5rem!important;
+    }
+    
+    .drop-btn {
+        margin: 0px!important;
+        width: 20px!important;
+    }
+    
+    .alert-btn {
+        margin: 0px!important;
+        width: 20px!important;
+    }
+    
+    .navbar-brand {
+        width: 25px!important;
+    }
+
+    .toggle_btn {
+        margin: 0!important;
+    }
+
+    .navbar .toggle_btn span {
+        margin: 2px 0!important;
+    }
+    
+    #navbar-brand {
+        height: 18px!important;
+        width: 35px!important;
+        margin: 0 55px 0 0!important;
+        position: relative;
+    }
+    
+    #navbar-brand img {
+        margin: -20px 0px 0 0!important;
+    }
+
+    .search-box {
+        margin: 0 0px 0 0px!important;
+        width: 400px!important;
+    }
+
+    .sign-btn {
+        font-size: 12px!important;
+    }
+
+    #search {
+        font-size: 12px!important;
+        padding: 5px!important;
+    }
+
+    #login-btn {
+        margin-left: 12px!important;
+    }
+
+    .menu-main {
+        width: 50%!important;
+    }
+    
+    #nav-profile {
+        height: 35px!important;
+        width: 35px!important;
+    }
+    
+    .carousel-inner {
+        height: 300px;
+    }
+    
+    .carousel {
+        height: 300px!important;
+    }
+    
+    .carousel-item img {
+        height: 300px!important;
+    }
+}
+
 /* IPHONE 6/7/8PLUS */
 
-@media all and (min-width: 414px) and (max-width: 1278px) {
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
     .navbar {
         padding: 0.5rem 0.5rem!important;
     }
@@ -178,9 +256,87 @@
     }
 }
 
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+    .navbar {
+        padding: 0.5rem 0.5rem!important;
+    }
+    
+    .drop-btn {
+        margin: 0px!important;
+        width: 20px!important;
+    }
+    
+    .alert-btn {
+        margin: 0px!important;
+        width: 20px!important;
+    }
+    
+    .navbar-brand {
+        width: 25px!important;
+    }
+
+    .toggle_btn {
+        margin: 0!important;
+    }
+
+    .navbar .toggle_btn span {
+        margin: 2px 0!important;
+    }
+    
+    #navbar-brand {
+        height: 18px!important;
+        width: 35px!important;
+        margin: 0 68px 0 0!important;
+        position: relative;
+    }
+    
+    #navbar-brand img {
+        margin: -20px 0px 0 0!important;
+    }
+
+    .search-box {
+        margin: 0 0px 0 0px!important;
+        width: 420px!important;
+    }
+
+    .sign-btn {
+        font-size: 12px!important;
+    }
+
+    #search {
+        font-size: 12px!important;
+        padding: 5px!important;
+    }
+
+    #login-btn {
+        margin-left: 12px!important;
+    }
+
+    .menu-main {
+        width: 50%!important;
+    }
+    
+    #nav-profile {
+        height: 40px!important;
+        width: 40px!important;
+    }
+    
+    .carousel-inner {
+        height: 300px;
+    }
+    
+    .carousel {
+        height: 300px!important;
+    }
+    
+    .carousel-item img {
+        height: 300px!important;
+    }
+}
+
 /* IPHONE SE */
 
-@media all and (min-width: 320px) and (max-width: 374px) {
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
     .navbar {
         padding: 0.5rem 0.3rem!important;
     }
@@ -261,13 +417,811 @@
         height: 250px!important;
     }
 }
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    .navbar {
+        padding: 0.5rem 0.5rem!important;
+    }
+    
+    .drop-btn {
+        margin: 0px!important;
+        width: 20px!important;
+    }
+    
+    .alert-btn {
+        margin: 0px!important;
+        width: 20px!important;
+    }
+    
+    .navbar-brand {
+        width: 25px!important;
+    }
+
+    .toggle_btn {
+        margin: 0!important;
+    }
+
+    .navbar .toggle_btn span {
+        margin: 2px 0!important;
+    }
+    
+    #navbar-brand {
+        height: 18px!important;
+        width: 35px!important;
+        margin: 0 46px 0 0!important;
+        position: relative;
+    }
+    
+    #navbar-brand img {
+        margin: -20px 0px 0 0!important;
+    }
+
+    .search-box {
+        margin: 0 0px 0 0px!important;
+        width: 300px!important;
+    }
+
+    .sign-btn {
+        font-size: 12px!important;
+    }
+
+    #search {
+        font-size: 12px!important;
+        padding: 5px!important;
+    }
+
+    #login-btn {
+        margin-left: 12px!important;
+    }
+
+    .menu-main {
+        width: 50%!important;
+    }
+    
+    #nav-profile {
+        height: 35px!important;
+        width: 35px!important;
+    }
+    
+    .carousel-inner {
+        height: 300px;
+    }
+    
+    .carousel {
+        height: 300px!important;
+    }
+    
+    .carousel-item img {
+        height: 300px!important;
+    }
+}
 /******************************************* RD NAVBAR END *********************************************/
 
 /******************************************* RD POSTS *********************************************/
 
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+    .heart {
+        margin: 0 39.9% 0 0!important;
+    }
+    
+    .heart_noremove {
+        margin: 0 39.9% 0 0!important;
+    }
+}
 
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    .container {
+        margin: 0 0 0 0!important;
+        padding: 0!important;
+    }
+    
+    .card {
+        width: 100%!important;
+        border-left: none!important;
+        border-right: none!important;
+        border-bottom: none!important;
+        border-radius: 0!important;
+        border-top-color: #e1e6e6!important;
+    }
+    
+    .refresh {
+        margin: 20px auto 0 auto!important;
+    }
+    
+    #posts-container {
+        margin: 20px 0 25px 0!important;
+    }
+    
+    .heart {
+        margin: 0 32.5% 0 0!important;
+    }
+    
+    .heart_noremove {
+        margin: 0 32.5% 0 0!important;
+    }
+    
+    .direct_message button {
+        font-size: 10px!important;
+    }
+    
+    .load_drop {
+        width: 30%!important;
+        margin: 0 auto 25px auto!important;
+    }
+    
+    .name {
+        font-size: 12px!important;
+    }
+    
+    .caption {
+        font-size: 12px!important;
+    }
+    
+    .name_caption {
+        font-size: 10px!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .container {
+        margin: 0 0 0 0!important;
+        padding: 0!important;
+    }
+    
+    .card {
+        width: 667px!important;
+        border-left: none!important;
+        border-right: none!important;
+        border-bottom: none!important;
+        border-radius: 0!important;
+        border-top-color: #e1e6e6!important;
+    }
+    
+    .refresh {
+        margin: 20px auto 0 auto!important;
+    }
+    
+    #posts-container {
+        margin: 20px 0 25px 0!important;
+    }
+    
+    .heart {
+        margin: 0 39.6% 0 0!important;
+    }
+    
+    .heart_noremove {
+        margin: 0 39.6% 0 0!important;
+    }
+    
+    .direct_message button {
+        font-size: 12px!important;
+    }
+    
+    .load_drop {
+        width: 30%!important;
+        margin: 0 auto 25px auto!important;
+    }
+    
+    .name {
+        font-size: 14px!important;
+    }
+    
+    .caption {
+        font-size: 14px!important;
+    }
+    
+    .name_caption {
+        font-size: 12px!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+    .container {
+        margin: 0 0 0 0!important;
+        padding: 0!important;
+    }
+    
+    .card {
+        width: 100%!important;
+        border-left: none!important;
+        border-right: none!important;
+        border-bottom: none!important;
+        border-radius: 0!important;
+        border-top-color: #e1e6e6!important;
+    }
+    
+    .refresh {
+        margin: 20px auto 0 auto!important;
+    }
+    
+    #posts-container {
+        margin: 20px 0 25px 0!important;
+    }
+    
+    .heart {
+        margin: 0 34.5% 0 0!important;
+    }
+    
+    .heart_noremove {
+        margin: 0 34.5% 0 0!important;
+    }
+    
+    .direct_message button {
+        font-size: 10px!important;
+    }
+    
+    .load_drop {
+        width: 30%!important;
+        margin: 0 auto 25px auto!important;
+    }
+    
+    .name {
+        font-size: 13px!important;
+    }
+    
+    .caption {
+        font-size: 13px!important;
+    }
+    
+    .name_caption {
+        font-size: 11px!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+    .container {
+        margin: 0 0 0 0!important;
+        padding: 0!important;
+    }
+    
+    .card {
+        width: 736px!important;
+        border-left: none!important;
+        border-right: none!important;
+        border-bottom: none!important;
+        border-radius: 0!important;
+        border-top-color: #e1e6e6!important;
+    }
+    
+    .refresh {
+        margin: 20px auto 0 auto!important;
+    }
+    
+    #posts-container {
+        margin: 20px 0 25px 0!important;
+    }
+    
+    .heart {
+        margin: 0 40.8% 0 0!important;
+    }
+    
+    .heart_noremove {
+        margin: 0 40.8% 0 0!important;
+    }
+    
+    .direct_message button {
+        font-size: 12px!important;
+    }
+    
+    .load_drop {
+        width: 30%!important;
+        margin: 0 auto 25px auto!important;
+    }
+    
+    .name {
+        font-size: 16px!important;
+    }
+    
+    .caption {
+        font-size: 15px!important;
+    }
+    
+    .name_caption {
+        font-size: 13px!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    .container {
+        margin: 0 0 0 0!important;
+        padding: 0!important;
+    }
+    
+    .card {
+        width: 100%!important;
+        border-left: none!important;
+        border-right: none!important;
+        border-bottom: none!important;
+        border-radius: 0!important;
+        border-top-color: #e1e6e6!important;
+    }
+    
+    .refresh {
+        margin: 20px auto 0 auto!important;
+    }
+    
+    #posts-container {
+        margin: 20px 0 25px 0!important;
+    }
+    
+    .heart {
+        margin: 0 30.6% 0 0!important;
+    }
+    
+    .heart_noremove {
+        margin: 0 30.6% 0 0!important;
+    }
+    
+    .direct_message button {
+        font-size: 10px!important;
+    }
+    
+    .load_drop {
+        width: 30%!important;
+        margin: 0 auto 25px auto!important;
+    }
+    
+    .name {
+        font-size: 11px!important;
+    }
+    
+    .caption {
+        font-size: 11px!important;
+    }
+    
+    .name_caption {
+        font-size: 9px!important;
+    }
+}
+
+@media all and (min-width: 565px) and (max-width: 666px) and (orientation: landscape) {
+    .container {
+        margin: 0 0 0 0!important;
+        padding: 0!important;
+    }
+    
+    .card {
+        width: 100%!important;
+        border-left: none!important;
+        border-right: none!important;
+        border-bottom: none!important;
+        border-radius: 0!important;
+        border-top-color: #e1e6e6!important;
+    }
+    
+    .refresh {
+        margin: 20px auto 0 auto!important;
+    }
+    
+    #posts-container {
+        margin: 20px 0 25px 0!important;
+    }
+    
+    .heart {
+        margin: 0 37.8% 0 0!important;
+    }
+    
+    .heart_noremove {
+        margin: 0 37.8% 0 0!important;
+    }
+    
+    .direct_message button {
+        font-size: 12px!important;
+    }
+    
+    .load_drop {
+        width: 30%!important;
+        margin: 0 auto 25px auto!important;
+    }
+    
+    .name {
+        font-size: 14px!important;
+    }
+    
+    .caption {
+        font-size: 14px!important;
+    }
+    
+    .name_caption {
+        font-size: 12px!important;
+    }
+}
 
 /******************************************* RD POSTS END *********************************************/
+
+/******************************************* RD PROFILE ***********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+    
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    .container-top {
+        padding: 2px!important;
+    }
+    
+    .profile-img-profile {
+        margin-right: 5px!important;
+        width: 135px!important;
+        height: 150px!important;
+    }
+    
+    #username {
+        font-size: 18px!important;
+    }
+    
+    .edit-button {
+        font-size: 14px!important;
+    }
+    
+    #followers {
+        font-size: 14px!important;
+        margin-right: 5px!important;
+    }
+    
+    #following {
+        font-size: 14px!important;
+    }
+    
+    #rating {
+        font-size: 22px!important;
+    }
+    
+    #fullname {
+        font-size: 14px!important;
+        margin: 0 0 0 0px;
+    }
+    
+    #biography {
+        font-size: 12px!important;
+    }
+    
+    .profile-navigation {
+        width: 100%!important;
+        margin: 15px 0 0 0!important;
+    }
+    
+    #posts-btn {
+        width: 25%!important;
+        margin: 0 0 0 10%!important;
+    }
+    
+    #likes-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+    
+    #reviews-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .container-top {
+        padding: 2px!important;
+    }
+    
+    .profile-img-profile {
+        margin-right: 5px!important;
+        width: 160px!important;
+        height: 180px!important;
+    }
+    
+    #username {
+        font-size: 20px!important;
+    }
+    
+    .edit-button {
+        font-size: 16px!important;
+    }
+    
+    #followers {
+        font-size: 16px!important;
+        margin-right: 5px!important;
+    }
+    
+    #following {
+        font-size: 16px!important;
+    }
+    
+    #rating {
+        font-size: 24px!important;
+    }
+    
+    #fullname {
+        font-size: 16px!important;
+        margin: 0 0 0 0px;
+    }
+    
+    #biography {
+        font-size: 12px!important;
+    }
+    
+    .profile-navigation {
+        width: 100%!important;
+        margin: 15px 0 0 0!important;
+    }
+    
+    #posts-btn {
+        width: 25%!important;
+        margin: 0 0 0 11%!important;
+    }
+    
+    #likes-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+    
+    #reviews-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+    .container-top {
+        padding: 2px!important;
+    }
+    
+    .profile-img-profile {
+        margin-right: 5px!important;
+        width: 135px!important;
+        height: 150px!important;
+    }
+    
+    #username {
+        font-size: 18px!important;
+    }
+    
+    .edit-button {
+        font-size: 14px!important;
+    }
+    
+    #followers {
+        font-size: 14px!important;
+        margin-right: 5px!important;
+    }
+    
+    #following {
+        font-size: 14px!important;
+    }
+    
+    #rating {
+        font-size: 22px!important;
+    }
+    
+    #fullname {
+        font-size: 14px!important;
+        margin: 0 0 0 0px;
+    }
+    
+    #biography {
+        font-size: 12px!important;
+    }
+    
+    .profile-navigation {
+        width: 100%!important;
+        margin: 15px 0 0 0!important;
+    }
+    
+    #posts-btn {
+        width: 25%!important;
+        margin: 0 0 0 10%!important;
+    }
+    
+    #likes-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+    
+    #reviews-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+    .container-top {
+        padding: 2px!important;
+    }
+    
+    .profile-img-profile {
+        margin-right: 5px!important;
+        width: 160px!important;
+        height: 180px!important;
+    }
+    
+    #username {
+        font-size: 20px!important;
+    }
+    
+    .edit-button {
+        font-size: 16px!important;
+    }
+    
+    #followers {
+        font-size: 16px!important;
+        margin-right: 5px!important;
+    }
+    
+    #following {
+        font-size: 16px!important;
+    }
+    
+    #rating {
+        font-size: 24px!important;
+    }
+    
+    #fullname {
+        font-size: 16px!important;
+        margin: 0 0 0 0px;
+    }
+    
+    #biography {
+        font-size: 12px!important;
+    }
+    
+    .profile-navigation {
+        width: 100%!important;
+        margin: 15px 0 0 0!important;
+    }
+    
+    #posts-btn {
+        width: 25%!important;
+        margin: 0 0 0 12%!important;
+    }
+    
+    #likes-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+    
+    #reviews-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    .container-top {
+        padding: 2px!important;
+    }
+    
+    .profile-img-profile {
+        margin-right: 5px!important;
+        width: 100px!important;
+        height: 150px!important;
+    }
+    
+    #username {
+        font-size: 11px!important;
+    }
+    
+    .edit-button {
+        font-size: 11px!important;
+    }
+    
+    #followers {
+        font-size: 12px!important;
+        margin-right: 5px!important;
+    }
+    
+    #following {
+        font-size: 12px!important;
+    }
+    
+    #rating {
+        font-size: 18px!important;
+    }
+    
+    #fullname {
+        font-size: 12px!important;
+        margin: 0 0 0 0px;
+    }
+    
+    #biography {
+        font-size: 11px!important;
+    }
+    
+    .profile-navigation {
+        width: 568px!important;
+        margin: 15px 0 0 0!important;
+    }
+    
+    #posts-btn {
+        width: 25%!important;
+        margin: 0 0 0 11%!important;
+    }
+    
+    #likes-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+    
+    #reviews-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+}
+
+@media all and (min-width: 565px) and (max-width: 666px) and (orientation: landscape) {
+    .container-top {
+        padding: 2px!important;
+    }
+    
+    .profile-img-profile {
+        margin-right: 5px!important;
+        width: 100px!important;
+        height: 150px!important;
+    }
+    
+    #username {
+        font-size: 11px!important;
+    }
+    
+    .edit-button {
+        font-size: 11px!important;
+    }
+    
+    #followers {
+        font-size: 12px!important;
+        margin-right: 5px!important;
+    }
+    
+    #following {
+        font-size: 12px!important;
+    }
+    
+    #rating {
+        font-size: 18px!important;
+    }
+    
+    #fullname {
+        font-size: 12px!important;
+        margin: 0 0 0 0px;
+    }
+    
+    #biography {
+        font-size: 11px!important;
+    }
+    
+    .profile-navigation {
+        width: 568px!important;
+        margin: 15px 0 0 0!important;
+    }
+    
+    #posts-btn {
+        width: 25%!important;
+        margin: 0 0 0 11%!important;
+    }
+    
+    #likes-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+    
+    #reviews-btn {
+        width: 25%!important;
+        margin: 0!important;
+    }
+}
+
+/******************************************* RD PROFILE END *******************************************/
 
 /******************************************* GLOBAL *********************************************/
 
@@ -1033,7 +1987,7 @@ textarea {
 
 .profile-img-profile {
     float: left;
-    margin-right: 50px;
+    margin-right: 15px;
     width: 250px;
     height: 250px;
     border: 1px solid #e6e1e1;

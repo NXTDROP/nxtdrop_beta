@@ -131,7 +131,7 @@
             $user_rating = $rating_agg / $num_rating;
         }
 
-        echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fa fa-star fa-3x" aria-hidden="true"></i></span></br></br></br>';
+        echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fa fa-star fa-3x" aria-hidden="true"></i></span></br>';
 
         echo '<span id="fullname">'.$row['name'].'</span> &#x25FE <span id="biography">'.$row['bio'].'</span>';
     }
