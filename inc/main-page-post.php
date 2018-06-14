@@ -79,8 +79,17 @@
                 echo '<div class="card-footer">
             
                 <div class="description">
-                <p><span class="caption"><span class="name_caption"><a href="u/'.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</span></p>
-                </div>
+                <p><span class="caption"><span class="name_caption"><a href="u/'.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</span></p>';
+                if ($row['type'] == 'sale') {
+                    echo '<p id="price_budget">Price: <span id="cash">$'.$row['product_price'].'</span></p>';
+                }
+                else if ($row['type'] == 'request') {
+                    echo '<p id="price_budget">Budget: <span id="cash">$'.$row['product_price'].'</span></p>';
+                }
+                else if ($row['type'] == 'trade') {
+                    echo '<p id="trading_for">Trading for: <span id="trade_items">'.$row['product_price'].'</span></p>';
+                }
+                echo '</div>
                 <!--<div class="comments">
                 <p>
                 <span class="username">Youssoupha24</span> Nice shoes.

@@ -103,18 +103,18 @@
             $result = $conn->query($sql);
             if ($_GET['u'] != $_SESSION['username']) {
                 if ($result->num_rows < 1) {
-                    echo '<span class="follow_unfollow" id="follow">+ Follow</span></br></br>';
+                    echo '<span class="follow_unfollow" id="follow">+ Follow</span></br>';
                 }
                 else {
-                    echo '<span class="follow_unfollow" id="unfollow">- Unfollow</span></br></br>';
+                    echo '<span class="follow_unfollow" id="unfollow">- Unfollow</span></br>';
                 }
             }
             else {
-                echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a></br></br>';
+                echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a></br>';
             }
         }
         else {
-            echo '</br></br>';
+            echo '</br>';
         }
         $num_following = $conn->query("SELECT * FROM following WHERE user_id='$u_id'")->num_rows;
         $num_followers = $conn->query("SELECT * FROM following WHERE follower_id='$u_id'")->num_rows;
@@ -131,7 +131,7 @@
             $user_rating = $rating_agg / $num_rating;
         }
 
-        echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fa fa-star fa-3x" aria-hidden="true"></i></span></br>';
+        echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fa fa-star fa-2x" aria-hidden="true"></i></span></br>';
 
         echo '<span id="fullname">'.$row['name'].'</span> &#x25FE <span id="biography">'.$row['bio'].'</span>';
     }

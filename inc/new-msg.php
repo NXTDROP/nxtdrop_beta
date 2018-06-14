@@ -16,7 +16,7 @@
                 url: 'inc/new_msg_user_search.php',
                 data: {name: name},
                 success: function(data){
-                    $('.new_msg_users').html(data);+
+                    $('.new_msg_users').html(data);
                 }
             });
         });

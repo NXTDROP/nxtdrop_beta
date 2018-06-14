@@ -12,6 +12,7 @@
     else {
         $uid = $_SESSION['uid'];
         $type = $_POST['type'];
+        $product_price = $_POST['product_price'];
 
         switch ($type) {
             case 'S':
@@ -34,7 +35,7 @@
         }
 
         if (empty($_FILES['file']['name'])) {
-            $sql = "INSERT INTO posts (uid, caption, pic, pdate, type) VALUES ('$uid', '$caption', '', '$date', '$post_type');";
+            $sql = "INSERT INTO posts (uid, caption, pic, pdate, type, product_price) VALUES ('$uid', '$caption', '', '$date', '$post_type', '$product_price');";
             if (mysqli_query($conn, $sql)) {
                 updateNumPosts($uid, $conn);
             }
@@ -60,7 +61,7 @@
                         $fileNewName = $uid.uniqid('', true).".".$fileActualExt;
                         $fileDestination = 'uploads/p'.$fileNewName;
                         move_uploaded_file($fileTmpName, "../".$fileDestination);
-                        $sql = "INSERT INTO posts (uid, caption, pic, pdate, type) VALUES ('$uid', '$caption', '$fileDestination', '$date', '$post_type');";
+                        $sql = "INSERT INTO posts (uid, caption, pic, pdate, type, product_price) VALUES ('$uid', '$caption', '$fileDestination', '$date', '$post_type', '$product_price');";
                         if (mysqli_query($conn, $sql)) {
                             updateNumPosts($uid, $conn);
                         }
