@@ -522,11 +522,11 @@
 /* LAPTOP 1280x720 */
 @media all and (min-width: 1279px) {
     .heart {
-        margin: 0 39.9% 0 0!important;
+        margin: 0 41.1% 0 0!important;
     }
     
     .heart_noremove {
-        margin: 0 39.9% 0 0!important;
+        margin: 0 41.1% 0 0!important;
     }
 }
 
@@ -556,11 +556,11 @@
     }
     
     .heart {
-        margin: 0 32.5% 0 0!important;
+        margin: 0 37% 0 0!important;
     }
     
     .heart_noremove {
-        margin: 0 32.5% 0 0!important;
+        margin: 0 37% 0 0!important;
     }
     
     .direct_message button {
@@ -605,15 +605,15 @@
     }
     
     .heart {
-        margin: 0 29.5% 0 0!important;
+        margin: 0 34% 0 0!important;
     }
     
     .heart_noremove {
-        margin: 0 29.5% 0 0!important;
+        margin: 0 34% 0 0!important;
     }
     
     .direct_message button {
-        font-size: 12px!important;
+        font-size: 10px!important;
     }
     
     .load_drop {
@@ -665,11 +665,11 @@
     }
     
     .heart {
-        margin: 0 34.5% 0 0!important;
+        margin: 0 38.5% 0 0!important;
     }
     
     .heart_noremove {
-        margin: 0 34.5% 0 0!important;
+        margin: 0 38.5% 0 0!important;
     }
     
     .direct_message button {
@@ -714,15 +714,15 @@
     }
     
     .heart {
-        margin: 0 31.5% 0 0!important;
+        margin: 0 35.5% 0 0!important;
     }
     
     .heart_noremove {
-        margin: 0 31.5% 0 0!important;
+        margin: 0 35.5% 0 0!important;
     }
     
     .direct_message button {
-        font-size: 12px!important;
+        font-size: 10px!important;
     }
     
     .load_drop {
@@ -774,11 +774,11 @@
     }
     
     .heart {
-        margin: 0 30.6% 0 0!important;
+        margin: 0 35.2% 0 0!important;
     }
     
     .heart_noremove {
-        margin: 0 30.6% 0 0!important;
+        margin: 0 35.2% 0 0!important;
     }
     
     .direct_message button {
@@ -823,15 +823,15 @@
     }
     
     .heart {
-        margin: 0 25.5% 0 0!important;
+        margin: 0 31% 0 0!important;
     }
     
     .heart_noremove {
-        margin: 0 25.5% 0 0!important;
+        margin: 0 31% 0 0!important;
     }
     
     .direct_message button {
-        font-size: 12px!important;
+        font-size: 10px!important;
     }
     
     .load_drop {
@@ -2241,6 +2241,32 @@
     .notif-main {
         width: 80%!important;
         left: 18%!important;
+        height: 607px!important;
+    }
+    
+    .one_notif {
+        height: 60px!important;
+    }
+    
+    .profile_notif {
+        height: 40px!important;
+        width: 40px!important;
+        margin: 10px 5px 0 5px!important;
+    }
+    
+    .message_notif {
+        margin: 20px 0 0 0!important;
+        font-size: 10px!important;
+        width: 58%!important;
+    }
+    
+    .notif_time {
+        font-size: 8px!important;
+    }
+    
+    .post_img {
+        height: 50px!important;
+        width: 50px!important;
     }
     
     .msg_main {
@@ -2420,6 +2446,31 @@
         overflow: auto!important;
     }
     
+    .one_notif {
+        height: 60px!important;
+    }
+    
+    .profile_notif {
+        height: 40px!important;
+        width: 40px!important;
+        margin: 10px 5px 0 5px!important;
+    }
+    
+    .message_notif {
+        margin: 20px 0 0 0!important;
+        font-size: 10px!important;
+        width: 70%!important;
+    }
+    
+    .notif_time {
+        font-size: 8px!important;
+    }
+    
+    .post_img {
+        height: 50px!important;
+        width: 50px!important;
+    }
+    
     .msg_main {
         width: 100%!important;
         left: 0!important;
@@ -2582,6 +2633,32 @@
     .notif-main {
         width: 75%!important;
         left: 22%!important;
+        height: 676px!important;
+    }
+    
+    .one_notif {
+        height: 70px!important;
+    }
+    
+    .profile_notif {
+        height: 50px!important;
+        width: 50px!important;
+        margin: 10px 5px 0 5px!important;
+    }
+    
+    .message_notif {
+        margin: 25px 0 0 0!important;
+        font-size: 10px!important;
+        width: 55%!important;
+    }
+    
+    .notif_time {
+        font-size: 8px!important;
+    }
+    
+    .post_img {
+        height: 60px!important;
+        width: 60px!important;
     }
     
     .msg_main {
@@ -2765,6 +2842,31 @@
         overflow: auto!important;
     }
     
+    .one_notif {
+        height: 70px!important;
+    }
+    
+    .profile_notif {
+        height: 50px!important;
+        width: 50px!important;
+        margin: 10px 5px 0 5px!important;
+    }
+    
+    .message_notif {
+        margin: 20px 0 0 0!important;
+        font-size: 12px!important;
+        width: 55%!important;
+    }
+    
+    .notif_time {
+        font-size: 9px!important;
+    }
+    
+    .post_img {
+        height: 60px!important;
+        width: 60px!important;
+    }
+    
     .msg_main {
         width: 100%!important;
         left: 0!important;
@@ -2929,6 +3031,32 @@
     .notif-main {
         width: 85%!important;
         left: 14%!important;
+        height: 508px!important;
+    }
+    
+    .one_notif {
+        height: 60px!important;
+    }
+    
+    .profile_notif {
+        height: 40px!important;
+        width: 40px!important;
+        margin: 10px 5px 0 5px!important;
+    }
+    
+    .message_notif {
+        margin: 20px 0 0 0!important;
+        font-size: 10px!important;
+        width: 55%!important;
+    }
+    
+    .notif_time {
+        font-size: 8px!important;
+    }
+    
+    .post_img {
+        height: 50px!important;
+        width: 50px!important;
     }
     
     .msg_main {
@@ -3106,6 +3234,31 @@
         left: 40%!important;
         height: 80%!important;
         overflow: auto!important;
+    }
+    
+    .one_notif {
+        height: 60px!important;
+    }
+    
+    .profile_notif {
+        height: 40px!important;
+        width: 40px!important;
+        margin: 10px 5px 0 5px!important;
+    }
+    
+    .message_notif {
+        margin: 20px 0 0 0!important;
+        font-size: 10px!important;
+        width: 55%!important;
+    }
+    
+    .notif_time {
+        font-size: 8px!important;
+    }
+    
+    .post_img {
+        height: 50px!important;
+        width: 50px!important;
     }
     
     .msg_main {
@@ -3334,16 +3487,25 @@ a {
    color: black;
 }
 
-.fa-heart {
-    color: #aa0000;
-}
-
 .fa-heart:hover {
     cursor: pointer;
 }
 
-.fa-heart-o:hover {
-    cursor: pointer;
+.like {
+    color: #000;
+}
+
+.unlike {
+    color: #aa0000;
+}
+
+.fa-layers-counter {
+    font-size: 32px;
+    padding: 10px;
+    position: absolute;
+    margin: -12px -10px 0 0px;
+    width: 120px;
+    height: 50px;
 }
 
 .fa-flag:hover {
@@ -3356,6 +3518,14 @@ a {
 
 .fa-times:hover {
     cursor: pointer;
+}
+
+#inbox .fa-layers-counter {
+    width: 5px;
+    height: 5px;
+    margin: 0;
+    padding: 10px;
+    font-size: 10px;
 }
 
 .container {
@@ -3422,6 +3592,7 @@ a {
     font-weight: 800;
     font-size: 14px;
 }
+
 .likes{
     color: #a8a8a8;
     padding-bottom: 10px;
@@ -3932,6 +4103,28 @@ textarea {
 #product-price {
     display: none;
 }
+
+.drop_type {
+    font-size: 9px;
+    margin-top: 5px;
+    text-align: center;
+    padding: 2px;
+    width: 50%;
+    border-radius: 10px;
+    color: #fff;
+}
+
+#sale_banner {
+   background: #f76060; 
+}
+
+#trade_banner { 
+    background: #ffad66;
+}
+
+#request_banner {
+    background: #448cff;
+}
 /******************************************* GLOBAL END *********************************************/
 
 
@@ -4401,7 +4594,7 @@ textarea {
 }
 
 .msg_content textarea {
-    font-size: 13px;
+    font-size: 12px;
     border: 1px solid #aa0000;
     padding: 8px;
     margin: 10px 0;
@@ -4958,6 +5151,7 @@ ul li h2 {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    font-size: 12px;
 }
 
 #count {
@@ -5115,7 +5309,7 @@ ul li h2 {
     color: #a8a8a8;
 }
 
-.fa-sign-out {
+.fa-sign-out-alt {
     color: #656565;
 }
 
@@ -5158,10 +5352,12 @@ ul li h2 {
     border: 1px solid #aa0000;
 }
 
-.fa-search {
+#icon {
     color: #fff;
-    font-size: 12px;
+    font-size: 1rem;
     padding: 10px;
+    height: 38px;
+    width: 38px;
     border-radius: 50px;
     background-color: #aa0000;
     margin-left: 44%;
@@ -5171,9 +5367,19 @@ ul li h2 {
     transition: all 1.3s ease-out;
 }
 
-.fa-search:hover {
+#icon:hover {
     transform: rotate(360deg);
     cursor: pointer;
+}
+
+.fa-search-plus {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.fa-search-minus {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
 
 .menu-pop {
@@ -5207,6 +5413,10 @@ ul li h2 {
     transition: all 0.5s ease-out;
 }
 
+.menu-content {
+    height: 635px;
+}
+
 .menu-content .fa-envelope {
     color: #888888;
 }
@@ -5232,7 +5442,6 @@ ul li h2 {
 
 .menu-content ul a li span {
     margin-right: 15px;
-    width: 30px;
 }
 
 .menu-content ul a li:hover {
@@ -5302,15 +5511,16 @@ ul li h2 {
 }
 
 .notif-main {
-    width: 30%;
+    width: 40%;
     display: none;
     background: #fff;
     z-index: 4;
     position: fixed;
     top: 60px;
     border-radius: 8px;
-    left: 67.5%;
-    height: 90%;
+    left: 57.5%;
+    height: 580px;
+    overflow: auto;
     border: 1px solid #a8a8a8;
     -webkit-box-shadow: 2px 3px 5px #999;
     -moz-box-shadow: 2px 3px 5px #999;
@@ -5318,9 +5528,7 @@ ul li h2 {
 }
 
 .notif-content {
-    padding: 10px;
     background: #fff;
-    overflow: auto;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -5360,6 +5568,73 @@ ul li h2 {
 
 #login-btn {
     margin-left: 7%;
+}
+
+.notif_results {
+    width: 100%;
+}
+
+.one_notif {
+    width: 100%;
+    display: block;
+    color: #878787;
+    font-size: 16px;
+    font-weight: 300;
+    height: 80px;
+    border-bottom: 1px solid #e6e1e1;
+}
+
+.profile_notif {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #e6e1e1;
+    border-radius: 50px;
+    object-fit: cover;
+    margin: 15px 5px 0 10px;
+    background: #fff;
+}
+
+.one_notif:hover {
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    background: #aa0000;
+}
+
+#notif_user {
+    color: #007bff;
+}
+
+#notif_user:hover {
+    text-decoration: underline;
+}
+
+.message_notif {
+    position: absolute;
+    margin: 28px 0 0 0;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.post_img {
+    border-radius: 0px!important;
+    float: right;
+    width: 70px;
+    height: 70px;
+    border: 1px solid #e6e1e1;
+    object-fit: cover;
+    margin: 5px 10px 5px 0;
+    background: #fff;
+}
+
+.notif_time {
+    font-size: 8.5px;
+    text-decoration: italic;
+    font-weight: 800;
+}
+
+.notif_time:hover {
+    text-decoration: underline;
 }
 /******************************************* NAVBAR END ****************************************************/
 /******************************************* TRANSACTION REPORT  *******************************************************/

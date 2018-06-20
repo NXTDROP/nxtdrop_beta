@@ -1,4 +1,72 @@
 <script>
+    var new_notifications = false;
+    var check_rerun;
+    function go_to_post(id) {
+        window.location.replace('post.php?id='+id);
+    }
+
+    function go_to_profile(username) {
+        window.location.replace('profile.php?u='+username);
+    }
+
+    function load_notifications() {
+        $('.notif_results').html('<p><i class="fas fa-circle-notch fa-spin"></i></p>');
+        $.ajax({
+            url: 'inc/navbar/load_notifications.php',
+            type: 'GET',
+            success: function(data) {
+                $('.notif_results').html(data);
+            }
+        });
+    }
+
+    function check_notifications() {
+        $.ajax({
+            url: 'inc/navbar/check_notifications.php',
+            type: 'GET',
+            success: function(response) {
+                if (response == true) {
+                    $('.alert-btn').html('<span class="fa-layers fa-fw"><i class="fas fa-bell"></i><span class="fa-layers-counter" style="background:Tomato"></span></span>');
+                    $('#notif').html('<li><span class="fa-layers fa-fw"><i class="fas fa-bell"></i><span class="fa-layers-counter" style="background:Tomato"></span></span>NOTIFICATIONS</li>');
+                    load_notifications();
+                    new_notifications = true;
+                }
+                else {
+                    load_notifications();
+                }
+            },
+            complete: function() {
+                check_rerun = setTimeout(function() {
+                    check_notifications();
+                }, 60000);
+            }
+        });
+    }
+
+    function viewed_notifications() {
+        $.ajax({
+            url: 'inc/navbar/viewed_notifications.php',
+            type: 'GET'
+        });
+    }
+
+    function check_inbox() {
+        $.ajax({
+            url: 'inc/navbar/check_inbox.php',
+            type: 'GET',
+            success: function(response) {
+                if (response == true) {
+                    $('#inbox').html('<li><span class="fa-layers fa-fw"><i class="fas fa-envelope"></i><span class="fa-layers-counter" style="background:Tomato"></span></span>INBOX</li>');
+                    $('.toggle_btn').css('background', 'Tomato');
+                }
+
+            }
+        });
+    }
+
+    check_notifications();
+    check_inbox();
+
     $(document).ready(function() {
         $('#icon').click(function() {
             if ($('#search').css('display') == "none") {
@@ -6,12 +74,14 @@
                 $('#search').css('display', 'block');
                 $('.search_post').fadeIn();
                 $('.search_main').show();
+                $('#icon').html('<i class="fas fa-search-minus"></i>');
             }
             else {
                 $('#icon').css('margin-left', '44%');
                 $('#search').css('display', 'none');
                 $('.search_post').fadeOut();
                 $('.search_main').fadeOut();
+                $('#icon').html('<i class="fas fa-search-plus"></i>');
             }
         });
 
@@ -32,6 +102,11 @@
                 $('.notif-pop').fadeOut();
             }
             else {
+                if (new_notifications == true) {
+                    $('.alert-btn').html('<i class="fas fa-bell"></i>');
+                    $('#notif').html('<li><span><i class="fas fa-bell"></i></span>NOTIFICATIONS</li>');
+                    viewed_notifications();
+                }
                 $('.notif-main').fadeIn();
                 $('.notif-pop').show();
             }
@@ -43,6 +118,11 @@
                 $('.notif-pop').fadeOut();
             }
             else {
+                if (new_notifications == true) {
+                    $('.alert-btn').html('<i class="fas fa-bell"></i>');
+                    $('#notif').html('<li><span><i class="fas fa-bell"></i></span>NOTIFICATIONS</li>');
+                    viewed_notifications();
+                }
                 $('.notif-main').fadeIn();
                 $('.notif-pop').show();
             }
@@ -95,7 +175,7 @@
 
     <div class="search-box">
         <input type="search" id="search" placeholder="Search..."/>
-        <span class="fa fa-search" id="icon"></span>
+        <span id="icon"><i class="fas fa-search-plus"></i></span>
     </div>
 
     <?php
@@ -106,14 +186,14 @@
             $username = $row['username'];
             echo '<button class="drop-btn" title="List/Request An Item"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
-            <button class="alert-btn" title="Notifications"><i class="fa fa-bell" aria-hidden="true"></i></button>
+            <button class="alert-btn" title="Notifications"><i class="fas fa-bell"></i></button>
             
             <a href="https://nxtdrop.com/u/'.$username.'"><img id="nav-profile" src="https://nxtdrop.com/'.$pic.'"/></a>';
         }
         else {
             echo '<button class="drop-btn" title="List/Request An Item" style="display: none"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
-            <button class="alert-btn" title="Notifications" style="display: none"><i class="fa fa-bell" aria-hidden="true"></i></button>
+            <button class="alert-btn" title="Notifications" style="display: none"><i class="fa fa-bell"></i></button>
             
             <a id="login-btn" href="login.php"><button class="sign-btn" title="Login/Sign Up">SIGN IN</button></a>';
         }
@@ -125,13 +205,13 @@
     <div class="menu-main">
         <div class="menu-content">
             <ul>
-                <a href="https://nxtdrop.com"><li><span><i class="fa fa-home" aria-hidden="true"></i></span>HOME</li></a>
+                <a href="https://nxtdrop.com"><li><span><i class="fas fa-home"></i></span>HOME</li></a>
                 <?php
                     if (isset($_SESSION['uid'])) {
-                        echo '<a href="messages.php"><li><span><i class="fa fa-envelope" aria-hidden="true"></i></span>INBOX</li></a>
-                        <a id="notif"><li><span><i class="fa fa-bell" aria-hidden="true"></i></span>NOTIFICATIONS</li></a>
+                        echo '<a href="messages.php" id="inbox"><li><span><i class="fas fa-envelope"></i></span>INBOX</li></a>
+                        <a id="notif"><li><span><i class="fas fa-bell"></i></span>NOTIFICATIONS</li></a>
                         <a href="https://nxtdrop.com/u/'.$username.'"><li><span><i class="fa fa-user" aria-hidden="true"></i></span>MY PROFILE</li></a>
-                        <a href="login/logout.php"><li><span><i class="fa fa-sign-out" aria-hidden="true"></i></span>LOGOUT</li></a>';
+                        <a href="login/logout.php"><li><span><i class="fas fa-sign-out-alt" aria-hidden="true"></i></span>LOGOUT</li></a>';
                     }
                 ?>
             </ul>
@@ -159,7 +239,9 @@
             <h2>Notifications</h2>
         </div>
         <div class="notif-content">
-            <p>You have 0 notifications.</p>
+            <div class="notif_results">
+            </div>
+            
         </div>
     </div>
 </div>

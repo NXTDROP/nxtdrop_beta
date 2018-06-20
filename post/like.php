@@ -1,6 +1,7 @@
 <?php
     session_start();
     include '../dbh.php';
+    include '../inc/num_conversion.php';
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
     $pid = $_POST['pid'];
@@ -21,29 +22,29 @@
                     mysqli_query($conn, "INSERT INTO notifications (user_id, target_id, notification_type, date) VALUES ('$liked_by', '$posted_by', 'like', '$date');");
                     $count++;
                     mysqli_query($conn, "UPDATE posts SET likes = '$count' WHERE pid = '$pid'");
-                    echo $count;
+                    echo true;
                 } 
                 else {
-                    die;
+                    echo false;
                 }
             } 
             else {
-                echo $count;
+                echo false;
             }
         }
-        else if ($type == 'unlike') {
+        else if ($type == 'unlike' && $count >= 1) {
             if (mysqli_query($conn, "DELETE FROM likes WHERE pid = $pid AND posted_by = '$posted_by' AND liked_by = '$liked_by';")) {
                 mysqli_query($conn, "DELETE FROM notifications WHERE post_id='$pid' AND user_id='$liked_by' AND target_id='$posted_by' AND notification_type='like';");
                 $count--;
                 mysqli_query($conn, "UPDATE posts SET likes = '$count' WHERE pid = '$pid'");
-                echo $count;
+                echo true;
             }
             else {
-             die;   
+                echo false;   
             }
         }
     }
     else {
-        die;
+        echo false;
     }
 ?>

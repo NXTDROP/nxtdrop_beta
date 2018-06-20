@@ -15,6 +15,8 @@
                 if (val == '+ Follow') {
                     var follower_username = <?php echo "'".$_GET['u']."'"?>;
                     var type = 'follow';
+                    $('.follow_unfollow').html('- Unfollow');
+                    $('.follow_unfollow').delay(2500).attr('id', 'unfollow');
                     $.ajax({
                         type: 'POST',
                         url: 'inc/following_sys/follow_unfollow.php',
@@ -36,6 +38,8 @@
                 else {
                     var follower_username = <?php echo "'".$_GET['u']."'"?>;
                     var type = 'unfollow';
+                    $('.follow_unfollow').html('+ Follow');
+                    $('.follow_unfollow').delay(2500).attr('id', 'follow');
                     $.ajax({
                         type: 'POST',
                         url: 'inc/following_sys/follow_unfollow.php',

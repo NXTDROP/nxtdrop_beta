@@ -31,7 +31,7 @@
                 $conn->query("UPDATE profile SET following='$following' WHERE uid='$user_id'");
                 $conn->query("UPDATE profile SET followers='$followers' WHERE uid='$follower_id'");
                 $follow_query = "INSERT INTO notifications (user_id, target_id, notification_type, date) VALUES ('$user_id', '$follower_id', 'follow', '$date');";
-                mysqli_query($conn, $query);
+                mysqli_query($conn, $follow_query);
             }
             else {
                 echo 'Error. Try Later!';
@@ -51,7 +51,7 @@
                 $conn->query("UPDATE profile SET following='$following' WHERE uid='$user_id'");
                 $conn->query("UPDATE profile SET followers='$followers' WHERE uid='$follower_id'");
                 $follow_query = "DELETE FROM notifications WHERE user_id='$user_id' AND follower_id='$follower_id';";
-                mysqli_query($conn, $query);
+                mysqli_query($conn, $follow_query);
             }
             else {
                 echo 'Error. Try Later!';
