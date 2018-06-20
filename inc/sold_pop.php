@@ -34,11 +34,11 @@
                 return;
             }
             else if (i <= star_num) {
-                $('#star-'+i).attr('class', 'fa fa-star fa-2x');
+                $('#star-'+i).attr('class', 'fas fa-star fa-2x');
                 $('#star-'+i).css('color', '#aa0000');
             }
             else {
-                $('#star-'+i).attr('class', 'fa fa-star-o fa-2x');
+                $('#star-'+i).attr('class', 'fas fa-star-o fa-2x');
                 $('#star-'+i).css('color', '#000');
             }
         }
@@ -145,11 +145,11 @@
                 <p id="rate_buyer">RATE BUYER</p>
                 <p id="nothree">We're enforcing a 'No 3s Allowed Policy' because we believe that a 'neutral' feedback can be misleading.</p>
                 <ul id="rating_stars">
-                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-1" onclick="s_rating(1)"></i></li>
-                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-2" onclick="s_rating(2)"></i></li>
-                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-3" onclick="s_rating(3)"></i></li>
-                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-4" onclick="s_rating(4)"></i></li>
-                    <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-5" onclick="s_rating(5)"></i></li>
+                    <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-1" onclick="s_rating(1)"></i></li>
+                    <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-2" onclick="s_rating(2)"></i></li>
+                    <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-3" onclick="s_rating(3)"></i></li>
+                    <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-4" onclick="s_rating(4)"></i></li>
+                    <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-5" onclick="s_rating(5)"></i></li>
                 </ul>
                 <textarea name="comment" id="seller_comment" placeholder="Add comment... (OPTIONAL)"></textarea>
             </div>

@@ -22,6 +22,6 @@
 
     echo '<p id="seller_username"><b>SELLER:</b> <span id="seller_username">'.$seller_username.'</span></p>
     <p><b>PRODUCT</b></p>
-    <img id="product_image" src="https://nxtdrop.com/'.$product.'" alt="">
+    <img id="product_image" src="'.$product.'" alt="">
     <p id="product_price"><b>PRICE:</b> '.$price.'</p>';
 ?>  

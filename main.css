@@ -887,13 +887,17 @@
         font-size: 16px!important;
     }
     
+    .follow_unfollow {
+        font-size: 11px!important;
+    }
+    
     #followers {
-        font-size: 14px!important;
+        font-size: 12px!important;
         margin-right: 5px!important;
     }
     
     #following {
-        font-size: 14px!important;
+        font-size: 12px!important;
     }
     
     #rating {
@@ -930,7 +934,7 @@
     }
     
     #star-rating {
-        margin: 20px 0 10px 0!important;
+        margin: 20px 0 0px 0!important;
     }
     
     .review_content {
@@ -959,6 +963,10 @@
     
     .edit-button {
         font-size: 14px!important;
+    }
+    
+    .follow_unfollow {
+        font-size: 12px!important;
     }
     
     #followers {
@@ -1004,7 +1012,7 @@
     }
     
     #star-rating {
-        margin: 20px 0 10px 0!important;
+        margin: 20px 0 0px 0!important;
     }
     
     .review_content {
@@ -1037,13 +1045,17 @@
         font-size: 18px!important;
     }
     
+    .follow_unfollow {
+        font-size: 12px!important;
+    }
+    
     #followers {
-        font-size: 16px!important;
+        font-size: 14px!important;
         margin-right: 5px!important;
     }
     
     #following {
-        font-size: 16px!important;
+        font-size: 14px!important;
     }
     
     #rating {
@@ -1080,7 +1092,7 @@
     }
     
     #star-rating {
-        margin: 30px 0 15px 0!important;
+        margin: 30px 0 0px 0!important;
     }
     
     .review_content {
@@ -1111,13 +1123,17 @@
         font-size: 16px!important;
     }
     
+    .follow_unfollow {
+        font-size: 13px!important;
+    }
+    
     #followers {
-        font-size: 18px!important;
+        font-size: 16px!important;
         margin-right: 5px!important;
     }
     
     #following {
-        font-size: 18px!important;
+        font-size: 16px!important;
     }
     
     #rating {
@@ -1154,7 +1170,7 @@
     }
     
     #star-rating {
-        margin: 25px 0 12.5px 0!important;
+        margin: 25px 0 0px 0!important;
     }
     
     .review_content {
@@ -1185,13 +1201,17 @@
         font-size: 11px!important;
     }
     
+    .follow_unfollow {
+        font-size: 11px!important;
+    }
+    
     #followers {
-        font-size: 12px!important;
+        font-size: 10px!important;
         margin-right: 5px!important;
     }
     
     #following {
-        font-size: 12px!important;
+        font-size: 10px!important;
     }
     
     #rating {
@@ -1228,7 +1248,7 @@
     }
     
     #star-rating {
-        margin: 25px 0 12.5px 0!important;
+        margin: 25px 0 0px 0!important;
     }
     
     .review_content {
@@ -1257,6 +1277,10 @@
     
     .edit-button {
         font-size: 14px!important;
+    }
+    
+    .follow_unfollow {
+        font-size: 11px!important;
     }
     
     #followers {
@@ -1302,7 +1326,7 @@
     }
     
     #star-rating {
-        margin: 10px 0 12px 0!important;
+        margin: 10px 0 0px 0!important;
     }
     
     .review_content {
@@ -4105,8 +4129,8 @@ textarea {
 }
 
 .drop_type {
-    font-size: 9px;
-    margin-top: 5px;
+    font-size: 0.5rem;
+    margin: 5px 0 0 0;
     text-align: center;
     padding: 2px;
     width: 50%;
@@ -4444,7 +4468,7 @@ textarea {
 }
 
 #star-rating {
-    margin: 50px 0 25px 0;
+    margin: 50px 0 0px 0;
 }
 /******************************************* PROFILE END *********************************************/
 

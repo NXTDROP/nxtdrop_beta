@@ -35,11 +35,11 @@
                 return;
             }
             else if (i <= star_num) {
-                $('#star-buyer-'+i).attr('class', 'fa fa-star fa-2x');
+                $('#star-buyer-'+i).attr('class', 'fas fa-star fa-2x');
                 $('#star-buyer-'+i).css('color', '#aa0000');
             }
             else {
-                $('#star-buyer-'+i).attr('class', 'fa fa-star-o fa-2x');
+                $('#star-buyer-'+i).attr('class', 'fas fa-star-o fa-2x');
                 $('#star-buyer-'+i).css('color', '#000');
             }
         }
@@ -111,11 +111,11 @@
             <p id="rate_seller">RATE SELLER</p>
             <p id="nothree">We're enforcing a 'No 3s Allowed Policy' because we believe that a 'neutral' feedback can be misleading.</p>
             <ul id="rating_stars">
-                <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-buyer-1" onclick="b_rating(1)"></i></li>
-                <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-buyer-2" onclick="b_rating(2)"></i></li>
-                <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-buyer-3" onclick="b_rating(3)"></i></li>
-                <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-buyer-4" onclick="b_rating(4)"></i></li>
-                <li><i class="fa fa-star-o fa-2x" aria-hidden="true" id="star-buyer-5" onclick="b_rating(5)"></i></li>
+                <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-buyer-1" onclick="b_rating(1)"></i></li>
+                <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-buyer-2" onclick="b_rating(2)"></i></li>
+                <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-buyer-3" onclick="b_rating(3)"></i></li>
+                <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-buyer-4" onclick="b_rating(4)"></i></li>
+                <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-buyer-5" onclick="b_rating(5)"></i></li>
             </ul>
             <textarea name="comment" id="buyer_comment" placeholder="Add Comment... (Optional)"></textarea>
             <button id="confirm_review">CONFIRM</button>

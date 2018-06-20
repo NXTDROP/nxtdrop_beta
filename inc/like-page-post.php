@@ -30,51 +30,70 @@
             $pid = $row['pid'];
             
             echo '<section class="container post-'.$row['pid'].'">
-            <div class="card">
-            <div class="card-header">
-                                
-            <div class="profile-info">
-            <div class="profile-img-index"><img class="post-small-img" src="https://nxtdrop.com/'.$row['status'].'"></div>
-            <div class="name"><span><a href="u/'.$row['username'].'">'.$row['username'].'</a></span></div>';
+                <div class="card">
+                <div class="card-header">
+                                    
+                <div class="profile-info">
+                <div class="profile-img-index"><img class="post-small-img" src="'.$row['status'].'"></div>
+                <div class="name"><span><a href="u/'.$row['username'].'">'.$row['username'].'</a></span>';
+                if (isset($_SESSION['uid'])) {
+                    if (isFriend($row['username']) == true && $_SESSION['uid'] != $row['uid']) {
+                        echo '<div class="follow"><button class="follow_button" id="follow_'.$row['username'].'" onclick="follow('.$username.')" title="Follow '.$row['username'].'">+ Follow</button></div>';
+                    }
+                }
+                else {
+                    echo '<div class="follow"><button class="follow_disabled" title="Follow">+ Follow</button></div>';
+                }
+                echo '</div>';
 
-            echo '<!--<div class="location">Toronto, Ontario</div>-->
-        
-            </div>
-        
-            <div class="time">
-            <p>'.getPostTime($row['pdate']).'</p>
-            </div>
-            </div>';
-
-            if ($row['pic'] != '') {
-                echo '<div class="content">
-                <img src="https://nxtdrop.com/'.$row['pic'].'">
+                echo '<!--<div class="location">Toronto, Ontario</div>-->';
+                
+                if ($row['type'] == 'sale') {
+                    echo '<p class="drop_type" id="sale_banner">SALE</p>';
+                }
+                else if ($row['type'] == 'request') {
+                    echo '<p class="drop_type" id="request_banner">REQUEST</p>';
+                }
+                else if ($row['type'] == 'trade') {
+                    echo '<p class="drop_type" id="trade_banner">TRADE</p>';
+                }
+            
+                echo '</div>
+            
+                <div class="time">
+                <p>'.getPostTime($row['pdate']).'</p>
+                </div>
                 </div>';
-            }
-        
-            echo '<div class="card-footer">
-        
-            <div class="description">
-            <p><span class="caption"><span class="name_caption"><a href="u/'.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</span></p>';
-            if ($row['type'] == 'sale') {
-                echo '<p id="price_budget">Price: <span id="cash">$'.$row['product_price'].'</span></p>';
-            }
-            else if ($row['type'] == 'request') {
-                echo '<p id="price_budget">Budget: <span id="cash">$'.$row['product_price'].'</span></p>';
-            }
-            else if ($row['type'] == 'trade') {
-                echo '<p id="trading_for">Trading for: <span id="trade_items">'.$row['product_price'].'</span></p>';
-            }
-            echo '</div>
-            <!--<div class="comments">
-            <p>
-            <span class="username">Youssoupha24</span> Nice shoes.
-            </p>
-            <p>
-            <span class="username">Blvckpvblo</span> Wanna trade with my Jordan IV?.
-            </p>
-            </div>-->
-            <hr />';
+
+                if ($row['pic'] != '') {
+                    echo '<div class="content">
+                    <img src="'.$row['pic'].'">
+                    </div>';
+                }
+            
+                echo '<div class="card-footer">
+            
+                <div class="description">
+                <p><span class="caption"><span class="name_caption"><a href="u/'.$row['username'].'">'.$row['username'].'</a></span> '.$row['caption'].'</span></p>';
+                if ($row['type'] == 'sale') {
+                    echo '<p id="price_budget">Price: <span id="cash">$'.$row['product_price'].'</span></p>';
+                }
+                else if ($row['type'] == 'request') {
+                    echo '<p id="price_budget">Budget: <span id="cash">$'.$row['product_price'].'</span></p>';
+                }
+                else if ($row['type'] == 'trade') {
+                    echo '<p id="trading_for">Trading for: <span id="trade_items">'.$row['product_price'].'</span></p>';
+                }
+                echo '</div>
+                <!--<div class="comments">
+                <p>
+                <span class="username">Youssoupha24</span> Nice shoes.
+                </p>
+                <p>
+                <span class="username">Blvckpvblo</span> Wanna trade with my Jordan IV?.
+                </p>
+                </div>-->
+                <hr />';
             if (isset($_SESSION['uid'])) {
                 if ($_SESSION['uid'] == $row['uid']) {
                     $id = "'"."heart-".$row['pid']."'";

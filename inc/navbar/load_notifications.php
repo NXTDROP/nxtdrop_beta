@@ -44,14 +44,14 @@
                 }
     
                 if ($row['notification_type'] == 'like') {
-                    echo '<div class="one_notif" onclick="go_to_post('.$post_id.')" '.$background.'><img src="https://nxtdrop.com/'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="profile.php?u='.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> liked your post. <span class="notif_time">'.$date.'</span></span><img src="https://nxtdrop.com/'.$user_result['pic'].'" alt="" class="post_img"></div>';
+                    echo '<div class="one_notif" onclick="go_to_post('.$post_id.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="profile.php?u='.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> liked your post. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
                 }
                 else if ($row['notification_type'] == 'follow') {
                     $username = "'".$user_result['username']."'";
-                    echo '<div class="one_notif" onclick="go_to_profile('.$username.')" '.$background.'><img src="https://nxtdrop.com/'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="profile.php?u='.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> is now following you. <span class="notif_time">'.$date.'</span></span></div>';
+                    echo '<div class="one_notif" onclick="go_to_profile('.$username.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="profile.php?u='.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> is now following you. <span class="notif_time">'.$date.'</span></span></div>';
                 }
                 else {
-                    echo '<div class="one_notif" onclick="go_to_post('.$post_id.')" '.$background.'><img src="https://nxtdrop.com/'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="profile.php?u='.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> made you an offer. <span class="notif_time">'.$date.'</span></span><img src="https://nxtdrop.com/'.$user_result['pic'].'" alt="" class="post_img"></div>';
+                    echo '<div class="one_notif" onclick="go_to_post('.$post_id.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="profile.php?u='.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> made you an offer. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
                 }
             }
         }

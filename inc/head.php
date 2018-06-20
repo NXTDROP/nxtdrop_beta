@@ -1,4 +1,4 @@
-<!--<base href="https://nxtdrop.com/">-->
+<base href="https://nxtdrop.com/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS -->
 <link type="text/css" rel="stylesheet" href="main.css" />

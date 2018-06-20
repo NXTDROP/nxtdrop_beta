@@ -12,7 +12,7 @@
             if ($row['status'] == '') $row['status'] = 'uploads/user.png';
             $username = "'".$row['username']."'";
             echo '<div class="one_user" id="user-'.$row['username'].'" onclick="select_user('.$username.')">
-                <img src="https://nxtdrop.com/'.$row['status'].'"><span>'.$row['username'].'</span>
+                <img src="'.$row['status'].'"><span>'.$row['username'].'</span>
                 </div>';
         }
     }

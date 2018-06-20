@@ -4,12 +4,11 @@
         include '../dbh.php';
         include 'time.php';
         include 'num_conversion.php';
-        include 'following_sys/functions.php';
         $sql = "SELECT * FROM users WHERE username = '".$_GET['u']."';";
         $result = mysqli_query($conn, $sql);
         $r = mysqli_fetch_assoc($result);
         $u_id = $r['uid'];
-        $sql = "SELECT * FROM posts, users WHERE posts.uid = ".$u_id." AND users.username = '".$_GET['u']."' ORDER BY posts.pdate DESC;";
+        $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = ".$u_id." AND users.username = '".$_GET['u']."' AND posts.uid = profile.uid ORDER BY posts.pdate DESC;";
         $result = mysqli_query($conn, $sql);
 
         $sql = "SELECT * FROM profile WHERE uid = '$u_id';";
@@ -23,6 +22,7 @@
         }
         else {
             while ($row = mysqli_fetch_assoc($result)) {
+                if ($row['status'] == "") $row['status'] = "uploads/user.png";
 
                 $like_class = 'far fa-heart like';
                 if (isset($_SESSION['uid'])) {
@@ -40,21 +40,23 @@
                 <div class="card-header">
                                     
                 <div class="profile-info">
-                <div class="profile-img-index"><img class="post-small-img" src="https://nxtdrop.com/'.$status.'"></div>
-                <div class="name"><span><a href="u/'.$row['username'].'">'.$row['username'].'</a></span></div>';
-                
-                if (isset($_SESSION['uid'])) {
-                    if (isFriend($row['username']) == true && $_SESSION['uid'] != $row['uid']) {
-                        echo '<div class="follow"><button class="follow_button" id="follow_'.$row['username'].'" onclick="follow('.$username.')" title="Follow '.$row['username'].'">+ Follow</button></div>';
-                    }
-                }
-                else {
-                    echo '<div class="follow"><button class="follow_disabled" title="Follow">+ Follow</button></div>';
-                }
+                <div class="profile-img-index"><img class="post-small-img" src="'.$row['status'].'"></div>
+                <div class="name"><span><a href="u/'.$row['username'].'">'.$row['username'].'</a></span>';
+                echo '</div>';
 
-                echo '<!--<div class="location">Toronto, Ontario</div>-->
+                echo '<!--<div class="location">Toronto, Ontario</div>-->';
+                
+                if ($row['type'] == 'sale') {
+                    echo '<p class="drop_type" id="sale_banner">SALE</p>';
+                }
+                else if ($row['type'] == 'request') {
+                    echo '<p class="drop_type" id="request_banner">REQUEST</p>';
+                }
+                else if ($row['type'] == 'trade') {
+                    echo '<p class="drop_type" id="trade_banner">TRADE</p>';
+                }
             
-                </div>
+                echo '</div>
             
                 <div class="time">
                 <p>'.getPostTime($row['pdate']).'</p>
@@ -63,7 +65,7 @@
 
                 if ($row['pic'] != '') {
                     echo '<div class="content">
-                    <img src="https://nxtdrop.com/'.$row['pic'].'">
+                    <img src="'.$row['pic'].'">
                     </div>';
                 }
             

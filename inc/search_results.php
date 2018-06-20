@@ -11,8 +11,8 @@
     else {
         while ($row = mysqli_fetch_assoc($users_result)) {
             if ($row['status'] == '') $row['status'] = 'uploads/user.png';
-            echo '<a href="https://nxtdrop.com/u/'.$row['username'].'" class="user_display">
-                        <img src="https://nxtdrop.com/'.$row['status'].'">
+            echo '<a href="u/'.$row['username'].'" class="user_display">
+                        <img src="'.$row['status'].'">
                         <span>'.$row['username'].'</span>
                     </a>';
         }

@@ -49,7 +49,7 @@
                 <div class="card-header">
                                     
                 <div class="profile-info">
-                <div class="profile-img-index"><img class="post-small-img" src="https://nxtdrop.com/'.$row['status'].'"></div>
+                <div class="profile-img-index"><img class="post-small-img" src="'.$row['status'].'"></div>
                 <div class="name"><span><a href="u/'.$row['username'].'">'.$row['username'].'</a></span>';
                 if (isset($_SESSION['uid'])) {
                     if (isFriend($row['username']) == true && $_SESSION['uid'] != $row['uid']) {
@@ -82,7 +82,7 @@
 
                 if ($row['pic'] != '') {
                     echo '<div class="content">
-                    <img src="https://nxtdrop.com/'.$row['pic'].'">
+                    <img src="'.$row['pic'].'">
                     </div>';
                 }
             

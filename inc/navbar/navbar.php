@@ -188,7 +188,7 @@
 
             <button class="alert-btn" title="Notifications"><i class="fas fa-bell"></i></button>
             
-            <a href="https://nxtdrop.com/u/'.$username.'"><img id="nav-profile" src="https://nxtdrop.com/'.$pic.'"/></a>';
+            <a href="u/'.$username.'"><img id="nav-profile" src="'.$pic.'"/></a>';
         }
         else {
             echo '<button class="drop-btn" title="List/Request An Item" style="display: none"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -210,7 +210,7 @@
                     if (isset($_SESSION['uid'])) {
                         echo '<a href="messages.php" id="inbox"><li><span><i class="fas fa-envelope"></i></span>INBOX</li></a>
                         <a id="notif"><li><span><i class="fas fa-bell"></i></span>NOTIFICATIONS</li></a>
-                        <a href="https://nxtdrop.com/u/'.$username.'"><li><span><i class="fa fa-user" aria-hidden="true"></i></span>MY PROFILE</li></a>
+                        <a href="u/'.$username.'"><li><span><i class="fa fa-user" aria-hidden="true"></i></span>MY PROFILE</li></a>
                         <a href="login/logout.php"><li><span><i class="fas fa-sign-out-alt" aria-hidden="true"></i></span>LOGOUT</li></a>';
                     }
                 ?>

@@ -75,8 +75,7 @@
                 $('.fa-star').css('color', '#D4AF37');
             }
             else {
-                $('#star-rating').removeClass('fa-star');
-                $('#star-rating').addClass('fa-star-o');
+                $('#star-rating').removeClass('far fa-star');
                 $('#star-rating').css('color', '#f4f2f2');
             }
         });
@@ -94,7 +93,7 @@
     $status = $r['status'];
     if ($status == "") $status = 'uploads/user.png';
     
-    echo '<div class="profile-img-profile"><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="https://nxtdrop.com/'.$status.'"></div>';
+    echo '<div class="profile-img-profile"><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
 
     $sql = "SELECT * FROM profile, users WHERE profile.uid=$u_id AND users.username='".$_GET['u']."';";
     $result = mysqli_query($conn, $sql);
@@ -135,7 +134,7 @@
             $user_rating = $rating_agg / $num_rating;
         }
 
-        echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fa fa-star fa-2x" aria-hidden="true"></i></span></br>';
+        echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fas fa-star fa-2x" aria-hidden="true"></i></span></br>';
 
         echo '<span id="fullname">'.$row['name'].'</span> &#x25FE <span id="biography">'.$row['bio'].'</span>';
     }

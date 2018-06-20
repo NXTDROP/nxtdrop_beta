@@ -15,7 +15,7 @@
             $buyer_username = $query_result['username'];
             $buyer_profile_pic = $query_result['status'];
             echo '<div class="users_info" id="user-'.$buyer_username.'" onclick="select('."'".$buyer_username."'".')">
-                    <img src="https://nxtdrop.com/'.$buyer_profile_pic.'" alt="User" id="user_info_img">
+                    <img src="'.$buyer_profile_pic.'" alt="User" id="user_info_img">
                     <span>'.$buyer_username.'</span>
                 </div>';
         }
