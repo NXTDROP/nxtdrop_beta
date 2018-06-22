@@ -82,7 +82,7 @@
     <body>
         <?php include('inc/navbar/navbar.php'); ?>
 
-        <?php include('inc/carousel.php'); ?>
+        <?php //include('inc/carousel.php'); ?>
 
         <div class="refresh"></div>
 

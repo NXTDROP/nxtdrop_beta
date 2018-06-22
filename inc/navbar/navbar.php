@@ -6,7 +6,11 @@
     }
 
     function go_to_profile(username) {
-        window.location.replace('profile.php?u='+username);
+        window.location.replace('u/'+username);
+    }
+
+    function go_to_inbox() {
+        window.location.replace('');
     }
 
     function load_notifications() {
@@ -195,7 +199,7 @@
 
             <button class="alert-btn" title="Notifications" style="display: none"><i class="fa fa-bell"></i></button>
             
-            <a id="login-btn" href="login.php"><button class="sign-btn" title="Login/Sign Up">SIGN IN</button></a>';
+            <a id="login-btn" href="login_signup"><button class="sign-btn" title="Login/Sign Up">SIGN IN</button></a>';
         }
     ?>
 </nav>
@@ -208,7 +212,7 @@
                 <a href="https://nxtdrop.com"><li><span><i class="fas fa-home"></i></span>HOME</li></a>
                 <?php
                     if (isset($_SESSION['uid'])) {
-                        echo '<a href="messages.php" id="inbox"><li><span><i class="fas fa-envelope"></i></span>INBOX</li></a>
+                        echo '<a href="inbox" id="inbox"><li><span><i class="fas fa-envelope"></i></span>INBOX</li></a>
                         <a id="notif"><li><span><i class="fas fa-bell"></i></span>NOTIFICATIONS</li></a>
                         <a href="u/'.$username.'"><li><span><i class="fa fa-user" aria-hidden="true"></i></span>MY PROFILE</li></a>
                         <a href="login/logout.php"><li><span><i class="fas fa-sign-out-alt" aria-hidden="true"></i></span>LOGOUT</li></a>';
@@ -219,7 +223,7 @@
                 if (!isset($_SESSION['uid'])) {
                     echo '<hr/>
                     <p id="signin-message">Sign in now to buy, sell, trade and discover fashion!</p>
-                    <a href="#" id="signin-slide-btn">SIGN IN</a>';
+                    <a href="login_signup" id="signin-slide-btn">SIGN IN</a>';
                 }
             ?>
             <hr/>

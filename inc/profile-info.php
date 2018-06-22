@@ -8,7 +8,28 @@
             $('.follow_unfollow').html('- Unfollow');     
         }
 
+        function star_display(rating) {
+            if (rating >= 0.0 && rating <= 2.99) {
+                $('#star-rating').css('color', '#aa0000');
+            }
+            else if (rating >= 3.00 && rating <= 3.99) {
+                $('#star-rating').css('color', '#bb743c');
+            }
+            else if (rating >= 4.00 && rating <= 4.49) {
+                $('#star-rating').css('color', '#a3a3a3');
+            }
+            else if (rating >= 4.50 && rating <= 5.00) {
+                $('#star-rating').attr('style', 'color: #D4AF37');
+            }
+            else {
+                $('#star-rating').css('color', '#f4f2f2');
+            }
+        }
+
         $(document).ready(function() {
+            var rating = parseInt($('#rating').html());
+            star_display(rating);
+
             $('.follow_unfollow').click(function() {
                 $('follow_unfollow').attr('disabled', true);
                 var val = $(this).html();
@@ -59,25 +80,6 @@
                     });
                 }
             });
-
-            var rating = $('#rating').text();
-
-            if (rating >= 0.0 && rating <= 2.99) {
-                $('.fa-star').css('color', '#aa0000');
-            }
-            else if (rating >= 3.00 && rating <= 3.99) {
-                $('.fa-star').css('color', '#bb743c');
-            }
-            else if (rating >= 4.00 && rating <= 4.49) {
-                $('.fa-star').css('color', '#a3a3a3');
-            }
-            else if (rating >= 4.50 && rating <= 5.00) {
-                $('.fa-star').css('color', '#D4AF37');
-            }
-            else {
-                $('#star-rating').removeClass('far fa-star');
-                $('#star-rating').css('color', '#f4f2f2');
-            }
         });
     </script>
 <?php
@@ -134,7 +136,7 @@
             $user_rating = $rating_agg / $num_rating;
         }
 
-        echo '<span id="followers"><b id="followers_num">'.$num_following.'</b> Followers</span><span id="following"><b id="following_num">'.$num_followers.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fas fa-star fa-2x" aria-hidden="true"></i></span></br>';
+        echo '<span id="followers"><b id="followers_num">'.$num_followers.'</b> Followers</span><span id="following"><b id="following_num">'.$num_following.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fas fa-star fa-2x" aria-hidden="true"></i></span></br>';
 
         echo '<span id="fullname">'.$row['name'].'</span> &#x25FE <span id="biography">'.$row['bio'].'</span>';
     }
