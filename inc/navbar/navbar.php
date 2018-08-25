@@ -1,8 +1,10 @@
 <script>
     var new_notifications = false;
     var check_rerun;
+    var inbox;
+
     function go_to_post(id) {
-        window.location.replace('post.php?id='+id);
+        window.location.replace('p/'+id);
     }
 
     function go_to_profile(username) {
@@ -10,7 +12,7 @@
     }
 
     function go_to_inbox() {
-        window.location.replace('');
+        window.location.replace('inbox');
     }
 
     function load_notifications() {
@@ -35,14 +37,11 @@
                     load_notifications();
                     new_notifications = true;
                 }
-                else {
-                    load_notifications();
-                }
             },
             complete: function() {
                 check_rerun = setTimeout(function() {
                     check_notifications();
-                }, 60000);
+                }, 10000);
             }
         });
     }
@@ -63,12 +62,17 @@
                     $('#inbox').html('<li><span class="fa-layers fa-fw"><i class="fas fa-envelope"></i><span class="fa-layers-counter" style="background:Tomato"></span></span>INBOX</li>');
                     $('.toggle_btn').css('background', 'Tomato');
                 }
-
+            },
+            complete: function() {
+                inbox = setTimeout(function() {
+                    check_inbox();
+                }, 2500);
             }
         });
     }
 
     check_notifications();
+    load_notifications();
     check_inbox();
 
     $(document).ready(function() {
@@ -186,7 +190,12 @@
         if (isset($_SESSION['uid'])) {
             $uid = $_SESSION['uid'];
             $row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM profile, users WHERE users.uid = '$uid' AND profile.uid = '$uid'"));
-            $pic = $row['status'];
+            if ($row['status'] != '') {
+                $pic = $row['status'];
+            }
+            else {
+                $pic = 'uploads/user.png';
+            }
             $username = $row['username'];
             echo '<button class="drop-btn" title="List/Request An Item"><i class="fa fa-plus" aria-hidden="true"></i></button>
 

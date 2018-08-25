@@ -12,11 +12,11 @@
         $query2 = "SELECT * FROM following WHERE user_id='$user_id' AND follower_id='$follower_id'";
         $result = $conn->query($query2);
         $count = mysqli_num_rows($result);
-        if ($count < 1) {
-            return true;
+        if ($count <= 0) {
+            return false;
         }
         else {
-            return false;
+            return true;
         }
     }
 ?>

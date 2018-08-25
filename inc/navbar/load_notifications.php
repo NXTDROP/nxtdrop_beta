@@ -24,7 +24,7 @@
                     $sql = "SELECT * FROM users, profile WHERE users.uid = '$uid' AND profile.uid = '$uid'";
                 }
                 else {
-                    $sql = "SELECT * FROM posts, users, profile WHERE posts.pid = $post_id AND users.uid = posts.uid AND users.uid = profile.uid";
+                    $sql = "SELECT * FROM posts, users, profile WHERE posts.pid = $post_id AND profile.uid = $uid AND users.uid = $uid";
                 }
 
                 $r = $conn->query($sql);
@@ -50,8 +50,12 @@
                     $username = "'".$user_result['username']."'";
                     echo '<div class="one_notif" onclick="go_to_profile('.$username.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> is now following you. <span class="notif_time">'.$date.'</span></span></div>';
                 }
+                else if ($row['notification_type'] == 'confirmation') {
+                    $username = "'".$user_result['username']."'";
+                    echo '<div class="one_notif" onclick="confirmation('.$user_result['uid'].', '.$_SESSION['uid'].', '.$user_result['pid'].')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> sold you an item. <span class="notif_time">'.$date.'</span></span></div>';
+                }
                 else {
-                    echo '<div class="one_notif" onclick="go_to_post('.$post_id.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> made you an offer. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
+                    echo '<div class="one_notif" onclick="go_to_inbox()" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> made you an offer. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
                 }
             }
         }

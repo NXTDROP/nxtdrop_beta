@@ -4,27 +4,36 @@
     include '../dbh.php';
     $date = date("Y-m-d H:i:s", time());
 
-    $buyer_username = $_POST['buyer_username'];
-    $seller_rating = $_POST['seller_rating'];
+    $target_username = $_POST['target_username'];
+    $user_rating = $_POST['user_rating'];
     $post_id = $_POST['post_id'];
     $price = mysqli_real_escape_string($conn, $_POST['price']);
-    $seller_comment = mysqli_real_escape_string($conn, $_POST['seller_comment']);
+    $user_comment = mysqli_real_escape_string($conn, $_POST['user_comment']);
+    $post_type = $_POST['post_type'];
 
-    $row = mysqli_fetch_assoc($conn->query("SELECT * FROM users WHERE username = '$buyer_username'"));
-    $buyer_id = $row['uid'];
+    $row = mysqli_fetch_assoc($conn->query("SELECT * FROM users WHERE username = '$target_username'"));
+    $target_id = $row['uid'];
 
     if (!isset($_SESSION['uid'])) {
         echo 'Error. Try Later!';
     }
     else {
-        $seller_id = $_SESSION['uid'];
-
-        if ($buyer_id == '') {
-            echo 'You must select a user!';
+        if (mysqli_fetch_assoc($conn->query("SELECT * FROM transactions WHERE post_ID = '$post_id'"))->num_rows > 0) {
+            echo 'You already sold this item. Report the post if there is an error.';
         }
         else {
-            if (!mysqli_query($conn, "INSERT INTO transactions (seller_ID, buyer_ID, price, seller_ID, post_ID, seller_rating, report_date) VALUES ('$seller_id', '$buyer_id', '$price', '$seller_comment', '$post_id', '$seller_rating', '$date')")) {
-                echo 'Error. Try Later!';
+            $user_id = $_SESSION['uid'];
+
+            if ($buyer_id == '') {
+                echo 'You must select a user!';
+            }
+            else {
+                if (!mysqli_query($conn, "INSERT INTO transactions (user_ID, target_ID, price, user_ID, post_ID, user_rating, report_date, post_type) VALUES ('$user_id', '$target_id', '$price', '$user_comment', '$post_id', '$user_rating', '$date', '$post_type')")) {
+                    echo 'Error. Try Later!';
+                }
+                else {
+                    mysqli_query($conn, "INSERT INTO notifications (user_id, target_id, notification_type, date) VALUES ('$user_id', '$target_id', 'confirmation', '$date');");
+                }
             }
         }
     }

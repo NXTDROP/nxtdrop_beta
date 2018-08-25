@@ -26,6 +26,8 @@
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['pwd'] = $row['pwd'];
+                $_SESSION['stripe_acc'] = $row['stripe_id'];
+                $_SESSION['country'] = $row['country'];
                 date_default_timezone_set("UTC"); 
                 $date = date("Y-m-d H:i:s", time());
                 $uid = $_SESSION['uid'];

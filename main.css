@@ -2265,7 +2265,7 @@
     .notif-main {
         width: 80%!important;
         left: 18%!important;
-        height: 607px!important;
+        height: 507px!important;
     }
     
     .one_notif {
@@ -2348,7 +2348,8 @@
     .new_msg_main {
         width: 100%!important;
         left: 0!important;
-        height: 607px!important;
+        overflow: auto;
+        height: 507px!important;
     }
     
     .new_msg_main h2 {
@@ -2401,7 +2402,7 @@
         top: 60px!important;
         width: 100%!important;
         left: 0!important;
-        height: 607px!important;
+        height: 507px!important;
         overflow: auto!important;
     }
     
@@ -2460,13 +2461,112 @@
         width: 80%!important;
         margin: 0 0 15px 10%!important;
     }
+    
+    .transaction_main {
+        width: 100%!important;
+        left: 0!important;
+        height: 507px!important;
+        overflow: auto!important;
+        margin: -7px 0 0 0!important;
+    }
+    
+    .transaction_merchant {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_info {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_main h2 {
+        font-size: 14px!important;
+        font-weight: 800!important;
+    }
+    
+    #merchant_header {
+        font-size: 12px!important;
+        font-weight: 900!important;
+    }
+    
+    .users_dm {
+        height: 200px!important;
+        border-bottom: 1px solid #e6e1e1;
+    }
+    
+    #user_info_img {
+        width: 30px!important;
+        height: 30px!important;
+    }
+    
+    .users_info {
+        height: 38px!important;
+    }
+    
+    .users_info span {
+        font-size: 16px!important;
+    }
+    
+    #transaction_info_header {
+        font-size: 12px!important;
+    }
+    
+    #rate_buyer {
+        font-size: 12px!important;
+    }
+    
+    #nothree {
+        font-size: 8px!important;
+    }
+    
+    #rating_stars {
+        width: 100%!important;
+        margin: 0 0 20px 0px!important;
+        padding: 0 65px!important;
+    }
+    
+    #seller_comment {
+        font-size: 10px!important;
+    }
+    
+    #send_transaction_report {
+        width: 50%!important;
+        margin: 2px 25%!important;
+    }
+    
+    #cancel_transaction_report {
+        width: 50%!important;
+        margin: 5px 25%!important;
+    }
+    
+    .transaction_review_main {
+        width: 100%!important;
+        left: 0!important;
+        margin: 43px 0 0 0!important;
+        height: 507px!important;
+    }
+    
+    .transaction_review_main h2 {
+        font-size: 20px!important;
+        margin: 0!important;
+    }
+    
+    #buyer_comment {
+        width: 95%!important;
+        margin: 10px 2.5%!important;
+    }
+    
+    .transaction_review_main #rating_stars {
+        padding: 0 75px!important;
+    }
 }
 
 @media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
     .notif-main {
         width: 65%!important;
         left: 30%!important;
-        height: 83%!important;
+        height: 215px!important;
         overflow: auto!important;
     }
     
@@ -2550,9 +2650,9 @@
     }
     
     .new_msg_main {
-        width: 75%!important;
-        left: 12.5%!important;
-        height: 315px!important;
+        width: 100%!important;
+        left: 0%!important;
+        height: 215px!important;
         overflow: auto!important;
     }
     
@@ -2610,7 +2710,7 @@
         top: 60px!important;
         width: 100%!important;
         left: 0!important;
-        height: 315px!important;
+        height: 215px!important;
         overflow: auto!important;
     }
     
@@ -2649,6 +2749,105 @@
     #upload_drop {
         margin-top: 10px!important;
     }
+    
+    .transaction_main {
+        width: 100%!important;
+        left: 0!important;
+        height: 215px!important;
+        overflow: auto!important;
+        margin: 22px 0 0 0!important;
+    }
+    
+    .transaction_merchant {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_info {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_main h2 {
+        font-size: 14px!important;
+        font-weight: 800!important;
+    }
+    
+    #merchant_header {
+        font-size: 12px!important;
+        font-weight: 900!important;
+    }
+    
+    .users_dm {
+        height: 200px!important;
+        border-bottom: 1px solid #e6e1e1;
+    }
+    
+    #user_info_img {
+        width: 30px!important;
+        height: 30px!important;
+    }
+    
+    .users_info {
+        height: 38px!important;
+    }
+    
+    .users_info span {
+        font-size: 16px!important;
+    }
+    
+    #transaction_info_header {
+        font-size: 12px!important;
+    }
+    
+    #rate_buyer {
+        font-size: 12px!important;
+    }
+    
+    #nothree {
+        font-size: 10px!important;
+    }
+    
+    #rating_stars {
+        width: 100%!important;
+        margin: 0 0 20px 0px!important;
+        padding: 0 215px!important;
+    }
+    
+    #seller_comment {
+        font-size: 12px!important;
+    }
+    
+    #send_transaction_report {
+        width: 50%!important;
+        margin: 2px 25%!important;
+    }
+    
+    #cancel_transaction_report {
+        width: 50%!important;
+        margin: 5px 25%!important;
+    }
+    
+    .transaction_review_main {
+        width: 100%!important;
+        left: 0!important;
+        margin: 45px 0 0 0!important;
+        height: 215px!important;
+    }
+    
+    .transaction_review_main h2 {
+        font-size: 20px!important;
+        margin: 0!important;
+    }
+    
+    #buyer_comment {
+        width: 95%!important;
+        margin: 10px 2.5%!important;
+    }
+    
+    .transaction_review_main #rating_stars {
+        padding: 0 220px!important;
+    }
 }
 
 /* IPHONE 6/7/8PLUS */
@@ -2657,7 +2856,7 @@
     .notif-main {
         width: 75%!important;
         left: 22%!important;
-        height: 676px!important;
+        height: 576px!important;
     }
     
     .one_notif {
@@ -2741,7 +2940,8 @@
     .new_msg_main {
         width: 100%!important;
         left: 0!important;
-        height: 676px!important;
+        overflow: auto;
+        height: 576px!important;
     }
     
     .new_msg_main h2 {
@@ -2796,7 +2996,7 @@
         top: 60px!important;
         width: 100%!important;
         left: 0!important;
-        height: 676px!important;
+        height: 576px!important;
         overflow: auto!important;
     }
     
@@ -2856,13 +3056,112 @@
         width: 80%!important;
         margin: 0 0 15px 10%!important;
     }
+    
+    .transaction_main {
+        width: 100%!important;
+        left: 0!important;
+        height: 576px!important;
+        overflow: auto!important;
+        margin: -14px 0 0 0!important;
+    }
+    
+    .transaction_merchant {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_info {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_main h2 {
+        font-size: 14px!important;
+        font-weight: 800!important;
+    }
+    
+    #merchant_header {
+        font-size: 12px!important;
+        font-weight: 900!important;
+    }
+    
+    .users_dm {
+        height: 200px!important;
+        border-bottom: 1px solid #e6e1e1;
+    }
+    
+    #user_info_img {
+        width: 30px!important;
+        height: 30px!important;
+    }
+    
+    .users_info {
+        height: 38px!important;
+    }
+    
+    .users_info span {
+        font-size: 16px!important;
+    }
+    
+    #transaction_info_header {
+        font-size: 12px!important;
+    }
+    
+    #rate_buyer {
+        font-size: 12px!important;
+    }
+    
+    #nothree {
+        font-size: 10px!important;
+    }
+    
+    #rating_stars {
+        width: 100%!important;
+        margin: 0 0 20px 0px!important;
+        padding: 0 90px!important;
+    }
+    
+    #seller_comment {
+        font-size: 12px!important;
+    }
+    
+    #send_transaction_report {
+        width: 50%!important;
+        margin: 2px 25%!important;
+    }
+    
+    #cancel_transaction_report {
+        width: 50%!important;
+        margin: 5px 25%!important;
+    }
+    
+    .transaction_review_main {
+        width: 100%!important;
+        left: 0!important;
+        margin: 100px 0 0 0!important;
+        height: 345px!important;
+    }
+    
+    .transaction_review_main h2 {
+        font-size: 20px!important;
+        margin: 0!important;
+    }
+    
+    #buyer_comment {
+        width: 95%!important;
+        margin: 10px 2.5%!important;
+    }
+    
+    .transaction_review_main #rating_stars {
+        padding: 0 98px!important;
+    }
 }
 
 @media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
     .notif-main {
         width: 75%!important;
         left: 20%!important;
-        height: 83%!important;
+        height: 254px!important;
         overflow: auto!important;
     }
     
@@ -2949,7 +3248,7 @@
     .new_msg_main {
         width: 75%!important;
         left: 12.5%!important;
-        height: 354px!important;
+        height: 254px!important;
         overflow: auto!important;
     }
     
@@ -3007,7 +3306,7 @@
         top: 60px!important;
         width: 100%!important;
         left: 0!important;
-        height: 354px!important;
+        height: 254px!important;
         overflow: auto!important;
     }
     
@@ -3047,6 +3346,105 @@
     #upload_drop {
         margin-top: 10px!important;
     }
+    
+    .transaction_main {
+        width: 100%!important;
+        left: 0!important;
+        height: 254px!important;
+        overflow: auto!important;
+        margin: 20px 0 0 0!important;
+    }
+    
+    .transaction_merchant {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_info {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_main h2 {
+        font-size: 14px!important;
+        font-weight: 800!important;
+    }
+    
+    #merchant_header {
+        font-size: 12px!important;
+        font-weight: 900!important;
+    }
+    
+    .users_dm {
+        height: 200px!important;
+        border-bottom: 1px solid #e6e1e1;
+    }
+    
+    #user_info_img {
+        width: 30px!important;
+        height: 30px!important;
+    }
+    
+    .users_info {
+        height: 38px!important;
+    }
+    
+    .users_info span {
+        font-size: 16px!important;
+    }
+    
+    #transaction_info_header {
+        font-size: 12px!important;
+    }
+    
+    #rate_buyer {
+        font-size: 12px!important;
+    }
+    
+    #nothree {
+        font-size: 10px!important;
+    }
+    
+    #rating_stars {
+        width: 100%!important;
+        margin: 0 0 20px 0px!important;
+        padding: 0 250px!important;
+    }
+    
+    #seller_comment {
+        font-size: 12px!important;
+    }
+    
+    #send_transaction_report {
+        width: 30%!important;
+        margin: 2px 35%!important;
+    }
+    
+    #cancel_transaction_report {
+        width: 30%!important;
+        margin: 5px 35%!important;
+    }
+    
+    .transaction_review_main {
+        width: 100%!important;
+        left: 0!important;
+        margin: 50px 0 0 0!important;
+        height: 254px!important;
+    }
+    
+    .transaction_review_main h2 {
+        font-size: 20px!important;
+        margin: 0!important;
+    }
+    
+    #buyer_comment {
+        width: 95%!important;
+        margin: 10px 2.5%!important;
+    }
+    
+    .transaction_review_main #rating_stars {
+        padding: 0 259px!important;
+    }
 }
 
 /* IPHONE SE */
@@ -3055,7 +3453,7 @@
     .notif-main {
         width: 85%!important;
         left: 14%!important;
-        height: 508px!important;
+        height: 408px!important;
     }
     
     .one_notif {
@@ -3138,7 +3536,8 @@
     .new_msg_main {
         width: 100%!important;
         left: 0!important;
-        height: 508px!important;
+        overflow: auto;
+        height: 408px!important;
     }
     
     .new_msg_main h2 {
@@ -3191,7 +3590,7 @@
         top: 60px!important;
         width: 100%!important;
         left: 0!important;
-        height: 508px!important;
+        height: 408px!important;
         overflow: auto!important;
     }
     
@@ -3250,13 +3649,108 @@
         width: 80%!important;
         margin: 0 0 15px 10%!important;
     }
+    
+    .transaction_main {
+        width: 100%!important;
+        left: 0!important;
+        height: 408px!important;
+        overflow: auto!important;
+        margin: 3px 0 0 0!important;
+    }
+    
+    .transaction_merchant {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_info {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_main h2 {
+        font-size: 14px!important;
+        font-weight: 800!important;
+    }
+    
+    #merchant_header {
+        font-size: 12px!important;
+        font-weight: 900!important;
+    }
+    
+    .users_dm {
+        height: 200px!important;
+        border-bottom: 1px solid #e6e1e1;
+    }
+    
+    #user_info_img {
+        width: 30px!important;
+        height: 30px!important;
+    }
+    
+    .users_info {
+        height: 38px!important;
+    }
+    
+    .users_info span {
+        font-size: 16px!important;
+    }
+    
+    #transaction_info_header {
+        font-size: 12px!important;
+    }
+    
+    #rate_buyer {
+        font-size: 12px!important;
+    }
+    
+    #nothree {
+        font-size: 8px!important;
+    }
+    
+    #rating_stars {
+        width: 100%!important;
+        margin: 0 0 20px 0px!important;
+        padding: 0 45px!important;
+    }
+    
+    #seller_comment {
+        font-size: 10px!important;
+    }
+    
+    #send_transaction_report {
+        width: 50%!important;
+        margin: 2px 25%!important;
+    }
+    
+    #cancel_transaction_report {
+        width: 50%!important;
+        margin: 5px 25%!important;
+    }
+    
+    .transaction_review_main {
+        width: 100%!important;
+        left: 0!important;
+        margin: 45px 0 0 0!important;
+        height: 408px!important;
+    }
+    
+    .transaction_review_main h2 {
+        font-size: 20px!important;
+        margin: 0!important;
+    }
+    
+    #buyer_comment {
+        width: 95%!important;
+        margin: 10px 2.5%!important;
+    }
 }
 
 @media all and (min-width: 565px) and (max-width: 666px) and (orientation: landscape) {
     .notif-main {
         width: 55%!important;
         left: 40%!important;
-        height: 80%!important;
+        height: 160px!important;
         overflow: auto!important;
     }
     
@@ -3340,9 +3834,9 @@
     }
     
     .new_msg_main {
-        width: 75%!important;
-        left: 12.5%!important;
-        height: 260px!important;
+        width: 100%!important;
+        left: 0!important;
+        height: 160px!important;
         overflow: auto!important;
     }
     
@@ -3398,7 +3892,7 @@
         top: 60px!important;
         width: 100%!important;
         left: 0!important;
-        height: 260px!important;
+        height: 160px!important;
         overflow: auto!important;
     }
     
@@ -3437,9 +3931,282 @@
     #upload_drop {
         margin-top: 10px!important;
     }
+    
+    .transaction_main {
+        width: 100%!important;
+        left: 0!important;
+        height: 160px!important;
+        overflow: auto!important;
+        margin: 28px 0 0 0!important;
+    }
+    
+    .transaction_merchant {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_info {
+        float: none!important;
+        width: 100%!important;
+    }
+    
+    .transaction_main h2 {
+        font-size: 14px!important;
+        font-weight: 800!important;
+    }
+    
+    #merchant_header {
+        font-size: 12px!important;
+        font-weight: 900!important;
+    }
+    
+    .users_dm {
+        height: 100px!important;
+        border-bottom: 1px solid #e6e1e1;
+    }
+    
+    #user_info_img {
+        width: 30px!important;
+        height: 30px!important;
+    }
+    
+    .users_info {
+        height: 38px!important;
+    }
+    
+    .users_info span {
+        font-size: 16px!important;
+    }
+    
+    #transaction_info_header {
+        font-size: 12px!important;
+    }
+    
+    #rate_buyer {
+        font-size: 12px!important;
+    }
+    
+    #nothree {
+        font-size: 8px!important;
+    }
+    
+    #rating_stars {
+        width: 100%!important;
+        margin: 0 0 20px 0px!important;
+        padding: 0 160px!important;
+    }
+    
+    #seller_comment {
+        font-size: 10px!important;
+    }
+    
+    #send_transaction_report {
+        width: 50%!important;
+        margin: 2px 25%!important;
+    }
+    
+    #cancel_transaction_report {
+        width: 50%!important;
+        margin: 5px 25%!important;
+    }
+    
+    .transaction_review_main {
+        width: 100%!important;
+        left: 0!important;
+        margin: 45px 0 0 0!important;
+        height: 160px!important;
+    }
+    
+    .transaction_review_main h2 {
+        font-size: 20px!important;
+        margin: 0!important;
+    }
+    
+    #buyer_comment {
+        width: 95%!important;
+        margin: 10px 2.5%!important;
+    }
+    
+    .transaction_review_main #rating_stars {
+        padding: 0 175px!important;
+    }
 }
 
 /******************************************* RD POPUPS END *******************************************/
+
+/******************************************* RD WELCOME_HOME **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+    
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    #home-carousel {
+        width: 100%!important;
+        height: 200px!important;
+    }
+    
+    #home-carousel .carousel-inner {
+        height: 200px!important;
+    }
+    
+    #home-carousel .carousel-item img {
+        height: 200px!important;
+    }
+    
+    .search_bar_index input {
+        width: 90%!important;
+        margin: 0 5%!important;
+        font-size: 12px!important;
+        padding: 5px!important;
+    }
+    
+    .nav_home #navbar-brand img {
+        width: 50px!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    #home-carousel {
+        width: 85%!important;
+        height: 200px!important;
+    }
+    
+    #home-carousel .carousel-inner {
+        height: 200px!important;
+    }
+    
+    #home-carousel .carousel-item img {
+        width: 100%!important;
+        height: 200px!important;
+    }
+    
+    .search_bar_index input {
+        width: 70%!important;
+        margin: 0 15%!important;
+        font-size: 12px!important;
+        padding: 5px!important;
+    }
+    
+    .nav_home #navbar-brand img {
+        width: 50px!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+   #home-carousel {
+        width: 100%!important;
+        height: 200px!important;
+    }
+    
+    #home-carousel .carousel-inner {
+        height: 200px!important;
+    }
+    
+    #home-carousel .carousel-item img {
+        height: 200px!important;
+    }
+    
+    .search_bar_index input {
+        width: 90%!important;
+        margin: 0 5%!important;
+        font-size: 12px!important;
+        padding: 5px!important;
+    }
+    
+    .nav_home #navbar-brand img {
+        width: 50px!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+   #home-carousel {
+        width: 85%!important;
+        height: 200px!important;
+    }
+    
+    #home-carousel .carousel-inner {
+        height: 200px!important;
+    }
+    
+    #home-carousel .carousel-item img {
+        width: 100%!important;
+        height: 200px!important;
+    }
+    
+    .search_bar_index input {
+        width: 70%!important;
+        margin: 0 15%!important;
+        font-size: 12px!important;
+        padding: 5px!important;
+    }
+    
+    .nav_home #navbar-brand img {
+        width: 50px!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    #home-carousel {
+        width: 100%!important;
+        height: 150px!important;
+    }
+    
+    #home-carousel .carousel-inner {
+        height: 150px!important;
+    }
+    
+    #home-carousel .carousel-item img {
+        height: 150px!important;
+    }
+    
+    .search_bar_index input {
+        width: 95%!important;
+        margin: 0 2.5%!important;
+        font-size: 11px!important;
+        padding: 5px!important;
+    }
+    
+    .nav_home #navbar-brand img {
+        width: 50px!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    #home-carousel {
+        width: 65%!important;
+        height: 150px!important;
+    }
+    
+    #home-carousel .carousel-inner {
+        height: 150px!important;
+    }
+    
+    #home-carousel .carousel-item img {
+        width: 100%!important;
+        height: 150px!important;
+    }
+    
+    .search_bar_index input {
+        width: 70%!important;
+        height: 30px!important;
+        margin: 0 15%!important;
+        font-size: 10px!important;
+        padding: 2.5px!important;
+    }
+    
+    .nav_home #navbar-brand img {
+        width: 50px!important;
+    }
+}
+/******************************************* RD WELCOME_HOME END *********************************************/
 
 /******************************************* GLOBAL *********************************************/
 
@@ -4139,15 +4906,30 @@ textarea {
 }
 
 #sale_banner {
-   background: #f76060; 
+   background: #4ca339; 
 }
 
 #trade_banner { 
-    background: #ffad66;
+    background: #448cff;
 }
 
 #request_banner {
-    background: #448cff;
+    background: #f76060;
+}
+
+#home-carousel {
+    width: 60%;
+    height: 300px;
+    margin: 20px auto;
+}
+
+#home-carousel .carousel-inner {
+    height: 300px;
+}
+
+#home-carousel .carousel-item img {
+    width: 100%;
+    height: 300px;
 }
 /******************************************* GLOBAL END *********************************************/
 
@@ -4385,6 +5167,16 @@ textarea {
     margin-right: 25px;
 }
 
+#followers:hover {
+    color: #aa0000;
+    cursor: pointer;
+}
+
+#following:hover {
+    color: #aa0000;
+    cursor: pointer;
+}
+
 #rating {
     font-size: 28px;
     font-weight: bolder;
@@ -4469,6 +5261,102 @@ textarea {
 
 #star-rating {
     margin: 50px 0 0px 0;
+}
+
+.follow_display {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+    z-index: 20!important;
+}
+
+.follow_display_close {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+}
+
+.follow_display_main {
+    width: 40%;
+    background: #fff;
+    position: fixed;
+    top: 60px;
+    border-radius: 4px;
+    left: 30%;
+    display: none;
+    overflow: auto;
+    height: 90%;
+    padding: 0;
+}
+
+.follow_display_main h2 {
+    text-align: center;
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 0;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.follow_display_content {
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.follow_display_content p {
+    text-align: center;
+    font-size: 14px;
+    color: #888888;
+}
+
+.user_follow_display {
+    width: 100%;
+    height: 70px;
+    display: block;
+    border-bottom: 1px solid #e6e1e1;
+    padding: 8px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.user_follow_display img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 50px;
+    border: 1px solid #e6e1e1;
+}
+
+.user_follow_display span {
+    margin-left: 10px;
+}
+
+.follow_display_button {
+    float: right;
+    font-size: 11px!important;
+    margin: 11px 0 0 0;
+    background: #fff;
+    border: 1px solid #aa0000;
+    padding: 5px;
+    color: #aa0000;
+    -webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
+}
+
+.follow_display_button:hover {
+    cursor: pointer;
+    background: red;
+    color: #fff;
 }
 /******************************************* PROFILE END *********************************************/
 
@@ -5591,7 +6479,45 @@ ul li h2 {
 }
 
 #login-btn {
-    margin-left: 7%;
+    margin-left: 66%;
+}
+
+.search_bar_index input {
+    border: 1px solid #e6e1e1;
+    width: 50%;
+    margin: 0px 0 0 25%;
+    height: 40px;
+    padding: 8px;
+    font-size: 13px;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(102,101,101,1);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(102,101,101,1);
+    box-shadow: 0px 1px 2px 0px rgba(102,101,101,1);
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+}
+
+.search_bar_index input:focus {
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(102,101,101,1);
+    -moz-box-shadow: 0px 1px 5px 0px rgba(102,101,101,1);
+    box-shadow: 0px 1px 5px 0px rgba(102,101,101,1);
+}
+
+.search_results_index {
+    display: none;
+    width: 100%;
+    margin: 60px 0 0 0;
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+}
+
+#no_result_search {
+    text-align: center;
+    font-weight: 800;
+    font-size: 1rem;
 }
 
 .notif_results {
@@ -5708,6 +6634,8 @@ ul li h2 {
     text-align: center;
     border-bottom: 1px solid #dddddd;
     padding: 10px 0;
+    font-size: 30px;
+    font-weight: 800;
 }
 
 .transaction_content {
@@ -5728,7 +6656,7 @@ ul li h2 {
     border-right: 1px solid #e6e1e1;
     overflow: auto;
     min-height: 50px;
-    height: 80%;
+    height: 350px;
 }
 
 #seller_comment {
@@ -5762,10 +6690,12 @@ ul li h2 {
 #user_info_img {
     border: 1px solid #e6e1e1;
     border-radius: 60px;
-    object-fit: contain;
-    height: 40px;
-    width: 8%;
+    object-fit: cover;
+    width: 35px;
+    height: 35px;
+    margin: -3px 0 0 0;
     background: white;
+    display: inline-block;
 }
 
 #transaction_info_header {
@@ -6016,3 +6946,179 @@ ul li h2 {
     margin: 50px 0 25px 0;
 }
 /******************************************* SEARCH END ****************************************************************/
+
+/******************************************* DASHBOARD ****************************************************************/
+
+.balances {
+    display: inline-flex;
+    width: 100%;
+    background: #aa0000;
+}
+
+.available_balance {
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+    margin-top: 15px;
+    color: #fff;
+}
+
+.available_balance p {
+    font-size: 12px;
+}
+
+.funds_on_hold {
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+    margin-top: 15px;
+    color: #fff;
+}
+
+.funds_on_hold p {
+    font-size: 12px;
+}
+
+.payout_btns {
+    width: 100%;
+    padding: 5px;
+    background: #fcfcfc;
+}
+
+.standard_payout {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.standard_payout button {
+    font-size: 15px;
+    padding: 5px;
+    width: 10%;
+    background: #fff;
+    border: 1px solid #aa0000;
+    margin: 5px auto;
+    color: #aa0000;
+}
+
+.standard_payout p {
+    font-size: 10px;
+}
+
+.instant_payout {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.instant_payout button {
+    font-size: 15px;
+    padding: 5px;
+    width: 10%;
+    background: #fff;
+    border: 1px solid #aa0000;
+    margin: 5px auto;
+    color: #aa0000;
+}
+
+.instant_payout p {
+    font-size: 10px;
+}
+
+.payout_btns button {
+    -webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out; 
+}
+
+.payout_btns button:hover {
+    cursor: pointer;
+    background: #aa0000;
+    color: #fff;
+}
+
+.user_stats {
+    display: inline-flex;
+    width: 100%;
+    text-align: center;
+}
+
+.user_purchases {
+    width: 50%;
+    border-right: 1px solid #cccccc;
+}
+
+.user_purchases h2 {
+    color: #ef0404;
+}
+
+.user_sales {
+    width: 50%;
+    border-left: 1px solid #cccccc;
+}
+
+.user_sales h2 {
+    color: #85bb65;
+}
+
+.table {
+    margin-top: 5px;
+}
+
+#load_transactions {
+    border: 1px solid #aa0000;
+    background: #fff;
+    color: #aa0000;
+    font-size: 16px;
+    padding: 5px;
+    width: 20%;
+    margin: 20px 40%;
+    -webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out
+}
+
+#load_transactions:hover {
+    color: #fff;
+    background: #aa0000;
+    cursor: pointer;
+}
+
+#bank_cards {
+    width: 25%;
+    margin: 10px 37.5%;
+    border: 1px solid #aa0000;
+    background: #aa0000;
+    color: #fff;
+    padding: 5px;
+    font-size: 14px;
+}
+
+#bank_cards:hover {
+    background: #fff;
+    color: #aa0000;
+    cursor: pointer;
+}
+/******************************************* DASHBOARD END ************************************************************/
+
+/******************************************* ACCOUNT SETTINGS *********************************************************/
+
+.form_container {
+    width: 40%;
+    margin: 50px auto;
+}
+
+.form_container .btn-primary {
+    width: 50%;
+    font-weight: 800;
+    background: #aa0000;
+    border: 1px solid #aa0000;
+    margin: 0 25%;
+}
+
+.form_container .btn-primary:hover {
+    background: #878787;
+    border: 1px solid #878787;
+}
+
+/******************************************* ACCOUNT SETTINGS END *****************************************************/

@@ -17,6 +17,10 @@
         $row = mysqli_fetch_assoc($result);
         $follower_id = $row['uid'];
 
+        if ($user_id == $follower_id) {
+            echo 'You cannot follow yourself.';
+        }
+
         if ($type == 'follow') {
             $sql = "INSERT INTO following (user_id, follower_id, stamp) VALUES ('$user_id', '$follower_id', '$date')";
 

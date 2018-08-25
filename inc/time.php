@@ -39,7 +39,7 @@
             }
         }
         else {
-            return "0 s";
+            return "now";
         }
 
     }

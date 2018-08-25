@@ -31,7 +31,7 @@
             star_display(rating);
 
             $('.follow_unfollow').click(function() {
-                $('follow_unfollow').attr('disabled', true);
+                $('.follow_unfollow').attr('disabled', true);
                 var val = $(this).html();
                 if (val == '+ Follow') {
                     var follower_username = <?php echo "'".$_GET['u']."'"?>;
@@ -123,12 +123,12 @@
         }
         $num_following = $conn->query("SELECT * FROM following WHERE user_id='$u_id'")->num_rows;
         $num_followers = $conn->query("SELECT * FROM following WHERE follower_id='$u_id'")->num_rows;
-        $seller_query = $conn->query("SELECT * FROM transactions WHERE seller_ID = '$u_id'");
-        $buyer_query = $conn->query("SELECT * FROM transactions WHERE buyer_ID = '$u_id'");
+        $seller_query = $conn->query("SELECT * FROM transactions WHERE user_ID = '$u_id'");
+        $buyer_query = $conn->query("SELECT * FROM transactions WHERE target_ID = '$u_id'");
         $num_rating = $seller_query->num_rows + $buyer_query->num_rows;
         $seller_result = mysqli_fetch_assoc($seller_query);
         $buyer_result = mysqli_fetch_assoc($buyer_query);
-        $rating_agg = $seller_result['buyer_rating'] + $buyer_result['seller_rating'];
+        $rating_agg = $seller_result['target_rating'] + $buyer_result['user_rating'];
         if ($num_rating == 0) {
             $user_rating = 'N/A';
         }
@@ -136,7 +136,7 @@
             $user_rating = $rating_agg / $num_rating;
         }
 
-        echo '<span id="followers"><b id="followers_num">'.$num_followers.'</b> Followers</span><span id="following"><b id="following_num">'.$num_following.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fas fa-star fa-2x" aria-hidden="true"></i></span></br>';
+        echo '<span id="followers" onclick="follow_display(0)"><b id="followers_num">'.$num_followers.'</b> Followers</span><span id="following" onclick="follow_display(1)"><b id="following_num">'.$num_following.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fas fa-star fa-2x" aria-hidden="true"></i></span></br>';
 
         echo '<span id="fullname">'.$row['name'].'</span> &#x25FE <span id="biography">'.$row['bio'].'</span>';
     }

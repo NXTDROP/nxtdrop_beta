@@ -21,7 +21,7 @@
             });
         });
 
-        $('#send').click(function(){
+        $('#new_msg_send').click(function(){
             var msg = $('#msg_textarea').val();
             var to = $('#to').val();
             $.post('inc/send_newmsg.php', {to: to, msg: msg}, function(data){
@@ -30,6 +30,7 @@
                     $('#msg_textarea').val('');
                     $(".new_msg_pop").fadeOut();
                     $(".new_msg_main").fadeOut();
+                    udpateBody();
                 }
                 else {
                     $('#error_msg').html(data);

@@ -22,7 +22,6 @@ $('.msg_body').scroll(function() {
 });
 
 function updateMsg() {
-    //console.log('call updateMsg');
     var id = <?php echo "'".$id."'"; ?>;
     $.ajax({
         type: 'POST',

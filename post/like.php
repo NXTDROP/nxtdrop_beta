@@ -19,7 +19,9 @@
             $r = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) FROM likes WHERE pid = '$pid' AND liked_by = '$liked_by';"));
             if ($r["COUNT(*)"] < 1) {
                 if (mysqli_query($conn, "INSERT INTO likes (pid, posted_by, liked_by, time) VALUES ('$pid', '$posted_by', '$liked_by', '$date');")) {
-                    mysqli_query($conn, "INSERT INTO notifications (user_id, target_id, notification_type, date) VALUES ('$liked_by', '$posted_by', 'like', '$date');");
+                    if ($liked_by != $posted_by) {
+                        mysqli_query($conn, "INSERT INTO notifications (user_id, target_id, notification_type, date) VALUES ('$liked_by', '$posted_by', 'like', '$date');");
+                    }
                     $count++;
                     mysqli_query($conn, "UPDATE posts SET likes = '$count' WHERE pid = '$pid'");
                     echo true;
@@ -34,7 +36,9 @@
         }
         else if ($type == 'unlike' && $count >= 1) {
             if (mysqli_query($conn, "DELETE FROM likes WHERE pid = $pid AND posted_by = '$posted_by' AND liked_by = '$liked_by';")) {
-                mysqli_query($conn, "DELETE FROM notifications WHERE post_id='$pid' AND user_id='$liked_by' AND target_id='$posted_by' AND notification_type='like';");
+                if ($liked_by != $posted_by) {
+                    mysqli_query($conn, "INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$pid', '$liked_by', '$posted_by', 'like', '$date');");
+                }
                 $count--;
                 mysqli_query($conn, "UPDATE posts SET likes = '$count' WHERE pid = '$pid'");
                 echo true;

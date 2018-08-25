@@ -159,7 +159,7 @@
                             </div>
                         </div>
                         <textarea id="product_trade" placeholder="What are you trading for?" type="text"></textarea>
-                        <textarea name="caption" placeholder="Enter Description ($$$, Condition, etc.)" id="caption"></textarea>
+                        <textarea name="caption" placeholder="Enter Description (Size, Condition, etc.)" id="caption"></textarea>
                     </div>
 
                     <button id="upload_drop">Upload Drop</button>

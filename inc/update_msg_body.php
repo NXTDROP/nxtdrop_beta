@@ -55,7 +55,7 @@
             $user = "'".$to_from."'";
             $chat_id = "'".$row['chat_id']."'";
             echo '<div class="user" onclick="show('.$user.', '.$chat_id.');">
-            <i class="'.$class.'" id="'.$row['chat_id'].'" aria-hidden="true"></i>
+            <i class="'.$class.'" id="'.$row['chat_id'].'"></i>
             <ul>
                 <li><h2>'.$to_from.'</h2></li>';
             if ($row['message'] == '' && $row['pic_url'] != '') {

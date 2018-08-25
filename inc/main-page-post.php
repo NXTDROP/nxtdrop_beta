@@ -118,7 +118,7 @@
                         echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
                         echo '</div>';
                     
-                        if ($row['uid'] != 'request') {
+                        if ($row['type'] != 'request') {
                             $type = 0;
                             echo '<div class="sold_button">
                         <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>

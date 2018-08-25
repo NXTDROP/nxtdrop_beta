@@ -1,14 +1,14 @@
 <div id="posts-container">
 <?php
     session_start();
-    include 'num_conversion.php';
     include '../dbh.php';
     include 'time.php';
+    include 'num_conversion.php';
     $sql = "SELECT * FROM users WHERE username = '".$_GET['u']."';";
     $result = mysqli_query($conn, $sql);
     $r = mysqli_fetch_assoc($result);
     $u_id = $r['uid'];
-    $sql = "SELECT * FROM posts, likes, users, profile WHERE posts.pid = likes.pid AND likes.liked_by = '$u_id' AND users.uid = likes.posted_by AND profile.uid = likes.posted_by ORDER BY time DESC;";
+    $sql = "SELECT * FROM posts, likes, users, profile WHERE posts.pid = likes.pid AND likes.liked_by = '$u_id' AND users.uid = likes.posted_by AND profile.uid = likes.posted_by ORDER BY posts.pdate DESC";
     $result = mysqli_query($conn, $sql);
 
     if (!mysqli_num_rows($result) > 0) {
@@ -36,14 +36,6 @@
                 <div class="profile-info">
                 <div class="profile-img-index"><img class="post-small-img" src="'.$row['status'].'"></div>
                 <div class="name"><span><a href="u/'.$row['username'].'">'.$row['username'].'</a></span>';
-                if (isset($_SESSION['uid'])) {
-                    if (isFriend($row['username']) == true && $_SESSION['uid'] != $row['uid']) {
-                        echo '<div class="follow"><button class="follow_button" id="follow_'.$row['username'].'" onclick="follow('.$username.')" title="Follow '.$row['username'].'">+ Follow</button></div>';
-                    }
-                }
-                else {
-                    echo '<div class="follow"><button class="follow_disabled" title="Follow">+ Follow</button></div>';
-                }
                 echo '</div>';
 
                 echo '<!--<div class="location">Toronto, Ontario</div>-->';
@@ -104,7 +96,7 @@
                 echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
                 echo '</div>';
                 
-                if ($row['uid'] != 'request') {
+                if ($row['type'] != 'request') {
                     $type = 0;
                     echo '<div class="sold_button">
                 <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>

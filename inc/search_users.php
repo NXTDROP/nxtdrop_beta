@@ -10,7 +10,7 @@
     $posts_result = $conn->query($posts_query);
 
     if ($search == '') {
-        echo '<p>NO RESULTS!</p>';
+        echo '<p id="no_result_search">NO RESULT!</p>';
     }
     else {
         while ($row = mysqli_fetch_assoc($posts_result)) {

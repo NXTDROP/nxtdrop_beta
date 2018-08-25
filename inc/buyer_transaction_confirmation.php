@@ -8,21 +8,6 @@
         post_id = pid;
         seller_id = seller_id;
         buyer_id = buyer_id;
-        var data = new FormData();
-        data.append('pid', post_id);
-        data.append('seller_id', seller_id);
-        data.append('buyer_id', buyer_id);
-        $.ajax({
-            url: 'inc/transaction/report_info_display.php',
-            type: 'POST',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function(data) {
-                $('.seller_report_info').html(data);
-            }
-        });
         $(".transaction_review_pop").fadeIn();
         $(".transaction_review_main").show();
     }
@@ -39,7 +24,7 @@
                 $('#star-buyer-'+i).css('color', '#aa0000');
             }
             else {
-                $('#star-buyer-'+i).attr('class', 'fas fa-star-o fa-2x');
+                $('#star-buyer-'+i).attr('class', 'far fa-star fa-2x');
                 $('#star-buyer-'+i).css('color', '#000');
             }
         }
@@ -57,7 +42,7 @@
         $('.close').click(function() {
             $('#buyer_comment').val();
             for (var i = 1; i <= 5; i++) {
-                $('#star-buyer-'+i).attr('class', 'fa fa-star-o fa-2x');
+                $('#star-buyer-'+i).attr('class', 'far fa-star fa-2x');
                 $('#star-buyer-'+i).css('color', '#000');
             }
             $('.transaction_review_pop').fadeOut(1000);
@@ -85,7 +70,7 @@
                         if (data == '') {
                             $('#comment').val('');
                             for (var i = 1; i <= 5; i++) {
-                                $('#star-buyer-'+i).attr('class', 'fa fa-star-o fa-2x');
+                                $('#star-buyer-'+i).attr('class', 'far fa-star fa-2x');
                                 $('#star-buyer-'+i).css('color', '#000');
                             }
                             $('.transaction_review_pop').fadeOut(1000);
@@ -106,8 +91,6 @@
     <div class="transaction_review_main">
         <h2>TRANSACTION REVIEW</h2>
         <div class="transaction_review_content">
-            <div class="seller_report_info">
-            </div>
             <p id="rate_seller">RATE SELLER</p>
             <p id="nothree">We're enforcing a 'No 3s Allowed Policy' because we believe that a 'neutral' feedback can be misleading.</p>
             <ul id="rating_stars">

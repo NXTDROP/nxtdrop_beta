@@ -16,7 +16,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="regis/registration.js"></script>
         <script type="text/javascript" src="login/login.js"></script>
-        </script>
         <!-- Facebook Pixel Code -->
         <script>
         !function(f,b,e,v,n,t,s)
@@ -49,13 +48,17 @@
             <form action="" method="POST" id="signup" class="signup-form">
                 <p>Don't have an account?</p>
                 <input type="text" name="name" id="name" placeholder="Name"></br>
-                <input type="text" name="email" id="email" placeholder="Email [Required]" required></br>
-                <input type="text" name="username" id="username" placeholder="Username [Required]" required></br>
-                <input type="password" name="pwd" id="pwd" placeholder="Password [Required]" required></br>
-                <input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password [Required]" required></br>
-                <input type="checkbox" name="check" id="check" required>
-                <label for="check">Accept <a href="terms" target="_blank">Terms of Use</a> and <a href="privacy" target="_blank">Privacy Policy</a>.</label></br>
+                <input type="text" name="email" id="email" placeholder="Email [Required]"></br>
+                <input type="text" name="username" id="username" placeholder="Username [Required]"></br>
+                <input type="password" name="pwd" id="pwd" placeholder="Password [Required]"></br>
+                <input type="password" name="cpwd" id="cpwd" placeholder="Confirm Password [Required]"></br>
+                <select class="country_select">
+                    <option selected>Select Country [REQUIRED]</option>
+                    <option value="CA">CANADA</option>
+                    <option value="US">UNITED STATES</option>
+                </select>
                 <button type="submit" name="submit" id="submit">Create Account</button></br>
+                <p id="agreement">By creating an account, you agree to our <a href="terms" target="_blank">Terms of Use</a>, <a href="privacy" target="_blank">Privacy Policy</a> and the <a href="https://stripe.com/us/connect-account/legal" target="_blank">Stripe Connected Account Agreement</a>.<p>
                 <p id="form-message"></p>
             </form>
         </div>

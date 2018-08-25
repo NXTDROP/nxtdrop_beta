@@ -1,14 +1,15 @@
 <script>
-    var seller_id;
+    var user_id;
     var username;
     var post_id;
-    var seller_rating;
+    var user_rating;
 
     function sold(pid, type) {
         post_id = pid;
         post_type = type;
-        if (type == 0) {
+        if (post_type == 0) {
             $("#merchant_header").html('SOLD TO (Click to select):');
+            $("#rate_buyer").html('RATE SELLER');
         }
         else {
             $("#merchant_header").html('BOUGHT FROM (Click to select):');
@@ -27,7 +28,7 @@
     }
 
     function s_rating(star_num) {
-        seller_rating = star_num;
+        user_rating = star_num;
         for (var i = 1; i <= 5; i++) {
             if (star_num == 3) {
                 alert('NO 3s ALLOWED. PLEASE RATE AGAIN.');
@@ -38,7 +39,7 @@
                 $('#star-'+i).css('color', '#aa0000');
             }
             else {
-                $('#star-'+i).attr('class', 'fas fa-star-o fa-2x');
+                $('#star-'+i).attr('class', 'far fa-star fa-2x');
                 $('#star-'+i).css('color', '#000');
             }
         }
@@ -57,16 +58,16 @@
         $('#send_transaction_report').click(function() {
             var form_data = new FormData(); // Create a form
             form_data.append('price', $('#pricing').val());
-            form_data.append('seller_comment', $('#seller_comment').val());
-            form_data.append('buyer_username', username);
+            form_data.append('user_comment', $('#user_comment').val());
+            form_data.append('target_username', username);
             form_data.append('post_id', post_id);
-            form_data.append('seller_rating', seller_rating);
-            //alert('Price: ' + $('#pricing').val() + ' Seller Comment: ' + $('#seller_comment').val() + ' Buyer Username: ' + username + ' Post ID: ' + post_id + ' Seller Rating: ' + seller_rating);
-            if (seller_rating != 1 || seller_rating != 2 || seller_rating != 3 || seller_rating != 4 || seller_rating != 5) {
+            form_data.append('user_rating', user_rating);
+            form_data.append('post_type', post_type)
+            if (user_rating != 1 || user_rating != 2 || user_rating != 3 || user_rating != 4 || user_rating != 5) {
                     alert('RATE BUYER PLEASE.');
             }
             else {
-                alert(seller_rating);
+                alert(user_rating);
                 $.ajax({
                     url: 'inc/send_transaction_report.php',
                     type: 'POST',
@@ -77,11 +78,11 @@
                     success: function(data){
                         if (data == '') {
                             $('#pricing').val('');
-                            $('#seller_comment').val('');
+                            $('#user_comment').val('');
                             $('#send_transaction_report').attr('disabled', true);
                             $('#send_transaction_report').css('background', '#e6e1e1');
                             for (var i = 1; i <= 5; i++) {
-                                $('#star-'+i).attr('class', 'fa fa-star-o fa-2x');
+                                $('#star-'+i).attr('class', 'far fa-star fa-2x');
                                 $('#star-'+i).css('color', '#000');
                             }
                             $(".transaction_pop").fadeOut(1000);
@@ -101,9 +102,9 @@
             $('#send_transaction_report').attr('disabled', true);
             $('#send_transaction_report').css('background', '#e6e1e1');
             $('#pricing').val('');
-            $('#seller_comment').val('');
+            $('#user_comment').val('');
             for (var i = 1; i <= 5; i++) {
-                $('#star-'+i).attr('class', 'fa fa-star-o fa-2x');
+                $('#star-'+i).attr('class', 'far fa-star fa-2x');
                 $('#star-'+i).css('color', '#000');
             }
         });
@@ -114,9 +115,9 @@
             $('#send_transaction_report').attr('disabled', true);
             $('#send_transaction_report').css('background', '#e6e1e1');
             $('#pricing').val('');
-            $('#seller_comment').val('');
+            $('#user_comment').val('');
             for (var i = 1; i <= 5; i++) {
-                $('#star-'+i).attr('class', 'fa fa-star-o fa-2x');
+                $('#star-'+i).attr('class', 'far fa-star fa-2x');
                 $('#star-'+i).css('color', '#000');
             }
         });
@@ -151,7 +152,7 @@
                     <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-4" onclick="s_rating(4)"></i></li>
                     <li><i class="far fa-star fa-2x" aria-hidden="true" id="star-5" onclick="s_rating(5)"></i></li>
                 </ul>
-                <textarea name="comment" id="seller_comment" placeholder="Add comment... (OPTIONAL)"></textarea>
+                <textarea name="comment" id="user_comment" placeholder="Add comment... (OPTIONAL)"></textarea>
             </div>
 
             <button id="send_transaction_report">DONE</button>

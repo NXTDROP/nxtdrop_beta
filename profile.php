@@ -148,6 +148,7 @@
         <?php include('inc/sold_pop.php') ?>
         <?php include('inc/search_pop.php') ?>
         <?php include('inc/buyer_transaction_confirmation.php') ?>
+        <?php include('inc/follow_display.php') ?>
 
     </body>
 

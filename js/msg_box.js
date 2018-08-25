@@ -15,6 +15,7 @@ $(document).ready(function() {
     });
 
     $(".close-box").click(function() {
+        updateBody();
         $('.msg_box').hide();
         $('.chat_box').show();
         clearTimeout(renew);

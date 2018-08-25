@@ -4,18 +4,13 @@
         include '../dbh.php';
         include 'time.php';
         include 'num_conversion.php';
-        $sql = "SELECT * FROM users WHERE username = '".$_GET['u']."';";
+        $usern = $_GET['u'];
+        $sql = "SELECT * FROM users WHERE username = '$usern';";
         $result = mysqli_query($conn, $sql);
         $r = mysqli_fetch_assoc($result);
         $u_id = $r['uid'];
-        $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = ".$u_id." AND users.username = '".$_GET['u']."' AND posts.uid = profile.uid ORDER BY posts.pdate DESC;";
+        $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = '$u_id' AND users.uid = '$u_id' AND posts.uid = profile.uid ORDER BY posts.pdate DESC;";
         $result = mysqli_query($conn, $sql);
-
-        $sql = "SELECT * FROM profile WHERE uid = '$u_id';";
-        $r = mysqli_query($conn, $sql);
-        $_r = mysqli_fetch_assoc($r);
-        $status = $_r['status'];
-        if ($status == "") $status = 'uploads/user.png';
 
         if (!mysqli_num_rows($result) > 0) {
             echo '<p id="no_post">No Posts Available!</p>';
@@ -102,7 +97,7 @@
                     echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
                     echo '</div>';
                     
-                    if ($row['uid'] != 'request') {
+                    if ($row['type'] != 'request') {
                         $type = 0;
                         echo '<div class="sold_button">
                     <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
