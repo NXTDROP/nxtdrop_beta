@@ -1,3 +1,20 @@
+<?php
+    require_once('vendor/autoload.php');
+    \Stripe\Stripe::setApiKey("sk_test_zFMuyMBC60raTKDdLGzR4wdb");
+
+    $retail = 22500;
+    $price = 32600;
+    $shipping = 1365;
+    $consignment = $price*0.085;
+    $legit_check = $price*0.03;
+    $stripe_fees = (($price+$shipping)*0.029)+30;
+    $net = $consignment - $stripe_fees;
+    $seller_pay = $price - $consignment - $legit_check;
+    $total = $price + $shipping; 
+
+    //echo 'Retail: '.$retail.'; Price: '.$price.'; Shipping: '.$shipping.'; Consignment: '.$consignment.'; Legit Check: '.$legit_check.'; Net: '.$net.'; Stripe Fees: '.$stripe_fees.'; Seller Pay: '.$seller_pay.'; Total: '.$total;
+?>
+
 <!DOCTYPE html>
 <html>
     <title>

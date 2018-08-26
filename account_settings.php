@@ -24,30 +24,53 @@
             label {
                 font-size: 14px;
             }
+
+            .StripeElement {
+                background-color: white;
+                height: 40px;
+                padding: 10px 12px;
+                border-radius: 4px;
+                border: 1px solid transparent;
+                box-shadow: 0 1px 3px 0 #e6ebf1;
+                -webkit-transition: box-shadow 150ms ease;
+                transition: box-shadow 150ms ease;
+            }
+
+            .StripeElement--focus {
+                box-shadow: 0 1px 3px 0 #cfd7df;
+            }
+
+            .StripeElement--invalid {
+                border-color: #fa755a;
+            }
+
+            .StripeElement--webkit-autofill {
+                background-color: #fefde5 !important;
+            }
         </style>
     </head>
 
     <body>
         <?php include('inc/navbar/navbar.php'); ?>
 
-        <div class="form_container" method="POST">
-            <form action="" class="personal_information">
+        <div class="form_container">
+            <form class="personal_information" action="" method="POST">
                 <!------- INDIVIDUAL OR BUSINESS ------->
                 <strong>Personal Information</strong>
                 <small>Make sure the information you provide is accurate.</small>
                 <br>
                 <div id="personal_info">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="entity" id="individual" value="individual">
+                        <input class="form-check-input" type="radio" name="entity" id="individual" value="individual" required>
                         <label class="form-check-label" for="individual" style="font-size: 16px;">Individual</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="entity" id="business" value="business">
+                        <input class="form-check-input" type="radio" name="entity" id="business" value="business" required>
                         <label class="form-check-label" for="business" style="font-size: 16px;">Business</label>
                     </div>
                 </div>
 
-                <p id="personal_info_errors" style="color: red;"></p>
+                <p id="personal_info_errors" style="color: #cc0000;"></p>
                 <!------- FIRST & LAST NAME ------->
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -61,13 +84,13 @@
                 <!------- DATE OF BIRTH ------->
                 <div class="form-row">
                     <div class="col-md-2 mb-2">
-                    <input type="text" class="form-control" id="inputMonth" placeholder="01" required>
+                    <input type="text" class="form-control" id="inputMonth" placeholder="MM" required>
                     </div>
                     <div class="col-md-2 mb-2">
-                    <input type="text" class="form-control" id="inputDay" placeholder="01" required>
+                    <input type="text" class="form-control" id="inputDay" placeholder="DD" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                    <input type="text" class="form-control" id="inputYear" placeholder="2018" required>
+                    <input type="text" class="form-control" id="inputYear" placeholder="YYYY" required>
                     </div>
                 </div>
 
@@ -87,11 +110,10 @@
                     <?php
                         echo '<option value="" selected>Choose...</option>';
                         if ($country == 'US') {
-                            echo '<option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="District Of Columbia">District Of Columbia</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option>
-                            <option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option>';
+                            echo '<option value="AL">AL</option><option value="AK">AK</option><option value="AR">AR</option><option value="AZ">AZ</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DC">DC</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="IA">IA</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="MA">MA</option><option value="MD">MD</option><option value="ME">ME</option><option value="MI">MI</option><option value="MN">MN</option><option value="MO">MO</option>	<option value="MS">MS</option><option value="MT">MT</option><option value="NC">NC</option><option value="NE">NE</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NV">NV</option><option value="NY">NY</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WI">WI</option>	<option value="WV">WV</option><option value="WY">WY</option>';
                         }
                         else if ($country == 'CA') {
-                            echo '<option value="Alberta">Alberta</option><option value="British Columbia">British Columbia</option><option value="Manitoba">Manitoba</option><option value="New Brunswick">New Brunswick</option><option value="Newfoundland and Labrador">Newfoundland and Labrador</option><option value="Nova Scotia">Nova Scotia</option><option value="Ontario">Ontario</option><option value="Prince Edward Island">Prince Edward Island</option><option value="Quebec">Quebec</option><option value="Saskatchewan">Saskatchewan</option><option value="Northwest Territorie">Northwest Territories</option><option value="Nunavut">Nunavut</option><option value="Yukon">Yukon</option>';
+                            echo '<option value="AB">AB</option><option value="BC">BC</option><option value="MB">MB</option><option value="NB">NB</option><option value="NL">NL</option><option value="NS">NS</option><option value="ON">ON</option><option value="PE">PE</option><option value="QC">QC</option><option value="SK">SK</option><option value="NT">NT</option><option value="NU">NU</option><option value="YT">YT</option>';
                         }
                     ?>
                     </select>
@@ -118,12 +140,12 @@
                     <input type="text" class="form-control" id="inputCountry" disabled>
                     <?php
                         if($country == 'US') {
-                            echo '<label for="inputSSN">Last 4 digits of SSN</label><span id="popoverSSN"><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="We are required to gather this information to identify you. However, you do not have to provide this information until we notify you. Failure to provide this information could prevent you from transfering funds to your bank account."></i></span>
-                            <input type="text" style="width: 65px;" class="form-control col-md-2" id="inputSSN" maxlength="4" placeholder="XXXX">';
+                            echo '<label for="inputSSN">Last 4 digits of SSN</label><span id="popoverSSN"><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="We are required to gather this information by Stripe, Inc. This information will help us detect frauds. Failure to provide this information could prevent you from transfering funds to your bank account. Know that Stripe, Inc. processes the payments on our platform and cannot share this information."></i></span>
+                            <input type="text" style="width: 65px;" class="form-control col-md-2" id="inputSocial" maxlength="4" placeholder="XXXX">';
                         }
                         else if($country == 'CA') {
-                            echo '<label for="inputSIN">SIN (Tax ID)</label><span id="popoverSIN"><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="We are required to gather this information to identify you. However, you do not have to provide this information until we notify you. Failure to provide this information could prevent you from transfering funds to your bank account."></i></span>
-                            <input type="text"  class="form-control col-md-4" id="inputSIN" maxlength="12" placeholder="123 123 123 123">';
+                            echo '<label for="inputSIN">SIN (Tax ID)</label><span id="popoverSIN"><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="We are required to gather this information by Stripe, Inc. This information will help us detect frauds. Failure to provide this information could prevent you from transfering funds to your bank account. Know that Stripe, Inc. processes the payments on our platform and cannot share this information."></i></span>
+                            <input type="text"  class="form-control col-md-4" id="inputSocial" maxlength="12" placeholder="123 123 123 123">';
                         }
                     ?>
                 </div>
@@ -139,25 +161,15 @@
                 </div>
                 
                 <input type="hidden" name="token" id="token_PI">
-                <button type="submit" class="btn btn-primary">Update Personal Information</button>
+                <button class="btn btn-primary">Update Personal Information</button>
                 <br>
                 <br>
             </form>
 
             <form class="payment_information" method="POST">
                 <!------- PAYMENT OPTIONS ------->
-                <div class="form-group" id="paymentOption">
-                    <strong>Payment Information</strong>
-                    <br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentOption" id="card_radio" value="C">
-                        <label class="form-check-label" for="card_radio">Card</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="paymentOption" id="bank_radio" value="B">
-                        <label class="form-check-label" for="bank_radio">Bank</label>
-                    </div>
-                </div>
+                <strong>Payment Information</strong>
+                <br>
 
                 <!------- CC INFORMATION ------->
                 <div id="CC_Info">
@@ -170,62 +182,21 @@
                     <i class="fab fa-cc-diners-club fa-2x" title="Diners Club"></i>
 
                     <div class="form-group">
-                        <label for="inputAddress">Card #</label>
-                        <input type="tel" class="form-control" id="inputCard" maxlength="16" placeholder="1234 1234 1234 1234">
+                        <label for="card-element">
+                        Credit or Debit
+                        </label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="When storing your card details, we send over a request to the issuing bank for either a $0 or a $1 authorization to verify that the card is issued and the bank will allow it to be authorized."></i></span>
+                        <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                        </div>
+
                         <!-- Used to display form errors. -->
                         <div id="card-errors" role="alert"></div>
                     </div>
-                    <p>Expiration Date</p>
-                    <div class="form-row" id="CC_">
-                        <div class="col-md-2 md-2">
-                            <input type="text" class="form-control" id="expMonth" maxlength="2" placeholder="03">
-                        </div>
-                        <div class="col-md-3 md-3">
-                            <input type="text" class="form-control" id="expYear" maxlength="4" placeholder="2018">
-                        </div>
-                        <div class="col-md-3 md-3">
-                            <input type="text" class="form-control" id="inputCVC" maxlength="3" placeholder="CVC">
-                        </div>
-                    </div>
                 </div>
-
-                <?php 
-                    $class = 'img-fluid';
-                    $src = 'img/check.jpg';
-                    $src2 = 'img/check.gif';
-                    echo '<!------- BANK INFORMATION ------->';
-                    if ($country == 'US') {
-                        echo '<br>
-                        <!-- US BANK INFO -->
-                        <div class="form-group" id="Bank">
-                            <p>This information is normally found on a check provided by your bank.</p>
-                            <label for="inputUSRouting">Routing Number</label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src.'/>"></i></span>
-                            <input type="text" class="form-control col-md-6" maxlength="9" id="inputRouting" placeholder="111000000">
-                            <label for="inputUSAccount" style="margin-top: 5px;">Account Number</label><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="right" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src.'/>"></i></span>
-                            <input type="text" class="form-control col-md-6" id="inputAccount">
-                            <label for="inputConfUSAccount" style="margin-top: 5px;">Confirm Account Number</label>
-                            <input type="text" class="form-control col-md-6" id="inputConfAccount">
-                        </div>';
-                    }
-                    else if ($country == 'CA') {
-                        echo '<br>
-                        <!-- CA BANK INFO -->
-                        <div class="form-group" id="Bank">
-                            <p>This information is normally found on a check provided by your bank.</p>
-                            <label for="inputTransitNumber">Transit Number</label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src2.'/>"></i></span>
-                            <input type="text" class="form-control col-md-6" maxlength="5" id="inputTransitNumber" placeholder="12345">
-                            <label for="inputInstitution">Institution Number</label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src2.'/>"></i></span>
-                            <input type="text" class="form-control col-md-6" maxlength="3" id="inputInstitution" placeholder="123">
-                            <label for="inputCAAccount" style="margin-top: 5px;">Account Number</label><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="right" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src2.'/>"></i></span>
-                            <input type="text" class="form-control col-md-6" id="inputAccount">
-                            <label for="inputConfCAAccount" style="margin-top: 5px;">Confirm Account Number</label>
-                            <input type="text" class="form-control col-md-6" id="inputConfAccount">
-                        </div>';
-                    }
-                ?>
                 
                 <input type="hidden" name="token" id="token_PaymentInfo">
-                <button type="submit" class="btn btn-primary">Update Payment Information</button>
+                <button class="btn btn-primary" id="payment_submit">Update Payment Information</button>
+                <p class="error_payment" style="color: #cc0000;"></p>
                 <br>
                 <br>
             </form>
@@ -234,17 +205,13 @@
                 <!------- PAYOUT OPTIONS ------->
                 <strong>Payout Information</strong>
                     <br>
-                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="cc" id="payout_checkbox">
-                    <label class="form-check-label" for="payout_checkbox">Uncheck if your payout information is different from your payment information.</label>
-                </div>
                 <div class="form-group" id="payoutOption">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="payoutOption" id="card_payout_radio" value="C">
-                        <label class="form-check-label" for="card_payout_radio">Card</label>
+                        <input class="form-check-input" type="radio" name="payoutOption" id="card_payout_radio" value="card">
+                        <label class="form-check-label" for="card_payout_radio">U.S. Visa or Mastercard Debit Only</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="payoutOption" id="bank_payout_radio" value="B">
+                        <input class="form-check-input" type="radio" name="payoutOption" id="bank_payout_radio" value="bank">
                         <label class="form-check-label" for="bank_payout_radio">Bank</label>
                     </div>
                 </div>
@@ -260,36 +227,28 @@
                     <i class="fab fa-cc-diners-club fa-2x" title="Diners Club"></i>
 
                     <div class="form-group">
-                        <label for="inputAddress">Card #</label>
-                        <input type="tel" class="form-control" id="inputPayCard" maxlength="16" placeholder="1234 1234 1234 1234">
+                        <label for="card-element-payout">
+                        Credit or Debit
+                        </label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="When storing your card details, we send over a request to the issuing bank for either a $0 or a $1 authorization to verify that the card is issued and the bank will allow it to be authorized."></i></span>
+                        <div id="card-element-payout">
+                        <!-- A Stripe Element will be inserted here. -->
+                        </div>
+
                         <!-- Used to display form errors. -->
-                        <div id="card-errors" role="alert"></div>
-                    </div>
-                    <p>Expiration Date</p>
-                    <div class="form-row" id="CC_">
-                        <div class="col-md-2 md-2">
-                            <input type="text" class="form-control" id="expPayMonth" maxlength="2" placeholder="03">
-                        </div>
-                        <div class="col-md-3 md-3">
-                            <input type="text" class="form-control" id="expPayYear" maxlength="4" placeholder="2018">
-                        </div>
-                        <div class="col-md-3 md-3">
-                            <input type="text" class="form-control" id="inputPayCVC" maxlength="3" placeholder="CVC">
-                        </div>
+                        <div id="card-errors-payout" role="alert"></div>
                     </div>
                 </div>
 
                 <?php 
                     $country = $_SESSION['country'];
                     $class = 'img-fluid';
-                    $src = 'img/check.jpg';
-                    $src2 = 'img/check.gif';
+                    $src = "'".'img/check.jpg'."'";
+                    $src2 = "'".'img/check.gif'."'";
                     echo '<!------- PAYMENT BANK INFORMATION ------->';
                     if ($country == 'US') {
                         echo '<br>
                         <!-- US BANK INFO -->
                         <div class="form-group" id="payBank">
-                            <p>This information is normally found on a check provided by your bank.</p>
                             <label for="inputUSRouting">Routing Number</label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src.'/>"></i></span>
                             <input type="text" class="form-control col-md-6" maxlength="9" id="inputPayRouting" placeholder="111000000">
                             <label for="inputUSAccount" style="margin-top: 5px;">Account Number</label><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="right" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src.'/>"></i></span>
@@ -302,7 +261,6 @@
                         echo '<br>
                         <!-- CA BANK INFO -->
                         <div class="form-group" id="payBank">
-                            <p>This information is normally found on a check provided by your bank.</p>
                             <label for="inputTransitNumber">Transit Number</label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src2.'/>"></i></span>
                             <input type="text" class="form-control col-md-6" maxlength="5" id="inputPayTransitNumber" placeholder="12345">
                             <label for="inputInstitution">Institution Number</label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="<img class='.$class.' src='.$src2.'/>"></i></span>
@@ -315,9 +273,9 @@
                     }
                 ?>
                 
-                <input type="hidden" name="token" id="token_PayoutInfo">
                 <!-- SUBMIT BUTTON -->
-                <button type="submit" class="btn btn-primary">Update Payout Information</button>
+                <button class="btn btn-primary" id="payout_submit">Update Payout Information</button>
+                <p class="payout_error" style="color: #cc0000"></p>
             </form>
         </div>
 
