@@ -1,6 +1,7 @@
 const stripe = Stripe('pk_test_CVpEzpXzTZ97XvjAR1suM1m6');
 
 $(document).ready(function() {
+    updateInfo();
     $('#Bank').css('display', 'none');
 
     $('#CC_PayInfo').css('display', 'none');
@@ -331,7 +332,9 @@ async function handlePersonalInfo(country, address, first_name, last_name) {
                     postal_code: document.querySelector('#inputZip').value
                 },
                 type: document.querySelector('input[name=entity]:checked').value,
-                ssn_last_4: document.querySelector('#inputSocial').value
+                ssn_last_4: document.querySelector('#inputSocial').value,
+                business_name: document.querySelector('#inputBusinessName').value,
+                business_tax_id: document.querySelector('#inputBusinessNumber').value
             }
         });
 
@@ -347,7 +350,7 @@ async function handlePersonalInfo(country, address, first_name, last_name) {
                     }
                     else {
                         console.log('Perfect');
-                        location.reload(true);
+                        updateInfo();
                     }
                 },
                 error: function() {
@@ -376,7 +379,9 @@ async function handlePersonalInfo(country, address, first_name, last_name) {
                     postal_code: document.querySelector('#inputZip').value
                 },
                 type: document.querySelector('input[name=entity]:checked').value,
-                personal_id_number: document.querySelector('#inputSocial').value
+                personal_id_number: document.querySelector('#inputSocial').value,
+                business_name: document.querySelector('#inputBusinessName').value,
+                business_tax_id: document.querySelector('#inputBusinessNumber').value
             }
         });
 
@@ -387,7 +392,7 @@ async function handlePersonalInfo(country, address, first_name, last_name) {
             $.ajax({
                 url: 'inc/account_settings/personalInfo.php',
                 type: 'POST',
-                data: {token: result.token.id},
+                data: {token: result.token.id, first_name: first_name, last_name: last_name, address: address},
                 success: function(data) {
                     if(data != "") {
                         $('#personal_info_errors').html(data);
@@ -395,6 +400,7 @@ async function handlePersonalInfo(country, address, first_name, last_name) {
                     }
                     else {
                         console.log('Perfect');
+                        updateInfo();
                     }
                 },
                 error: function() {
@@ -420,6 +426,7 @@ function handleCC(token) {
             if (data == "") {
                 $('#payment_submit').html('UPDATED');
                 setTimeout(function(){ $('#payment_submit').html('Update Payment Information'); }, 3000);
+                updateInfo();
             }
             else {
                 $('#payment_submit').html('ERROR');
@@ -442,6 +449,7 @@ function handlePayoutInfo(token) {
             if (data == "") {
                 $('#payout_submit').html('UPDATED');
                 setTimeout(function(){ $('#payout_submit').html('Update Payout Information'); }, 3000);
+                updateInfo();
             }
             else {
                 $('#payout_submit').html('ERROR');
@@ -451,6 +459,52 @@ function handlePayoutInfo(token) {
         },
         error: function(data) {
             $(".error_payout").html('Cannot update your payout information now. Try Later.');
+        }
+    });
+}
+
+function updateInfo() {
+    $(".load").fadeIn();
+    $(".load_main").show();
+    $.ajax({
+        url: 'inc/account_settings/updateAccSettings.php',
+        type: 'POST',
+        success: function(data) {
+            console.log(data);
+            if(data === "ERROR") {
+                $('.load_content').html('Could not load your information. Please try reloading the page.');
+            }
+            else {
+                let jsonObject = JSON.parse(data);
+                $(".load").fadeOut();
+                $(".load_main").fadeOut();
+                var entity = jsonObject[0]['entity'];
+                if(entity === 'individual') {
+                    $('#'+entity).prop('checked', true);
+                }
+                else if(entity === 'business') {
+                    $('#inputBusinessName').attr('disabled', false);
+                    $('#inputBusinessNumber').val('disabled', false);
+                    $('#inputBusinessName').val(jsonObject[0]['businessName']);
+                    $('#inputBusinessNumber').val(jsonObject[0]['businessNumber']);
+                    $(entity).prop('checked', true);
+                }
+                $('#inputFirstName').val(jsonObject[0]['firstName']);
+                $('#inputLastName').val(jsonObject[0]['lastName']);
+                $('#inputMonth').val(jsonObject[0]['month']);
+                $('#inputDay').val(jsonObject[0]['day']);
+                $('#inputYear').val(jsonObject[0]['year']);
+                $('#inputAddress').val(jsonObject[0]['street']);
+                $('#inputCity').val(jsonObject[0]['city']);
+                $('#inputState option[value="'+jsonObject[0]['state']+'"]').attr("selected", true);
+                $('#inputZip').val(jsonObject[0]['zip']);
+                if(jsonObject[0]['social'] != false) $('#inputSocial').val(jsonObject[0]['social']);
+                if(jsonObject[0]['payout_brand'] != "") $('.current_payout_option').html('<small>Current payout option:</small><i class="fas fa-piggy-bank" style="color: #aa0000; margin-left: 5px;"></i><span id="currentPayoutOp" style="margin-left: 5px;"><strong>'+jsonObject[0]['payout_brand']+' ending in <span style="color: #aa0000">'+jsonObject[0]['payout_last4']+'</span>.</strong></span>');
+                if(jsonObject[0]['card_brand'] != "") $('.current_payment_option').html('<small>Current payment option:</small><i class="fas fa-credit-card" style="color: #aa0000; margin-left: 5px;"></i><span id="currentPayoutOp" style="margin-left: 5px;"><strong>'+jsonObject[0]['card_brand']+' ending in <span style="color: #aa0000">'+jsonObject[0]['card_last4']+'</span>.</strong></span>');
+            }
+        },
+        error: function(data) {
+
         }
     });
 }

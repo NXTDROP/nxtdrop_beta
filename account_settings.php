@@ -56,7 +56,7 @@
         <div class="form_container">
             <form class="personal_information" action="" method="POST">
                 <!------- INDIVIDUAL OR BUSINESS ------->
-                <strong>Personal Information</strong>
+                <strong style="font-size: 25px;">Personal Information</strong>
                 <small>Make sure the information you provide is accurate.</small>
                 <br>
                 <div id="personal_info">
@@ -110,7 +110,7 @@
                     <?php
                         echo '<option value="" selected>Choose...</option>';
                         if ($country == 'US') {
-                            echo '<option value="AL">AL</option><option value="AK">AK</option><option value="AR">AR</option><option value="AZ">AZ</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DC">DC</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="IA">IA</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="MA">MA</option><option value="MD">MD</option><option value="ME">ME</option><option value="MI">MI</option><option value="MN">MN</option><option value="MO">MO</option>	<option value="MS">MS</option><option value="MT">MT</option><option value="NC">NC</option><option value="NE">NE</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NV">NV</option><option value="NY">NY</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WI">WI</option>	<option value="WV">WV</option><option value="WY">WY</option>';
+                            echo '<option value="AL">AL</option><option value="AK">AK</option><option value="AR">AR</option><option value="AZ">AZ</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DC">DC</option><option value="DE">DE</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="IA">IA</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="MA">MA</option><option value="MD">MD</option><option value="ME">ME</option><option value="MI">MI</option><option value="MN">MN</option><option value="MO">MO</option>	<option value="MS">MS</option><option value="MT">MT</option><option value="NC">NC</option><option value="NE">NE</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NV">NV</option><option value="NY">NY</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WI">WI</option><option value="WV">WV</option><option value="WY">WY</option>';
                         }
                         else if ($country == 'CA') {
                             echo '<option value="AB">AB</option><option value="BC">BC</option><option value="MB">MB</option><option value="NB">NB</option><option value="NL">NL</option><option value="NS">NS</option><option value="ON">ON</option><option value="PE">PE</option><option value="QC">QC</option><option value="SK">SK</option><option value="NT">NT</option><option value="NU">NU</option><option value="YT">YT</option>';
@@ -153,10 +153,10 @@
                 <!------- BUSINESS INFORMATION ------->
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="inputBusinessName" placeholder="Business Name" disabled>
+                    <input type="text" class="form-control" id="inputBusinessName" placeholder="Business Name" disabled required>
                     </div>
                     <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="inputBusinessNumber" placeholder="Business Number (Tax ID)" disabled>
+                    <input type="text" class="form-control" id="inputBusinessNumber" placeholder="Business Number (Tax ID)" disabled required>
                     </div>
                 </div>
                 
@@ -168,7 +168,7 @@
 
             <form class="payment_information" method="POST">
                 <!------- PAYMENT OPTIONS ------->
-                <strong>Payment Information</strong>
+                <strong style="font-size: 25px;">Buyer Information</strong>
                 <br>
 
                 <!------- CC INFORMATION ------->
@@ -180,6 +180,11 @@
                     <i class="fab fa-cc-jcb fa-2x" title="JCB"></i>
                     <i class="fab fa-cc-discover fa-2x" title="Discover"></i>
                     <i class="fab fa-cc-diners-club fa-2x" title="Diners Club"></i>
+                    
+                    <div class="current_payment_option">
+                    <small>Current payment option:</small>
+                    <strong>NONE</strong>
+                    </div>
 
                     <div class="form-group">
                         <label for="card-element">
@@ -203,7 +208,7 @@
 
             <form class="payout_information" method="POST">
                 <!------- PAYOUT OPTIONS ------->
-                <strong>Payout Information</strong>
+                <strong style="font-size: 25px;">Seller Information</strong>
                     <br>
                 <div class="form-group" id="payoutOption">
                     <div class="form-check form-check-inline">
@@ -214,6 +219,11 @@
                         <input class="form-check-input" type="radio" name="payoutOption" id="bank_payout_radio" value="bank">
                         <label class="form-check-label" for="bank_payout_radio">Bank</label>
                     </div>
+                </div>
+
+                <div class="current_payout_option">
+                    <small>Current payout option:</small>
+                    <strong>NONE</strong>
                 </div>
 
                 <!------- CC INFORMATION ------->
@@ -282,5 +292,6 @@
         <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/search_pop.php') ?>
         <?php include('inc/buyer_transaction_confirmation.php') ?>
+        <?php include('inc/account_settings/loadingInfo.php') ?>
     </body>
 </html>

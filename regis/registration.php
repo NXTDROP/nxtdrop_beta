@@ -66,9 +66,15 @@
                         "ip" => $_SERVER['REMOTE_ADDR']
                     )
                 ));
+
+                $cus = \Stripe\Customer::create(array(
+                    "email" => "$email",
+                ));
+
+                $cus_id = $cus->id;
                 $account_id = $acct->id;
                 
-                $query = "UPDATE users SET stripe_id = '$account_id' WHERE uid = '$uid';";
+                $query = "UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';";
                 mysqli_query($conn, $query);
             }
             else {

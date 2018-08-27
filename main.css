@@ -7121,4 +7121,8 @@ ul li h2 {
     border: 1px solid #878787;
 }
 
+.current_payment_option {
+    margin: 10px 0;
+}
+
 /******************************************* ACCOUNT SETTINGS END *****************************************************/
