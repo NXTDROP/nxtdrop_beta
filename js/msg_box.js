@@ -46,6 +46,7 @@ function previewBeforeSend (input) {
 }
 
 function send() {
+    console.log('sent');
     var msg = $('.msg_input').val();
     var to = $('#u_tofrom').text();
     var file_data = $('.inputfiles').prop('files')[0];

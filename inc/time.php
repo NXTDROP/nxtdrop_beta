@@ -1,13 +1,6 @@
 <?php    
     function getPostTime($data) {
         date_default_timezone_set("UTC");
-
-        /*$json = file_get_contents("https://api.ipify.org/?format=json");
-        $json_data = json_decode($json, true);
-        $ip = $json_data['ip'];
-        $url = "http://ip-api.com/json/".$ip;
-        $json = file_get_contents($url);
-        $json_data = json_decode($json, true);*/
         $date = new DateTime();
         $date->setTimeZone(new DateTimeZone('America/New_York')); //$json_data['timezone'])
         $date2 = new DateTime($data);

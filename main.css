@@ -5645,7 +5645,9 @@ textarea {
 }
 
 .msg_a_img {
-    margin-left: 77%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 75%;
     width: 25%;
     position: relative; 
     word-break: break-all;
@@ -5667,6 +5669,8 @@ textarea {
 }
 
 .msg_b_img {
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 25%;
     position: relative; 
     word-break: break-all;
@@ -5689,7 +5693,7 @@ textarea {
 }
 
 .msg_box label {
-    margin: 3.5% 3% 0 0;
+    margin: 3% 3% 0 0;
     float: right;
 }
 
@@ -5755,6 +5759,7 @@ ul li h2 {
     width: 25%;
     height: 2em;
     float: left;
+    margin-top: 10px;
     margin-left: 1.5%;
     background-color: #e53232;
     border: 1px;
@@ -5773,6 +5778,7 @@ ul li h2 {
     width: 25%;
     height: 2em;
     float: right;
+    margin-top: 10px;
     margin-right: 1.5%;
     background-color: #e53232;
     border: 1px;
@@ -5961,7 +5967,7 @@ ul li h2 {
 .inputfiles + label {
     font-size: 1.70em;
     font-weight: 700;
-    color: white;
+    color: #000;
     display: inline-block;
     margin-left: 1.5%;
     margin-top: 30px;

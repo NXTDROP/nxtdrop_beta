@@ -25,9 +25,9 @@
 
     <body>
         <?php include('inc/navbar/navbar.php'); ?>
-        <?php include('inc/message-body.php'); ?>
-        <?php include('inc/new-msg.php'); ?>
+        <?php include('inc/inbox/message-body.php'); ?>
+        <?php include('inc/inbox/new-msg.php'); ?>
         <?php include('inc/drop/new-drop-pop.php'); ?>
-        <?php include('inc/image_preview.php'); ?>
+        <?php include('inc/inbox/image_preview.php'); ?>
     </body>
 </html>

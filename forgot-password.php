@@ -23,10 +23,10 @@
         
         <div class="container">
             <form action="" method="POST" class="reset-form" id="econfirmation">
-                <input type="text" name="email" placeholder="Enter E-Mail" required></br>
+                <input type="text" name="email" placeholder="Enter E-Mail" required><br>
                 <button type="submit" name="submit" id="submit">Send Reset E-mail</button>
             </form>
-            </br></br>
+            <br><br>
             <a href="login_signup"><p>Cancel</p></a>
             <div> <?php include('pwd.rec/error.php'); ?> </div>
         </div>

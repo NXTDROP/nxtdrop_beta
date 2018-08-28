@@ -7,7 +7,7 @@
         $r = mysqli_fetch_assoc($result);
         $u_id = $r['uid'];
 
-        $sql = "SELECT * FROM transactions WHERE seller_ID = '$u_id' OR buyer_ID = '$u_id'";
+        $sql = "SELECT * FROM transactions WHERE user_ID = '$u_id' OR target_ID = '$u_id'";
         $result = $conn->query($sql);
 
         if (mysqli_num_rows($result) < 1) {
@@ -15,9 +15,9 @@
         }
         else {
             while ($row = mysqli_fetch_assoc($result)) {
-                if ($row['seller_ID'] == $u_id) {
-                    $num_stars = $row['buyer_rating'];
-                    echo '<div class="review_content"><p><b>"</b>'.$row['buyer_comment'].'<b>"</b></p>';
+                if ($row['user_ID'] == $u_id) {
+                    $num_stars = $row['target_rating'];
+                    echo '<div class="review_content"><p><b>"</b>'.$row['target_comment'].'<b>"</b></p>';
                     echo '<ul class="rating_stars">';
                     for ($i = 1; $i <= 5; $i++) {
                         if ($i <= $num_stars) {
@@ -30,8 +30,8 @@
                     echo '</ul></div>';
                 }
                 else {
-                    $num_stars = $row['seller_rating'];
-                    echo '<div class="review_content"><p><b>"</b>'.$row['seller_comment'].'<b>"</b></p>';
+                    $num_stars = $row['target_rating'];
+                    echo '<div class="review_content"><p><b>"</b>'.$row['user_comment'].'<b>"</b></p>';
                     echo '<ul class="rating_stars">';
                     for ($i = 1; $i <= 5; $i++) {
                         if ($i <= $num_stars) {

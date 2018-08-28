@@ -83,13 +83,13 @@
         });
     </script>
 <?php
-
-    $sql = "SELECT uid FROM users WHERE username = '".$_GET['u']."';";
+    $u = $_GET['u'];
+    $sql = "SELECT uid FROM users WHERE username = '$u';";
     $result = mysqli_query($conn, $sql);
     $r = mysqli_fetch_assoc($result);
     $u_id = $r['uid'];
 
-    $sql = "SELECT status FROM profile WHERE uid=$u_id;";
+    $sql = "SELECT status FROM profile WHERE uid='$u_id';";
     $result = mysqli_query($conn, $sql);
     $r = mysqli_fetch_assoc($result);
     $status = $r['status'];
@@ -97,7 +97,7 @@
     
     echo '<div class="profile-img-profile"><img id="myprofile" style="height: 100%; width: 100%; object-fit: cover; z-index: 0;" src="'.$status.'"></div>';
 
-    $sql = "SELECT * FROM profile, users WHERE profile.uid=$u_id AND users.username='".$_GET['u']."';";
+    $sql = "SELECT * FROM profile, users WHERE profile.uid='$u_id' AND users.username='$u';";
     $result = mysqli_query($conn, $sql);
     if ($row = mysqli_fetch_assoc($result)) {
         echo '<span id="username">'.$row['username'].'</span>';
@@ -125,7 +125,7 @@
         $num_followers = $conn->query("SELECT * FROM following WHERE follower_id='$u_id'")->num_rows;
         $seller_query = $conn->query("SELECT * FROM transactions WHERE user_ID = '$u_id'");
         $buyer_query = $conn->query("SELECT * FROM transactions WHERE target_ID = '$u_id'");
-        $num_rating = $seller_query->num_rows + $buyer_query->num_rows;
+        $num_rating = mysqli_num_rows($seller_query) + mysqli_num_rows($buyer_query);
         $seller_result = mysqli_fetch_assoc($seller_query);
         $buyer_result = mysqli_fetch_assoc($buyer_query);
         $rating_agg = $seller_result['target_rating'] + $buyer_result['user_rating'];

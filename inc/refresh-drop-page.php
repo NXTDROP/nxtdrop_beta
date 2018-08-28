@@ -111,6 +111,7 @@
                 <hr />';
                 if (isset($_SESSION['uid'])) {
                     if ($_SESSION['uid'] == $row['uid']) {
+                        $pid = $row['pid'];
                         echo '
                         <div class="post_form_bottom">
                         <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">

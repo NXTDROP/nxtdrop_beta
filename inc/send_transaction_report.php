@@ -28,7 +28,7 @@
                 echo 'You must select a user!';
             }
             else {
-                if (!mysqli_query($conn, "INSERT INTO transactions (user_ID, target_ID, price, user_ID, post_ID, user_rating, report_date, post_type) VALUES ('$user_id', '$target_id', '$price', '$user_comment', '$post_id', '$user_rating', '$date', '$post_type')")) {
+                if (!mysqli_query($conn, "INSERT INTO transactions (user_ID, target_ID, price, user_comment, post_ID, user_rating, report_date, post_type) VALUES ('$user_id', '$target_id', '$price', '$user_comment', '$post_id', '$user_rating', '$date', '$post_type')")) {
                     echo 'Error. Try Later!';
                 }
                 else {

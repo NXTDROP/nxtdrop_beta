@@ -1,6 +1,4 @@
 <?php
-    include '../dbh.php';
-
     $confEmailError = false;
     $activate = false;
 

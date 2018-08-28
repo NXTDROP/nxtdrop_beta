@@ -7,7 +7,7 @@
         $num_post = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;"));
     }
     else {
-        header("Location: welcome_home.php");
+        header("Location: welcome");
         exit();
     }
 ?>

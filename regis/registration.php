@@ -1,8 +1,8 @@
 <?php
 
     include '../dbh.php';
-    require_once('../vendor/autoload.php');
-    \Stripe\Stripe::setApiKey("sk_test_zFMuyMBC60raTKDdLGzR4wdb");
+    /*require_once('../vendor/autoload.php');
+    \Stripe\Stripe::setApiKey("sk_test_zFMuyMBC60raTKDdLGzR4wdb");*/
     date_default_timezone_set("UTC"); 
     $date = date("Y-m-d H:i:s", time());
 
@@ -47,7 +47,7 @@
                 $uid = $row['uid'];
                 $q = "INSERT INTO profile (uid) VALUES ('$uid');";
                 mysqli_query($conn, $q);
-                include '../welcome.php';
+                /*include '../welcome.php';
                 
                 session_start();
                 $_SESSION['uid'] = $uid;
@@ -75,7 +75,7 @@
                 $account_id = $acct->id;
                 
                 $query = "UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';";
-                mysqli_query($conn, $query);
+                mysqli_query($conn, $query);*/
             }
             else {
                 echo "Error. Try Later!";
