@@ -4483,6 +4483,28 @@ hr{
     cursor: pointer;
 }
 
+.buy_now {
+    float: left;
+}
+
+.buy_now button {
+    color: #aa0000;
+    border: 1px solid #aa0000;
+    font-size: 11px;
+    padding: 5px;
+    border-radius: 3px;
+    -webkit-transition: background-color 0.25s ease-out;
+    -moz-transition: background-color 0.25s ease-out;
+    -o-transition: background-color 0.25s ease-out;
+    transition: background-color 0.25s ease-out;
+}
+
+.buy_now button:hover {
+    color: #fff;
+    background: #aa0000;
+    cursor: pointer;
+}
+
 input{
     width: 100%;
     border: 0px solid #fff
@@ -7081,7 +7103,7 @@ ul li h2 {
     -webkit-transition: background-color 0.2s ease-out;
     -moz-transition: background-color 0.2s ease-out;
     -o-transition: background-color 0.2s ease-out;
-    transition: background-color 0.2s ease-out
+    transition: background-color 0.2s ease-out;
 }
 
 #load_transactions:hover {
@@ -7132,3 +7154,154 @@ ul li h2 {
 }
 
 /******************************************* ACCOUNT SETTINGS END *****************************************************/
+
+/******************************************* CHECKOUT *********************************************************/
+
+.checkout {
+    background: #fcfcfc;
+    padding: 15px;
+}
+
+.checkout h1 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    color: tomato;
+}
+
+.checkout h3 {
+    font-weight: 700;
+    font-size: 18px;
+    color: tomato;
+}
+
+.checkout strong {
+    font-size: 14px;
+}
+
+.checkout-item {
+    margin: 15px auto;
+}
+
+.checkout-item img {
+    width: 15%;
+}
+
+.checkout-item span {
+    font-size: 14px;
+    margin: 0 100px 0 35px;
+    font-weight: 700;
+}
+
+#item_price {
+    float: right;
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: 700;
+    color: tomato;
+}
+
+.checkout-buyer-info {
+    margin: 15px auto;
+}
+
+.checkout-buyer-info input {
+    width: 40%;
+    margin: 10px 10px 10px 0;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    padding: 8px;
+}
+
+.checkout-buyer-info input:focus {
+    border-color: tomato;
+}
+
+.checkout-buyer-info h4 {
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.checkout-buyer-info select {
+    padding: 8px;
+    border-radius: 3px;
+    margin-right: 10px;
+    border: 1px solid #cccccc;
+}
+
+.checkout-buyer-info select:focus {
+    border-color: tomato;
+}
+
+#same_address {
+    width: 15px;
+}
+
+#postalCode {
+    width: 10%;
+}
+
+.checkout-summary {
+    margin: 15px auto;
+}
+
+#shipping-cost {
+    float: right;
+    color: tomato;
+}
+
+#item-cost {
+    float: right;
+    color: tomato;
+}
+
+#total-order {
+    float: right;
+    color: #85bb65;
+}
+
+.checkout-pay {
+    padding: 5px;
+    width: 50%;
+    margin: 5px 25%;
+    background: #aa0000;
+    border: 1px solid #aa0000;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+}
+
+.checkout-pay:hover {
+    background: tomato;
+    color: #fff;
+    cursor: pointer;
+    border-color: tomato;
+}
+
+.checkout-cancel {
+    padding: 5px;
+    background: none;
+    width: 50%;
+    margin: 5px 25%;
+    border: 1px solid #aa0000;
+    font-size: 18px;
+    font-weight: 700;
+    color: #aa0000;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
+}
+
+.checkout-cancel:hover {
+    background: #aa0000;
+    color: #fff;
+    cursor: pointer;
+}
+
+/******************************************* CHECKOUT END *****************************************************/

@@ -58,6 +58,7 @@ $(document).ready(function() {
     /*************** Personal Information Handling ***************************************/
     $('.personal_information').submit(function(e) {
         e.preventDefault();
+        $('#update_personalInfo').html('<i class="fas fa-circle-notch fa-spin"></i>');
 
         var first_name = document.querySelector('#inputFirstName').value;
         var last_name = document.querySelector('#inputLastName').value;
@@ -106,7 +107,7 @@ $(document).ready(function() {
                                 $('#personal_info_errors').html('You are not of legal age to use our platform.');
                             }
                             else {
-                                if(entity != 'individual' && entity != 'business') {
+                                if(entity != 'individual' && entity != 'company') {
                                     $('#personal_info_errors').html('Pick entity (Individual or Business).');
                                 }
                                 else {
@@ -350,6 +351,7 @@ async function handlePersonalInfo(country, address, first_name, last_name) {
                     }
                     else {
                         console.log('Perfect');
+                        $('#update_personalInfo').html('Update Personal Information');
                         updateInfo();
                     }
                 },
@@ -387,7 +389,6 @@ async function handlePersonalInfo(country, address, first_name, last_name) {
 
         if(result.token) {
             $('#token_PI').val(result.token.id);
-            console.log('work');
     
             $.ajax({
                 url: 'inc/account_settings/personalInfo.php',
@@ -400,6 +401,7 @@ async function handlePersonalInfo(country, address, first_name, last_name) {
                     }
                     else {
                         console.log('Perfect');
+                        $('#update_personalInfo').html('Update Personal Information');
                         updateInfo();
                     }
                 },
@@ -470,7 +472,6 @@ function updateInfo() {
         url: 'inc/account_settings/updateAccSettings.php',
         type: 'POST',
         success: function(data) {
-            console.log(data);
             if(data === "ERROR") {
                 $('.load_content').html('Could not load your information. Please try reloading the page.');
             }

@@ -1,4 +1,6 @@
 <script type="text/javascript">
+    /** Function that makes an AJAX call to follow a user
+    ** Argument: username */
     function follow(username) {
         $('#follow_'+username).css('display', 'none');
         $.ajax({
@@ -13,6 +15,12 @@
                 }
             }
         });
+    }
+
+    /** Function that redirects to Checkout page
+    ** Argument: pid: Post ID */
+    function checkout(pid) {
+        window.location.replace("checkout.php?item="+pid);
     }
 </script>
 
@@ -109,80 +117,58 @@
                 </p>
                 </div>-->
                 <hr />';
-                if (isset($_SESSION['uid'])) {
-                    if ($_SESSION['uid'] == $row['uid']) {
-                        $pid = "'".$row['pid']."'";
-                        echo '
-                        <div class="post_form_bottom">
-                        <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
-                        <div class="heart">';
-                        echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
-                        echo '</div>';
+                
+                if ($_SESSION['uid'] == $row['uid']) {
+                    $pid = "'".$row['pid']."'";
+                    echo '
+                    <div class="post_form_bottom">
+                    <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
+                    <div class="heart">';
+                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                    echo '</div>';
                     
-                        if ($row['type'] != 'request') {
-                            $type = 0;
-                            echo '<div class="sold_button">
-                        <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
-                        </div>';
-                        }
-                        else {
-                            $type = 1;
-                            echo '<div class="sold_button">
+                    if ($row['type'] != 'request') {
+                        $type = 0;
+                        echo '<div class="sold_button">
+                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
+                    </div>';
+                    }
+                    else {
+                        $type = 1;
+                        echo '<div class="sold_button">
                         <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
                         </div>';
-                        }
-
-                        echo '<div onclick="delete_('.$row['pid'].')" class="remove">
-                        <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
-                        </div>
-                        
-                        <!--<div class="add-comment">
-                        <input type="text" placeholder="Drop a comment..." />
-                        </div>-->
-                        </div>
-                        </div>
-                        
-                        </div>    
-                        </section>';
-                    } 
-                    else {
-                        $u = "'".$row['username']."'";
-                        $pid = "'".$row['pid']."'";
-                        echo '
-                        <div class="post_form_bottom">
-                        <input type="hidden" name="pid" value="'.$row['pid'].'">
-                        <div class="heart_noremove">';
-                        echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
-                        echo '</div>
-                        <div class="direct_message">
-                        <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
-                        </div>
-                        <div class="flag">
-                        <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
-                        </div>
-                    
-                        <!--<div class="add-comment">
-                        <input type="text" placeholder="Drop a comment..." />
-                        </div>-->
-                        </div>
-                        </div>
-                    
-                        </div>    
-                        </section>';
                     }
+
+                    echo '<div onclick="delete_('.$row['pid'].')" class="remove">
+                    <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
+                    </div>
+                        
+                    <!--<div class="add-comment">
+                    <input type="text" placeholder="Drop a comment..." />
+                    </div>-->
+                    </div>
+                    </div>
                     
-                }
+                    </div>    
+                    </section>';
+                } 
                 else {
+                    $u = "'".$row['username']."'";
+                    $pid = "'".$row['pid']."'";
                     echo '
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart_noremove">';
-                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" title="Likes"></i><span class="fa-layers-counter" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
                     echo '</div>
-                    <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
+                    <div class="buy_now">
+                        <button onclick="checkout('.$pid.')" title="Buy Now">BUY NOW</button>
                     </div>
-                
+                    <div class="flag">
+                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
+                    </div>
+                    
                     <!--<div class="add-comment">
                     <input type="text" placeholder="Drop a comment..." />
                     </div>-->

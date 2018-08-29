@@ -65,7 +65,7 @@
                         <label class="form-check-label" for="individual" style="font-size: 16px;">Individual</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="entity" id="business" value="business" required>
+                        <input class="form-check-input" type="radio" name="entity" id="business" value="company" required>
                         <label class="form-check-label" for="business" style="font-size: 16px;">Business</label>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                 </div>
                 
                 <input type="hidden" name="token" id="token_PI">
-                <button class="btn btn-primary">Update Personal Information</button>
+                <button class="btn btn-primary" id="update_personalInfo">Update Personal Information</button>
                 <br>
                 <br>
             </form>

@@ -1,4 +1,11 @@
 <div id="posts-container">
+<script type="text/javascript">
+    /** Function that redirects to Checkout page
+    ** Argument: pid: Post ID */
+    function checkout(pid) {
+        window.location.replace("checkout.php?item="+pid);
+    }
+</script>
     <?php
         session_start();
         include '../dbh.php';
@@ -132,8 +139,8 @@
                     <div class="heart_noremove">';
                     echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
                     echo '</div>
-                    <div class="direct_message">
-                    <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
+                    <div class="buy_now">
+                        <button onclick="checkout('.$pid.')" title="Buy Now">BUY NOW</button>
                     </div>
                     <div class="flag">
                     <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
