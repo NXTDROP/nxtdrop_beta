@@ -29,63 +29,60 @@
                 $item_price = $row['product_price'];
                 $item_pic = $row['pic'];
                 $item_desc = $row['caption'];
+                $seller_ID = $row['uid'];
                 $query = "SELECT * FROM thebag WHERE uid = '$n_ID'";
                 $result = $conn->query($query);
                 $row = mysqli_fetch_assoc($result);
-
-                if($row['out_token'] === "") {
-                    echo "NO CARD";
+                
+                $query = "SELECT * FROM thebag WHERE uid = '$n_ID' AND stripe_id = '$s_ID'";
+                    
+                if(!$result = $conn->query($query)) {
+                    echo 'ERROR';
                 }
                 else {
-                    $query = "SELECT * FROM thebag WHERE uid = '$n_ID' AND stripe_id = '$s_ID'";
-                    
-                    if(!$result = $conn->query($query)) {
+                    $row = $result->fetch_assoc();
+                    if(!$account = \Stripe\Account::retrieve($s_ID)) {
                         echo 'ERROR';
                     }
                     else {
-                        $row = $result->fetch_assoc();
-                        if(!$account = \Stripe\Account::retrieve($s_ID)) {
+                        if(!$customer = \Stripe\Customer::retrieve($cus_ID)) {
                             echo 'ERROR';
                         }
                         else {
-                            if(!$customer = \Stripe\Customer::retrieve($cus_ID)) {
-                                echo 'ERROR';
-                            }
-                            else {
-                                $street = $account['legal_entity']['address']['line1'];
-                                $city = $account['legal_entity']['address']['city'];
-                                $state = $account['legal_entity']['address']['state'];
-                                $postalCode = $account['legal_entity']['address']['postal_code'];
-                                $country = $_SESSION['country'];
-                                $card = $customer->sources->retrieve($row['out_token']);
-                                $card_last4 = $card->last4;
-                                $card_brand = $card->brand;
+                            $street = $account['legal_entity']['address']['line1'];
+                            $city = $account['legal_entity']['address']['city'];
+                            $state = $account['legal_entity']['address']['state'];
+                            $postalCode = $account['legal_entity']['address']['postal_code'];
+                            $country = $_SESSION['country'];
+                            $card = $customer->sources->retrieve($row['out_token']);
+                            $card_last4 = $card->last4;
+                            $card_brand = $card->brand;
 
-                                $json = array();
+                            $json = array();
 
-                                $data = array(
-                                    'street' => $street,
-                                    'city' => $city,
-                                    'state' => $state,
-                                    'postalCode' => $postalCode,
-                                    'country' => $country,
-                                    'card_last4' => $card_last4,
-                                    'card_brand' => $card_brand,
-                                    'price' => $item_price,
-                                    'pic' => $item_pic,
-                                    'item' => $item_desc
-                                );
+                            $data = array(
+                                'street' => $street,
+                                'city' => $city,
+                                'state' => $state,
+                                'postalCode' => $postalCode,
+                                'country' => $country,
+                                'card_last4' => $card_last4,
+                                'card_brand' => $card_brand,
+                                'price' => $item_price,
+                                'pic' => $item_pic,
+                                'item' => $item_desc,
+                                'seller_ID' => $seller_ID
+                            );
 
-                                array_push($json, $data);
+                            array_push($json, $data);
 
-                                $jsonstring = json_encode($json);
-                                echo $jsonstring;
-                            }
+                            $jsonstring = json_encode($json);
+                            echo $jsonstring;
                         }
                     }
                 }
-            }
         }
     }
+}
 
 ?>

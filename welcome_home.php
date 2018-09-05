@@ -88,9 +88,9 @@
 
     <div id="home-carousel" class="carousel slide carousel-fade" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            <!--<div class="carousel-item active">
             <img class="d-block w-100" src="img/AdAug2018(2).png" alt="All shoes are verified authentic.">
-            </div>
+            </div>-->
         </div>
     </div>
 

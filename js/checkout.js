@@ -7,9 +7,51 @@ var country;
 var price;
 var pic;
 var item;
+var card_brand;
+var card_last4;
+var seller_ID;
+
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+var style = {
+    base: {
+        color: '#32325d',
+        lineHeight: '18px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+        color: '#aab7c4'
+        }
+    },
+    invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+    }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function(event) {
+    var displayError = document.getElementById('card-errors');
+    if (event.error) {
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = '';
+    }
+});
 
 $(document).ready(function() {
+    $(".load").fadeIn();
+    $(".load_main").show();
     getInfo();
+
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
 
     $('#country').change(function() {
         if($(this).val() == "CA") {
@@ -42,6 +84,87 @@ $(document).ready(function() {
             $('#country option[value="'+newCountry+'"]').attr("selected", true);
         }
     });
+
+    $('input').focusin(function() {
+        $(this).css('border-color', 'tomato');
+    });
+
+    $('input').focusout(function() {
+        $(this).css('border-color', '#cccccc');
+    });
+
+    $('select').focusin(function() {
+        $(this).css('border-color', 'tomato');
+    });
+
+    $('select').focusout(function() {
+        $(this).css('border-color', '#cccccc');
+    });
+
+
+    $('#card_on_file').click(function() {
+        if($('#card_on_file').prop('checked')) {
+            $('#card-element').css('display', 'none');
+        }
+        else {
+            $('#card-element').css('display', 'block');
+        }
+    });
+
+    $('.checkout-pay').click(function() {
+        var cardVerification;
+        if(!$('#card_on_file').prop('checked')) {
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                  // Inform the customer that there was an error.
+                  var errorElement = document.getElementById('card-errors');
+                  errorElement.textContent = result.error.message;
+                } else {
+                  // Send the token to your server.
+                  cardVerification = handleCC(result.token);
+                }
+            });
+        }
+        
+        var streetInput = $('#street').val();
+        var cityInput = $('#city').val();
+        var postalCodeInput = $('#postalCode').val();
+        var stateInput = $('#state').val();
+        var countryInput = $('#country').val();
+        if((isBlank(streetInput) || isEmpty(streetInput)) || (isBlank(cityInput) || isEmpty(cityInput)) || (isBlank(postalCodeInput) || isEmpty(postalCodeInput)) || (isBlank(stateInput) || isEmpty(stateInput)) || (isBlank(countryInput) || isEmpty(countryInput)))  {
+            $('input').css('border-color', 'red');
+            $('select').css('border-color', 'red');
+            alert('You forgot your shipping address?');
+            setTimeout(resetBorderColor, 10000);
+        }
+        else {
+            if(cardVerification == false) {
+                alert('Sorry, your card was rejected.');
+            }
+            else {
+                var fullAddress = streetInput + ', ' + cityInput + ', ' + stateInput + ' ' + postalCodeInput + ', ' + countryInput;
+                $.ajax({
+                    url: 'inc/checkout/placeOrder.php',
+                    type: 'POST',
+                    data: {item_ID: item_ID, shippingAddress: fullAddress},
+                    success: function(data) {
+                        if(data === 'ERROR 101') {
+                            alert('You must be logged in to purchase an item.');
+                        }
+                        else if(data === 'ERROR 102') {
+                            alert('We have a problem. Please try to purchase later.');
+                        }
+                        else {
+                            window.location.replace('orderPlaced.php?item='+data);
+                        }
+                    },
+                    error: function() {
+                        alert('Sorry, we could not place your order. Contact our support team @ support@nxtdrop.com.');
+                    }
+                });
+            }
+        }
+    });
 });
 
 function getInfo() {
@@ -51,16 +174,19 @@ function getInfo() {
         data: {item_ID: item_ID},
         success: function(data) {
             if(data === "ERROR") {
+                $(".load").fadeOut();
+                $(".load_main").fadeOut();
                 alert('Sorry, there was an error. Try again.');
             }
             else if(data === "CONNECTION") {
+                $(".load").fadeOut();
+                $(".load_main").fadeOut();
                 alert('You must be logged in to make a purchase.');
             }
             else if(data === 'ID') {
+                $(".load").fadeOut();
+                $(".load_main").fadeOut();
                 alert('This item does not exist.');
-            }
-            else if(data === 'NO CARD') {
-                alert('You have not filed a card to make a purchase.');
             }
             else {
                 console.log(data);
@@ -74,6 +200,9 @@ function getInfo() {
                 pic = jsonObject[0]['pic'];
                 item = jsonObject[0]['item'];
                 var total = price + 13.65;
+                card_brand = jsonObject[0]['card_brand'];
+                card_last4 = jsonObject[0]['card_last4'];
+                seller_ID = jsonObject[0]['seller_ID'];
 
                 $('#item-cost').html('$'+price.toFixed(2));
                 $('#item_price').html('$'+price.toFixed(2));
@@ -83,10 +212,46 @@ function getInfo() {
                 $('#item_img').attr('alt', item);
                 $('#item_img').attr('title', item);
                 $('#item_description').html(item);
+                if(card_brand != "") $('label[for="card_on_file"]').html('Pay with '+card_brand+'<i class="fas fa-credit-card" style="color: #aa0000; margin-left: 5px;"></i> ending in '+card_last4+'.');
+                else { $('#card_on_file').css('display', 'none'); $('label[for="card_on_file"]').css('display', 'none'); }
+                $(".load").fadeOut();
+                $(".load_main").fadeOut();
+            }
+        },
+        error: function() {
+            alert('Sorry, there was an error. Try again.');
+        }
+    });
+}
+
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
+}
+
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
+
+function resetBorderColor() {
+    $('input').css('border-color', '#cccccc');
+    $('select').css('border-color', '#cccccc');
+}
+
+function handleCC(token) {
+    $.ajax({
+        url: 'inc/account_settings/CCHandle.php',
+        type: 'POST',
+        data: {token: token.id},
+        success: function(data) {
+            if (data == "") {
+                return true;
+            }
+            else {
+                return false
             }
         },
         error: function(data) {
-
+            return false;
         }
     });
 }

@@ -119,12 +119,12 @@
             }
         }
         else {
-            echo '</br>';
+            echo '<br>';
         }
         $num_following = $conn->query("SELECT * FROM following WHERE user_id='$u_id'")->num_rows;
         $num_followers = $conn->query("SELECT * FROM following WHERE follower_id='$u_id'")->num_rows;
-        $seller_query = $conn->query("SELECT * FROM transactions WHERE user_ID = '$u_id'");
-        $buyer_query = $conn->query("SELECT * FROM transactions WHERE target_ID = '$u_id'");
+        /*$seller_query = $conn->query("SELECT * FROM transactions WHERE sellerID = '$u_id'");
+        $buyer_query = $conn->query("SELECT * FROM transactions WHERE buyerID = '$u_id'");
         $num_rating = mysqli_num_rows($seller_query) + mysqli_num_rows($buyer_query);
         $seller_result = mysqli_fetch_assoc($seller_query);
         $buyer_result = mysqli_fetch_assoc($buyer_query);
@@ -134,9 +134,10 @@
         }
         else {
             $user_rating = $rating_agg / $num_rating;
-        }
+        }*/
 
-        echo '<span id="followers" onclick="follow_display(0)"><b id="followers_num">'.$num_followers.'</b> Followers</span><span id="following" onclick="follow_display(1)"><b id="following_num">'.$num_following.'</b> Following</span> &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fas fa-star fa-2x" aria-hidden="true"></i></span></br>';
+        echo '<br>';
+        echo '<span id="followers" onclick="follow_display(0)"><b id="followers_num">'.$num_followers.'</b> Followers</span><span id="following" onclick="follow_display(1)"><b id="following_num">'.$num_following.'</b> Following</span><br><br>'; // &#x25FE <span><b id="rating">'.$user_rating.'</b> <i id="star-rating" class="fas fa-star fa-2x" aria-hidden="true"></i></span>
 
         echo '<span id="fullname">'.$row['name'].'</span> &#x25FE <span id="biography">'.$row['bio'].'</span>';
     }

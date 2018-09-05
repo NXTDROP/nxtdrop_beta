@@ -43,16 +43,23 @@
                     $background = '';
                 }
     
-                if ($row['notification_type'] == 'like') {
+                if($row['notification_type'] == 'like') {
                     echo '<div class="one_notif" onclick="go_to_post('.$post_id.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> liked your post. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
                 }
-                else if ($row['notification_type'] == 'follow') {
+                else if($row['notification_type'] == 'follow') {
                     $username = "'".$user_result['username']."'";
                     echo '<div class="one_notif" onclick="go_to_profile('.$username.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> is now following you. <span class="notif_time">'.$date.'</span></span></div>';
                 }
-                else if ($row['notification_type'] == 'confirmation') {
+                else if($row['notification_type'] == 'confirmation') {
                     $username = "'".$user_result['username']."'";
                     echo '<div class="one_notif" onclick="confirmation('.$user_result['uid'].', '.$_SESSION['uid'].', '.$user_result['pid'].')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> sold you an item. <span class="notif_time">'.$date.'</span></span></div>';
+                }
+                else if($row['notification_type'] == 'item sold') {
+                    $pic = "'".$user_result['pic']."'";
+                    $description = "'".$user_result['caption']."'";
+                    $product_price = "'".$user_result['product_price']."'";
+                    $buyer_id = "'".$user_result['uid']."'";
+                    echo '<div class="one_notif" onclick="order_confirmation('.$user_result['pid'].', '.$pic.', '.$description.', '.$buyer_id.')" '.$background.'><img src="https://nxtdrop.com/'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> bought your item. Click to confirm sale. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
                 }
                 else {
                     echo '<div class="one_notif" onclick="go_to_inbox()" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> made you an offer. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';

@@ -2,7 +2,7 @@ function redirectToProfile (u) {
     window.location.replace('u/'+u);
 }
 
-function sendConfirmation() {
+/*function sendConfirmation() {
     $.ajax({
         url: 'regis/signin_confirmation.php',
         type: 'POST',
@@ -15,14 +15,14 @@ function sendConfirmation() {
             }
         }
     });
-}
+}*/
 
 $(document).ready(function() {
     $("#signup").submit(function(event) {
         event.preventDefault();
         $('#submit').html('<i class="fas fa-circle-notch fa-spin"></i>');
-        $('.regis').fadeIn();
-        $('.regis_main').show();
+        //$('.regis').fadeIn();
+        //$('.regis_main').show();
         var name = $("#name").val();
         var username = $("#username").val();
         var email = $("#email").val();
@@ -69,7 +69,7 @@ $(document).ready(function() {
                             $('#cpwd').val('');
                             $('#form-message').addClass('success').text("Account Created!");
                             $('#submit').html('Create Account');
-                            sendConfirmation();
+                            //sendConfirmation();
                         }
                         else {
                             $('#form-message').addClass('error').text(data);

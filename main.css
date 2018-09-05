@@ -4214,6 +4214,10 @@
     padding: 0;
     margin: 0;
     list-style: none;
+    -webkit-transition: background-color 0.5s ease-out;
+    -moz-transition: background-color 0.5s ease-out;
+    -o-transition: background-color 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
 }
 
 html {
@@ -5154,6 +5158,7 @@ textarea {
     width: 100px;
     background: #aa0000;
     border: 1px solid #aa0000;
+    border-radius: 6px;
     -webkit-transition: background-color 0.5s ease-out;
     -moz-transition: background-color 0.5s ease-out;
     -o-transition: background-color 0.5s ease-out;
@@ -5173,6 +5178,7 @@ textarea {
     width: 100px;
     background: #fff;
     border: 1px solid #aa0000;
+    border-radius: 6px;
     -webkit-transition: background-color 0.5s ease-out;
     -moz-transition: background-color 0.5s ease-out;
     -o-transition: background-color 0.5s ease-out;
@@ -5282,7 +5288,7 @@ textarea {
 }
 
 #star-rating {
-    margin: 50px 0 0px 0;
+    margin: -15px 0 0px 0;
 }
 
 .follow_display {
@@ -7213,10 +7219,6 @@ ul li h2 {
     padding: 8px;
 }
 
-.checkout-buyer-info input:focus {
-    border-color: tomato;
-}
-
 .checkout-buyer-info h4 {
     margin: 5px 0;
     font-size: 14px;
@@ -7228,10 +7230,6 @@ ul li h2 {
     border-radius: 3px;
     margin-right: 10px;
     border: 1px solid #cccccc;
-}
-
-.checkout-buyer-info select:focus {
-    border-color: tomato;
 }
 
 #same_address {
@@ -7304,4 +7302,153 @@ ul li h2 {
     cursor: pointer;
 }
 
+#card-element {
+    border: 1px solid #cccccc;
+    padding: 10px;
+    width: 50%;
+    border-radius: 4px;
+}
+
+#card-element:focus {
+    border-color: tomato;
+}
+
+#card_on_file {
+    width: 15px;
+}
+
 /******************************************* CHECKOUT END *****************************************************/
+
+/******************************************* ORDER PLACED *****************************************************/
+
+.order {
+    border: 1px solid #85bb65;
+    margin-top: 15px;
+    background: #dff2d5;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.order h2 {
+    text-align: center;
+    color: #000;
+    font-weight: 700;
+}
+
+.order p {
+    font-weight: 600;
+}
+
+#order-id {
+    font-weight: 800;
+    color: tomato;
+}
+
+.order h3 {
+    font-weight: 800;
+}
+
+.order img {
+    width: 25%;
+}
+
+.order span {
+    margin: 0 0 0 50px;
+}
+
+#order-shippingCost {
+    color: tomato;
+    font-weight: 700;
+}
+
+#order-itemPrice {
+    color: tomato;
+    font-weight: 700;
+    float: right;
+    margin: 75px 20px 0 0;
+}
+
+#order-total {
+    color: tomato;
+}
+
+/******************************************* ORDER PLACED *****************************************************/
+
+/******************************************* SELLER CONF *****************************************************/
+
+.seller_Conf_content img {
+    width: 80%;
+    margin: 10px 0;
+}
+
+#confirm_order {
+    width: 80%;
+    margin: 10px 10%;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+    background: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+#confirm_order:hover {
+    background: #aa0000;
+    color: #fff;
+    cursor: pointer;
+}
+
+#cancel_order {
+    width: 80%;
+    margin: 10px 10%;
+    border: 1px solid #aa0000;
+    color: #fff;
+    background: #aa0000;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+#cancel_order:hover {
+    background: #fff;
+    color: #aa0000;
+    cursor: pointer;
+}
+
+#description {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.okay_btn {
+    padding: 5px;
+    width: 90%;
+    margin: 5px 5%;
+    border: 1px solid #aa0000;
+    color: #fff;
+    background: #aa0000;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.okay_btn:hover {
+    color: #aa0000;
+    background: #fff;
+    cursor: pointer;
+}
+
+#shipping_details {
+    font-size: 16px;
+    font-weight: 600;
+    width: 75%;
+    margin: 10px 12.5%;
+}
+
+#sellerConf_error {
+    font-size: 16px;
+    font-weight: 600;
+    width: 75%;
+    margin: 10px 12.5%;
+}
+
+/******************************************* SELLER CONF END *****************************************************/

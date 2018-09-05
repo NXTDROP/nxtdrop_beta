@@ -113,8 +113,8 @@
         <button id="bank_cards">Bank & Cards Settings</button>
 
         <?php
-            $sales_query = "SELECT * FROM transactions WHERE seller_ID = '$uid'";
-            $purchases_query = "SELECT * FROM transactions WHERE buyer_ID = '$uid'";
+            $sales_query = "SELECT * FROM transactions WHERE sellerID = '$uid'";
+            $purchases_query = "SELECT * FROM transactions WHERE buyerID = '$uid'";
             $sales_results = mysqli_query($conn, $sales_query);
             $purchases_results = mysqli_query($conn, $purchases_query);
             $total_sales = 0;
@@ -123,16 +123,16 @@
             $num_purchases = 0;
             while ($sales_row = mysqli_fetch_assoc($sales_results)) {
                 if ($sales_row['status'] == 'complete') {
-                    $total_sales += $sales_row['price'];
+                    $total_sales += $sales_row['totalPrice'];
                     $num_sales++;
                 }
             }
 
             while ($purchases_row = mysqli_fetch_assoc($purchases_results)) {
-                if ($purchases_row['status'] == 'complete') {
-                    $total_purchases += $purchases_row['price'];
+                //if ($purchases_row['status'] == 'complete') {
+                    $total_purchases += $purchases_row['totalPrice'];
                     $num_purchases++;
-                }
+                //}
             }
         ?>
 
@@ -140,14 +140,14 @@
             <div class="user_purchases">
                 <h2>Purchases</h2>
                 <p>Total (<?php echo $currrency_name ?>)</p>
-                <strong><?php echo $currrency.number_format($total_purchases, 2, ",", ".") ?></strong>
+                <strong><?php echo $currrency.number_format($total_purchases, 2, ".", ",") ?></strong>
                 <p>Number of Purchases</p>
                 <strong># <?php echo $num_purchases ?></strong>
             </div>
             <div class="user_sales">
                 <h2>Sales</h2>
                 <p>Total (<?php echo $currrency_name ?>)</p>
-                <strong><?php echo $currrency.number_format($total_sales, 2, ",", ".") ?></strong>
+                <strong><?php echo $currrency.number_format($total_sales, 2, ".", ",") ?></strong>
                 <p>Number of Sales</p>
                 <strong># <?php echo $num_sales ?></strong>
             </div>

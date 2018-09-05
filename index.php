@@ -107,10 +107,11 @@
         <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/new-msg-post.php'); ?>
         <?php include('inc/flag-post.php'); ?>
-        <?php include('inc/invite/popup.php') ?>
+        <?php include('inc/invite/popup.php'); ?>
         <?php include('inc/sold_pop.php') ?>
         <?php include('inc/search_pop.php') ?>
         <?php include('inc/buyer_transaction_confirmation.php') ?>
+        <?php include('inc/notificationPopUp/sellerConfirmation.php') ?>
 
         <p id="message"></p>
 
