@@ -92,6 +92,7 @@
                 </div>-->
                 <hr />';
             if (isset($_SESSION['uid'])) {
+                $pid = "'".$row['pid']."'";
                 if ($_SESSION['uid'] == $row['uid']) {
                     echo '
                     <div class="post_form_bottom">

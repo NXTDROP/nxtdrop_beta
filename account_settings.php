@@ -1,8 +1,9 @@
 <?php 
     session_start();
     include "dbh.php";
+    require_once('credentials.php');
     require_once('vendor/autoload.php');
-    \Stripe\Stripe::setApiKey("sk_test_zFMuyMBC60raTKDdLGzR4wdb");
+    \Stripe\Stripe::setApiKey($STRIPE_TEST_SECRET_KEY);
     if (!isset($_SESSION['uid'])) {
         header("Location: welcome_home.php");
         exit();
@@ -51,27 +52,6 @@
     </head>
 
     <body>
-        <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                appId      : '{your-app-id}',
-                cookie     : true,
-                xfbml      : true,
-                version    : '{api-version}'
-                });
-                
-                FB.AppEvents.logPageView();   
-                
-            };
-
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
         
         <?php include('inc/navbar/navbar.php'); ?>
 

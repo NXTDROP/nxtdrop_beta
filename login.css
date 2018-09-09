@@ -389,8 +389,13 @@
 
 * {
     margin: 0;
+    font-family: 'Roboto', sans-serif;
     padding: 0;
     box-sizing: border-box;
+    -webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out;
 }
 
 html {
@@ -402,6 +407,10 @@ body {
     font: 15px/1.5 Arial, Helvetica, sans-serif;
     background-color: #FAFAFA;
     height: 100%;
+}
+
+a {
+    color: tomato;
 }
 
 .form-container {
@@ -429,10 +438,12 @@ button {
     background-color: #aa0000;
     border: none;
     color: #fff;
+    border-radius: 2px;
 }
 
 button:hover {
-    background-color: #fa0000;
+    background-color: tomato;
+    cursor: pointer;
 }
 
 input {
@@ -472,10 +483,6 @@ form p {
     text-align: center;
 }
 
-.signup-form {
-    margin-top: 25px;
-}
-
 .login-form a {
     text-decoration: none;
     color: #000;
@@ -500,6 +507,8 @@ form p {
 }
 
 .error_login {
+    margin: 5px 0 0 0;
+    font-size: 13px;
     text-align: center;
 }
 
@@ -525,4 +534,48 @@ label[for="check"] {
 
 #agreement {
     font-size: 11px;
+}
+
+.fb_login {
+    width: 85%;
+    margin: 0px 7.5% 5px 7.5%;
+    border-radius: 2px;
+    background-color: #3B5998;
+}
+
+.fb_login:hover {
+    background-color: #8b9dc3;
+    cursor: pointer;
+}
+
+.google_login {
+    width: 85%;
+    margin: 0px 7.5% 8px 7.5%;
+    border-radius: 2px;
+    background-color: #d62d20;
+}
+
+.google_login:hover {
+    background-color: #ed4e42;
+    cursor: pointer;
+}
+
+#social_username {
+    width: 80%;
+    margin: 5px 10%;
+}
+
+#social_country {
+    width: 80%;
+    margin: 5px 10%;
+}
+
+#social_invite_code {
+    width: 80%;
+    margin: 5px 10%;
+}
+
+#social_submit {
+    width: 80%;
+    margin: 5px 10%;
 }

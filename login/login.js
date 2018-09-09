@@ -1,3 +1,4 @@
+var email;
 $(document).ready(function() {
     $('#submit_login').click(function() {
         var username = $('input[name="username"]').val();

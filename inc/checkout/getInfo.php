@@ -2,10 +2,11 @@
 
     session_start();
     include '../../dbh.php';
+    require_once('../../credentials.php');
     require_once('../../vendor/autoload.php');
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
-    \Stripe\Stripe::setApiKey("sk_test_zFMuyMBC60raTKDdLGzR4wdb");
+    \Stripe\Stripe::setApiKey($STRIPE_TEST_SECRET_KEY);
     $item_ID = $_POST['item_ID'];
     $n_ID = $_SESSION['uid'];
     $s_ID = $_SESSION['stripe_acc'];

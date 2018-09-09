@@ -20,23 +20,19 @@
     $name = $conn->real_escape_string($_POST['name']);
     $uName = $conn->real_escape_string($_POST['username']);
     $email = $conn->real_escape_string($_POST['email']);
-    $pwd = $conn->real_escape_string($_POST['pwd']);
+    $pwd = md5(generateRandomString(25));
     $country = $conn->real_escape_string($_POST['country']);
-    $iCodeError = false;
+    $inviteCode = $conn->real_escape_string($_POST['invite_code']);
     $errorEmail = false;
     $errorUsername = false;
+    $iCodeError =  false;
 
     if(isset($_POST['submit'])) {
-        if (empty($uName) || empty($email) || empty($pwd)) {
-            echo "Fill in all the fields!";
-            $errorEmpty = true;
-        }
-        
         $sql = "SELECT email FROM users WHERE email = '$email';";
         $result = $conn->query($sql);
         $check = mysqli_num_rows($result);
         if($check > 0) {
-            echo "E-mail already used!";
+            echo "ACCOUNT";
             $errorEmail = true;
         }
 
@@ -55,12 +51,11 @@
             $iCodeError = true;
         }
 
-        if($iCodeError == false && $errorEmail == false && $errorUsername == false) {
-            $pwd = md5($pwd);
+        if($errorEmail == false && $errorUsername == false && $iCodeError == false) {
             $conn->autocommit(false);
             $createUser = $conn->query("INSERT INTO users (name, username, email, pwd, account_created, country, active_account) VALUES ('$name', '$uName', '$email', '$pwd', '$date', '$country', '1')");
             $getNewUser = $conn->query("SELECT * FROM users WHERE username = '$uName'");
-            if ($createUser && $getNewUser) {
+            if ($getNewUser && $createUser) {
 
                 $row = $getNewUser->fetch_assoc();
                 $uid = $row['uid'];
@@ -70,11 +65,10 @@
                 $codeID = $code['codeID'];
                 if($check > 0) {$showInvite = $conn->query("INSERT INTO invitationUsage (usedBy, codeID, dateUsed) VALUES ('$uid', '$codeID', '$date')");}
                 else {$showInvite = true;}
-
                 $iCode = generateRandomString(6);
                 $iCodeDate = date("Y-m-d H:i:s", time());
                 $insertICode = $conn->query("INSERT INTO users_code (uid, invite_code, dateGenerated) VALUES ('$uid', '$iCode', '$iCodeDate'");
-                
+
                 if($createProfile && $insertICode && ($showInvite || $showInvite === true)) {
                     $conn->commit();
                     $email = new \SendGrid\Mail\Mail(); 
@@ -94,32 +88,12 @@
                     $conn->rollback();
                     echo 'DB';
                 }
-
-                /*$acct = \Stripe\Account::create(array(
-                    "country" => "$country",
-                    "type" => "custom", 
-                    "email" => "$email",
-                    "tos_acceptance" => array(
-                        "date" => time(),
-                        "ip" => $_SERVER['REMOTE_ADDR']
-                    )
-                ));
-
-                $cus = \Stripe\Customer::create(array(
-                    "email" => "$email",
-                ));
-
-                $cus_id = $cus->id;
-                $account_id = $acct->id;
-                
-                $query = "UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';";
-                mysqli_query($conn, $query);*/
             }
             else {
                 $conn->rollback();
                 echo 'DB';
             }
-        }
+        }   
     }
     else {
         echo "There was an error!";

@@ -10,34 +10,13 @@
     NXTDROP: The Fashion Trade Centre
     </title>
     <head>
-        <base href="https://nxtdrop.com/">
+        <!--<base href="https://nxtdrop.com/">-->
         <link type="text/css" rel="stylesheet" href="forgot-password.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     </head>
 
     <body>
-        <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                appId      : '{your-app-id}',
-                cookie     : true,
-                xfbml      : true,
-                version    : '{api-version}'
-                });
-                
-                FB.AppEvents.logPageView();   
-                
-            };
-
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
         <header>
             <a href="home"><img id ="logo"src="img/nxtdroplogo.png" width="125px"></a>
         </header>

@@ -3450,6 +3450,11 @@
 /* IPHONE SE */
 
 @media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    #floater {
+        font-size: 10px!important;
+        margin-bottom: -18px!important;
+    }
+    
     .notif-main {
         width: 85%!important;
         left: 14%!important;
@@ -4226,7 +4231,7 @@ html {
 }
 
 body {
-    font: 15px/1.5 Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #FAFAFA;
     height: 100%;
 }
@@ -5827,6 +5832,7 @@ ul li h2 {
     position: fixed;
     top: 0;
     display: none;
+    z-index: 2;
 }
 
 .new_msg_close {
@@ -7376,7 +7382,7 @@ ul li h2 {
 
 /******************************************* SELLER CONF *****************************************************/
 
-.seller_Conf_content img {
+#item_pic {
     width: 80%;
     margin: 10px 0;
 }
@@ -7425,6 +7431,7 @@ ul li h2 {
     width: 90%;
     margin: 5px 5%;
     border: 1px solid #aa0000;
+    border-radius: 4px;
     color: #fff;
     background: #aa0000;
     font-weight: 700;
@@ -7452,3 +7459,68 @@ ul li h2 {
 }
 
 /******************************************* SELLER CONF END *****************************************************/
+
+/******************************************* MM VERIF *****************************************************/
+
+#authentic {
+    width: 80%;
+    margin: 5px 10%;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+    background: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+#authentic:hover {
+    background: tomato;
+    color: #fff;
+    cursor: pointer;
+}
+
+#not_authentic {
+    width: 80%;
+    margin: 5px 10%;
+    border: 1px solid #aa0000;
+    color: #aa0000;
+    background: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+#not_authentic:hover {
+    background: tomato;
+    color: #fff;
+    cursor: pointer;
+}
+
+.MM_Verif_content textarea {
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    resize: none;
+    margin: 5px auto;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.done_btn {
+    padding: 5px;
+    width: 90%;
+    margin: 5px 5%;
+    border: 1px solid #aa0000;
+    border-radius: 4px;
+    color: #fff;
+    background: #aa0000;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.done_btn:hover {
+    color: #aa0000;
+    background: #fff;
+    cursor: pointer;
+}
+
+/******************************************* MM VEROF END *****************************************************/

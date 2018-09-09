@@ -187,7 +187,7 @@
 
         <div class="seller_Conf_content pagetwo">
             <h2>DEAL CONFIRMED!</h2>
-            <p id="shipping_details">An email will be sent to you with the shipping details. Once you have received the email, you have 48 hours to ship us the shoes. Otherwise, you risk a 15% penality.</p>
+            <p id="shipping_details">An email will be sent to you with the shipping details. Once you have received the email, you have 48 hours to ship us the shoes and update the shipping details. Otherwise, you risk a 15% penality.</p>
             <button class="okay_btn">OK!</button>
         </div>
 

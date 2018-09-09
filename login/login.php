@@ -25,7 +25,6 @@
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['email'] = $row['email'];
-                $_SESSION['pwd'] = $row['pwd'];
                 $_SESSION['stripe_acc'] = $row['stripe_id'];
                 $_SESSION['cus_id'] = $row['cus_id'];
                 $_SESSION['country'] = $row['country'];

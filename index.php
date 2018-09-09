@@ -87,27 +87,6 @@
     </head>
 
     <body>
-        <script>
-            window.fbAsyncInit = function() {
-                FB.init({
-                appId      : '{your-app-id}',
-                cookie     : true,
-                xfbml      : true,
-                version    : '{api-version}'
-                });
-                
-                FB.AppEvents.logPageView();   
-                
-            };
-
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
         <?php include('inc/navbar/navbar.php'); ?>
 
         <?php //include('inc/carousel.php'); ?>
@@ -133,6 +112,8 @@
         <?php include('inc/search_pop.php') ?>
         <?php include('inc/buyer_transaction_confirmation.php') ?>
         <?php include('inc/notificationPopUp/sellerConfirmation.php') ?>
+        <?php include('inc/notificationPopUp/MM_verification.php') ?>
+        <?php include('inc/giveaway/popUp.php') ?>
 
         <p id="message"></p>
 
