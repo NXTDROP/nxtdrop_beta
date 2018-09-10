@@ -71,6 +71,10 @@
         });
     }
 
+    function order_MMShipping(ID, tID, bID) {
+        window.location.replace('orderPlaced.php?item=' + ID + '&bID=' + bID + '&tID=' + tID + '&tracking=true');
+    }
+
     check_notifications();
     load_notifications();
     check_inbox();
