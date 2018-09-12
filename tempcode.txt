@@ -86,3 +86,16 @@ PRIMARY KEY ( uid )
     if(isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
         echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a>';
     }
+
+    
+#Rewrite for dashboard.php
+RewriteRule ^dashboard dashboard.php [NC,L]
+
+#Rewite for account_settings.php
+RewriteRule ^settings account_settings.php [NC,L]
+
+#RewriteRule for checkout.php?item=xxxxxx
+RewriteRule ^checkout/([0-9a-zA-Z_-]+) checkout.php?item=$1
+
+#RewriteRule for orderPlaced.php
+RewriteRule for ^order/([0-9]+)/([0-9]*)/([0-9]*)/([A-Za-z-]*) orderPlaced.php?item=$1&bID=$2&tID=$3&tracking=$4 [NC,L]

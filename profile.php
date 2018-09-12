@@ -133,7 +133,7 @@
         <div class="profile-navigation">
             <button id="posts-btn">POSTS</button>
             <button id="likes-btn">LIKES</button>
-            <button id="reviews-btn">REVIEWS</button>
+            <!--<button id="reviews-btn">REVIEWS</button>-->
         </div>
 
         <div id="display-profile">

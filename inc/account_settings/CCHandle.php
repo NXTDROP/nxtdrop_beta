@@ -2,7 +2,7 @@
 
     session_start();
     include '../../dbh.php';
-    require_once('../../credentials.php');
+    require_once('../../../credentials.php');
     require_once('../../vendor/autoload.php');
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
@@ -36,12 +36,12 @@
                 $cardID = $card->id;
                 $query = "INSERT INTO thebag (uid, stripe_id, out_token, o_date) VALUES ('$uid', '$stripe_id', '$cardID', '$date')";
                 if (!$conn->query($query)) {
-                    echo 'ERROR. Could not add your payment method. Try later or contact support@nxtdrop.com'; 
+                    echo 'Could not add your payment method. Try later or contact support@nxtdrop.com'; 
                 }
             }
         }
         else {
-            echo 'Error 102. Contact Support team @ support@nxtdrop.com';
+            echo 'Contact Support team @ support@nxtdrop.com';
         }  
     }
     else {

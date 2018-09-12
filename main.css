@@ -915,23 +915,23 @@
     
     .profile-navigation {
         width: 100%!important;
-        margin: 15px 0 0 11%!important;
+        margin: 15px 0 0 2px!important;
     }
     
     #posts-btn {
-        width: 25%!important;
+        width: 49%!important;
         margin: 0!important;
     }
     
     #likes-btn {
-        width: 25%!important;
+        width: 49%!important;
         margin: 0!important;
     }
     
-    #reviews-btn {
+    /*#reviews-btn {
         width: 25%!important;
         margin: 0!important;
-    }
+    }*/
     
     #star-rating {
         margin: 20px 0 0px 0!important;
@@ -997,19 +997,19 @@
     }
     
     #posts-btn {
-        width: 25%!important;
-        margin: 0 0 0 11%!important;
+        width: 40%!important;
+        margin: 0 0 0 10%!important;
     }
     
     #likes-btn {
-        width: 25%!important;
+        width: 40%!important;
         margin: 0!important;
     }
     
-    #reviews-btn {
+    /*#reviews-btn {
         width: 25%!important;
         margin: 0!important;
-    }
+    }*/
     
     #star-rating {
         margin: 20px 0 0px 0!important;
@@ -1073,16 +1073,16 @@
     
     .profile-navigation {
         width: 100%!important;
-        margin: 15px 0 0 11%!important;
+        margin: 15px 0 0 0!important;
     }
     
     #posts-btn {
-        width: 25%!important;
-        margin: 0!important;
+        width: 45%!important;
+        margin: 0 0 0 5%!important;
     }
     
     #likes-btn {
-        width: 25%!important;
+        width: 45%!important;
         margin: 0!important;
     }
     
@@ -1155,17 +1155,17 @@
     }
     
     #posts-btn {
-        width: 25%!important;
-        margin: 0 0 0 11%!important;
+        width: 45%!important;
+        margin: 0 0 0 5%!important;
     }
     
     #likes-btn {
-        width: 25%!important;
+        width: 45%!important;
         margin: 0!important;
     }
     
     #reviews-btn {
-        width: 25%!important;
+        width: 0%!important;
         margin: 0!important;
     }
     
@@ -1233,12 +1233,12 @@
     }
     
     #posts-btn {
-        width: 25%!important;
-        margin: 0 0 0 11%!important;
+        width: 45%!important;
+        margin: 0px 0 0 5%!important;
     }
     
     #likes-btn {
-        width: 25%!important;
+        width: 45%!important;
         margin: 0!important;
     }
     
@@ -1311,12 +1311,12 @@
     }
     
     #posts-btn {
-        width: 25%!important;
-        margin: 0 0 0 11%!important;
+        width: 45%!important;
+        margin: 0 0 0 5%!important;
     }
     
     #likes-btn {
-        width: 25%!important;
+        width: 45%!important;
         margin: 0!important;
     }
     
@@ -5222,8 +5222,8 @@ textarea {
 }
 
 #posts-btn {
-    width: 30%;
-    margin-right: 4%;
+    width: 45%;
+    margin-right: 5%;
     border: 1px solid #e6e1e1;
     font-size: 16px;
     font-weight: 600;
@@ -5237,8 +5237,7 @@ textarea {
 }
 
 #likes-btn {
-    width: 30%;
-    margin-right: 4%;
+    width: 45%;
     border: 1px solid #e6e1e1;
     font-size: 16px;
     font-weight: 600;

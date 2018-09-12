@@ -138,8 +138,18 @@
                 type: 'POST',
                 data: {type: tf_type, currency: <?php echo "'".$currrency_name."'"; ?>},
                 success: function(data) {
-                    $('#payout_response').html(data);
-                    $("#transfer_btn").html('TRANSFER NOW');
+                    if(data === '') {
+                        $("#transfer_btn").html('TRANSFER DONE <i class="fas fa-check-circle" style="color: #3fdb44"></i>');
+                        setTimeout(function() {$("#transfer_btn").html('TRANSFER NOW');}, 5000);
+                    }
+                    else if(data === 'DB') {
+                        $("#transfer_btn").html('TRANSFER NOW');
+                        $('#payout_response').html('Sorry, you cannot transfer your balance right now. Contact Support Team at support@nxtdrop.com');
+                    }
+                    else {
+                        $("#transfer_btn").html('TRANSFER NOW');
+                        $('#payout_response').html(data);
+                    }
                 }
             });
         });
@@ -167,7 +177,7 @@
             <p>SEND</p>
             <strong><?php echo $currrency.$available_balance ?></strong>
             <p>To:</p>
-            <p><i class="far fa-credit-card fa-2x"></i><span>&#8226&#8226 <?php echo $last4; ?></span></p>
+            <p><i class="fas fa-piggy-bank fa-2x" style="color: #aa0000;"></i><span>&#8226&#8226 <?php echo $last4; ?></span></p>
             <button id="change_destination">CHANGE TRANSFER DESTINATION</button>
             <button id="transfer_btn">TRANSFER NOW</button>
             <p id='payout_response'></p>

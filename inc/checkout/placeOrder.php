@@ -27,12 +27,16 @@
 
         $buyerID = $row['uid'];
         $status = "waiting shipment";
-        $query = "BEGIN; INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate) VALUES ('$item_ID', '$seller_ID', '$fullAddress', '$buyerID', '$status', '$purchaseDate'); INSERT INTO shipping (transactionID) VALUES ('$transactionID'); COMMIT;";
-        if(!$conn->query($query)) {
-            echo 'ERROR 102';
+        $conn->autocommit(false);
+        $addTransaction = $conn->query("INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate) VALUES ('$item_ID', '$seller_ID', '$fullAddress', '$buyerID', '$status', '$purchaseDate');");
+        $addShipping = $conn->query("INSERT INTO shipping (transactionID) VALUES ('$transactionID');");
+        if($addShipping && $addTransaction) {
+            $conn->commit();
+            echo $transactionID;
         }
         else {
-            echo $transactionID;
+            $conn->rollback();
+            echo 'ERROR 102';
         }
     }
 

@@ -1,4 +1,8 @@
-const stripe = Stripe('pk_test_CVpEzpXzTZ97XvjAR1suM1m6');
+var key;
+$.getJSON('../credentials.json', function(json) {
+    key = json.APIKEYS.stripe.US.live.public;
+});
+const stripe = Stripe("'"+key+"'");
 
 $(document).ready(function() {
     updateInfo();
@@ -505,7 +509,7 @@ function updateInfo() {
             }
         },
         error: function(data) {
-
+            $('.load_content').html('Could not load your information. Please try reloading the page.');
         }
     });
 }

@@ -20,6 +20,7 @@
                     else if(data === 'DB') {
                         $('.pageone').fadeOut();
                         $('.pagefour').show();
+                        alert('We have a problem. Please try later.');
                     }
                     else if(data === 'SOLD') {
                         $('.pagetwo').fadeOut();
@@ -33,6 +34,11 @@
                     else if(data === '') {
                         $('.pageone').fadeOut();
                         $('.pagetwo').show();
+                    }
+                    else {
+                        $('.pageone').fadeOut();
+                        $('.pagetwo').show();
+                        alert(data);
                     }
                 },
                 error: function() {

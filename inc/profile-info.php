@@ -115,7 +115,7 @@
                 }
             }
             else {
-                echo '<a href="edit_profile"><button class="edit-button">Edit Profile</button></a></br>';
+                echo '<a href="profile"><button class="edit-button">Edit Profile</button></a></br>';
             }
         }
         else {

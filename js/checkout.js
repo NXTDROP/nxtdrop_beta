@@ -1,4 +1,7 @@
-const stripe = Stripe('pk_test_CVpEzpXzTZ97XvjAR1suM1m6');
+var key;
+$.getJSON('../credentials.json', function(json) {
+    key = json.APIKEYS.stripe.US.live.public;
+});
 var street;
 var city;
 var state;
@@ -10,6 +13,7 @@ var item;
 var card_brand;
 var card_last4;
 var seller_ID;
+const stripe = Stripe("'"+key+"'");
 
 // Create an instance of Elements.
 var elements = stripe.elements();
@@ -189,7 +193,6 @@ function getInfo() {
                 alert('This item does not exist.');
             }
             else {
-                console.log(data);
                 let jsonObject = JSON.parse(data);
                 street = jsonObject[0]['street'];
                 city = jsonObject[0]['city'];

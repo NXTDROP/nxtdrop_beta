@@ -2,7 +2,7 @@
 
     session_start();
     include '../../dbh.php';
-    require_once('../../credentials.php');
+    require_once('../../../credentials.php');
     require_once('../../vendor/autoload.php');
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
