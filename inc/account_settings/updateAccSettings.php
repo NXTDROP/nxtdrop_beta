@@ -5,7 +5,7 @@
     require_once('../../vendor/autoload.php');
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
-    \Stripe\Stripe::setApiKey($STRIPE_TEST_SECRET_KEY);
+    \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
 
     if(isset($_SESSION['uid'])) {
         $s_id = $_SESSION['stripe_acc'];

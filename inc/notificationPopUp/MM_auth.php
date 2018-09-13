@@ -9,7 +9,7 @@
         include '../../dbh.php';
         date_default_timezone_set("UTC");
         require_once('../../../credentials.php');
-        \Stripe\Stripe::setApiKey($STRIPE_TEST_SECRET_KEY);
+        \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
         $comment = $conn->real_escape_string($_POST['comment']);
         $item_ID = $conn->real_escape_string($_POST['item_ID']);
         $buyer_ID = $conn->real_escape_string($_POST['buyer_ID']);

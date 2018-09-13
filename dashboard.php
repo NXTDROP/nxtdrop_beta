@@ -3,7 +3,7 @@
     include "dbh.php";
     require_once('../credentials.php');
     require_once('vendor/autoload.php');
-    \Stripe\Stripe::setApiKey($STRIPE_TEST_SECRET_KEY);
+    \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
     if (!isset($_SESSION['uid'])) {
         header("Location: welcome");
         exit();

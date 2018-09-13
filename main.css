@@ -4213,6 +4213,1086 @@
 }
 /******************************************* RD WELCOME_HOME END *********************************************/
 
+/******************************************* RD DASHBOARD **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+    
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    #standard_payout_btn {
+        width: 70%!important;
+    }
+    
+    #instant_payout_btn {
+        width: 70%!important;
+    }
+    
+    #bank_cards {
+        width: 60%!important;
+        margin: 5px 20%!important;
+    }
+    
+    .user_stats h2 {
+        font-size: 20px!important;
+    }
+    
+    .user_stats p {
+        margin: 0!important;
+        font-size: 14px!important;
+    }
+    
+    .user_stats strong {
+        font-size: 12px!important;
+    }
+    
+    .table thead {
+        font-size: 9px!important;
+    }
+    
+    .table tbody {
+        font-size: 9px!important;
+    }
+    
+    th, td {
+        font-weight: 300!important;
+    }
+    
+    #load_transactions {
+        width: 60%!important;
+        margin: 8px 20%!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    #standard_payout_btn {
+        width: 70%!important;
+    }
+    
+    #instant_payout_btn {
+        width: 70%!important;
+    }
+    
+    #bank_cards {
+        width: 60%!important;
+        margin: 5px 20%!important;
+    }
+    
+    .user_stats h2 {
+        font-size: 20px!important;
+    }
+    
+    .user_stats p {
+        margin: 0!important;
+        font-size: 14px!important;
+    }
+    
+    .user_stats strong {
+        font-size: 12px!important;
+    }
+    
+    .table thead {
+        font-size: 14px!important;
+    }
+    
+    .table tbody {
+        font-size: 14px!important;
+    }
+    
+    th, td {
+        font-weight: 300!important;
+    }
+    
+    #load_transactions {
+        width: 50%!important;
+        margin: 8px 25%!important;
+        font-size: 14px!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+   #standard_payout_btn {
+        width: 70%!important;
+    }
+    
+    #instant_payout_btn {
+        width: 70%!important;
+    }
+    
+    #bank_cards {
+        width: 60%!important;
+        margin: 5px 20%!important;
+    }
+    
+    .user_stats h2 {
+        font-size: 20px!important;
+    }
+    
+    .user_stats p {
+        margin: 0!important;
+        font-size: 14px!important;
+    }
+    
+    .user_stats strong {
+        font-size: 12px!important;
+    }
+    
+    .table thead {
+        font-size: 11px!important;
+    }
+    
+    .table tbody {
+        font-size: 11px!important;
+    }
+    
+    th, td {
+        font-weight: 300!important;
+    }
+    
+    #load_transactions {
+        width: 60%!important;
+        margin: 8px 20%!important;
+        font-size: 14px!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+   #standard_payout_btn {
+        width: 70%!important;
+       font-size: 14px!important;
+    }
+    
+    #instant_payout_btn {
+        width: 70%!important;
+        font-size: 14px!important;
+    }
+    
+    #bank_cards {
+        width: 60%!important;
+        margin: 5px 20%!important;
+        font-size: 14px!important;
+    }
+    
+    .user_stats h2 {
+        font-size: 20px!important;
+    }
+    
+    .user_stats p {
+        margin: 0!important;
+        font-size: 14px!important;
+    }
+    
+    .user_stats strong {
+        font-size: 12px!important;
+    }
+    
+    .table thead {
+        font-size: 14px!important;
+    }
+    
+    .table tbody {
+        font-size: 14px!important;
+    }
+    
+    th, td {
+        font-weight: 300!important;
+    }
+    
+    #load_transactions {
+        width: 60%!important;
+        margin: 8px 20%!important;
+        font-size: 14px!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    #standard_payout_btn {
+        width: 70%!important;
+    }
+    
+    #instant_payout_btn {
+        width: 70%!important;
+    }
+    
+    #bank_cards {
+        width: 60%!important;
+        margin: 5px 20%!important;
+    }
+    
+    .user_stats h2 {
+        font-size: 20px!important;
+    }
+    
+    .user_stats p {
+        margin: 0!important;
+        font-size: 14px!important;
+    }
+    
+    .user_stats strong {
+        font-size: 12px!important;
+    }
+    
+    .table thead {
+        font-size: 7px!important;
+    }
+    
+    .table tbody {
+        font-size: 7px!important;
+    }
+    
+    th, td {
+        font-weight: 200!important;
+    }
+    
+    #load_transactions {
+        width: 60%!important;
+        margin: 8px 20%!important;
+        font-size: 14px!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    #standard_payout_btn {
+        width: 70%!important;
+       font-size: 14px!important;
+    }
+    
+    #instant_payout_btn {
+        width: 70%!important;
+        font-size: 14px!important;
+    }
+    
+    #bank_cards {
+        width: 60%!important;
+        margin: 5px 20%!important;
+        font-size: 14px!important;
+    }
+    
+    .user_stats h2 {
+        font-size: 20px!important;
+    }
+    
+    .user_stats p {
+        margin: 0!important;
+        font-size: 14px!important;
+    }
+    
+    .user_stats strong {
+        font-size: 12px!important;
+    }
+    
+    .table thead {
+        font-size: 14px!important;
+    }
+    
+    .table tbody {
+        font-size: 14px!important;
+    }
+    
+    th, td {
+        font-weight: 300!important;
+    }
+    
+    #load_transactions {
+        width: 60%!important;
+        margin: 8px 20%!important;
+        font-size: 14px!important;
+    }
+}
+/******************************************* RD DASHBOARD END *********************************************/
+
+/******************************************* RD ACCOUNT SETTINGS **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+    
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    .form_container {
+        width: 90%!important;
+    }
+    
+    #update_personalInfo {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #payment_submit {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #card-element {
+        width: 100%!important;
+    }
+    
+    #payout_submit {
+       width: 80%!important;
+        margin: 0px 10%!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .form_container {
+        width: 80%!important;
+    }
+    
+    #update_personalInfo {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #payment_submit {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #card-element {
+        width: 100%!important;
+    }
+    
+    #payout_submit {
+       width: 80%!important;
+        margin: 0px 10%!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+   .form_container {
+        width: 90%!important;
+    }
+    
+    #update_personalInfo {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #payment_submit {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #card-element {
+        width: 100%!important;
+    }
+    
+    #payout_submit {
+       width: 80%!important;
+        margin: 0px 10%!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+   .form_container {
+        width: 80%!important;
+    }
+    
+    #update_personalInfo {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #payment_submit {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #card-element {
+        width: 100%!important;
+    }
+    
+    #payout_submit {
+       width: 80%!important;
+        margin: 0px 10%!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    .form_container {
+        width: 95%!important;
+    }
+    
+    #update_personalInfo {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #payment_submit {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #card-element {
+        width: 100%!important;
+    }
+    
+    #payout_submit {
+       width: 80%!important;
+        margin: 0px 10%!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    .form_container {
+        width: 80%!important;
+    }
+    
+    #update_personalInfo {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #payment_submit {
+        width: 80%!important;
+        margin: 0px 10%!important;
+    }
+    
+    #card-element {
+        width: 100%!important;
+    }
+    
+    #payout_submit {
+       width: 80%!important;
+        margin: 0px 10%!important;
+    }
+}
+/******************************************* RD ACCOUNT SETTINGS END *********************************************/
+
+/******************************************* RD CHECKOUT **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+    
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    .checkout {
+        padding: 15px!important;
+    }
+    
+    .checkout h1 {
+        font-size: 20px!important;
+        font-weight: 600!important;
+    }
+    
+    .checkout h3 {
+        font-size: 16px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout h4 {
+        font-size: 12px!important;
+    }
+    
+    .checkout input {
+        font-size: 14px!important;
+    }
+    
+    .checkout select {
+        font-size: 14px!important;
+    }
+    
+    .checkout img {
+        width: 30%!important;
+    }
+    
+    .checkout span {
+        font-size: 10px!important;
+        margin: 0!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout strong {
+        font-size: 12px!important;
+        font-weight: 500!important;
+    }
+    
+    #postalCode {
+        width: 30%!important;
+    }
+    
+    #item_price {
+        margin-top: 27px!important;
+        font-size: 12px!important;
+        font-weight: 500!important;
+    }
+    
+    label[for="card-element"] {
+        font-size: 12px!important;
+    }
+    
+    label[for="card_on_file"] {
+        font-size: 12px!important;
+    }
+    
+    label[for="same_address"] {
+        font-size: 12px!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .checkout {
+        padding: 15px!important;
+        max-width: 100%!important;
+    }
+    
+    .checkout h1 {
+        font-size: 22px!important;
+        font-weight: 600!important;
+    }
+    
+    .checkout h3 {
+        font-size: 18px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout h4 {
+        font-size: 12px!important;
+    }
+    
+    .checkout input {
+        font-size: 16px!important;
+    }
+    
+    .checkout select {
+        font-size: 16px!important;
+    }
+    
+    .checkout img {
+        width: 30%!important;
+    }
+    
+    .checkout span {
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout strong {
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    #postalCode {
+        width: 30%!important;
+    }
+    
+    #item_price {
+        margin-top: 55px!important;
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    label[for="card-element"] {
+        font-size: 14px!important;
+    }
+    
+    label[for="card_on_file"] {
+        font-size: 14px!important;
+    }
+    
+    label[for="same_address"] {
+        font-size: 14px!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+   .checkout {
+        padding: 15px!important;
+    }
+    
+    .checkout h1 {
+        font-size: 22px!important;
+        font-weight: 600!important;
+    }
+    
+    .checkout h3 {
+        font-size: 18px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout h4 {
+        font-size: 14px!important;
+    }
+    
+    .checkout input {
+        font-size: 16px!important;
+    }
+    
+    .checkout select {
+        font-size: 16px!important;
+    }
+    
+    .checkout img {
+        width: 30%!important;
+    }
+    
+    .checkout span {
+        font-size: 12px!important;
+        margin: 0!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout strong {
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    #postalCode {
+        width: 30%!important;
+    }
+    
+    #item_price {
+        margin-top: 27px!important;
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    label[for="card-element"] {
+        font-size: 14px!important;
+    }
+    
+    label[for="card_on_file"] {
+        font-size: 14px!important;
+    }
+    
+    label[for="same_address"] {
+        font-size: 14px!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+   .checkout {
+        padding: 15px!important;
+        max-width: 100%!important;
+    }
+    
+    .checkout h1 {
+        font-size: 22px!important;
+        font-weight: 600!important;
+    }
+    
+    .checkout h3 {
+        font-size: 18px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout h4 {
+        font-size: 12px!important;
+    }
+    
+    .checkout input {
+        font-size: 16px!important;
+    }
+    
+    .checkout select {
+        font-size: 16px!important;
+    }
+    
+    .checkout img {
+        width: 30%!important;
+    }
+    
+    .checkout span {
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout strong {
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    #postalCode {
+        width: 30%!important;
+    }
+    
+    #item_price {
+        margin-top: 60px!important;
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    label[for="card-element"] {
+        font-size: 14px!important;
+    }
+    
+    label[for="card_on_file"] {
+        font-size: 14px!important;
+    }
+    
+    label[for="same_address"] {
+        font-size: 14px!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    .checkout {
+        padding: 5px!important;
+    }
+    
+    .checkout h1 {
+        font-size: 20px!important;
+        font-weight: 600!important;
+    }
+    
+    .checkout h3 {
+        font-size: 16px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout h4 {
+        font-size: 12px!important;
+    }
+    
+    .checkout input {
+        font-size: 14px!important;
+    }
+    
+    .checkout select {
+        font-size: 14px!important;
+    }
+    
+    .checkout img {
+        width: 25%!important;
+    }
+    
+    .checkout span {
+        font-size: 10px!important;
+        margin: 0!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout strong {
+        font-size: 15px!important;
+        font-weight: 600!important;
+    }
+    
+    #postalCode {
+        width: 30%!important;
+    }
+    
+    #item_price {
+        margin-top: 18px!important;
+        font-size: 12px!important;
+        font-weight: 500!important;
+    }
+    
+    label[for="card-element"] {
+        font-size: 12px!important;
+    }
+    
+    label[for="card_on_file"] {
+        font-size: 12px!important;
+    }
+    
+    label[for="same_address"] {
+        font-size: 11px!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    .checkout {
+        padding: 10px!important;
+        max-width: 100%!important;
+    }
+    
+    .checkout h1 {
+        font-size: 22px!important;
+        font-weight: 600!important;
+    }
+    
+    .checkout h3 {
+        font-size: 18px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout h4 {
+        font-size: 12px!important;
+    }
+    
+    .checkout input {
+        font-size: 16px!important;
+    }
+    
+    .checkout select {
+        font-size: 16px!important;
+    }
+    
+    .checkout img {
+        width: 30%!important;
+    }
+    
+    .checkout span {
+        font-size: 12px!important;
+        font-weight: 500!important;
+    }
+    
+    .checkout strong {
+        font-size: 14px!important;
+        font-weight: 600!important;
+    }
+    
+    #postalCode {
+        width: 30%!important;
+    }
+    
+    #item_price {
+        margin-top: 45px!important;
+        font-size: 14px!important;
+        font-weight: 500!important;
+    }
+    
+    label[for="card-element"] {
+        font-size: 14px!important;
+    }
+    
+    label[for="card_on_file"] {
+        font-size: 14px!important;
+    }
+    
+    label[for="same_address"] {
+        font-size: 14px!important;
+    }
+}
+/******************************************* RD CHECKOUT END *********************************************/
+
+/******************************************* RD ORDERPLACED **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+    
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    .order {
+        margin-top: 25px!important;
+        padding: 10px!important;
+    }
+    
+    .order h2 {
+        font-size: 18px!important;
+    }
+    
+    .order h3 {
+        font-size: 16px!important;
+    }
+    
+    .order p {
+        font-size: 14px!important;
+    }
+    
+    .order span {
+        font-size: 10px!important;
+        margin: 0!important;
+    }
+    
+    #order-itemPrice {
+        font-size: 10px!important;
+        margin: 22px 0 0 0!important;
+    }
+    
+    #order-total {
+        margin-top: 15px!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .order {
+        padding: 10px!important;
+        max-width: 100%!important;
+    }
+    
+    .order h2 {
+        font-size: 18px!important;
+    }
+    
+    .order h3 {
+        font-size: 16px!important;
+    }
+    
+    .order p {
+        font-size: 14px!important;
+    }
+    
+    .order span {
+        font-size: 12px!important;
+        margin: 0 0 0 20px!important;
+    }
+    
+    #order-itemPrice {
+        font-size: 12px!important;
+        margin: 46px 0 0 0!important;
+        font-weight: 500!important;
+    }
+    
+    #order-total {
+        margin-top: 15px!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+   .order {
+        margin-top: 50px!important;
+        padding: 10px!important;
+    }
+    
+    .order h2 {
+        font-size: 18px!important;
+    }
+    
+    .order h3 {
+        font-size: 16px!important;
+    }
+    
+    .order p {
+        font-size: 14px!important;
+    }
+    
+    .order span {
+        font-size: 10px!important;
+        margin: 0!important;
+    }
+    
+    #order-itemPrice {
+        font-size: 12px!important;
+        margin: 25px 0 0 0!important;
+        font-weight: 500!important;
+    }
+    
+    #order-total {
+        margin-top: 15px!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+   .order {
+        padding: 10px!important;
+        max-width: 100%!important;
+    }
+    
+    .order h2 {
+        font-size: 20px!important;
+    }
+    
+    .order h3 {
+        font-size: 16px!important;
+    }
+    
+    .order p {
+        font-size: 14px!important;
+    }
+    
+    .order span {
+        font-size: 12px!important;
+        margin: 0 0 0 20px!important;
+    }
+    
+    #order-itemPrice {
+        font-size: 12px!important;
+        margin: 49px 0 0 0!important;
+        font-weight: 500!important;
+    }
+    
+    #order-total {
+        margin-top: 15px!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    .order {
+        margin-top: 0px!important;
+        padding: 10px!important;
+    }
+    
+    .order h2 {
+        font-size: 16px!important;
+    }
+    
+    .order h3 {
+        font-size: 14px!important;
+    }
+    
+    .order p {
+        font-size: 12px!important;
+    }
+    
+    .order span {
+        font-size: 8px!important;
+        margin: 0!important;
+    }
+    
+    #order-itemPrice {
+        font-size: 10px!important;
+        margin: 19px 0 0 0!important;
+        font-weight: 500!important;
+    }
+    
+    #order-total {
+        margin-top: 15px!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    .order {
+        padding: 10px!important;
+        max-width: 100%!important;
+    }
+    
+    .order h2 {
+        font-size: 20px!important;
+    }
+    
+    .order h3 {
+        font-size: 16px!important;
+    }
+    
+    .order p {
+        font-size: 14px!important;
+    }
+    
+    .order span {
+        font-size: 12px!important;
+        margin: 0 0 0 20px!important;
+    }
+    
+    #order-itemPrice {
+        font-size: 12px!important;
+        margin: 37px 0 0 0!important;
+        font-weight: 500!important;
+    }
+    
+    #order-total {
+        margin-top: 15px!important;
+    }
+}
+/******************************************* RD ORDERPLACED END *********************************************/
+
 /******************************************* GLOBAL *********************************************/
 
 * {
@@ -7101,6 +8181,14 @@ ul li h2 {
 
 .table {
     margin-top: 5px;
+}
+
+.table thead {
+    text-align: center;
+}
+
+.table tbody {
+    text-align: center;
 }
 
 #load_transactions {
