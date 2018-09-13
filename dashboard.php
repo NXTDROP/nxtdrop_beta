@@ -45,7 +45,7 @@
                 });
 
                 $('#bank_cards').click(function() {
-                    window.location.href = "account_settings.php";
+                    window.location.href = "settings";
                 });
             });
 

@@ -12,7 +12,7 @@
         <base href="https://nxtdrop.com/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-signin-client_id" content="257002911489-cpnet2eibl9jo7a10deh20i7qphv5q3a.apps.googleusercontent.com">
-        <link type="text/css" rel="stylesheet" href="login.css" />
+        <link type="text/css" rel="stylesheet" href="logstylesheet.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Font-Awesome -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
@@ -120,7 +120,7 @@
                 <p id="form-message" style="font-size: 13px; font-weight: 500;"></p>
             </form action="" method="POST">
         </div>
-        <p style="color: tomato; font-size: 12px; text-align: center; margin: 0px 0 0 0;"><a href="login.php" style="color: tomato;">back to login page</a></p>
+        <p style="color: tomato; font-size: 12px; text-align: center; margin: 0px 0 0 0;"><a href="signin" style="color: tomato;">back to login page</a></p>
         <?php include('regis/modalRegistration.php') ?>
         <?php include('regis/social_regis.php') ?>
     </body>

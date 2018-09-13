@@ -80,7 +80,7 @@
 
         <nav class="navbar navbar-expand-xl nav_home">
             <a href="https://nxtdrop.com" id="navbar-brand"><img src="https://nxtdrop.com/img/nxtdroplogo.png"></a>
-            <a id="login-btn" href="login_signup"><button class="sign-btn" title="Login/Sign Up">SIGN IN</button></a>
+            <a id="login-btn" href="signin"><button class="sign-btn" title="Login/Sign Up">SIGN IN</button></a>
         </nav>
 
         <div id="home-carousel" class="carousel slide carousel-fade" data-ride="carousel">

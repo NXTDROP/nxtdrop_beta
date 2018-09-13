@@ -155,7 +155,7 @@
         });
 
         $('#change_destination').click(function() {
-            window.location.href = "account_settings.php";
+            window.location.href = "settings";
         });
 
         if (last4 == 'xxxx') {

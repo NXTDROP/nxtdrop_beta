@@ -1,6 +1,6 @@
 <?php
     function isFriend($uname) {
-        include '../dbh.php';
+        include '../../dbh.php';
         $follower_username = $uname;
         $user_id = $_SESSION['uid'];
 

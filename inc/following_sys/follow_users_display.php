@@ -11,9 +11,15 @@
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($result);
         $uid = $row['uid'];
-    }
-    else {
-        $uid = $_SESSION['uid'];
+    } else {
+        if($_SESSION['username'] === $username) {
+            $uid = $_SESSION['uid'];
+        } else {
+            $sql = "SELECT * FROM users WHERE username='$username'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $uid = $row['uid'];
+        }
     }
 
     if ($type == 0) {
@@ -23,8 +29,7 @@
             if (isFriend($row['username'])) {
                 $u = "'".$row['username']."'";
                 $btn = '<button id="follow_button-'.$row['username'].'" class="follow_display_button" onclick="follow_sys('.$u.')">- UNFOLLOW</button>';
-            }
-            else {
+            } else {
                 $u = "'".$row['username']."'";
                 $btn = '<button id="follow_button-'.$row['username'].'" class="follow_display_button" onclick="follow_sys('.$u.')">+ FOLLOW</button>';
             }
@@ -36,7 +41,7 @@
             echo '<div class="user_follow_display">
             <a>
                 <img src="https://nxtdrop.com/'.$row['status'].'" alt="'.$row['username'].'">
-                <span href="u/'.$row['username'].'">'.$row['username'].'</span>
+                <span><a href="u/'.$row['username'].'" style="text-decoration: none; color: tomato;">'.$row['username'].'</a></span>
             </a>
             '.$btn.'
         </div>';
@@ -56,7 +61,7 @@
             echo '<div class="user_follow_display">
             <a>
                 <img src="https://nxtdrop.com/'.$row['status'].'" alt="'.$row['username'].'">
-                <span href="u/'.$row['username'].'">'.$row['username'].'</span>
+                <span><a href="u/'.$row['username'].'" style="text-decoration: none; color: tomato;">'.$row['username'].'</a></span>
             </a>
             <button id="follow_button-'.$row['username'].'" class="follow_display_button" onclick="follow_sys('.$u.');">- UNFOLLOW</button>
         </div>';

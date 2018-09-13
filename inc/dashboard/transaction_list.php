@@ -5,7 +5,6 @@
     $num = $_POST['transaction_num'];
     $transactions_query = "SELECT * FROM transactions, posts WHERE transactions.itemID = posts.pid AND (transactions.sellerID = '$uid' OR transactions.buyerID = '$uid') ORDER BY transactions.purchaseDate DESC LIMIT $num;";
     $transactions_results = mysqli_query($conn, $transactions_query); 
-    echo 'work';
 
     while ($transactions_row = mysqli_fetch_assoc($transactions_results)) {
         $itemID = $transactions_row['itemID'];

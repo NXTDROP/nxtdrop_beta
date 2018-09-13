@@ -12,7 +12,7 @@
         <base href="https://nxtdrop.com/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-signin-client_id" content="257002911489-cpnet2eibl9jo7a10deh20i7qphv5q3a.apps.googleusercontent.com">
-        <link type="text/css" rel="stylesheet" href="login.css" />
+        <link type="text/css" rel="stylesheet" href="logstylesheet.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Font-Awesome -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
@@ -164,7 +164,7 @@
             </div>
             <p class="error_login"></p>
         </div>
-        <p style="font-size: 12px; color: #c6c6c6; text-align: center;">Don&apos;t have an account? <a href="signup.php" style="text-decoration: none; color: tomato;">Sign Up »</a></p>
+        <p style="font-size: 12px; color: #c6c6c6; text-align: center;">Don&apos;t have an account? <a href="signup" style="text-decoration: none; color: tomato;">Sign Up »</a></p>
         <p style="color: tomato; font-size: 12px; text-align: center; margin: 5px 0 0 0;"><a href="forgot_password" style="color: tomato;">Forgot you password?</a></p>
         <?php include('login/modalLogin.php') ?>
     </body>

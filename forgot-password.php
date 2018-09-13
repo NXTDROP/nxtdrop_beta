@@ -27,7 +27,7 @@
                 <button type="submit" name="submit" id="submit">Send Reset E-mail</button>
             </form>
             <br><br>
-            <a href="login_signup"><p>Cancel</p></a>
+            <a href="signin"><p>Cancel</p></a>
             <div> <?php include('pwd.rec/error.php'); ?> </div>
         </div>
     </body>

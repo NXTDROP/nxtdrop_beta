@@ -1,6 +1,6 @@
 <?php
     require_once('../credentials.php');
-    $hostname = "160.153.75.102";
+    $hostname = "localhost";
     $username = "datadrop";
     $password = $DB_PASS;
     $dbname = "nxtdrop_alpha_test";
