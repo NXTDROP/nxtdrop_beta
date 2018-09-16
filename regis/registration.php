@@ -55,6 +55,13 @@
             $iCodeError = true;
         }
 
+        // Remove all illegal characters from email
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo 'INVALID EMAIL';
+            $errorEmail = true;
+        }
+
         if($iCodeError == false && $errorEmail == false && $errorUsername == false) {
             $pwd = md5($pwd);
             $conn->autocommit(false);
@@ -97,6 +104,14 @@
                         $updateUsers = $conn->query("UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';");
                         if($updateUsers) {
                             $conn->commit();
+                            session_start();
+                            $_SESSION['uid'] = $uid;
+                            $_SESSION['name'] = $name;
+                            $_SESSION['username'] = $uName;
+                            $_SESSION['email'] = $email;
+                            $_SESSION['stripe_acc'] = $account_id;
+                            $_SESSION['cus_id'] = $cus_id;
+                            $_SESSION['country'] = $country;
                         }
                         else {
                             $conn->rollback();

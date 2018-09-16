@@ -23,36 +23,35 @@
     $pwd = md5(generateRandomString(25));
     $country = $conn->real_escape_string($_POST['country']);
     $inviteCode = $conn->real_escape_string($_POST['invite_code']);
-    $errorEmail = false;
+    $error = false;
     $errorUsername = false;
     $iCodeError =  false;
+    $conn->autocommit(false);
 
     if(isset($_POST['submit'])) {
-        $sql = "SELECT email FROM users WHERE email = '$email';";
+        $sql = "SELECT email FROM users WHERE email = '$email' OR username = '$uName';";
         $result = $conn->query($sql);
         $check = mysqli_num_rows($result);
         if($check > 0) {
             echo "ACCOUNT";
-            $errorEmail = true;
+            $error = true;
         }
 
-        $sql = "SELECT username FROM users WHERE username = '$uName';";
-        $result = $conn->query($sql);
-        $check = mysqli_num_rows($result);
-        if ($check > 0) {
-            echo "Username already used!";
-            $errorUsername = true;
-        }
-
-        $result = $conn->query("SELECT * FROM users_code, invitationUsage WHERE users_code.invite_code = '$inviteCode' AND invitationUsage.codeID != users_code.codeID");
-        $check = mysqli_num_rows($result);
+        $getICode = $conn->query("SELECT * FROM users_code, invitationUsage WHERE users_code.invite_code = '$inviteCode' AND invitationUsage.codeID != users_code.codeID");
+        $check = mysqli_num_rows($getICode);
         if($check > 0) {
             echo 'Invite code invalid or already used';
             $iCodeError = true;
         }
 
-        if($errorEmail == false && $errorUsername == false && $iCodeError == false) {
-            $conn->autocommit(false);
+        // Remove all illegal characters from email
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo 'INVALID EMAIL';
+            $error = true;
+        }
+
+        if($error == false && $iCodeError == false) {
             $createUser = $conn->query("INSERT INTO users (name, username, email, pwd, account_created, country, active_account) VALUES ('$name', '$uName', '$email', '$pwd', '$date', '$country', '1')");
             $getNewUser = $conn->query("SELECT * FROM users WHERE username = '$uName'");
             if ($getNewUser && $createUser) {
@@ -69,7 +68,7 @@
                 $iCodeDate = date("Y-m-d H:i:s", time());
                 $insertICode = $conn->query("INSERT INTO users_code (uid, invite_code, dateGenerated) VALUES ('$uid', '$iCode', '$iCodeDate'");
 
-                if($createProfile && $insertICode && ($showInvite || $showInvite === true)) {
+                if($createProfile && $insertICode && $showInvite) {
                     try {
                         // Use Stripe's library to make requests...
                         $acct = \Stripe\Account::create(array(
@@ -91,6 +90,14 @@
                         $updateUsers = $conn->query("UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';");
                         if($updateUsers) {
                             $conn->commit();
+                            session_start();
+                            $_SESSION['uid'] = $uid;
+                            $_SESSION['name'] = $name;
+                            $_SESSION['username'] = $uName;
+                            $_SESSION['email'] = $email;
+                            $_SESSION['stripe_acc'] = $account_id;
+                            $_SESSION['cus_id'] = $cus_id;
+                            $_SESSION['country'] = $country;
                         }
                         else {
                             $conn->rollback();
@@ -130,6 +137,7 @@
                     } catch (Exception $e) {
                         // Something else happened, completely unrelated to Stripe
                         echo 'DB';
+                        $conn->rollback();
                     }
 
                     $email = new \SendGrid\Mail\Mail(); 

@@ -1,9 +1,9 @@
 <?php
-    require_once('../credentials.php');
-    $hostname = "localhost";
+    /*require_once('../credentials.php');*/
+    $hostname = "160.153.75.102";
     $username = "datadrop";
-    $password = $DB_PASS;
-    $dbname = "nxtdrop_alpha_test";
+    $password = "(^@=t.Huu)FE";
+    $dbname = "users_beta";
 
     //Create connection to DB
     $conn = new mysqli($hostname, $username, $password, $dbname);

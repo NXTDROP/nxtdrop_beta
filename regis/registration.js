@@ -73,8 +73,15 @@ $(document).ready(function() {
                             $('#form-message').addClass('success').text("Account Created!");
                             $('#submit').html('Create Account');
                             //sendConfirmation();
+                            setTimeout(function() {
+                                window.location.replace('https://nxtdrop.com');
+                            }, 2000);
                         }
                         else if (data === 'EMAIL') {}
+                        else if (data === 'INVALID EMAIL') {
+                            $('#social_form-message').addClass('error').text('Your email is invalid.');
+                            $('#social_submit').html('Create Account');
+                        }
                         else if (data === 'DB') {
                             $('#social_form-message').addClass('error').text('Could not connect to the servers. Try later.');
                             $('#social_submit').html('Create Account');
@@ -130,7 +137,7 @@ $(document).ready(function() {
                         setTimeout(function() {
                             $('.social_regis').fadeOut();
                             $('.social_regis_main').fadeOut();
-                            window.location.replace('login.php');
+                            window.location.replace('https://nxtdrop.com');
                         }, 2000);
                     }
                     else if(data === "ACCOUNT") {
@@ -142,6 +149,10 @@ $(document).ready(function() {
                         }, 5000);
                     }
                     else if (data === 'EMAIL') {}
+                    else if (data === 'INVALID EMAIL') {
+                        $('#social_form-message').addClass('error').text('Your email is invalid.');
+                        $('#social_submit').html('Create Account');
+                    }
                     else if (data === 'DB') {
                         $('#social_form-message').addClass('error').text('Could not connect to the servers. Try later.');
                         $('#social_submit').html('Create Account');

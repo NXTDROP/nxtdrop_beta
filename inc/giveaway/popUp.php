@@ -101,6 +101,12 @@
     color: #fff;
     cursor: pointer;
 }
+
+#disclaimer {
+    font-size: 12px;
+    font-weight: 600;
+    color: #515151;
+}
 </style>
 
 <script type="text/javascript">
@@ -127,6 +133,9 @@
                     $('.submit_giveaway').attr('disabled', false);
                     setTimeout(function() {$('#giveaway_msg').html(""); $(".giveaway").fadeOut(); $(".giveaway_main").fadeOut(); $("#floater").fadeOut();}, 5000);
                     $('.submit_giveaway').html('Enter Giveaway');
+                    setTimeout(() => {
+                        alert('We sent you an email. Increase your chances of winning by letting a lucky friend use your secret code.');
+                    }, 5000);
                 }
                 else if(response === 'ERROR') {
                     $('#giveaway_msg').html("Sorry, there is a problem. Try again later!");
@@ -214,6 +223,7 @@
             <p>Air Jordan 4s "Cactus Jack"</p>
             <p id="giveaway_msg"></p>
             <button class="submit_giveaway" onclick="enterGiveaway();">Enter Giveaway</button>
+            <p id="disclaimer"><span style="font-size: 14px; font-weight: 800;">Disclaimer:</span> Increase your chances of winning by listing an item for sale or inviting a friend.</p>
         </div>
     </div>
 </div>
