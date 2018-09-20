@@ -69,7 +69,7 @@
             <p style="color: tomato;">Tracking #: <?php echo $trackingno; ?></p>
             <p id="order-shippingCost">Shipping Cost: $<?php echo number_format($row['totalPrice']-$row['product_price'], 2, '.', ','); ?></p>
             <h3>Item Details</h3>
-            <img src="img/AJ1OFF.jpg"><span><?php echo $row['caption']; ?></span>
+            <img src="<?php echo $row['pic']; ?>"><span><?php echo $row['caption']; ?></span>
             <p id="order-itemPrice">Price: $<?php echo number_format($row['product_price'], 2, '.', ','); ?></p>
             <h2 id="order-total">Total: $<?php echo number_format($row['totalPrice'], 2, '.', ','); ?></h2>
         </div>

@@ -1,4 +1,13 @@
-<!doctype html>
+<?php
+    if(isset($_GET['email'])) {
+        $email = $_GET['email'];
+    }
+    else {
+        $email = '';
+    }
+?>
+
+<!DOCTYPE html>
 
 <html lang="en">
     <head>
@@ -118,7 +127,7 @@
 
             <div class="content" style="overflow: hidden;">
             <img src="https://nxtdrop.com/img/AJ1OFF.jpg" alt="">
-                <a href="https://nxtdrop.com/"><button id="signin_btn">CONFIRM EMAIL</button></a>
+                <a href="<?php echo 'https://nxtdrop.com/activate/'.$email; ?>"><button id="signin_btn">CONFIRM EMAIL</button></a>
             </div>
 
             <div class="footer">
@@ -131,7 +140,7 @@
                     </tr>
                 </table>
                 <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">&copy; NXTDROP, Inc. All rights reserved.</p>
-                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">If you prefer not to receive emails like this from NXTDROP, you may <a href="#" style="text-decoration: underline; color: #424242;">unsubscribe</a></p>
+                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">If you prefer not to receive emails like this from NXTDROP, you may <a href="<?php echo 'https://nxtdrop.com/unsubscribe/'.$email; ?>" style="text-decoration: underline; color: #424242;">unsubscribe</a></p>
             </div>
         </div>
     </body>

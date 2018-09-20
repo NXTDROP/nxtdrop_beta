@@ -1,12 +1,39 @@
+<script type="text/javascript">
+    /** Function that makes an AJAX call to follow a user
+    ** Argument: username */
+    function follow(username) {
+        $('#follow_'+username).css('display', 'none');
+        $.ajax({
+            type: 'POST',
+            url: 'inc/following_sys/follow_unfollow.php',
+            data: {follower_username:username, type:'follow'},
+            success: function(data) {
+                if (data != '') {
+                    $('#follow_'+username).attr('disabled', false);
+                    $('#follow_'+username).css('display', 'block');
+                    alert(data);
+                }
+            }
+        });
+    }
+
+    /** Function that redirects to Checkout page
+    ** Argument: pid: Post ID */
+    function checkout(pid) {
+        ga('send', 'event', 'click', 'Buy Now Button Main');
+        window.location.replace("checkout.php?item="+pid);
+    }
+</script>
+
 <?php
     session_start();
     include '../dbh.php';
     include 'time.php';
     include 'num_conversion.php';
     include 'following_sys/functions.php';
-    $search = mysqli_real_escape_string($conn, $_GET['search']);
+    $search = $conn->real_escape_string($_GET['search']);
 
-    $posts_query = "SELECT * FROM users, posts, profile WHERE caption LIKE '%".$search."%' AND posts.uid = users.uid AND posts.uid = profile.uid LIMIT 10";
+    $posts_query = "SELECT * FROM users, posts, profile WHERE caption LIKE '%".$search."%' AND posts.uid = users.uid AND posts.uid = profile.uid ORDER BY posts.pdate DESC LIMIT 10";
     $posts_result = $conn->query($posts_query);
 
     if ($search == '') {
@@ -16,17 +43,17 @@
         while ($row = mysqli_fetch_assoc($posts_result)) {
             if ($row['status'] == "") $row['status'] = "uploads/user.png";
 
-            $like_class = 'far fa-heart like';
-            if (isset($_SESSION['uid'])) {
-                $query = "SELECT pid FROM likes WHERE liked_by = ".$_SESSION['uid']." AND pid = ".$row['pid'].";";
-                $q_result = mysqli_query($conn, $query);
-                $q_row = mysqli_fetch_assoc($q_result);
-                if ($row['pid'] == $q_row['pid']) $like_class = 'fas fa-heart unlike';
-            }
+                $like_class = 'far fa-heart like';
+                if (isset($_SESSION['uid'])) {
+                    $query = "SELECT pid FROM likes WHERE liked_by = ".$_SESSION['uid']." AND pid = ".$row['pid'].";";
+                    $q_result = mysqli_query($conn, $query);
+                    $q_row = mysqli_fetch_assoc($q_result);
+                    if ($row['pid'] == $q_row['pid']) $like_class = 'fas fa-heart unlike';
+                }
 
-            $username = "'".$row['username']."'";
-            
-            echo '<section class="container post-'.$row['pid'].'">
+                $username = "'".$row['username']."'";
+                
+                echo '<section class="container post-'.$row['pid'].'">
                 <div class="card">
                 <div class="card-header">
                                     
@@ -91,17 +118,17 @@
                 </p>
                 </div>-->
                 <hr />';
-            if (isset($_SESSION['uid'])) {
-                $pid = "'".$row['pid']."'";
+                
                 if ($_SESSION['uid'] == $row['uid']) {
+                    $pid = "'".$row['pid']."'";
                     echo '
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
                     <div class="heart">';
-                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
                     echo '</div>';
-                
-                    if ($row['uid'] != 'request') {
+                    
+                    /*if ($row['type'] != 'request') {
                         $type = 0;
                         echo '<div class="sold_button">
                     <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
@@ -110,14 +137,14 @@
                     else {
                         $type = 1;
                         echo '<div class="sold_button">
-                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
-                    </div>';
-                    }
+                        <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
+                        </div>';
+                    }*/
 
                     echo '<div onclick="delete_('.$row['pid'].')" class="remove">
                     <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
                     </div>
-                    
+                        
                     <!--<div class="add-comment">
                     <input type="text" placeholder="Drop a comment..." />
                     </div>-->
@@ -129,20 +156,38 @@
                 } 
                 else {
                     $u = "'".$row['username']."'";
-                    $pid = $row['pid'];
+                    $pid = "'".$row['pid']."'";
+                    $stmt = $conn->query("SELECT * FROM transactions WHERE itemID = $pid AND confirmationDate != '0000-00-00 00:00:00'");
+                    
                     echo '
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart_noremove">';
-                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
-                    echo '</div>
-                    <div class="direct_message">
-                    <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
-                    </div>
-                    <div class="flag">
+                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                    echo '</div>';
+
+                    if(mysqli_num_rows($stmt) > 0) {
+                        echo '<div class="buy_now">
+                        <button title="Sold out">SOLD OUT</button>
+                    </div>';
+                    }
+                    else {
+                        if($row['type'] === 'sale') {
+                            echo '<div class="buy_now">
+                        <button onclick="checkout('.$pid.')" title="Buy Now">BUY NOW</button>
+                    </div>';
+                        }
+                        else {
+                            echo '<div class="direct_message">
+                            <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
+                            </div>';
+                        }
+                    }
+
+                    echo '<div class="flag">
                     <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
                     </div>
-                
+                    
                     <!--<div class="add-comment">
                     <input type="text" placeholder="Drop a comment..." />
                     </div>-->
@@ -152,28 +197,6 @@
                     </div>    
                     </section>';
                 }
-                
-            }
-            else {
-                echo '
-                <div class="post_form_bottom">
-                <input type="hidden" name="pid" value="'.$row['pid'].'">
-                <div class="heart_noremove">';
-                echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" title="Likes"></i><span class="fa-layers-counter" style="background:Tomato">'.likes($row['likes']).'</span></span>';
-                echo '</div>
-                <div class="flag">
-                <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
-                </div>
-            
-                <!--<div class="add-comment">
-                <input type="text" placeholder="Drop a comment..." />
-                </div>-->
-                </div>
-                </div>
-            
-                </div>    
-                </section>';
-            }
         }
     }
 ?>

@@ -1,8 +1,5 @@
 <?php
-    require_once('../credentials.php');
     require_once('vendor/autoload.php');
-    $email = new \SendGrid\Mail\Mail(); 
-    $sendgrid = new \SendGrid($SENDGRID_API_KEY);
 
     class Email {
 
@@ -13,13 +10,23 @@
         private $cc;
         private $emailType;
         private $error;
+        private $itemID;
 
         public function _construct($recipient, $recipientEmail, $from, $subject, $cc) {
-            setRecipient($recipient);
-            setRecipientEmail($recipientEmail);
-            setFrom($from);
-            setSubject($subject);
-            setCC($cc);
+            $this->setRecipient($recipient);
+            $this->setRecipientEmail($recipientEmail);
+            $this->setFrom($from);
+            $this->setSubject($subject);
+            $this->setCC($cc);
+        }
+
+        public function Email($recipient, $recipientEmail, $from, $subject, $cc, $itemID) {
+            $this->setRecipient($recipient);
+            $this->setRecipientEmail($recipientEmail);
+            $this->setFrom($from);
+            $this->setSubject($subject);
+            $this->setCC($cc);
+            $this->setItemID($itemID);
         }
 
         private function setRecipient($recipient) {
@@ -48,6 +55,10 @@
             $this->cc = $cc;
         }
 
+        private function setItemID($itemID) {
+            $this->itemID = $itemID;
+        }
+
         private function getRecipient() {
             return $this->recipient;
         }
@@ -68,267 +79,163 @@
             return $this->cc;
         }
 
+        private function getItemID() {
+            return $this->itemID;
+        }
+
         public function sendEmail($type) {
-            $email->setFrom(getFrom(), 'NXTDROP');
-            $email->addTo(getRecipientEmail(), getRecipient());
-            $email->setSubject(getSubject());
-            $email->addCCs($cc);
             switch($type) {
-                case registration:
-                    registration();
+                case 'registration':
+                    $this->registration();
                     break;
-                case giveaway:
-                    raffle();
+                case 'giveaway':
+                    $this->raffle();
                     break;
-                case orderPlaced:
-                    orderPlaced();
+                case 'orderPlaced':
+                    $this->orderPlaced();
                     break;
-                case sellerConfirmation:
-                    sellerConfirmation();
+                case 'sellerConfirmation':
+                    $this->sellerConfirmation();
                     break;
-                case sellerShipping:
-                    sellerShipping();
+                case 'sellerShipping':
+                    $this->sellerShipping();
                     break;
-                case middlemanVerification:
-                    middlemanVerification();
+                case 'middlemanVerification':
+                    $this->middlemanVerification();
                     break;
-                case middlemanShipping:
-                    middlemanShipping();
+                case 'middlemanShipping':
+                    $this->middlemanShipping();
                     break;
-                case receivedOffer:
-                    receivedOffer();
+                case 'receivedOffer':
+                    $this->receivedOffer();
                     break;
-                case usedCode:
-                    usedCode();
+                case 'usedCode':
+                    $this->usedCode();
                     break;
-                case profileChange:
-                    profileChange();
+                case 'profileChange':
+                    $this->profileChange();
                     break;
-                case stripeRegistration:
-                    stripeRegistration();
+                case 'stripeRegistration':
+                    $this->stripeRegistration();
                     break;
                 default:
                     break;
             }
         }
 
-        private function registration() {
-            $c = curl_init('https://nxtdrop.com/email/registration.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
+        private function deliverMail($html) {
+            $email = new \SendGrid\Mail\Mail();
+            $email->setFrom($this->getFrom(), 'NXTDROP');
+            $email->addTo($this->getRecipientEmail(), $this->getRecipient());
+            $email->setSubject($this->getSubject());
+            $email->addCC($this->getCC());
+            $email->addContent("text/html", "$html");
+            try {
+                require_once('../credentials.php');
+                $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                $sendgrid->send($email);
+                return true;
+            } catch(Exception $e) {
                 return false;
+            }
+        }
+
+        private function registration() {
+            $c = file_get_contents('https://nxtdrop.com/email/registration.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function raffle() {
-            $c = curl_init('https://nxtdrop.com/email/raffle.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/raffle.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function orderPlaced() {
-            $c = curl_init('https://nxtdrop.com/email/orderPlaced.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $html = file_get_contents('http://localhost/nd-v1.00/email/orderPlaced.php?email='.$this->getRecipientEmail().'&itemID='.$this->getItemID().'');
+            if($this->deliverMail($html)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function sellerConfirmation() {
-            $c = curl_init('https://nxtdrop.com/email/sellerConfirmation.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/sellerConfirmation.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function sellerShipping() {
-            $c = curl_init('https://nxtdrop.com/email/sellerShipping.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/sellerShipping.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function middlemanVerification() {
-            $c = curl_init('https://nxtdrop.com/email/middlemanVerification.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/middlemanVerification.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function middlemanShipping() {
-            $c = curl_init('https://nxtdrop.com/email/middlemanShipping.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/middlemanShipping.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function receivedOffer() {
-            $c = curl_init('https://nxtdrop.com/email/receivedOffer.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/receivedOffer.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function usedCode() {
-            $c = curl_init('https://nxtdrop.com/email/usedCode.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/usedCode.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function profileChange() {
-            $c = curl_init('https://nxtdrop.com/email/profileChange.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/profileChange.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
 
         private function stripeRegistration() {
-            $c = curl_init('https://nxtdrop.com/email/stripeRegistration.php?email='.getRecipientEmail().'');
-            curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-            $status = curl_getinfo($c, CURLINFO_HTTP_CODE);
-            if($status != '200') {
-                return false;
+            $c = file_get_contents('https://nxtdrop.com/email/stripeRegistration.php?email='.$this->getRecipientEmail().'');
+            if($this->deliverMail($c)) {
+                echo 'true';
             } else {
-                $html = curl_exec($c);
-                curl_close($c);
-                $clean_html = preg_replace('/\s+/', '', $html);
-                $email->addContent("text/html", "$clean_html");
-                try {
-                    $sendgrid->send($email);
-                    return true;
-                } catch(Exception $e) {
-                    return false;
-                }
+                echo 'false';
             }
         }
     }

@@ -187,7 +187,7 @@
 
     <div class="search-box">
         <input type="search" id="search" placeholder="Search..."/>
-        <span id="icon"><i class="fas fa-search-plus"></i></span>
+        <span id="icon"><i class="fas fa-search-plus" onClick="ga('send', 'event', 'button', 'click', 'SearchBtn');"></i></span>
     </div>
 
     <?php
@@ -201,7 +201,9 @@
                 $pic = 'uploads/user.png';
             }
             $username = $row['username'];
-            echo '<button class="drop-btn" title="List/Request An Item"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            $send = "ga('send', 'event', 'button', 'click', 'Buy Now Main');";
+
+            echo '<button class="drop-btn" title="List/Request An Item" onClick="'.$send.'"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
             <button class="alert-btn" title="Notifications"><i class="fas fa-bell"></i></button>
             

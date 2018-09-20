@@ -98,7 +98,8 @@
 
         <?php
             if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;")) >= 15) {
-                echo '<button class="load_drop">More Drops</button>';
+                $event_load = "ga('send', 'event', 'button', 'click', 'Buy Now Main');";
+                echo '<button class="load_drop" onClick="'.$event_load.'">More Drops</button>';
             }
             else {
                 echo '';

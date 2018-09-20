@@ -69,7 +69,7 @@
         <h2 id="social_regis_title"></h2>
         <div class="social_regis_content">
             <input type="text" name="username" id="social_username" placeholder="Username [Required]"><br>
-            <select class="country_select" id="social_country">
+            <select class="country_select" id="social_country" required>
                 <option selected>Select Country [REQUIRED]</option>
                 <option value="CA">CANADA</option>
                 <option value="US">UNITED STATES</option>

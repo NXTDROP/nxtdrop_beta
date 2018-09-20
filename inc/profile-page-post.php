@@ -3,6 +3,7 @@
     /** Function that redirects to Checkout page
     ** Argument: pid: Post ID */
     function checkout(pid) {
+        ga('send', 'event', 'button', 'click', 'Buy Now Main');
         window.location.replace("checkout.php?item="+pid);
     }
 </script>

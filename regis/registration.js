@@ -79,25 +79,25 @@ $(document).ready(function() {
                         }
                         else if (data === 'EMAIL') {}
                         else if (data === 'INVALID EMAIL') {
-                            $('#social_form-message').addClass('error').text('Your email is invalid.');
-                            $('#social_submit').html('Create Account');
+                            $('#form-message').addClass('error').text('Your email is invalid.');
+                            $('#submit').html('Create Account');
                         }
                         else if (data === 'DB') {
-                            $('#social_form-message').addClass('error').text('Could not connect to the servers. Try later.');
-                            $('#social_submit').html('Create Account');
+                            $('#form-message').addClass('error').text('Could not connect to the servers. Try later.');
+                            $('#submit').html('Create Account');
                         }
                         else {
                             $('#form-message').addClass('error').text(data);
                             $('#submit').html('Create Account');
                             $('.regis').fadeOut();
-                            $('.regis_main').fadeOUt();
+                            $('.regis_main').fadeOut();
                         }
                     },
                     error: function(data) {
                         $('#form-message').addClass('error').text(data);
                         $('#submit').html('Create Account');
                         $('.regis').fadeOut();
-                        $('.regis_main').fadeOUt();
+                        $('.regis_main').fadeOut();
                     }
                 });
             }

@@ -20,6 +20,27 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://apis.google.com/js/api.js"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126110764-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-126110764-1');
+        </script>
+
+        <!-- Google Analytics -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-126110764-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
     </head>
 
     <body>
@@ -160,11 +181,11 @@
                 <p style="color: #8e8989;">or, login with email</p>
                 <input type="text" name="username" placeholder="Username" required><br>
                 <input type="password" name="pwd" placeholder="Password" required><br>
-                <button type="submit" name="submit" id="submit_login">Login</button><br>
+                <button type="submit" name="submit" id="submit_login" onClick="ga('send', 'event', 'button', 'click', 'loginBtn');">Login</button><br>
             </div>
             <p class="error_login"></p>
         </div>
-        <p style="font-size: 12px; color: #c6c6c6; text-align: center;">Don&apos;t have an account? <a href="signup" style="text-decoration: none; color: tomato;">Sign Up »</a></p>
+        <p style="font-size: 12px; color: #c6c6c6; text-align: center;">Don&apos;t have an account? <a href="signup" style="text-decoration: none; color: tomato;" onClick="ga('send', 'event', 'button', 'click', 'SignUpBtn LP');">Sign Up »</a></p>
         <p style="color: tomato; font-size: 12px; text-align: center; margin: 5px 0 0 0;"><a href="forgot_password" style="color: tomato;">Forgot you password?</a></p>
         <?php include('login/modalLogin.php') ?>
     </body>
