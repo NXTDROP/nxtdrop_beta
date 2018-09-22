@@ -30,7 +30,6 @@
     include '../dbh.php';
     include 'time.php';
     include 'num_conversion.php';
-    include 'following_sys/functions.php';
     $search = $conn->real_escape_string($_GET['search']);
 
     $posts_query = "SELECT * FROM users, posts, profile WHERE caption LIKE '%".$search."%' AND posts.uid = users.uid AND posts.uid = profile.uid ORDER BY posts.pdate DESC LIMIT 10";
@@ -73,20 +72,20 @@
                 echo '<!--<div class="location">Toronto, Ontario</div>-->';
                 
                 if ($row['type'] == 'sale') {
-                    echo '<p class="drop_type" id="sale_banner">SALE</p>';
+                    echo '<p class="drop_type" id="sale_banner">FOR SALE</p>';
                 }
                 else if ($row['type'] == 'request') {
                     echo '<p class="drop_type" id="request_banner">REQUEST</p>';
                 }
                 else if ($row['type'] == 'trade') {
-                    echo '<p class="drop_type" id="trade_banner">TRADE</p>';
+                    echo '<p class="drop_type" id="trade_banner">FOR TRADE</p>';
                 }
             
                 echo '</div>
             
-                <div class="time">
+                <!--<div class="time">
                 <p>'.getPostTime($row['pdate']).'</p>
-                </div>
+                </div>-->
                 </div>';
 
                 if ($row['pic'] != '') {
@@ -197,6 +196,27 @@
                     </div>    
                     </section>';
                 }
+        }
+    }
+
+    function isFriend($uname) {
+        include '../dbh.php';
+        $follower_username = $uname;
+        $user_id = $_SESSION['uid'];
+
+        $sql = "SELECT * FROM users WHERE username='$follower_username'";
+        $result = $conn->query($sql);
+        $row = mysqli_fetch_assoc($result);
+        $follower_id = $row['uid'];
+
+        $query2 = "SELECT * FROM following WHERE user_id='$user_id' AND follower_id='$follower_id'";
+        $result = $conn->query($query2);
+        $count = mysqli_num_rows($result);
+        if ($count <= 0) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 ?>

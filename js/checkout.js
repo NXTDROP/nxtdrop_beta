@@ -179,7 +179,8 @@ function getInfo() {
         success: function(data) {
             if(data === "ERROR") {
                 $(".load").fadeOut();
-                $(".load_main").fadeOut();
+                $(".load_main").hide();
+                console.log(data);
                 alert('Sorry, there was an error. Try again.');
             }
             else if(data === "CONNECTION") {
@@ -191,8 +192,15 @@ function getInfo() {
                 $(".load").fadeOut();
                 $(".load_main").fadeOut();
                 alert('This item does not exist.');
+            } 
+            else if(data === "DB") {
+                $(".load").fadeOut();
+                $(".load_main").fadeOut();
+                console.log(data);
+                alert('Sorry, there was an error. Try again.');
             }
             else {
+                console.log(data);
                 let jsonObject = JSON.parse(data);
                 street = jsonObject[0]['street'];
                 city = jsonObject[0]['city'];
@@ -202,7 +210,7 @@ function getInfo() {
                 price = parseFloat(jsonObject[0]['price']);
                 pic = jsonObject[0]['pic'];
                 item = jsonObject[0]['item'];
-                var total = price + 13.65;
+                var total = price + 0;
                 card_brand = jsonObject[0]['card_brand'];
                 card_last4 = jsonObject[0]['card_last4'];
                 seller_ID = jsonObject[0]['seller_ID'];
@@ -221,8 +229,9 @@ function getInfo() {
                 $(".load_main").fadeOut();
             }
         },
-        error: function() {
+        error: function(data) {
             alert('Sorry, there was an error. Try again.');
+            console.log(data)
         }
     });
 }

@@ -127,7 +127,7 @@
                 <h3>Summary</h3>
                 <div class="summary-shipping">
                     <strong>Shipping</strong>
-                    <strong id="shipping-cost">$13.65</strong>
+                    <strong id="shipping-cost">FREE</strong>
                 </div>
                 
                 <hr>
@@ -139,12 +139,12 @@
                 <hr>
                 <div class="summary-total">
                     <strong>Total</strong>
-                    <strong id="total-order">$13.65</strong>
+                    <strong id="total-order">$00.00</strong>
                 </div>
                 <hr>
             </div>
 
-            <button class="checkout-pay">Pay $13.65</button>
+            <button class="checkout-pay">Pay $00.00</button>
             <button class="checkout-cancel" onclick="goBack();">Cancel Order</button>
         </div>
 

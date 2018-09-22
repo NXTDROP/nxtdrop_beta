@@ -88,7 +88,8 @@
                         $cus_id = $cus->id;
                         $account_id = $acct->id;
                         $updateUsers = $conn->query("UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';");
-                        if($updateUsers) {
+                        $thebag = $conn->query("INSERT INTO thebag (uid, stripe_id) VALUES ('$uid', '$account_id')");
+                        if($updateUsers && $thebag) {
                             $conn->commit();
                             session_start();
                             $_SESSION['uid'] = $uid;

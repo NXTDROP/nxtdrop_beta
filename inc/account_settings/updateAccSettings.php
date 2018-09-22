@@ -15,9 +15,9 @@
             if($account = \Stripe\Account::retrieve($s_id)) {
                 $json = array();
     
-                $query = "SELECT * FROM thebag WHERE stripe_id = '$s_id' AND uid = '$n_id'";
+                $query = "SELECT * FROM thebag WHERE stripe_id = '$s_id' AND uid = '$n_id';";
                 $result = $conn->query($query);
-                if($row = mysqli_fetch_assoc($result)) {
+                if($row = $result->fetch_assoc()) {
                     if($customer = \Stripe\Customer::retrieve($cus_id)) {
                         if($row['in_token'] != "") {
                             $bank_account = $account->external_accounts->retrieve($row['in_token']);

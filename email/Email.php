@@ -1,5 +1,7 @@
 <?php
-    require_once('vendor/autoload.php');
+    require_once('../vendor/autoload.php');
+    include_once('../../credentials.php');
+    $SD = $SD_TEST_API_KEY;
 
     class Email {
 
@@ -11,8 +13,9 @@
         private $emailType;
         private $error;
         private $itemID;
+        private $SD;
 
-        public function _construct($recipient, $recipientEmail, $from, $subject, $cc) {
+        public function __construct($recipient, $recipientEmail, $from, $subject, $cc) {
             $this->setRecipient($recipient);
             $this->setRecipientEmail($recipientEmail);
             $this->setFrom($from);
@@ -29,11 +32,11 @@
             $this->setItemID($itemID);
         }
 
-        private function setRecipient($recipient) {
+        public function setRecipient($recipient) {
             $this->recipient = $recipient;
         }
 
-        private function setRecipientEmail($recipientEmail) {
+        public function setRecipientEmail($recipientEmail) {
             // Remove all illegal characters from email
             $email = filter_var($recipientEmail, FILTER_SANITIZE_EMAIL);
             if (!filter_var($recipientEmail, FILTER_VALIDATE_EMAIL)) {
@@ -43,19 +46,19 @@
             $this->recipientEmail = $email;
         }
 
-        private function setFrom($from) {
+        public function setFrom($from) {
             $this->from = $from;
         }
 
-        private function setSubject($subject) {
+        public function setSubject($subject) {
             $this->subject = $subject;
         }
 
-        private function setCC($cc) {
+        public function setCC($cc) {
             $this->cc = $cc;
         }
 
-        private function setItemID($itemID) {
+        public function setItemID($itemID) {
             $this->itemID = $itemID;
         }
 
@@ -125,14 +128,14 @@
 
         private function deliverMail($html) {
             $email = new \SendGrid\Mail\Mail();
-            $email->setFrom($this->getFrom(), 'NXTDROP');
             $email->addTo($this->getRecipientEmail(), $this->getRecipient());
             $email->setSubject($this->getSubject());
-            $email->addCC($this->getCC());
-            $email->addContent("text/html", "$html");
+            $email->addContent("text/html", $html);
+            if ($this->getCC() != '') {$email->addCC($this->getCC());}
+            else {echo 'nocc';}
+            $email->setFrom($this->getFrom(), 'NXTDROP');
             try {
-                require_once('../credentials.php');
-                $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                $sendgrid = new \SendGrid($GLOBALS['SD']);
                 $sendgrid->send($email);
                 return true;
             } catch(Exception $e) {
@@ -141,7 +144,7 @@
         }
 
         private function registration() {
-            $c = file_get_contents('https://nxtdrop.com/email/registration.php?email='.$this->getRecipientEmail().'');
+            $c = file_get_contents('http://localhost/nd-v1.00/email/registration.php?email='.$this->getRecipientEmail().'');
             if($this->deliverMail($c)) {
                 echo 'true';
             } else {

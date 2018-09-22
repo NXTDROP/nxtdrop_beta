@@ -1,0 +1,688 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+/******************************************* GLOBAL **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+    
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    body {
+        background-size: 250% auto!important;    
+    }
+    
+    .header {
+        margin: 0 0 4em 0!important;
+    }
+    
+    .header tr td {
+        width: 50%!important;
+    }
+    
+    #logo {
+        width: 35%!important;
+    }
+    
+    #login {
+        font-size: 0.8em!important;
+    }
+    
+    .content {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .content i {
+        font-size: 1.6em!important;
+    }
+    
+    .content p {
+        font-size: 0.75em!important;
+        margin-top: 1em!important;
+    }
+    
+    h3 {
+        font-size: 1.2em!important;
+        margin-top: 3em!important;
+    }
+    
+    #text-over-btn {
+        margin: 7em 0 0 0!important;
+        font-size: 0.7em!important;
+    }
+    
+    #text-under-btn {
+        margin: 5em 0 5em 0!important;
+        font-size: 0.55em!important;
+    }
+    
+    .btn-container {
+        margin: 2em 0 4em 0!important;
+    }
+    
+    .laptop {
+        display: none;
+    }
+    
+    footer {
+        padding: 15px!important;
+    }
+    
+    .partners a {
+        width: 23.33%!important;
+        margin: 0 5%!important;
+    }
+    
+    .partners a img {
+        width: 100%!important;
+    }
+    
+    .links a {
+        font-size: 0.9em!important;
+        margin-right: 3%!important;
+    }
+    
+    .text {
+        left: 1%!important;
+        width: 35%!important;
+        transform: rotate(5deg);
+        top: 62%!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    body {
+        background-size: 250% auto!important;    
+    }
+    
+    .header {
+        margin: 0 0 2em 0!important;
+    }
+    
+    .header tr td {
+        width: 50%!important;
+    }
+    
+    #logo {
+        width: 20%!important;
+    }
+    
+    #login {
+        font-size: 1em!important;
+    }
+    
+    .content {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .content i {
+        font-size: 1.6em!important;
+    }
+    
+    .content p {
+        font-size: 0.75em!important;
+        margin-top: 1em!important;
+    }
+    
+    h3 {
+        font-size: 1.2em!important;
+        margin-top: 1.5em!important;
+    }
+    
+    #text-over-btn {
+        margin: 2.5em 0 0 0!important;
+        font-size: 0.7em!important;
+    }
+    
+    #text-under-btn {
+        margin: 1em 0 2em 0!important;
+        font-size: 0.55em!important;
+    }
+    
+    .btn-container {
+        margin: 2em 0 2.2em 0!important;
+    }
+    
+    footer {
+        padding: 15px!important;
+    }
+    
+    .partners a {
+        width: 23.33%!important;
+        margin: 0 5%!important;
+    }
+    
+    .partners a img {
+        width: 70%!important;
+    }
+    
+    .links a {
+        font-size: 1em!important;
+        margin-right: 3%!important;
+    }
+    
+    .text {
+        left: 20%!important;
+        width: 22%!important;
+        transform: rotate(0deg);
+        top: 60%!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+    body {
+        background-size: 250% auto!important;    
+    }
+    
+    .header {
+        margin: 0 0 5em 0!important;
+    }
+    
+    .header tr td {
+        width: 50%!important;
+    }
+    
+    #logo {
+        width: 35%!important;
+    }
+    
+    #login {
+        font-size: 0.8em!important;
+    }
+    
+    .content {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .content i {
+        font-size: 1.6em!important;
+    }
+    
+    .content p {
+        font-size: 0.75em!important;
+        margin-top: 1em!important;
+    }
+    
+    h3 {
+        font-size: 1.2em!important;
+        margin-top: 4em!important;
+    }
+    
+    #text-over-btn {
+        margin: 8em 0 0 0!important;
+        font-size: 0.7em!important;
+    }
+    
+    #text-under-btn {
+        margin: 5em 0 5em 0!important;
+        font-size: 0.55em!important;
+    }
+    
+    .btn-container {
+        margin: 2em 0 4em 0!important;
+    }
+    
+    .laptop {
+        display: none;
+    }
+    
+    footer {
+        padding: 15px!important;
+    }
+    
+    .partners a {
+        width: 23.33%!important;
+        margin: 0 5%!important;
+    }
+    
+    .partners a img {
+        width: 100%!important;
+    }
+    
+    .links a {
+        font-size: 0.9em!important;
+        margin-right: 3%!important;
+    }
+    
+    .text {
+        left: 2%!important;
+        width: 35%!important;
+        transform: rotate(0deg);
+        top: 64%!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+    body {
+        background-size: 250% auto!important;    
+    }
+    
+    .header {
+        margin: 0 0 2em 0!important;
+    }
+    
+    .header tr td {
+        width: 50%!important;
+    }
+    
+    #logo {
+        width: 20%!important;
+    }
+    
+    #login {
+        font-size: 1em!important;
+    }
+    
+    .content {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .content i {
+        font-size: 1.6em!important;
+    }
+    
+    .content p {
+        font-size: 0.75em!important;
+        margin-top: 1em!important;
+    }
+    
+    h3 {
+        font-size: 1.2em!important;
+        margin-top: 1.5em!important;
+    }
+    
+    #text-over-btn {
+        margin: 2.5em 0 0 0!important;
+        font-size: 0.7em!important;
+    }
+    
+    #text-under-btn {
+        margin: 1em 0 2em 0!important;
+        font-size: 0.55em!important;
+    }
+    
+    .btn-container {
+        margin: 2em 0 2.2em 0!important;
+    }
+    
+    footer {
+        padding: 15px!important;
+    }
+    
+    .laptop {
+        width: 20%!important;
+        left: 79%!important;
+    }
+    
+    .partners a {
+        width: 23.33%!important;
+        margin: 0 5%!important;
+    }
+    
+    .partners a img {
+        width: 70%!important;
+    }
+    
+    .links a {
+        font-size: 1em!important;
+        margin-right: 3%!important;
+    }
+    
+    .text {
+        left: 22%!important;
+        width: 20%!important;
+        transform: rotate(0deg);
+        top: 55%!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    body {
+        background-size: 250% auto!important; 
+    }
+    
+    .header {
+        margin: 0 0 3em 0!important;
+    }
+    
+    .header tr td {
+        width: 50%!important;
+    }
+    
+    #logo {
+        width: 35%!important;
+    }
+    
+    #login {
+        font-size: 0.8em!important;
+    }
+    
+    .content {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .content i {
+        font-size: 1.6em!important;
+    }
+    
+    .content p {
+        font-size: 0.75em!important;
+        margin-top: 1em!important;
+    }
+    
+    h3 {
+        font-size: 1.2em!important;
+        margin-top: 2em!important;
+    }
+    
+    #text-over-btn {
+        margin: 6em 0 0 0!important;
+        font-size: 0.7em!important;
+    }
+    
+    #text-under-btn {
+        margin: 5em 0 5em 0!important;
+        font-size: 0.55em!important;
+    }
+    
+    .btn-container {
+        margin: 2em 0 4em 0!important;
+    }
+    
+    .laptop {
+        display: none;
+    }
+    
+    footer {
+        padding: 5px!important;
+    }
+    
+    .partners a {
+        width: 23.33%!important;
+        margin: 0 5%!important;
+    }
+    
+    .partners a img {
+        width: 100%!important;
+    }
+    
+    .links a {
+        font-size: 0.8em!important;
+        margin-right: 3%!important;
+    }
+    
+    .text {
+        left: 1%!important;
+        width: 35%!important;
+        transform: rotate(30deg);
+        top: 56%!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    body {
+        background-size: 250% auto!important;    
+    }
+    
+    .header {
+        margin: 0 0 1.5em 0!important;
+    }
+    
+    .header tr td {
+        width: 50%!important;
+    }
+    
+    #logo {
+        width: 20%!important;
+    }
+    
+    #login {
+        font-size: 1em!important;
+    }
+    
+    .content {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .content i {
+        font-size: 1.6em!important;
+    }
+    
+    .content p {
+        font-size: 0.75em!important;
+        margin-top: 1em!important;
+    }
+    
+    h3 {
+        font-size: 1.2em!important;
+        margin-top: 1em!important;
+    }
+    
+    #text-over-btn {
+        margin: 2em 0 0 0!important;
+        font-size: 0.7em!important;
+    }
+    
+    #text-under-btn {
+        margin: 1em 0 2em 0!important;
+        font-size: 0.55em!important;
+    }
+    
+    .btn-container {
+        margin: 2em 0 2em 0!important;
+    }
+    
+    footer {
+        padding: 15px!important;
+    }
+    
+    .partners a {
+        width: 23.33%!important;
+        margin: 0 5%!important;
+    }
+    
+    .partners a img {
+        width: 70%!important;
+    }
+    
+    .links a {
+        font-size: 1em!important;
+        margin-right: 3%!important;
+    }
+    
+    .text {
+        left: 15%!important;
+        width: 25%!important;
+        transform: rotate(0deg);
+        top: 62%!important;
+    }
+}
+/******************************************* GLOBAL END *********************************************/
+
+
+* {
+    transition: all 0.4s ease-in-out;
+}
+
+html, body {
+    color: #fff9f9!important;
+    font-family: 'Ubuntu', sans-serif!important;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background: url(img/nd.png);
+    background-repeat: no-repeat;
+    object-fit: contain;
+    background-size: 100% auto;
+}
+
+.main_container {
+    background: linear-gradient(120deg, #000000, #2d2d2d, #fc3f3f, #dd8604);
+    background-size: 300% 300%;
+    animation: BackgroundGradient 30s ease infinite;
+}
+
+@keyframes BackgroundGradient {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.header {
+    width: 100%;
+    margin: 0 0 8em 0;
+    opacity: 0;
+}
+
+.header tr td {
+    padding: 10px;
+}
+
+.header tr td img {
+    width: 6.5%;
+    margin: 5px;
+}
+
+#login {
+    font-size: 1em;
+    margin: 0px 15px;
+    border: 1px solid #fc3f3f;
+    padding: 8px;
+    text-decoration: none;
+    color: #fff9f9;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    background: #fc3f3f;
+}
+
+#login:hover {
+    text-decoration: none;
+    background: #fff9f9;
+    color: #fc3f3f;
+    border-color: #fff9f9;
+}
+
+.content {
+    width: 95%;
+    margin: 0 2.5%;
+    padding: 0;
+    display: flex;
+}
+
+.content div {
+    width: 33.33%;
+    text-align: center;
+}
+
+.content div i {
+    color: #fff9f9;
+    font-size: 38px;
+}
+
+.content div p {
+    margin: 30px 0 0 0;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.btn-container {
+    width: 100%;
+    margin: 3.5em auto;
+}
+
+.cta {
+    color: #fc3f3f;
+    border: 1px solid #fff9f9;
+    padding: 1em;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    background: transparent;
+    text-align: center;
+    opacity: 0;
+    background: #fff9f9;
+    -webkit-box-shadow: 4px 2px 64px 10px rgba(247,247,247,1);
+    -moz-box-shadow: 4px 2px 64px 10px rgba(247,247,247,1);
+    box-shadow: 4px 2px 64px 10px rgba(247,247,247,1);
+}
+
+.cta:hover {
+    text-decoration: none;
+    color: #fff9f9;
+    background: #fc3f3f;
+    border-color: #fc3f3f;
+    cursor: pointer;
+    -webkit-box-shadow: 4px 2px 64px 10px #fc3f3f;
+    -moz-box-shadow: 4px 2px 64px 10px #fc3f3f;
+    box-shadow: 4px 2px 64px 10px #fc3f3f;
+}
+
+footer {
+    background: #fff9f9;
+    padding: 15px;
+}
+
+.partners {
+    display: flex;
+}
+
+.partners a {
+    width: 10%; 
+    margin: 0 11.665%;
+}
+
+.partners a img {
+    width: 100%;
+}
+
+.links {
+    margin: 1.5em;
+    display: flex;
+}
+
+.links a {
+    margin-right: 5%;
+    text-align: center;
+    color: #fc3f3f;
+}
+
+.links a:hover {
+    color: #dd8604;
+    text-decoration: none;
+}
+
+.laptop {
+    width: 25%;
+    position: absolute;
+    top: 55%;
+    left: 74%;
+    opacity: 0;
+}
+
+.text {
+    width: 15%;
+    position: absolute;
+    top: 62%;
+    left: 30%;
+    opacity: 0;
+}
+
+#buy, #authentication, #delivery, h3, #text-over-btn, #text-under-btn {
+    opacity: 0;
+}

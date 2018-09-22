@@ -477,9 +477,11 @@ function updateInfo() {
         type: 'POST',
         success: function(data) {
             if(data === "ERROR") {
+                console.log(data);
                 $('.load_content').html('Could not load your information. Please try reloading the page.');
             }
             else {
+                console.log(data);
                 let jsonObject = JSON.parse(data);
                 $(".load").fadeOut();
                 $(".load_main").fadeOut();

@@ -64,20 +64,20 @@
                 echo '<!--<div class="location">Toronto, Ontario</div>-->';
                 
                 if ($row['type'] == 'sale') {
-                    echo '<p class="drop_type" id="sale_banner">SALE</p>';
+                    echo '<p class="drop_type" id="sale_banner">FOR SALE</p>';
                 }
                 else if ($row['type'] == 'request') {
                     echo '<p class="drop_type" id="request_banner">REQUEST</p>';
                 }
                 else if ($row['type'] == 'trade') {
-                    echo '<p class="drop_type" id="trade_banner">TRADE</p>';
+                    echo '<p class="drop_type" id="trade_banner">FOR TRADE</p>';
                 }
             
                 echo '</div>
             
-                <div class="time">
+                <!--<div class="time">
                 <p>'.getPostTime($row['pdate']).'</p>
-                </div>
+                </div>-->
                 </div>';
 
                 if ($row['pic'] != '') {

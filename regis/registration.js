@@ -73,9 +73,10 @@ $(document).ready(function() {
                             $('#form-message').addClass('success').text("Account Created!");
                             $('#submit').html('Create Account');
                             //sendConfirmation();
-                            setTimeout(function() {
+                            /*setTimeout(function() {
                                 window.location.replace('https://nxtdrop.com');
-                            }, 2000);
+                            }, 2000);*/
+                            console.log(data);
                         }
                         else if (data === 'EMAIL') {}
                         else if (data === 'INVALID EMAIL') {
@@ -83,6 +84,7 @@ $(document).ready(function() {
                             $('#submit').html('Create Account');
                         }
                         else if (data === 'DB') {
+                            console.log(data);
                             $('#form-message').addClass('error').text('Could not connect to the servers. Try later.');
                             $('#submit').html('Create Account');
                         }
