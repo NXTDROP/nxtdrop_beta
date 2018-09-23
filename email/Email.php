@@ -1,6 +1,6 @@
 <?php
-    require_once('../vendor/autoload.php');
-    include_once('../../credentials.php');
+    /*require_once('../vendor/autoload.php');
+    include_once('../../credentials.php');*/
     $SD = $SD_TEST_API_KEY;
 
     class Email {
@@ -132,7 +132,6 @@
             $email->setSubject($this->getSubject());
             $email->addContent("text/html", $html);
             if ($this->getCC() != '') {$email->addCC($this->getCC());}
-            else {echo 'nocc';}
             $email->setFrom($this->getFrom(), 'NXTDROP');
             try {
                 $sendgrid = new \SendGrid($GLOBALS['SD']);
@@ -144,100 +143,100 @@
         }
 
         private function registration() {
-            $c = file_get_contents('http://localhost/nd-v1.00/email/registration.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/registration.php?email='.$this->getRecipientEmail();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function raffle() {
-            $c = file_get_contents('https://nxtdrop.com/email/raffle.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/raffle.php?email='.$this->getRecipientEmail();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function orderPlaced() {
-            $html = file_get_contents('http://localhost/nd-v1.00/email/orderPlaced.php?email='.$this->getRecipientEmail().'&itemID='.$this->getItemID().'');
-            if($this->deliverMail($html)) {
-                echo 'true';
-            } else {
+            $u = 'http://nxtdrop.com/email/orderPlaced.php?email='.$this->getRecipientEmail().'&itemID='.$this->getItemID();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function sellerConfirmation() {
-            $c = file_get_contents('https://nxtdrop.com/email/sellerConfirmation.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/sellerConfirmation.php?email='.$this->getRecipientEmail().'&itemID='.$this->getItemID();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function sellerShipping() {
-            $c = file_get_contents('https://nxtdrop.com/email/sellerShipping.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/sellerShipping.php?email='.$this->getRecipientEmail();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function middlemanVerification() {
-            $c = file_get_contents('https://nxtdrop.com/email/middlemanVerification.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/middlemanVerification.php?email='.$this->getRecipientEmail();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function middlemanShipping() {
-            $c = file_get_contents('https://nxtdrop.com/email/middlemanShipping.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/middlemanShipping.php?email='.$this->getRecipientEmail();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function receivedOffer() {
-            $c = file_get_contents('https://nxtdrop.com/email/receivedOffer.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/receivedOffer.php?email='.$this->getRecipientEmail();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function usedCode() {
-            $c = file_get_contents('https://nxtdrop.com/email/usedCode.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/usedCode.php?email='.$this->getRecipientEmail();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function profileChange() {
-            $c = file_get_contents('https://nxtdrop.com/email/profileChange.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/profileChange.php?email='.$this->getRecipientEmail();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }
 
         private function stripeRegistration() {
-            $c = file_get_contents('https://nxtdrop.com/email/stripeRegistration.php?email='.$this->getRecipientEmail().'');
-            if($this->deliverMail($c)) {
-                echo 'true';
-            } else {
+            $u = 'https://nxtdrop.com/email/stripeRegistration.php?email='.$this->getRecipientEmail().'&username='.$this->getRecipient();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c)) {
                 echo 'false';
             }
         }

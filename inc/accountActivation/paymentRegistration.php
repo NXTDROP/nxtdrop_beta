@@ -1,8 +1,8 @@
 <?php
 
-    include 'dbh.php';
-    require_once('../credentials.php');
-    require_once('vendor/autoload.php');
+    include '../../dbh.php';
+    require_once('../../../credentials.php');
+    require_once('../../vendor/autoload.php');
     \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
     date_default_timezone_set("UTC"); 
     $date = date("Y-m-d H:i:s", time());
@@ -59,9 +59,10 @@
     
                     $cus_id = $cus->id;
                     $account_id = $acct->id;
-                    $updateUsers = $conn->query("UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';");
+                    $updateUsers = $conn->query("UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id', country = '$country' WHERE uid = '$uid';");
                     $activateAccount = $conn->query("UPDATE users SET active_account='1' WHERE email='$email';");
-                    if($updateUsers && $activateAccount) {
+                    $thebag = $conn->query("INSERT INTO thebag (uid, stripe_id) VALUES ('$uid', '$account_id')");
+                    if($updateUsers && $activateAccount && $thebag) {
                         $conn->commit();
                     }
                     else {
@@ -81,7 +82,7 @@
                             $ac->delete();
                             $conn->rollback();
                             die('DB');
-                        }   
+                        }
                         $conn->commit();
                     }
                 } catch (\Stripe\Error\RateLimit $e) {

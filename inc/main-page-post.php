@@ -23,6 +23,22 @@
         ga('send', 'event', 'button', 'click', 'Buy Now Main');
         window.location.replace("checkout.php?item="+pid);
     }
+
+    function login(btn) {
+        switch(btn) {
+            case 2:
+                alert('Please Log in/Sign Up to buy this item.');
+                break;
+            case 1:
+                alert('Please Log in/Sign Up to like this post.');
+                break;
+            case 3:
+                alert('Please Log in/Sign Up to flag this post.');
+                break;
+            default:
+                alert('Please Log in/Sign Up.');
+        }
+    }
 </script>
 
 <?php 
@@ -118,83 +134,113 @@
                 </div>-->
                 <hr />';
                 
-                if ($_SESSION['uid'] == $row['uid']) {
-                    $pid = "'".$row['pid']."'";
-                    echo '
-                    <div class="post_form_bottom">
-                    <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
-                    <div class="heart">';
-                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
-                    echo '</div>';
-                    
-                    /*if ($row['type'] != 'request') {
-                        $type = 0;
-                        echo '<div class="sold_button">
-                    <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
-                    </div>';
-                    }
-                    else {
-                        $type = 1;
-                        echo '<div class="sold_button">
-                        <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
-                        </div>';
-                    }*/
-
-                    echo '<div onclick="delete_('.$row['pid'].')" class="remove">
-                    <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
-                    </div>
+                if(isset($_SESSION['uid'])) {
+                    if ($_SESSION['uid'] == $row['uid']) {
+                        $pid = "'".$row['pid']."'";
+                        echo '
+                        <div class="post_form_bottom">
+                        <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
+                        <div class="heart">';
+                        echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                        echo '</div>';
                         
-                    <!--<div class="add-comment">
-                    <input type="text" placeholder="Drop a comment..." />
-                    </div>-->
-                    </div>
-                    </div>
+                        /*if ($row['type'] != 'request') {
+                            $type = 0;
+                            echo '<div class="sold_button">
+                        <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
+                        </div>';
+                        }
+                        else {
+                            $type = 1;
+                            echo '<div class="sold_button">
+                            <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
+                            </div>';
+                        }*/
+    
+                        echo '<div onclick="delete_('.$row['pid'].')" class="remove">
+                        <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
+                        </div>
+                            
+                        <!--<div class="add-comment">
+                        <input type="text" placeholder="Drop a comment..." />
+                        </div>-->
+                        </div>
+                        </div>
+                        
+                        </div>    
+                        </section>';
+                    } 
+                    else {
+                        $u = "'".$row['username']."'";
+                        $pid = "'".$row['pid']."'";
+                        $stmt = $conn->query("SELECT * FROM transactions WHERE itemID = $pid AND confirmationDate != '0000-00-00 00:00:00'");
+                        
+                        echo '
+                        <div class="post_form_bottom">
+                        <input type="hidden" name="pid" value="'.$row['pid'].'">
+                        <div class="heart_noremove">';
+                        echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                        echo '</div>';
+    
+                        if(mysqli_num_rows($stmt) > 0) {
+                            echo '<div class="buy_now">
+                            <button title="Sold out">SOLD OUT</button>
+                        </div>';
+                        }
+                        else {
+                            if($row['type'] === 'sale') {
+                                echo '<div class="buy_now">
+                            <button onclick="checkout('.$pid.')" title="Buy Now">BUY NOW</button>
+                        </div>';
+                            }
+                            else {
+                                echo '<div class="direct_message">
+                                <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
+                                </div>';
+                            }
+                        }
+    
+                        echo '<div class="flag">
+                        <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
+                        </div>
+                        
+                        <!--<div class="add-comment">
+                        <input type="text" placeholder="Drop a comment..." />
+                        </div>-->
+                        </div>
+                        </div>
                     
-                    </div>    
-                    </section>';
-                } 
-                else {
+                        </div>    
+                        </section>';
+                    }
+                } else {
                     $u = "'".$row['username']."'";
                     $pid = "'".$row['pid']."'";
                     $stmt = $conn->query("SELECT * FROM transactions WHERE itemID = $pid AND confirmationDate != '0000-00-00 00:00:00'");
-                    
+                        
                     echo '
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart_noremove">';
-                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="login(1)" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
                     echo '</div>';
-
-                    if(mysqli_num_rows($stmt) > 0) {
-                        echo '<div class="buy_now">
-                        <button title="Sold out">SOLD OUT</button>
-                    </div>';
-                    }
-                    else {
-                        if($row['type'] === 'sale') {
-                            echo '<div class="buy_now">
-                        <button onclick="checkout('.$pid.')" title="Buy Now">BUY NOW</button>
-                    </div>';
-                        }
-                        else {
-                            echo '<div class="direct_message">
-                            <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
-                            </div>';
-                        }
-                    }
-
+    
+                    echo '<div class="buy_now">
+                            <button onclick="login(2);" title="Buy Now">BUY NOW</button>
+                        </div>';
+    
                     echo '<div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
-                    </div>
+                        <i class="fa fa-flag" aria-hidden="true" onclick="login(3);" title="Report Drop"></i>
+                        </div>
+                        
+                        <!--<div class="add-comment">
+                        <input type="text" placeholder="Drop a comment..." />
+                        </div>-->
+                        </div>
+                        </div>
                     
-                    <!--<div class="add-comment">
-                    <input type="text" placeholder="Drop a comment..." />
-                    </div>-->
-                    </div>
-                    </div>
-                
-                    </div>    
-                    </section>';
+                        </div>    
+                        </section>';
                 }
             }
         }

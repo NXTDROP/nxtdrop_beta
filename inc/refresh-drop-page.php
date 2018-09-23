@@ -21,7 +21,6 @@
         include '../dbh.php';
         include 'time.php';
         include 'num_conversion.php';
-        include 'following_sys/functions.php';
         $_SESSION['timestamp'] = date("Y-m-d H:i:s", time());
         $count = $_POST['count'];
         $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = users.uid AND users.uid = profile.uid ORDER BY posts.pdate DESC LIMIT $count;";
@@ -64,20 +63,20 @@
                 echo '<!--<div class="location">Toronto, Ontario</div>-->';
                 
                 if ($row['type'] == 'sale') {
-                    echo '<p class="drop_type" id="sale_banner">SALE</p>';
+                    echo '<p class="drop_type" id="sale_banner">FOR SALE</p>';
                 }
                 else if ($row['type'] == 'request') {
                     echo '<p class="drop_type" id="request_banner">REQUEST</p>';
                 }
                 else if ($row['type'] == 'trade') {
-                    echo '<p class="drop_type" id="trade_banner">TRADE</p>';
+                    echo '<p class="drop_type" id="trade_banner">FOR TRADE</p>';
                 }
             
                 echo '</div>
             
-                <div class="time">
+                <!--<div class="time">
                 <p>'.getPostTime($row['pdate']).'</p>
-                </div>
+                </div>-->
                 </div>';
 
                 if ($row['pic'] != '') {
@@ -109,17 +108,18 @@
                 </p>
                 </div>-->
                 <hr />';
-                if (isset($_SESSION['uid'])) {
+                
+                if(isset($_SESSION['uid'])) {
                     if ($_SESSION['uid'] == $row['uid']) {
-                        $pid = $row['pid'];
+                        $pid = "'".$row['pid']."'";
                         echo '
                         <div class="post_form_bottom">
                         <input type="hidden" name="pid" value="'.$row['pid'].' id="pid">
                         <div class="heart">';
-                        echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                        echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
                         echo '</div>';
-                    
-                        if ($row['uid'] != 'request') {
+                        
+                        /*if ($row['type'] != 'request') {
                             $type = 0;
                             echo '<div class="sold_button">
                         <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Sold Already? Click Here! ">SOLD OUT?</button>
@@ -128,14 +128,14 @@
                         else {
                             $type = 1;
                             echo '<div class="sold_button">
-                        <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
-                        </div>';
-                        }
-
+                            <button id="sold_button" onclick="sold('.$pid.', '.$type.')" title="Found Already? Click Here! ">FOUND?</button>
+                            </div>';
+                        }*/
+    
                         echo '<div onclick="delete_('.$row['pid'].')" class="remove">
                         <i class="fa fa-times" aria-hidden="true" title="Delete Drop"></i>
                         </div>
-                        
+                            
                         <!--<div class="add-comment">
                         <input type="text" placeholder="Drop a comment..." />
                         </div>-->
@@ -147,20 +147,38 @@
                     } 
                     else {
                         $u = "'".$row['username']."'";
-                        $pid = $row['pid'];
+                        $pid = "'".$row['pid']."'";
+                        $stmt = $conn->query("SELECT * FROM transactions WHERE itemID = $pid AND confirmationDate != '0000-00-00 00:00:00'");
+                        
                         echo '
                         <div class="post_form_bottom">
                         <input type="hidden" name="pid" value="'.$row['pid'].'">
                         <div class="heart_noremove">';
-                        echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].', '.$row['likes'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
-                        echo '</div>
-                        <div class="direct_message">
-                        <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
-                        </div>
-                        <div class="flag">
+                        echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="like(this.id, '.$row['pid'].', '.$row['uid'].')" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                        echo '</div>';
+    
+                        if(mysqli_num_rows($stmt) > 0) {
+                            echo '<div class="buy_now">
+                            <button title="Sold out">SOLD OUT</button>
+                        </div>';
+                        }
+                        else {
+                            if($row['type'] === 'sale') {
+                                echo '<div class="buy_now">
+                            <button onclick="checkout('.$pid.')" title="Buy Now">BUY NOW</button>
+                        </div>';
+                            }
+                            else {
+                                echo '<div class="direct_message">
+                                <button onclick="send('.$u.', '.$pid.')" title="Send Offer">SEND OFFER</button>
+                                </div>';
+                            }
+                        }
+    
+                        echo '<div class="flag">
                         <i class="fa fa-flag" aria-hidden="true" onclick="flag('.$row['pid'].')" title="Report Drop"></i>
                         </div>
-                    
+                        
                         <!--<div class="add-comment">
                         <input type="text" placeholder="Drop a comment..." />
                         </div>-->
@@ -170,28 +188,56 @@
                         </div>    
                         </section>';
                     }
-                    
-                }
-                else {
+                } else {
+                    $u = "'".$row['username']."'";
+                    $pid = "'".$row['pid']."'";
+                    $stmt = $conn->query("SELECT * FROM transactions WHERE itemID = $pid AND confirmationDate != '0000-00-00 00:00:00'");
+                        
                     echo '
                     <div class="post_form_bottom">
                     <input type="hidden" name="pid" value="'.$row['pid'].'">
                     <div class="heart_noremove">';
-                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" title="Likes"></i><span class="fa-layers-counter" style="background:Tomato">'.likes($row['likes']).'</span></span>';
-                    echo '</div>
-                    <div class="flag">
-                    <i class="fa fa-flag" aria-hidden="true" title="Report Drop"></i>
-                    </div>
-                
-                    <!--<div class="add-comment">
-                    <input type="text" placeholder="Drop a comment..." />
-                    </div>-->
-                    </div>
-                    </div>
-                
-                    </div>    
-                    </section>';
+                    echo '<span class="fa-layers fa-fw" id="likes-'.$row['pid'].'"><i class="'.$like_class.'" id="heart-'.$row['pid'].'" onclick="login(1)" title="Likes"></i><span class="fa-layers-counter" id="count-'.$row['pid'].'" style="background:Tomato">'.likes($row['likes']).'</span></span>';
+                    echo '</div>';
+    
+                    echo '<div class="buy_now">
+                            <button onclick="login(2);" title="Buy Now">BUY NOW</button>
+                        </div>';
+    
+                    echo '<div class="flag">
+                        <i class="fa fa-flag" aria-hidden="true" onclick="login(3);" title="Report Drop"></i>
+                        </div>
+                        
+                        <!--<div class="add-comment">
+                        <input type="text" placeholder="Drop a comment..." />
+                        </div>-->
+                        </div>
+                        </div>
+                    
+                        </div>    
+                        </section>';
                 }
+            }
+        }
+        
+        function isFriend($uname) {
+            include '../dbh.php';
+            $follower_username = $uname;
+            $user_id = $_SESSION['uid'];
+    
+            $sql = "SELECT * FROM users WHERE username='$follower_username'";
+            $result = $conn->query($sql);
+            $row = mysqli_fetch_assoc($result);
+            $follower_id = $row['uid'];
+    
+            $query2 = "SELECT * FROM following WHERE user_id='$user_id' AND follower_id='$follower_id'";
+            $result = $conn->query($query2);
+            $count = mysqli_num_rows($result);
+            if ($count <= 0) {
+                return true;
+            }
+            else {
+                return false;
             }
         }
 ?>

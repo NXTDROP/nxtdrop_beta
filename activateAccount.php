@@ -1,19 +1,9 @@
 <?php 
-    include 'dbh.php';
-    session_start();
-
-    require_once('../credentials.php');
-    require_once('vendor/autoload.php');
-    \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
-    date_default_timezone_set("UTC"); 
-    $date = date("Y-m-d H:i:s", time());
-    $email = $_GET['email'];
-    $getCountry = $conn->query("SELECT * FROM users WHERE email = '$email'");
-    $data = $getCountry->fetch_assoc();
-    if($data['country'] === '') {
-        $gotCountry = '0';
-    } else {
-        $gotCountry = '1';
+    if(isset($_GET['email'])) {
+        $email = $_GET['email'];
+    }
+    else {
+        $email = '';
     }
 ?>
 <!DOCTYPE html>
@@ -23,7 +13,8 @@
     NXTDROP: The Fashion Trade Centre
     </title>
     <head>
-        <!--<base href="https://nxtdrop.com/">-->
+        <base href="https://nxtdrop.com/">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet" href="unsubscribe.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -39,15 +30,15 @@
 
         <script>
             $(document).ready(function() {
-                var gotCountry = <?php echo $gotCountry; ?>;
-                if(gotCountry === 1) {
-                    $('.load').fadeIn();
-                    $('.load_main').show();
+                $('.load').fadeIn();
+                $('.load_main').show();
+                var email = <?php echo "'".$email."'"; ?>;
 
+                if(email != '') {
                     $.ajax({
-                        url: 'paymentRegistration.php',
+                        url: 'inc/accountActivation/activateAccount.php',
                         type: 'POST',
-                        data: {email: <?php echo "'".$_GET['email']."'"; ?>},
+                        data: {email: email},
                         success: function(response) {
                             if(response === 'DB') {
                                 console.log(response);
@@ -82,51 +73,10 @@
                         }   
                     });
                 } else {
-                    /*$('.social_regis').fadeIn();
-                    $('.social_regis_main').show()*/
+                    $('.container').html('<p>There was an error. Try Later!</p></br><p>We are sorry for the inconvenience.</p><p>Team NXTDROP.</p>');
+                    $('.load').fadeOut();
+                    $('.load_main').fadeOut();
                 }
-
-                $('#social_submit').click(function() {
-                    var country = $('#social_country').val();
-                    if(country === '') {
-                        $('#social_form-message').html('Please enter your country. If your country is not listed, you cannot use this platform to buy or sell at this moment.');
-                    } else {
-                        $('.load').fadeIn();
-                        $('.load_main').show();
-
-                        $.ajax({
-                        url: 'paymentRegistration.php',
-                        type: 'POST',
-                        data: {email: <?php echo "'".$_GET['email']."'"; ?>, country: country},
-                        success: function(response) {
-                            if(response === 'DB') {
-                                $('.container').html('<p>There was an error. Try Later!</p></br><p>We are sorry for the inconvenience.</p><p>Team NXTDROP.</p>');
-                                $('.load').fadeOut();
-                                $('.load_main').fadeOut();
-                            }
-                            else if(response === '') {
-                                $('.container').html('<p>Your account has been activated.</p><p>Thank you for joining NXTDROP.</p></br><p>Hope to see you soon!</p><p>Team NXTDROP</p>');
-                                $('.load').fadeOut();
-                                $('.load_main').fadeOut();
-                            }
-                            else if(response === 'DONE') {
-
-                            }
-                            else {
-                                $('.container').html('<p>There was an error. Try Later!</p></br><p>We are sorry for the inconvenience.</p><p>Team NXTDROP.</p>');
-                                $('.load').fadeOut();
-                                $('.load_main').fadeOut();
-                            }
-                        },
-                        error: function(response) {
-                            $('.container').html('<p>There was an error. Try Later!</p></br><p>We are sorry for the inconvenience.</p><p>Team NXTDROP.</p>');
-                            $('.load').fadeOut();
-                            $('.load_main').fadeOut();
-                            console.log(response);
-                        }   
-                    });
-                    }
-                });
             });
         </script>
         

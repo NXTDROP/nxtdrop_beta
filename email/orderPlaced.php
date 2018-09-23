@@ -7,13 +7,18 @@
     $row = mysqli_fetch_assoc($result);
     if($row['transactionID'] != '') {
         $price = $row['product_price'];
-        $shippingCost = number_format($row['totalPrice']-$row['product_price'], 2, '.', ',');
         $transactionID = $row['transactionID'];
         $pic = $row['pic'];
         $description = $row['caption'];
         $orderStatus = $row['status'];
         $price = number_format($row['product_price'], 2, '.', ',');
         $total = number_format($row['totalPrice'], 2, '.', ',');
+
+        if($row['product_price'] == $row['totalPrice']) {
+            $shippingCost = 'FREE';
+        } else {
+            $shippingCost = number_format($row['totalPrice']-$row['product_price'], 2, '.', ',');
+        }
     }
 ?>
 

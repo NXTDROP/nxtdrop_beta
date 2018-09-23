@@ -1,9 +1,11 @@
 <?php
     if(isset($_GET['email'])) {
         $email = $_GET['email'];
+        $uname = $_GET['username'];
     }
     else {
         $email = '';
+        $uname = '';
     }
 ?>
 
@@ -12,8 +14,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Confirm your email -- Monthly Giveaways</title>
         <base href="https://nxtdrop.com/">
+        <title>Hi <?php echo $uname; ?></title>
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,6 +119,14 @@
                 border-color: tomato;
                 cursor: pointer;
             }
+
+            .badge {
+                background: #aa0000;
+                color: #fff;
+                padding: 3px;
+                border-radius: 8px;
+                font-size: 10px;
+            }
         </style>
     </head>
 
@@ -125,20 +135,20 @@
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
 
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">WELCOME TO NXTDROP</h2>
+                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">Hi <?php echo $uname; ?></h2>
 
                 <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.85rem; font-weight: 500;">Thank you for creating a NXTDROP account!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.85rem; font-weight: 500;">Click the button below to confirm your email, and activate your account.</p>
+                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.85rem; font-weight: 500;">Click the button below to confirm your email, and setup your account.</p>
             </div>
 
             <div class="content" style="overflow: hidden;">
-                <img src="https://nxtdrop.com/img/Nxtdrop101.png" alt="" style="width: 100%;">
-                <p style="color: #000;">We had issues with our servers but we fixed it. Thanks to the person that alerted us. <b>Don&apos;t forget to enter our monthly giveaways. You can boost your chances by listing an item for sale.</b></p>
-                <p style="color: #000;">Once you confirm you email, you will be able to send funds to your bank account or debit card automatically when you sell an item. It is important that your fill the form in settings. If you want more info about our fees, please contact <a href="mailto:momar@nxtdrop.com">momar@nxtdrop.com.</a></p>
+                <p style="color: #000;">Hi <?php echo $uname; ?>,</p>
+                <p style="color: #000;">We partnered with <span class="badge">Stripe, Inc</span> and <span class="badge">Silicon Valley Bank</span> recently to accept payments directly on our platform. Once you confirm your email, you will be able to transfer funds from your NXTDROP account to your Bank Account. In order to set up your account, we are required to collect your personal information to avoid fraudulent activities. All the information you give us will be collected following GDPR regulations. The NXTDROP Team is working hard to make sure your personal information is secure and safe. Thank you again for signing up!</p>
+                <p style="color: #000;">It is important that your fill the form in settings. If you want more info about consignment fees, please contact <a href="mailto:momar@nxtdrop.com">momar@nxtdrop.com.</a></p>
                 <p style="color: #000;">Sorry for the inconvenience.</p>
                 <p style="color: #000;">Team NXTDROP.</p>
-                <p style="color: #000; font-weight: 700;">This month&apos;s winner will be announced September 24th. GOOD LUCK!</p>
-                <a href="<?php echo 'https://nxtdrop.com/activate/'.$email; ?>"><button id="signin_btn">CONFIRM EMAIL & ACTIVATE ACCOUNT</button></a>
+                <p style="color: #000;"> <b>Don&apos;t forget to enter our monthly giveaways. You can boost your chances by listing an item for sale.</b></p>
+                <a href="<?php echo 'https://nxtdrop.com/stripeActivation/'.$email; ?>"><button id="signin_btn">CONFIRM EMAIL & SETUP ACCOUNT</button></a>
             </div>
 
             <div class="footer">

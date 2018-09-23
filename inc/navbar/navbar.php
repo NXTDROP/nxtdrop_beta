@@ -214,7 +214,7 @@
 
             <button class="alert-btn" title="Notifications" style="display: none"><i class="fa fa-bell"></i></button>
             
-            <a id="login-btn" href="login_signup"><button class="sign-btn" title="Login/Sign Up">SIGN IN</button></a>';
+            <a id="login-btn" href="signin"><button class="sign-btn" title="Login/Sign Up">SIGN IN</button></a>';
         }
     ?>
 </nav>
@@ -241,7 +241,7 @@
                 if (!isset($_SESSION['uid'])) {
                     echo '<hr/>
                     <p id="signin-message">Sign in now to buy, sell, trade and discover fashion!</p>
-                    <a href="login_signup" id="signin-slide-btn">SIGN IN</a>';
+                    <a href="signin" id="signin-slide-btn">SIGN IN</a>';
                 }
             ?>
             <hr/>

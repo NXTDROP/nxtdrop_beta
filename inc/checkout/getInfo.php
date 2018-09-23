@@ -84,11 +84,9 @@
                         echo $jsonstring;
                     } catch (\Stripe\Error\RateLimit $e) {
                         // Too many requests made to the API too quickly
-                        errorLog($e);
                         die('DB');
                     } catch (\Stripe\Error\InvalidRequest $e) {
                         // Invalid parameters were supplied to Stripe's API
-                        errorLog($e);
                         die('DB');
                     } catch (\Stripe\Error\Authentication $e) {
                         // Authentication with Stripe's API failed
@@ -112,7 +110,6 @@
                         die('DB');
                     } catch (\Stripe\Error\ApiConnection $e) {
                         // Network communication with Stripe failed
-                        errorLog($e);
 
                         die('DB');
                     } catch (\Stripe\Error\Base $e) {
@@ -140,7 +137,6 @@
                             die('DB');
                         }
 
-                        errorLog($e);
                         die('DB');
                     }
                     catch (Exception $e) {

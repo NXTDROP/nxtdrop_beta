@@ -1,7 +1,10 @@
 <?php 
     session_start();
     include "dbh.php";
-    if (isset($_SESSION['uid'])) {
+    date_default_timezone_set("UTC");
+    $_SESSION['timestamp'] = date("Y-m-d H:i:s", time());
+    $num_post = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;"));
+    /*if (isset($_SESSION['uid'])) {
         date_default_timezone_set("UTC");
         $_SESSION['timestamp'] = date("Y-m-d H:i:s", time());
         $num_post = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;"));
@@ -9,7 +12,7 @@
     else {
         header("Location: welcome");
         exit();
-    }
+    }*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,9 +76,9 @@
                             else {
                                 $('.load_drop').css('display', 'block');
                             }
-                            /*renew = setTimeout(function() {
+                            renew = setTimeout(function() {
                                 drop(count);
-                            }, 20000);*/
+                            }, 20000);
                         }
                     });
                 }

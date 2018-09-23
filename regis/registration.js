@@ -73,15 +73,16 @@ $(document).ready(function() {
                             $('#form-message').addClass('success').text("Account Created!");
                             $('#submit').html('Create Account');
                             //sendConfirmation();
-                            /*setTimeout(function() {
+                            setTimeout(function() {
                                 window.location.replace('https://nxtdrop.com');
-                            }, 2000);*/
-                            console.log(data);
+                            }, 2000);
+                            //console.log(data);
                         }
-                        else if (data === 'EMAIL') {}
+                        else if (data === 'EMAIL') {console.log(data);}
                         else if (data === 'INVALID EMAIL') {
                             $('#form-message').addClass('error').text('Your email is invalid.');
                             $('#submit').html('Create Account');
+                            console.log(data);
                         }
                         else if (data === 'DB') {
                             console.log(data);
@@ -89,17 +90,19 @@ $(document).ready(function() {
                             $('#submit').html('Create Account');
                         }
                         else {
-                            $('#form-message').addClass('error').text(data);
+                            $('#form-message').addClass('error').text('We have a problem. Please try later.');
                             $('#submit').html('Create Account');
                             $('.regis').fadeOut();
                             $('.regis_main').fadeOut();
+                            console.log(data);
                         }
                     },
                     error: function(data) {
-                        $('#form-message').addClass('error').text(data);
+                        $('#form-message').addClass('error').text('We have a problem. Please try later.');
                         $('#submit').html('Create Account');
                         $('.regis').fadeOut();
                         $('.regis_main').fadeOut();
+                        console.log(data);
                     }
                 });
             }
@@ -145,6 +148,7 @@ $(document).ready(function() {
                     else if(data === "ACCOUNT") {
                         $('#social_form-message').addClass('error').text('You already have an account.');
                         $('#social_submit').html('Create Account');
+                        console.log(data);
                         setTimeout(function() {
                             $('.social_regis').fadeOut();
                             $('.social_regis_main').fadeOut();
@@ -154,14 +158,17 @@ $(document).ready(function() {
                     else if (data === 'INVALID EMAIL') {
                         $('#social_form-message').addClass('error').text('Your email is invalid.');
                         $('#social_submit').html('Create Account');
+                        console.log(data);
                     }
                     else if (data === 'DB') {
                         $('#social_form-message').addClass('error').text('Could not connect to the servers. Try later.');
                         $('#social_submit').html('Create Account');
+                        console.log(data);
                     }
                     else {
-                        $('#social_form-message').addClass('error').text(data);
+                        $('#social_form-message').addClass('error').text('We have a problem. Please try later.');
                         $('#social_submit').html('Create Account');
+                        console.log(data);
                     }
                 }
             });

@@ -3,7 +3,7 @@
     include '../dbh.php';
     require_once('../../credentials.php');
     require_once('../vendor/autoload.php');
-    include('../Email/Email.php');
+    include('../email/Email.php');
     \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
     date_default_timezone_set("UTC"); 
     $date = date("Y-m-d H:i:s", time());
@@ -115,6 +115,11 @@
                             $_SESSION['stripe_acc'] = $account_id;
                             $_SESSION['cus_id'] = $cus_id;
                             $_SESSION['country'] = $country;
+
+                            $createEmail = new Email($name, $email, 'hello@nxtdrop.com', 'Hi '.$uName.', welcome to NXTDROP', '');
+                            if(!$createEmail->sendEmail('registration')) {
+                                echo '';
+                            }
                         }
                         else {
                             $email = new \SendGrid\Mail\Mail(); 
@@ -133,8 +138,8 @@
                                 $ac->delete();
                                 $conn->rollback();
                                 die('DB');
-                            }   
-                            $conn->commit();
+                            }  
+                            $conn->commit();          
                         }
                     } catch (\Stripe\Error\RateLimit $e) {
                         // Too many requests made to the API too quickly
@@ -205,10 +210,6 @@
                         $conn->rollback();
                         die('DB');
                     }
-                    
-                    $conn->rollback();
-                    $email = new Email($name, $email, 'admin@nxtdrop.com', 'Welcome to NXTDROP', '');
-                    $email->sendEmail('registration');
                 }
                 else {
                     $email = new \SendGrid\Mail\Mail(); 

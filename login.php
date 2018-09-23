@@ -185,7 +185,7 @@
             </div>
             <p class="error_login"></p>
         </div>
-        <p style="font-size: 12px; color: #c6c6c6; text-align: center;">Don&apos;t have an account? <a href="signup" style="text-decoration: none; color: tomato;" onClick="ga('send', 'event', 'button', 'click', 'SignUpBtn LP');">Sign Up »</a></p>
+        <p style="font-size: 16px; color: #c6c6c6; text-align: center;">Don&apos;t have an account? <a href="signup" style="text-decoration: none; color: tomato;" onClick="ga('send', 'event', 'button', 'click', 'SignUpBtn LP');">Sign Up »</a></p>
         <p style="color: tomato; font-size: 12px; text-align: center; margin: 5px 0 0 0;"><a href="forgot_password" style="color: tomato;">Forgot you password?</a></p>
         <?php include('login/modalLogin.php') ?>
     </body>
