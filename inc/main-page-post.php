@@ -47,7 +47,13 @@
         include 'time.php';
         include 'num_conversion.php';
         $count = $_POST['count'];
-        $timestamp = $_SESSION['timestamp'];
+        if(isset($_SESSION['timestamp'])) {
+            $timestamp = $_SESSION['timestamp'];
+        }
+        else {
+            date_default_timezone_set("UTC");
+            $timestamp = date("Y-m-d H:i:s", time());
+        }
         $sql = "SELECT * FROM posts, users, profile WHERE posts.uid = users.uid AND users.uid = profile.uid AND posts.pdate <= '$timestamp' ORDER BY posts.pdate DESC LIMIT $count;";
         $result = mysqli_query($conn, $sql);
 

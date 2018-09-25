@@ -12,7 +12,7 @@
         private $cc;
         private $emailType;
         private $error;
-        private $itemID;
+        private $transactionID;
         private $SD;
 
         public function __construct($recipient, $recipientEmail, $from, $subject, $cc) {
@@ -21,15 +21,6 @@
             $this->setFrom($from);
             $this->setSubject($subject);
             $this->setCC($cc);
-        }
-
-        public function Email($recipient, $recipientEmail, $from, $subject, $cc, $itemID) {
-            $this->setRecipient($recipient);
-            $this->setRecipientEmail($recipientEmail);
-            $this->setFrom($from);
-            $this->setSubject($subject);
-            $this->setCC($cc);
-            $this->setItemID($itemID);
         }
 
         public function setRecipient($recipient) {
@@ -58,8 +49,8 @@
             $this->cc = $cc;
         }
 
-        public function setItemID($itemID) {
-            $this->itemID = $itemID;
+        public function setTransactionID($transactionID) {
+            $this->transactionID = $transactionID;
         }
 
         private function getRecipient() {
@@ -82,8 +73,8 @@
             return $this->cc;
         }
 
-        private function getItemID() {
-            return $this->itemID;
+        private function getTransactionID() {
+            return $this->transactionID;
         }
 
         public function sendEmail($type) {
@@ -161,7 +152,7 @@
         }
 
         private function orderPlaced() {
-            $u = 'http://nxtdrop.com/email/orderPlaced.php?email='.$this->getRecipientEmail().'&itemID='.$this->getItemID();
+            $u = 'https://nxtdrop.com/email/orderPlaced.php?email='.$this->getRecipientEmail().'&transactionID='.$this->getTransactionID();
             $url = str_replace(" ", "%20", $u);
             $c = file_get_contents($url);
             if(!$this->deliverMail($c)) {
@@ -170,7 +161,7 @@
         }
 
         private function sellerConfirmation() {
-            $u = 'https://nxtdrop.com/email/sellerConfirmation.php?email='.$this->getRecipientEmail().'&itemID='.$this->getItemID();
+            $u = 'https://nxtdrop.com/email/sellerConfirmation.php?email='.$this->getRecipientEmail().'&transactionID='.$this->getTransactionID();
             $url = str_replace(" ", "%20", $u);
             $c = file_get_contents($url);
             if(!$this->deliverMail($c)) {

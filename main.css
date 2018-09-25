@@ -63,7 +63,7 @@
     }
 
     #login-btn {
-        margin-left: 23px!important;
+        margin-left: 15px!important;
     }
 
     .menu-main {
@@ -243,7 +243,7 @@
     }
 
     #login-btn {
-        margin-left: 35px!important;
+        margin-left: 25px!important;
     }
 
     .menu-main {
@@ -402,7 +402,7 @@
     }
 
     #login-btn {
-        margin-left: 15px!important;
+        margin-left: 5px!important;
     }
 
     .menu-main {
@@ -8535,6 +8535,11 @@ ul li h2 {
     color: #85bb65;
 }
 
+#item-discount {
+    float: right;
+    color: tomato;
+}
+
 .checkout-pay {
     padding: 5px;
     width: 50%;
@@ -8593,6 +8598,27 @@ ul li h2 {
     width: 15px;
 }
 
+#discount {
+    border: 1px solid #cccccc;
+    width: 20%;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+#discount-btn {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    width: 20%;
+}
+
+#discount-btn:hover {
+    cursor: pointer;
+}
+
+#discount-error {
+    font-size: 12px;
+    margin: 3px auto;
+}
 /******************************************* CHECKOUT END *****************************************************/
 
 /******************************************* ORDER PLACED *****************************************************/

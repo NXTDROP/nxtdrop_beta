@@ -1,8 +1,8 @@
 <?php
     include '../dbh.php';
-    $itemID = $_GET['itemID'];
+    $transactionID = $_GET['transactionID'];
     $email = $_GET['email'];
-    $query = "SELECT * FROM users, transactions, shipping, thebag, posts WHERE transactions.itemID = '$itemID' AND transactions.transactionID = shipping.transactionID AND transactions.sellerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = posts.pid";
+    $query = "SELECT * FROM users, transactions, shipping, thebag, posts WHERE transactions.transactionID = '$transactionID' AND transactions.transactionID = shipping.transactionID AND transactions.sellerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = posts.pid";
     $result = $conn->query($query);
     $row = mysqli_fetch_assoc($result);
     if($row['transactionID'] != '') {
@@ -17,7 +17,7 @@
         if($row['product_price'] == $row['totalPrice']) {
             $shippingCost = 'FREE';
         } else {
-            $shippingCost = number_format($row['totalPrice']-$row['product_price'], 2, '.', ',');
+            $shippingCost = number_format($row['cost'], 2, '.', ',');
         }
     }
 ?>
@@ -149,7 +149,7 @@
             <div class="content" style="overflow: hidden;">
                 <table style="margin: 10px;">
                     <tr>
-                        <td><img src="<?php echo $pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
+                        <td><img src="<?php echo 'http://localhost/nd-v1.00/'.$pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
                         <td><p style="color: #727272; width: 100%;"><?php echo $description; ?></p></td>
                     </tr>
                     <tr style="font-size: 14px;">

@@ -123,6 +123,12 @@
                 <input type="text" name="Zip" id="postalCode" placeholder="90046">
             </div>
 
+            <div>
+                <input type="text" name="discount" id="discount" placeholder="Discount Code">
+                <button id="discount-btn">ADD PROMO CODE</button>
+                <p id="discount-error"></p>
+            </div>
+
             <div class="checkout-summary">
                 <h3>Summary</h3>
                 <div class="summary-shipping">
@@ -134,6 +140,12 @@
                 <div class="summary-item">
                     <strong>Item</strong>
                     <strong id="item-cost">$0.00</strong>
+                </div>
+
+                <hr>
+                <div class="summary-discount">
+                    <strong>Discount</strong>
+                    <strong id="item-discount">- $0.00</strong>
                 </div>
                 
                 <hr>

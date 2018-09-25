@@ -60,6 +60,13 @@
                             $card_brand = "";
                             $card_last4 = "";
                         }
+
+                        $getTrans = $conn->query("SELECT *  FROM transactions WHERE buyerID = '$n_ID'");
+                        if($getTrans->num_rows > 0) {
+                            $shipping = 13.65;
+                        } else {
+                            $shipping = 'FREE';
+                        }
                         
 
                         $json = array();
@@ -75,7 +82,8 @@
                             'price' => $item_price,
                             'pic' => $item_pic,
                             'item' => $item_desc,
-                            'seller_ID' => $seller_ID
+                            'seller_ID' => $seller_ID,
+                            'shipping' => $shipping
                         );
                             
                         array_push($json, $data);

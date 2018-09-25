@@ -70,10 +70,8 @@
                     echo '<div class="one_notif" onclick="order_verification('.$user_result['pid'].', '.$pic.', '.$description.', '.$buyer_id.')" '.$background.'><span class="message_notif">&nbsp Item waiting for authentication. Click to send verification report. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
                 }
                 else if($row['notification_type'] == 'middleman shipping' || $row['notification_type'] == 'seller shipping') {
-                    $pic = "'".$user_result['pic']."'";
                     $transactionID = "'".$user_result['transactionID']."'";
-                    $buyer_id = "'".$user_result['buyerID']."'";
-                    echo '<div class="one_notif" onclick="order_MMShipping('.$user_result['pid'].', '.$transactionID.', '.$buyer_id.')" '.$background.'><span class="message_notif">&nbsp Click/Tap to enter shipping information. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
+                    echo '<div class="one_notif" onclick="order_MMShipping('.$transactionID.')" '.$background.'><span class="message_notif">&nbsp Click/Tap to enter shipping information. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
                 }
                 else {
                     echo '<div class="one_notif" onclick="go_to_inbox()" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> made you an offer. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';

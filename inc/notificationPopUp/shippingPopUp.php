@@ -1,6 +1,5 @@
 <script>
-    var item_ID = <?php echo $_GET['item']; ?>;
-    var transaction_ID = <?php echo $_GET['tID']; ?>;
+    var transaction_ID = <?php echo $_GET['transactionID']; ?>;
 
     $(document).ready(function() {
         $('#shipping_btn').click(function() {
@@ -11,7 +10,7 @@
             $.ajax({
                 url: 'inc/notificationPopUp/shipping.php',
                 type: 'POST',
-                data: {carrier: carrier, trackingNumber: trackingNumber, item_ID: item_ID, transaction_ID: transaction_ID},
+                data: {carrier: carrier, trackingNumber: trackingNumber, transaction_ID: transaction_ID},
                 success: function(response) {
                     if(response === '') {
                         $('#shipping_btn').html('THX! <i class="fas fa-check-circle" style="color: #3fdb44"></i>');
@@ -35,9 +34,9 @@
                         console.log(response);
                         setTimeout(function () {$('#shipping_msg').html("");}, 3000);
                     }
-                    else if(response === 'test') {
-                        $('#shipping_btn').html('DONE!');
-                        console.log('test');
+                    else if(response === 'ERROR') {
+                        $('#shipping_btn').html('Acces Restricted!');
+                        console.log('Not MM or Seller');
                     }
                     else {
                         $('#shipping_msg').html("We experienced an issue. Contact us at support@nxtdrop.com");

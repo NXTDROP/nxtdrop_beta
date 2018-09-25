@@ -19,7 +19,10 @@
     include('email/Email.php');
 
     $conn->autocommit(false);
-    $getUsers = $conn->query("SELECT email, username FROM users WHERE stripe_id = '' AND uid = '1000014';");
+    $email = new Email('momarcissex', 'momar@nxtdrop.com', 'stripeusa@nxdrop.com', 'Your NXTDROP Receipt [ORDER #1000006]', '');
+    $email->setTransactionID('1000006');
+    $email->sendEmail('orderPlaced');
+    /*-$getUsers = $conn->query("SELECT email, username FROM users WHERE stripe_id = '' AND uid = '1000014';");
 
     while($data = $getUsers->fetch_assoc()) {
         $subject = 'Hi '.$data['username'].', we partnered with Stripe, Inc. & Silicon Valley Bank';
@@ -29,6 +32,6 @@
         } else {
             echo $data['username'].' DONE!<br>';
         }
-    }
+    }*/
 
 ?>

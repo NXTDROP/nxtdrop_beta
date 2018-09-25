@@ -9,7 +9,6 @@
         include '../../dbh.php';
         date_default_timezone_set("UTC");
         $carrier = $conn->real_escape_string($_POST['carrier']);
-        $item_ID = $conn->real_escape_string($_POST['item_ID']);
         $transaction_ID = $conn->real_escape_string($_POST['transaction_ID']);
         $trackingNumber = $conn->real_escape_string($_POST['trackingNumber']);
         $ID = $_SESSION['uid'];
@@ -25,6 +24,7 @@
             $row = $result->fetch_assoc();
             if($row['middlemanID'] === $ID) {
                 $conn->autocommit(false);
+                $item_ID = $row['itemID'];
                 $updateShipping = $conn->query("UPDATE shipping SET MM_Carrier = '$carrier', MM_TrackingNumber = '$trackingNumber' WHERE transactionID = '$transaction_ID'");
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '0' AND target_id = '0' AND middleman_id = '$ID';");
 
@@ -38,6 +38,7 @@
             }
             elseif($row['sellerID'] === $ID) {
                 $conn->autocommit(false);
+                $item_ID = $row['itemID'];
                 $updateShipping = $conn->query("UPDATE shipping SET seller_Carrier = '$carrier', seller_TrackingNumber = '$trackingNumber' WHERE transactionID = '$transaction_ID'");
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '0' AND target_id = '$ID' AND middleman_id = '0';");
 
@@ -48,6 +49,8 @@
                     $conn->rollback();
                     echo 'DB';
                 }
+            } else {
+                echo 'ERROR';
             }
         }
     }

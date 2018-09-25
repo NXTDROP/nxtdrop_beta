@@ -18,7 +18,7 @@
         <?php include('inc/head.php'); ?>
         <!-- Javasripts -->
         <script type="text/javascript">
-            var item_ID = <?php echo "'".$_GET['item']."'"; ?>;
+            var transactionID = <?php echo "'".$_GET['transactionID']."'"; ?>;
         </script>
     </head>
 
@@ -26,10 +26,10 @@
         <?php include('inc/navbar/navbar.php'); ?>
 
         <?php
-            $itemID = $_GET['item'];
+            $transactionID = $_GET['transactionID'];
             if($_SESSION['country']) $country = "United States";
             elseif($_SESSION['country']) $country = "Canada";
-            $query = "SELECT * FROM users, transactions, shipping, thebag, posts WHERE transactions.itemID = '$itemID' AND transactions.transactionID = shipping.transactionID AND transactions.sellerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = posts.pid";
+            $query = "SELECT * FROM users, transactions, shipping, thebag, posts WHERE transactions.transactionID = '$transactionID' AND transactions.transactionID = shipping.transactionID AND transactions.sellerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = posts.pid";
             $result = $conn->query($query);
             $row = mysqli_fetch_assoc($result);
             if($row['transactionID'] === '') {
@@ -67,7 +67,7 @@
             <?php echo $row['shippingAddress'].'<br>'.$country; ?></p>
             <p style="color: tomato;">Carrier: <?php echo $carrier; ?></p>
             <p style="color: tomato;">Tracking #: <?php echo $trackingno; ?></p>
-            <p id="order-shippingCost">Shipping Cost: $<?php echo number_format($row['totalPrice']-$row['product_price'], 2, '.', ','); ?></p>
+            <p id="order-shippingCost">Shipping Cost: $<?php echo number_format($row['cost'], 2, '.', ','); ?></p>
             <h3>Item Details</h3>
             <img src="<?php echo $row['pic']; ?>"><span><?php echo $row['caption']; ?></span>
             <p id="order-itemPrice">Price: $<?php echo number_format($row['product_price'], 2, '.', ','); ?></p>
