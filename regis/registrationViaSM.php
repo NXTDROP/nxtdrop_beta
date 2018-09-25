@@ -146,7 +146,7 @@
                         $email->setFrom("admin@nxtdrop.com", "NXTDROP");
                         $email->setSubject("URGENT! Error Update User Regis.");
                         $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
-                        $html = "<p>Cannot connect to Stripe. Authentication Problem.</p>";
+                        $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
                         $email->addContent("text/html", $html);
                         $sendgrid = new \SendGrid($SD_TEST_API_KEY);
                         try {
