@@ -115,7 +115,7 @@
         <?php include('inc/buyer_transaction_confirmation.php') ?>
         <?php include('inc/notificationPopUp/sellerConfirmation.php') ?>
         <?php include('inc/notificationPopUp/MM_verification.php') ?>
-        <?php include('inc/giveaway/popUp.php') ?>
+        <?php //include('inc/giveaway/popUp.php') ?>
 
         <p id="message"></p>
 

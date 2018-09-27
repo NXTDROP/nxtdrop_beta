@@ -6225,8 +6225,340 @@ textarea {
     width: 100%;
     height: 300px;
 }
+
+#item-container {
+    width: 80%;
+    margin: 25px 10%;
+}
+
+#item-container table tr td{
+    text-align: center;
+}
+
+#item-container .card {
+    margin: 2px 2.363%;
+    display: inline-block;
+    width: 20%;
+    padding: 5px;
+    text-align: center;
+}
+
+#item-container .card img {
+    width: 100%;
+}
+
+.item_model td {
+    font-size: 14px;
+    padding-top: 5px;
+    color: #555555;
+}
+
+.item_asset {
+    height: 150px;
+}
+
+.item_model {
+    height: 50px;
+    text-align: center;
+}
+
+.lowest_price, .item_asset, .item_model:hover {
+    cursor: pointer;
+}
+
+.lowest_price {
+    color: #7cc958;
+}
+
+.heat_stats, .cold_stats {
+    color: #999999;
+}
+
+.num_stats_h {
+    visibility: hidden;
+}
+
+.num_stats_v {
+    visibility: visible;
+}
+
+.open-talk {
+    position: fixed;
+    bottom: 15px;
+    padding: 7.5px 15px;
+    cursor: pointer;
+    right: 15px;
+    border: none;
+    background: #f74545;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 30px;
+}
+
+.open-talk:hover {
+    background: #555555;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+.talk-popup {
+    position: fixed;
+    bottom: -83.6%;
+    z-index: 9;
+    right: 0px;
+    background: #fff;
+    border: 1px solid #cccccc;
+    height: 91%;
+    width: 25%;
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+.talk-header {
+    height: 8%;
+    width: 100%;
+    padding: 10px;
+    background: #ce4242;
+    color: #fff;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+.talk-header .fa-angle-down {
+    font-size: 22px;
+    margin: 0px 0 0 20px;
+    display: inline-block;
+    cursor: pointer;
+    transform: rotate(180deg);
+    transition: all 1s ease-out;
+}
+
+.hover:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.talk-header h2 {
+    font-size: 16px;
+    width: 88%;
+    letter-spacing: 1px;
+    margin: 0;
+    font-weight: 800;
+    display: inline-block;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.talk-messages {
+    height: 82.5%;
+    overflow: auto;
+    border-bottom: 1px solid #cccccc;
+}
+
+.talk-msg {
+    border-bottom: 1px solid #cccccc;
+    padding: 10px 0;
+}
+
+.talk-msg img {
+    width: 5%;
+    margin: 0 5px 0 5px;
+}
+
+.talk-msg a {
+    margin: 0 10px 0 10px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #ce4242;
+    font-weight: 600;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.talk-msg a:hover {
+    text-decoration: none;
+    color: #ce4242;
+}
+
+.talk-msg span {
+    font-size: 12px;
+    margin: 3px 0 0 0;
+}
+
+.talk-input {
+    height: 9.5%;
+    border-top: 1px solid #cccccc;
+    display: inline-block;
+    width: 100%;
+}
+
+#talk-input {
+    border: none;
+    border-radius: 0px;
+    height: 9.5%;
+    width: 80%;
+    margin: 0;
+    float: left;
+    padding: 5px;
+    font-size: 12px;
+    color: #555555;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 1px;
+}
+
+#talk-send {
+    background: #ce4242;
+    color: #fff;
+    border: none;
+    height: 9.5%;
+    width: 20%;
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#talk-send:hover {
+    background: #ea6e6e;
+}
+
+span.talk-time {
+    font-size: 10px;
+    color: #888888;
+}
+
+.fa-fire, .fa-snowflake:hover {
+    cursor: pointer;
+}
+
+.froze {
+    font-size: 20px;
+    color: #6aa2e8;
+}
+
+.froze:hover {
+    color: #6a8fe8;
+}
+
+.heated {
+    font-size: 20px;
+    color: #ba0710;
+}
+
+.heated:hover {
+    color: #c64d53;
+}
+
+.heat {
+    font-size: 20px;
+    color: #aaaaaa;
+}
+
+.heat:hover {
+    color: #c64d53;
+}
+
+.cold {
+    font-size: 20px;
+    color: #aaaaaa;
+}
+
+.cold:hover {
+    color: #6a8fe8;
+}
 /******************************************* GLOBAL END *********************************************/
 
+/******************************************* ITEM *********************************************/
+
+.item_container {
+    width: 95%;
+    margin: 25px 2.5%;
+    height: 525px;
+    padding: 0;
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+}
+
+.item_description {
+    width: 60%;
+    height: 100%;
+    margin: 0;
+    float: left;
+    border-right: 1px solid #cccccc;
+}
+
+.item_offers {
+    width: 40%;
+    height: 100%;
+    padding: 10px;
+    float: right;
+    overflow: auto;
+}
+
+.offer_description {
+    text-align: center;
+}
+
+.offer {
+    overflow: hidden;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.offer_description p {
+    width: 30%;
+    margin: 0;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.item_description .asset {
+    width: 60%;
+    margin: 5px 20% 25px 20%;
+}
+
+.item_description p {
+    text-align: center;
+}
+
+.buy_now-btn, .counter_offer-btn {
+    margin: 5px 0;
+    width: 50%;
+    font-size: 12px;
+    padding: 3px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: #f2f2f2;
+}
+
+.buy_now-btn {
+    float: left;
+    border: none;
+    color: #c64d53;
+    cursor: pointer;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.buy_now-btn:hover {
+    background-color: #f27178;
+    color: #fff;
+}
+
+.counter_offer-btn {
+    float: right;
+    border: none;
+    color: #4dc68d;
+    cursor: pointer;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.counter_offer-btn:hover {
+    background-color: #6fe2ac;
+    color: #fff;
+}
+/******************************************* ITEM END *********************************************/
 
 /******************************************* INDEX *********************************************/
 
