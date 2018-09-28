@@ -14,7 +14,29 @@
         <?php include('inc/head.php'); ?>
         <script type="text/javascript">
             $(document).ready(function() {
-                
+                $.ajax({
+                    url: 'inc/item/getOffers.php',
+                    type: 'POST',
+                    data: {model: <?php echo "'".$model."'"; ?>},
+                    success: function(response) {
+                        if(response === 'DB') {
+                            alert('Network problems. Sorry, try later.');
+                        } else if(response === 'CONNECTION') {
+                            $('.item_offers').html('<p style="text-align: center; font-size: 16px;">Log in or Sign up to see offers.</p>');
+                        } else if(response === 'NOTFOUND') {
+                            $('.item_offers').html('<p style="text-align: center; font-size: 16px;">Offers not found.</p>');
+                        } else if(response === '') {
+                            $('.item_offers').html('<p style="text-align: center; font-size: 16px;">Sold Out!</p>');
+                        }else {
+                            $('.item_offers').html(response);
+                        }
+                        
+                    },
+                    error: function(response) {
+                        console.log(response);
+                        alert("Cannot load offers. Try later.");
+                    }
+                });
             });
         </script>
     </head>
@@ -34,192 +56,16 @@
                 <p>Colorway: <span class="colorway"><?php echo $colorway; ?></span></p>
                 <p>Release Date: <span class="date"><?php echo $yearMade; ?></span></p>
             </div>
+
             <div class="item_offers">
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
-                <div class="offer">
-                    <div class="offer_description">
-                        <p>Size: 10</p>
-                        <p style="font-weight: bold;">$800</p>
-                        <p>Condition: New</p>
-                    </div>
-                    <button class="buy_now-btn">BUY NOW</button>
-                    <button class="counter_offer-btn">COUNTER-OFFER</button>
-                </div>
+                <p style="text-align: center; font-size: 2em; margin-top: 40%;">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                </p>
             </div>
         </div>
 
         <?php include('inc/talk/popup.php') ?>
-        <?php include('inc/drop/new-drop-pop.php'); ?>
+        <?php //include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/new-msg-post.php'); ?>
         <?php include('inc/flag-post.php'); ?>
         <?php include('inc/invite/popup.php'); ?>

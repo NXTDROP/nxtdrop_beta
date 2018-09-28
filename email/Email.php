@@ -143,7 +143,7 @@
         }
 
         private function raffle() {
-            $u = 'https://nxtdrop.com/email/raffle.php?email='.$this->getRecipientEmail();
+            $u = 'https://nxtdrop.com/email/raffle.php?email='.$this->getRecipientEmail().'&username='.$this->getRecipient();
             $url = str_replace(" ", "%20", $u);
             $c = file_get_contents($url);
             if(!$this->deliverMail($c)) {

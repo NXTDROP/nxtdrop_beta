@@ -21,7 +21,7 @@
     ** Argument: pid: Post ID */
     function checkout(pid) {
         ga('send', 'event', 'click', 'Buy Now Button Main');
-        window.location.replace("checkout.php?item="+pid);
+        window.location.href = "checkout.php?item="+pid;
     }
 </script>
 

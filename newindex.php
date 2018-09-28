@@ -29,7 +29,7 @@
             });  
 
             function item(model) {
-                window.location.replace('https://localhost/nd-v1.00/item.php?model='+model);
+                window.location.href = 'https://localhost/nd-v1.00/item.php?model='+model;
             }
             
             function heat(id) {
@@ -163,7 +163,7 @@
         </div>
 
         <?php include('inc/talk/popup.php') ?>
-        <?php include('inc/drop/new-drop-pop.php'); ?>
+        <?php //include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/new-msg-post.php'); ?>
         <?php include('inc/flag-post.php'); ?>
         <?php include('inc/invite/popup.php'); ?>

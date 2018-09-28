@@ -4,15 +4,15 @@
     var inbox;
 
     function go_to_post(id) {
-        window.location.replace('p/'+id);
+        window.location.href = 'p/'+id;
     }
 
     function go_to_profile(username) {
-        window.location.replace('u/'+username);
+        window.location.href = 'u/'+username;
     }
 
     function go_to_inbox() {
-        window.location.replace('inbox');
+        window.location.href = 'inbox';
     }
 
     function load_notifications() {
@@ -72,7 +72,7 @@
     }
 
     function order_MMShipping(ID) {
-        window.location.replace('orderPlaced.php?transactionID=' + ID + '&tracking=true');
+        window.location.href = 'orderPlaced.php?transactionID=' + ID + '&tracking=true';
     }
 
     check_notifications();
@@ -172,6 +172,10 @@
                 $('.navbar').css('background', 'transparent');
                 $('.navbar').css('border-bottom', 'none');
             }
+        });
+
+        $('.navbar, .fa-plus').click(function() {
+            window.location.href = 'sell.php';
         });
     });
 </script>

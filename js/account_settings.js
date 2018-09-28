@@ -440,7 +440,7 @@ function handleCC(token) {
                 setTimeout(function(){ $('#payment_submit').html('Update Payment Information'); }, 3000);
             }
         },
-        error: function(data) {
+        error: function() {
             $(".error_payment").html('Cannot update your payment information now. Try Later.');
         }
     });
@@ -463,7 +463,7 @@ function handlePayoutInfo(token) {
                 setTimeout(function(){ $('#payout_submit').html('Update Payout Information'); }, 3000);
             }
         },
-        error: function(data) {
+        error: function() {
             $(".error_payout").html('Cannot update your payout information now. Try Later.');
         }
     });
@@ -510,7 +510,7 @@ function updateInfo() {
                 if(jsonObject[0]['card_brand'] != "") $('.current_payment_option').html('<small>Current payment option:</small><i class="fas fa-credit-card" style="color: #aa0000; margin-left: 5px;"></i><span id="currentPayoutOp" style="margin-left: 5px;"><strong>'+jsonObject[0]['card_brand']+' ending in <span style="color: #aa0000">'+jsonObject[0]['card_last4']+'</span>.</strong></span>');
             }
         },
-        error: function(data) {
+        error: function() {
             $('.load_content').html('Could not load your information. Please try reloading the page.');
         }
     });

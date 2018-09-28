@@ -1,6 +1,8 @@
 <?php
 
     require_once('../credentials.php');
+    include('vendor/autoload.php');
+    include('email/Email.php');
     $hostname = "160.153.75.102";
     $username = "datadrop";
     $password = "$DB_PASS";
@@ -14,24 +16,18 @@
         exit();
     }
 
-    include('vendor/autoload.php');
-
-    include('email/Email.php');
-
     $conn->autocommit(false);
-    $email = new Email('momarcissex', 'momar@nxtdrop.com', 'stripeusa@nxdrop.com', 'Your NXTDROP Receipt [ORDER #1000006]', '');
-    $email->setTransactionID('1000006');
-    $email->sendEmail('orderPlaced');
-    /*-$getUsers = $conn->query("SELECT email, username FROM users WHERE stripe_id = '' AND uid = '1000014';");
+    
+    $getUsers = $conn->query("SELECT raffle.email AS email, users.username AS username FROM users, raffle WHERE raffle.email = users.email;");
 
     while($data = $getUsers->fetch_assoc()) {
-        $subject = 'Hi '.$data['username'].', we partnered with Stripe, Inc. & Silicon Valley Bank';
+        $subject = 'And the Winner is...';
         $email = new Email($data['username'], $data['email'], 'hello@nxtdrop.com', $subject, '');
-        if($email->sendEmail('stripeRegistration') === 'false') {
+        if($email->sendEmail('giveaway') === 'false') {
             echo $data['username'].' FAILED!<br>';
         } else {
             echo $data['username'].' DONE!<br>';
         }
-    }*/
+    }
 
 ?>
