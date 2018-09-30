@@ -19,7 +19,18 @@
             $usedID = $_SESSION['uid'];
             if($addTalk->execute()) {
                 $conn->commit();
-                die('GOOD');
+                $json = array();
+
+                $data = array(
+                    'text' => $text,
+                    'date' => $date,
+                    'username' => $_SESSION['username']
+                );
+                            
+                array_push($json, $data);
+
+                $jsonstring = json_encode($json);
+                die($jsonstring);
             } else {
                 $conn->rollback();
                 die('DB');

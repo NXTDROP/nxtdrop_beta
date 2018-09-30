@@ -174,7 +174,7 @@
             }
         });
 
-        $('.navbar, .fa-plus').click(function() {
+        $('.drop-btn').click(function() {
             window.location.href = 'sell.php';
         });
     });
@@ -196,15 +196,21 @@
 
     <?php
         if (isset($_SESSION['uid'])) {
+            $getUser = $conn->prepare("SELECT profile.status, users.username FROM profile, users WHERE users.uid = ? AND profile.uid = ?;");
+            $getUser->bind_param("ii", $uid, $uid);
             $uid = $_SESSION['uid'];
-            $row = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM profile, users WHERE users.uid = '$uid' AND profile.uid = '$uid'"));
-            if ($row['status'] != '') {
-                $pic = $row['status'];
+            $getUser->execute();
+            $getUser->bind_result($status, $username);
+            $getUser->fetch();
+            $getUser->close();
+
+            if ($status != '') {
+                $pic = $status;
             }
             else {
                 $pic = 'uploads/user.png';
             }
-            $username = $row['username'];
+
             $send = "ga('send', 'event', 'button', 'click', 'Buy Now Main');";
 
             echo '<button class="drop-btn" title="List/Request An Item" onClick="'.$send.'"><i class="fa fa-plus" aria-hidden="true"></i></button>

@@ -3,7 +3,7 @@
         $('#search').keyup(function() {
             $('.users_results').html('<div class="users_results"><p>LOADING...</p></div>');
             var search = $(this).val();
-            $.ajax({
+            /*$.ajax({
                 url: 'inc/search_results.php',
                 type: 'GET',
                 data: {search: search},
@@ -11,7 +11,7 @@
                 success: function(results) {
                     $('.users_results').html(results);
                 }
-            });
+            });*/
 
             $.ajax({
                 url: 'inc/search_users.php',
@@ -33,9 +33,9 @@
             <h2>SEARCH RESULTS</h2>
         </div>
         <div class="search_content">
-            <div class="users_results">
+            <!--<div class="users_results">
 
-            </div>
+            </div>-->
 
             <div id="posts-container-search">
 

@@ -10,7 +10,7 @@
 
     $item_ID = $_POST['item_ID'];
     $fullAddress = $_POST['shippingAddress'];
-    $discountID = $_POST['discountID'];
+    if(isset($_POST['discountID'])) {$discountID = $_POST['discountID'];}
     $totalPrice = $_POST['totalPrice'];
     $shippingCost = $_POST['shippingCost'];
     $n_id = $_SESSION['uid'];

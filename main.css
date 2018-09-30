@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
 /******************************************* RD NAVBAR **********************************************/
 
 /* LAPTOP 1280x720 */
@@ -2530,12 +2532,12 @@
         font-size: 10px!important;
     }
     
-    #send_transaction_report {
+    #send_counter {
         width: 50%!important;
         margin: 2px 25%!important;
     }
     
-    #cancel_transaction_report {
+    #cancel_counter {
         width: 50%!important;
         margin: 5px 25%!important;
     }
@@ -2818,12 +2820,12 @@
         font-size: 12px!important;
     }
     
-    #send_transaction_report {
+    #send_counter {
         width: 50%!important;
         margin: 2px 25%!important;
     }
     
-    #cancel_transaction_report {
+    #cancel_counter {
         width: 50%!important;
         margin: 5px 25%!important;
     }
@@ -3125,12 +3127,12 @@
         font-size: 12px!important;
     }
     
-    #send_transaction_report {
+    #send_counter {
         width: 50%!important;
         margin: 2px 25%!important;
     }
     
-    #cancel_transaction_report {
+    #cancel_counter {
         width: 50%!important;
         margin: 5px 25%!important;
     }
@@ -3415,12 +3417,12 @@
         font-size: 12px!important;
     }
     
-    #send_transaction_report {
+    #send_counter {
         width: 30%!important;
         margin: 2px 35%!important;
     }
     
-    #cancel_transaction_report {
+    #cancel_counter {
         width: 30%!important;
         margin: 5px 35%!important;
     }
@@ -3723,12 +3725,12 @@
         font-size: 10px!important;
     }
     
-    #send_transaction_report {
+    #send_counter {
         width: 50%!important;
         margin: 2px 25%!important;
     }
     
-    #cancel_transaction_report {
+    #cancel_counter {
         width: 50%!important;
         margin: 5px 25%!important;
     }
@@ -4005,12 +4007,12 @@
         font-size: 10px!important;
     }
     
-    #send_transaction_report {
+    #send_counter {
         width: 50%!important;
         margin: 2px 25%!important;
     }
     
-    #cancel_transaction_report {
+    #cancel_counter {
         width: 50%!important;
         margin: 5px 25%!important;
     }
@@ -6282,25 +6284,6 @@ textarea {
     visibility: visible;
 }
 
-.open-talk {
-    position: fixed;
-    bottom: 15px;
-    padding: 7.5px 15px;
-    cursor: pointer;
-    right: 15px;
-    border: none;
-    background: #f74545;
-    color: #fff;
-    font-size: 30px;
-    border-radius: 30px;
-}
-
-.open-talk:hover {
-    background: #555555;
-}
-
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
-
 .talk-popup {
     position: fixed;
     bottom: -83.6%;
@@ -6312,6 +6295,19 @@ textarea {
     width: 25%;
     overflow: hidden;
     opacity: 0.5;
+}
+
+.glow {
+    animation: glow 2s ease-out 2s infinite;
+}
+
+@keyframes glow {
+    0% {opacity: 0.1}
+    20% {opacity: 0.4}
+    40% {opacity: 0.7}
+    60% {opacity: 0.8}
+    80% {opacity: 0.9}
+    100% {opacity: 1}
 }
 
 .talk-header {
@@ -6333,11 +6329,6 @@ textarea {
     cursor: pointer;
     transform: rotate(180deg);
     transition: all 1s ease-out;
-}
-
-.hover:hover {
-    opacity: 1;
-    cursor: pointer;
 }
 
 .talk-header h2 {
@@ -6418,6 +6409,22 @@ textarea {
 
 #talk-send:hover {
     background: #ea6e6e;
+}
+
+#first, #last {
+    margin: 0;
+    border: none;
+    padding: 0;
+    height: 0;
+    width: 100%;
+}
+
+.ops {
+    color: #006BB6!important;
+}
+
+.ops:hover {
+    color: #006BB6!important;
 }
 
 span.talk-time {
@@ -6520,6 +6527,26 @@ span.talk-time {
     text-align: center;
 }
 
+.sell_this {
+    width: 25%;
+    margin: 0 37.5%;
+    border: 1px solid #f27178;
+    font-family: 'Ubuntu', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 5px;
+    color: #fff;
+    background: #f27178;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sell_this:hover {
+    background: #c64d53;
+    border-color: #c64d53;
+}
+
 .buy_now-btn, .counter_offer-btn {
     margin: 5px 0;
     width: 50%;
@@ -6601,6 +6628,11 @@ span.talk-time {
 
 ol.directions li {
     list-style-type: decimal;
+}
+
+.transaction_content .item_price {
+    width: 50%!important;
+    margin: 0 25%!important;
 }
 
 .item_price {
@@ -8382,22 +8414,26 @@ ul li h2 {
 }
 
 .transaction_main {
-    width: 80%;
+    width: 50%;
     background: #fff;
     z-index: 4;
     position: fixed;
-    top: 10%;
+    top: 30%;
     border-radius: 4px;
-    left: 10%;
+    left: 25%;
     display: none;
 }
 
 .transaction_main h2 {
     text-align: center;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #f27178;
     padding: 10px 0;
     font-size: 30px;
     font-weight: 800;
+    font-family: 'Ubuntu', sans-serif;
+    background: #f27178;
+    border-radius: 4px;
+    color: #fff;
 }
 
 .transaction_content {
@@ -8465,12 +8501,18 @@ ul li h2 {
     font-weight: 800;
 }
 
-#send_transaction_report {
-    margin: 15px 40%;
-    width: 20%;
+#send_counter, #cancel_counter {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+#send_counter {
+    margin: 2px 25%;
+    width: 50%;
     color: #fff;
-    background: #e6e1e1;
-    border: 1px solid #e6e1e1;
+    background: #4dc68d!important;
+    border: 1px solid #4dc68d;
     padding: 5px;
     -webkit-transition: background-color 0.5s ease-out;
     -moz-transition: background-color 0.5s ease-out;
@@ -8478,27 +8520,23 @@ ul li h2 {
     transition: background-color 0.5s ease-out;
 }
 
-#send_transaction_report:hover {
+#send_counter:hover {
     cursor: pointer;
+    background: #6fe2ac!important;
 }
 
-#cancel_transaction_report {
-    margin: 5px 40%;
-    width: 20%;
-    color: #aa0000;
-    background: #fff;
-    border: 1px solid #aa0000;
+#cancel_counter {
+    margin: 5px 25%;
+    width: 50%;
+    color: #fff;
+    background: #cccccc;
+    border: 1px solid #cccccc;
     padding: 5px;
+    cursor: pointer;
     -webkit-transition: background-color 0.5s ease-out;
     -moz-transition: background-color 0.5s ease-out;
     -o-transition: background-color 0.5s ease-out;
     transition: background-color 0.5s ease-out; 
-}
-
-#cancel_transaction_report:hover {
-    color: #fff;
-    background: #aa0000;
-    cursor: pointer;
 }
 /******************************************* TRANSACTION REPORT END ****************************************************/
 /******************************************* TRANSACTION REVIEW  *******************************************************/
@@ -8650,7 +8688,7 @@ ul li h2 {
 .search_content {
     padding: 10px;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     overflow: auto;
 }
 

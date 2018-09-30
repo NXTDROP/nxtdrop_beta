@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include "dbh.php";
+    require('dbh.php');
     $model = $_GET['model'];
     $getItem = $conn->prepare("SELECT brand, line, model, colorway, yearMade, assetURL FROM products WHERE model = ?");
     $getItem->bind_param('s', $model);
@@ -38,6 +38,21 @@
                     }
                 });
             });
+
+            function go_to_sell(model) {
+                window.location.href = 'sell.php?item=' + model;
+            }
+
+            function checkout(id) {
+                window.location.href = 'checkout.php?item=' + id;
+            }
+
+            function counter(id, price) {
+                $('.transaction_pop').fadeIn();
+                $('.transaction_main').show();
+                cOfferID = id;
+                iprice = price;
+            }
         </script>
     </head>
 
@@ -48,6 +63,7 @@
             $getItem->execute();
             $getItem->bind_result($brand, $line, $model, $colorway, $yearMade, $assetURL);
             $getItem->fetch();
+            $getItem->close();
         ?>
         <div class="item_container">
             <div class="item_description">
@@ -55,6 +71,7 @@
                 <p class="product_name"><?php echo $brand.', '.$line.', '.$model; ?></p>
                 <p>Colorway: <span class="colorway"><?php echo $colorway; ?></span></p>
                 <p>Release Date: <span class="date"><?php echo $yearMade; ?></span></p>
+                <button class="sell_this" onclick="go_to_sell('<?php echo $model; ?>')">Sell this item</button>
             </div>
 
             <div class="item_offers">
@@ -63,13 +80,10 @@
                 </p>
             </div>
         </div>
-
+        
+        <?php include('inc/item/counter_offer.php') ?>
         <?php include('inc/talk/popup.php') ?>
         <?php //include('inc/drop/new-drop-pop.php'); ?>
-        <?php include('inc/new-msg-post.php'); ?>
-        <?php include('inc/flag-post.php'); ?>
-        <?php include('inc/invite/popup.php'); ?>
-        <?php include('inc/sold_pop.php') ?>
         <?php include('inc/search_pop.php') ?>
         <?php include('inc/buyer_transaction_confirmation.php') ?>
         <?php include('inc/notificationPopUp/sellerConfirmation.php') ?>

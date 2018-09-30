@@ -74,11 +74,16 @@ $(document).ready(function() {
                             $('#submit').html('Create Account');
                             //sendConfirmation();
                             setTimeout(function() {
-                                window.location.replace('https://nxtdrop.com');
+                                window.location.replace('https://nxtdrop.com/preferences');
                             }, 2000);
                             //console.log(data);
                         }
-                        else if (data === 'EMAIL') {console.log(data);}
+                        else if (data === 'EMAIL') {
+                            console.log(data);
+                            setTimeout(function() {
+                                window.location.replace('https://nxtdrop.com/preferences');
+                            }, 2000);
+                        }
                         else if (data === 'INVALID EMAIL') {
                             $('#form-message').addClass('error').text('Your email is invalid.');
                             $('#submit').html('Create Account');

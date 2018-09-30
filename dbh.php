@@ -1,8 +1,8 @@
 <?php
     /*require_once('../credentials.php');*/
     $hostname = "160.153.75.102";
-    $username = "datadrop";
-    $password = "(^@=t.Huu)FE";
+    $username = "testingvtwo";
+    $password = "631297854mtc1997";
     $dbname = "users_beta";
 
     //Create connection to DB

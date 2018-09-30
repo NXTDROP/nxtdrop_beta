@@ -1,17 +1,6 @@
 <?php 
     session_start();
-    include "dbh.php";
-    date_default_timezone_set("UTC");
-    $_SESSION['timestamp'] = date("Y-m-d H:i:s", time());
-    /*if (isset($_SESSION['uid'])) {
-        date_default_timezone_set("UTC");
-        $_SESSION['timestamp'] = date("Y-m-d H:i:s", time());
-        $num_post = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM posts;"));
-    }
-    else {
-        header("Location: welcome");
-        exit();
-    }*/
+    include 'dbh.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +14,7 @@
         <script type="text/javascript" src="js/like-unlike-post.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                
+                checkTalk();
             });  
 
             function item(model) {
@@ -65,6 +54,7 @@
                                     $('#stats-'+id).removeClass('num_stats_v');
                                 }
                             } else {
+                                console.log(response);
                                 alert('We have problem.');
                             }
                         },
@@ -84,38 +74,74 @@
                         success: function(response) {
                             console.log(response);
                             if (response === "CONNECTION") {
-                                    alert('Please log in or sign up.');
-                                } else if (response === "0") {
+                                alert('Please log in or sign up.');
+                            } else if (response === "0") {
                                     
-                                } else if (response === "+1") {
-                                    var cold_stats = parseInt($('#cold-stats-'+id).html());
-                                    var heat_stats = parseInt($('#heat-stats-'+id).html());
+                            } else if (response === "+1") {
+                                var cold_stats = parseInt($('#cold-stats-'+id).html());
+                                var heat_stats = parseInt($('#heat-stats-'+id).html());
 
-                                    if(heat_stats > 0) {
-                                        $('#heat-stats-'+id).html(heat_stats -= 1);
-                                    }
-
-                                    $('#cold-stats-'+id).html(cold_stats += 1);
-                                    if($('#heat-'+id).hasClass('heated')) {
-                                        $('#heat-'+id).removeClass('heated');
-                                        $('#heat-'+id).addClass('heat');
-                                        $('#cold-'+id).removeClass('cold');
-                                        $('#cold-'+id).addClass('froze');
-                                    } else {
-                                        $('#cold-'+id).removeClass('cold');
-                                        $('#cold-'+id).addClass('froze');
-                                        $('#stats-'+id).removeClass('num_stats_h');
-                                        $('#stats-'+id).removeClass('num_stats_v');
-                                    }
-                                } else {
-                                    alert('We have problem.');
+                                if(heat_stats > 0) {
+                                    $('#heat-stats-'+id).html(heat_stats -= 1);
                                 }
+
+                                $('#cold-stats-'+id).html(cold_stats += 1);
+                                if($('#heat-'+id).hasClass('heated')) {
+                                    $('#heat-'+id).removeClass('heated');
+                                    $('#heat-'+id).addClass('heat');
+                                    $('#cold-'+id).removeClass('cold');
+                                    $('#cold-'+id).addClass('froze');
+                                } else {
+                                    $('#cold-'+id).removeClass('cold');
+                                    $('#cold-'+id).addClass('froze');
+                                    $('#stats-'+id).removeClass('num_stats_h');
+                                    $('#stats-'+id).removeClass('num_stats_v');
+                                }
+                            } else {
+                                alert('We have problem.');
+                            }
                         },
                         error: function() {
                             alert('Connection error.');
                         }
                     });
                 }
+            }
+
+            function checkTalk() {
+                $.ajax({
+                    url: 'inc/talk/checkTalk.php',
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                        if(jsonObject = JSON.parse(response)) {
+                            var count = jsonObject[0]['count'];
+                            if(count > 0) {
+                                console.log(jsonObject[0]['timestamp']);
+                                $('.talk-header > h2').html(count + ' New messages (tap to see)');
+                                $('.talk-popup').addClass('glow');
+                                setTimeout(() => {  
+                                    checkTalk();
+                                }, 10000);
+                            } else {
+                                $('.talk-header > h2').html('NXTDROP TALK');
+                                $('.talk-popup').removeClass('glow');
+                                setTimeout(() => {  
+                                    checkTalk();
+                                }, 10000);
+                            }
+                        } else {
+                            setTimeout(() => {  
+                                checkTalk();
+                            }, 5000);
+                        }
+                    },
+                    error: function(response) {
+                        setTimeout(() => {  
+                            checkTalk();
+                        }, 5000);
+                    }   
+                });
             }
         </script>
     </head>
@@ -125,15 +151,49 @@
 
         <div id="item-container">
             <?php
-                $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold FROM products;");
-                $getProducts->execute();
-                $getProducts->bind_result($productID, $model, $assetURL, $heat, $cold);
+                if(isset($_SESSION['uid'])) {
+                    $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products;");
+                    $getProducts->bind_param("ii", $_SESSION['uid'], $_SESSION['uid']);
+                    $getProducts->execute();
+                    $getProducts->bind_result($productID, $model, $assetURL, $heat, $cold, $min, $heated, $froze);
+                } else {
+                    $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products;");
+                    $getProducts->execute();
+                    $getProducts->bind_result($productID, $model, $assetURL, $heat, $cold, $min);
+                }
+
                 while($getProducts->fetch()) {
+                    if($min === null) {
+                        $low = 'SOLD OUT!';
+                    } else {
+                        $low = '$'.$min.'+';
+                    }
+
+                    if(isset($_SESSION['uid'])) {
+                        if($heated > 0) {
+                            $statsClass = 'class="num_stats_v"';
+                            $heatedClass = 'heated';
+                            $frozeClass = 'cold';
+                        } else if($froze > 0) {
+                            $statsClass = 'class="num_stats_v"';
+                            $frozeClass = 'froze';
+                            $heatedClass = 'heat';
+                        } else {
+                            $statsClass = 'class="num_stats_h"';
+                            $heatedClass = 'heat';
+                            $frozeClass = 'cold';
+                        }
+                    } else {
+                        $statsClass = 'class="num_stats_h"';
+                        $heatedClass = 'heat';
+                        $frozeClass = 'cold';
+                    }
+
                     echo '
                     <div class="card">
                         <table>
                             <tr class="lowest_price" onclick="item('."'".$model."'".')">
-                                <td>$0+</td>
+                                <td>'.$low.'</td>
                             </tr>
                             <tr class="item_asset" onclick="item('."'".$model."'".')">
                                 <td><img src="'.$assetURL.'" alt="'.$model.'"></td>
@@ -141,13 +201,13 @@
                             <tr class="item_stats stats-'.$productID.'">
                                 <td>
                                     <table style="width: 100%;">
-                                        <tr class="num_stats_h" id="stats-'.$productID.'">
+                                        <tr '.$statsClass.' id="stats-'.$productID.'">
                                             <td style="width: 50%;" class="heat_stats" id="heat-stats-'.$productID.'">'.$heat.'</td>
                                             <td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 50%;"><i class="fas fa-fire heat" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
-                                            <td style="width: 50%;"><i class="fas fa-snowflake cold" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>
+                                            <td style="width: 50%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
+                                            <td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -159,6 +219,7 @@
                     </div>
                     ';
                 }
+                $getProducts->close();
             ?>
         </div>
 

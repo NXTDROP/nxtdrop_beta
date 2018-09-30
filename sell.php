@@ -1,6 +1,16 @@
 <?php 
     session_start();
     include "dbh.php";
+    $productID;
+    if(isset($_GET['item'])) {
+        $item = $_GET['item'];
+        $getID = $conn->prepare("SELECT productID FROM products WHERE model = ?");
+        $getID->bind_param('s', $item);
+        $getID->execute();
+        $getID->bind_result($productID);
+        $getID->fetch();
+        $getID->close();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,8 +23,22 @@
         <script type="text/javascript" src="js/delete-post.js"></script>
         <script type="text/javascript" src="js/like-unlike-post.js"></script>
         <script type="text/javascript">
-            var ID;
+            <?php
+                if(!isset($_GET['item'])) {
+                    echo 'var ID;';
+                }
+                else {
+                    if($productID != '') {
+                        echo 'var ID = '.$productID.';'; 
+                    } else {
+                        echo 'var ID;';
+                    }
+                }
+            ?>
             $(document).ready(function() {
+                if(typeof ID === 'number') {
+                    $('#search_item').val('<?php echo $item; ?>');
+                }
                 $('.sell_now-btn').hover(function() {
                     $(this).css('background-color', '#c64d53');
                     $(this).css('border-color', '#c64d53');

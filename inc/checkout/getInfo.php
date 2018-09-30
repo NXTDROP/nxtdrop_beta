@@ -5,7 +5,7 @@
     require_once('../../vendor/autoload.php');
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
-    \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
+    \Stripe\Stripe::setApiKey($STRIPE_TEST_SECRET_KEY_CA);
     $item_ID = $_POST['item_ID'];
     $n_ID = $_SESSION['uid'];
     $s_ID = $_SESSION['stripe_acc'];
@@ -19,17 +19,17 @@
             echo 'ID';
         }
         else {
-            $query = "SELECT * FROM posts WHERE pid = '$item_ID'";
+            $query = "SELECT o.price, p.assetURL, p.model, o.sellerID FROM products p, offers o WHERE o.offerID = '$item_ID' AND o.productID = p.productID";
             $result = $conn->query($query);
             if(mysqli_num_rows($result) < 1) {
                 echo 'ID';
             }
             else {
                 $row = $result->fetch_assoc();
-                $item_price = $row['product_price'];
-                $item_pic = $row['pic'];
-                $item_desc = $row['caption'];
-                $seller_ID = $row['uid'];
+                $item_price = $row['price'];
+                $item_pic = $row['assetURL'];
+                $item_desc = $row['model'];
+                $seller_ID = $row['sellerID'];
                 $query = "SELECT * FROM thebag WHERE uid = '$n_ID'";
                 $result = $conn->query($query);
                 $row = mysqli_fetch_assoc($result);
