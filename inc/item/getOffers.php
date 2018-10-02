@@ -2,7 +2,7 @@
 
     session_start();
     require_once('../../dbh.php');
-    $getOffers = $conn->prepare("SELECT o.offerID, o.productCondition, o.price, o.size FROM offers o, products p, transactions t WHERE p.model = ? AND o.productID = p.productID AND o.offerID = t.itemID AND t.status = 'waiting shipment';");
+    $getOffers = $conn->prepare("SELECT o.offerID, o.productCondition, o.price, o.size FROM offers o, products p WHERE p.productID = ? AND o.productID = p.productID;");
     $getOffers->bind_param("s", $model);
 
     if(!isset($_SESSION['uid'])) {

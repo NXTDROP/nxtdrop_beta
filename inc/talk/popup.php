@@ -41,7 +41,7 @@
                     $('.fa-angle-down').css('transform', 'rotate(0deg)');
                     if($('.talk-popup').hasClass('glow')) {
                         $('.talk-popup').removeClass('glow');
-                        $('.talk-header > h2').html('NXTDROP TALK');
+                        $('.talk-header > h2').html('NXTDROP CHAT');
                         $.ajax({
                             url: 'inc/talk/newStamp.php',
                             type: 'POST'
@@ -80,7 +80,7 @@
                     data: {text: text},
                     success: function(response) {
                         if(response === 'CONNECTION') {
-                            alert('Log in or Sign up to use NXTDROP Talk.');
+                            alert('Log in or Sign up to use NXTDROP Chat.');
                         } else if(response === 'TEXT') {
                             alert('Enter text to send.');
                         } else if(response === 'DB') {
@@ -177,7 +177,7 @@
 
 <div class="talk-popup hover">
     <div class="talk-header">
-        <h2>NXTDROP TALK</h2>
+        <h2>NXTDROP CHAT</h2>
         <i class="fas fa-angle-down"></i>
     </div>
     <div class="talk-messages">

@@ -540,13 +540,46 @@
         padding: 0!important;
     }
     
-    .card {
+    .talk-popup {
         width: 100%!important;
+    }
+    
+    .talk-header h2 {
+        font-size: 12px!important;
+        width: 87%!important;
+    }
+    
+    #item-container {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .card {
+        width: 49%!important;
         border-left: none!important;
         border-right: none!important;
         border-bottom: none!important;
         border-radius: 0!important;
         border-top-color: #e1e6e6!important;
+        margin: 0!important;
+        font-size: 16px!important;
+        height: 300px!important;
+    }
+    
+    .card img {
+        width: 80%!important;
+    }
+    
+    .item_model td {
+        font-size: 13px!important;
+    }
+    
+    .heat, .heated {
+        font-size: 20px!important;
+    }
+    
+    .cold, .froze {
+        font-size: 20px!important;
     }
     
     .refresh {
@@ -593,9 +626,36 @@
         padding: 0!important;
     }
     
+    .talk-popup {
+        display: none!important;
+    }
+    
+    #item-container {
+        margin: 0!important;
+        width: 100%!important;
+    }
+    
     .card {
-        width: 333.5px!important;
-        margin: 0 166.75px 25px 166.75px!important;
+        width: 49.65%!important;
+        margin: 0!important;
+        font-size: 18px!important;
+        height: 300px!important;
+    }
+    
+    .card img {
+        width: 60%!important;
+    }
+    
+    .item_model td {
+        font-size: 16px!important;
+    }
+    
+    .heat, .heated {
+        font-size: 20px!important;
+    }
+    
+    .cold, .froze {
+        font-size: 20px!important;
     }
     
     .refresh {
@@ -649,13 +709,46 @@
         padding: 0!important;
     }
     
-    .card {
+    .talk-popup {
         width: 100%!important;
+    }
+    
+    .talk-header h2 {
+        font-size: 16px!important;
+        width: 87%!important;
+    }
+    
+    #item-container {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .card {
+        width: 49%!important;
         border-left: none!important;
         border-right: none!important;
         border-bottom: none!important;
         border-radius: 0!important;
         border-top-color: #e1e6e6!important;
+        margin: 0!important;
+        font-size: 16px!important;
+        height: 300px!important;
+    }
+    
+    .card img {
+        width: 90%!important;
+    }
+    
+    .item_model td {
+        font-size: 14px!important;
+    }
+    
+    .heat, .heated {
+        font-size: 20px!important;
+    }
+    
+    .cold, .froze {
+        font-size: 20px!important;
     }
     
     .refresh {
@@ -702,9 +795,36 @@
         padding: 0!important;
     }
     
+    .talk-popup {
+        display: none!important;
+    }
+    
+    #item-container {
+        margin: 0!important;
+        width: 100%!important;
+    }
+    
     .card {
-        width: 368px!important;
-        margin: 0 184px 25px 184px!important;
+        width: 49.65%!important;
+        margin: 0!important;
+        font-size: 18px!important;
+        height: 300px!important;
+    }
+    
+    .card img {
+        width: 60%!important;
+    }
+    
+    .item_model td {
+        font-size: 16px!important;
+    }
+    
+    .heat, .heated {
+        font-size: 20px!important;
+    }
+    
+    .cold, .froze {
+        font-size: 20px!important;
     }
     
     .refresh {
@@ -758,13 +878,46 @@
         padding: 0!important;
     }
     
-    .card {
+    .talk-popup {
         width: 100%!important;
+    }
+    
+    .talk-header h2 {
+        font-size: 12px!important;
+        width: 87%!important;
+    }
+    
+    #item-container {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .card {
+        width: 49%!important;
         border-left: none!important;
         border-right: none!important;
         border-bottom: none!important;
         border-radius: 0!important;
         border-top-color: #e1e6e6!important;
+        margin: 0!important;
+        font-size: 12px!important;
+        height: 260px!important;
+    }
+    
+    .card img {
+        width: 80%!important;
+    }
+    
+    .item_model td {
+        font-size: 11px!important;
+    }
+    
+    .heat, .heated {
+        font-size: 16px!important;
+    }
+    
+    .cold, .froze {
+        font-size: 16px!important;
     }
     
     .refresh {
@@ -811,9 +964,36 @@
         padding: 0!important;
     }
     
+    .talk-popup {
+        display: none!important;
+    }
+    
+    #item-container {
+        margin: 0!important;
+        width: 100%!important;
+    }
+    
     .card {
-        width: 284px!important;
-        margin: 0 142px 25px 142px!important;
+        width: 49.65%!important;
+        margin: 0!important;
+        font-size: 16px!important;
+        height: 300px!important;
+    }
+    
+    .card img {
+        width: 60%!important;
+    }
+    
+    .item_model td {
+        font-size: 12px!important;
+    }
+    
+    .heat, .heated {
+        font-size: 20px!important;
+    }
+    
+    .cold, .froze {
+        font-size: 20px!important;
     }
     
     .refresh {
@@ -2466,10 +2646,15 @@
     
     .transaction_main {
         width: 100%!important;
+        top: 180px!important;
         left: 0!important;
-        height: 507px!important;
         overflow: auto!important;
-        margin: -7px 0 0 0!important;
+        margin: 3px 0 0 0!important;
+    }
+    
+    .transaction_content .input-group.item_price {
+        width: 90%!important;
+        margin: 0 5%!important;
     }
     
     .transaction_merchant {
@@ -2753,11 +2938,16 @@
     }
     
     .transaction_main {
-        width: 100%!important;
+        width: 70%!important;
+        top: 100px!important;
         left: 0!important;
-        height: 215px!important;
         overflow: auto!important;
-        margin: 22px 0 0 0!important;
+        margin: 3px 0 0 15%!important;
+    }
+    
+    .transaction_content .input-group.item_price {
+        width: 90%!important;
+        margin: 0 5%!important;
     }
     
     .transaction_merchant {
@@ -3061,10 +3251,15 @@
     
     .transaction_main {
         width: 100%!important;
+        top: 180px!important;
         left: 0!important;
-        height: 576px!important;
         overflow: auto!important;
-        margin: -14px 0 0 0!important;
+        margin: 3px 0 0 0!important;
+    }
+    
+    .transaction_content .input-group.item_price {
+        width: 90%!important;
+        margin: 0 5%!important;
     }
     
     .transaction_merchant {
@@ -3350,11 +3545,16 @@
     }
     
     .transaction_main {
-        width: 100%!important;
+        width: 70%!important;
+        top: 100px!important;
         left: 0!important;
-        height: 254px!important;
         overflow: auto!important;
-        margin: 20px 0 0 0!important;
+        margin: 3px 0 0 15%!important;
+    }
+    
+    .transaction_content .input-group.item_price {
+        width: 90%!important;
+        margin: 0 5%!important;
     }
     
     .transaction_merchant {
@@ -3659,10 +3859,15 @@
     
     .transaction_main {
         width: 100%!important;
+        top: 180px!important;
         left: 0!important;
-        height: 408px!important;
         overflow: auto!important;
         margin: 3px 0 0 0!important;
+    }
+    
+    .transaction_content .input-group.item_price {
+        width: 90%!important;
+        margin: 0 5%!important;
     }
     
     .transaction_merchant {
@@ -3940,11 +4145,16 @@
     }
     
     .transaction_main {
-        width: 100%!important;
+        width: 70%!important;
+        top: 75px!important;
         left: 0!important;
-        height: 160px!important;
         overflow: auto!important;
-        margin: 28px 0 0 0!important;
+        margin: 3px 0 0 15%!important;
+    }
+    
+    .transaction_content .input-group.item_price {
+        width: 90%!important;
+        margin: 0 5%!important;
     }
     
     .transaction_merchant {
@@ -5477,6 +5687,965 @@
 }
 /******************************************* GIVEAWAY END *********************************************/
 
+/******************************************* SELL **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    .directions {
+        margin: 20px 0 0 15px!important;
+        font-size: 10px!important;
+        text-align: center;
+    }
+    
+    .item_radios {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .item_radios .form-check-inline {
+        margin: 10px 50px!important;
+    }
+    
+    #search_item {
+        width: 90%!important;
+        margin: 5px 5%!important;
+        font-size: 12px!important;
+    }
+    
+    #search_item_example {
+        margin: 0 5%!important;
+        font-size: 10px!important;
+    }
+    
+    .input-group.item_price {
+        width: 90%!important;
+        margin: 10px 5%!important;
+    }
+    
+    #item_price-input {
+        font-size: 12px!important;
+    }
+    
+    #item_size {
+        width: 90%!important;
+        margin: 0px 5%!important;
+    }
+    
+    .sell_now-btn {
+        width: 90%!important;
+        margin: 15px 5%!important;
+    }
+    
+    .search_item-results {
+        width: 90%!important;
+        margin: -6px 5%!important;
+    }
+    
+    .item_asset-results {
+        width: 40%!important;
+    }
+    
+    .item_description-results {
+        line-height: 9px!important;
+        width: 60%!important;
+    }
+    
+    .item_description-results p {
+        font-size: 10px!important;
+        margin-top: 10px!important;
+        margin-left: 10px!important;
+        font-weight: 500!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .directions {
+        margin: 10px 0 0 5px!important;
+        font-size: 10px!important;
+        text-align: center;
+    }
+    
+    .item_radios {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .item_radios .form-check-inline {
+        margin: 10px 50px!important;
+    }
+    
+    #search_item {
+        width: 90%!important;
+        margin: 5px 5%!important;
+        font-size: 12px!important;
+    }
+    
+    #search_item_example {
+        margin: 0 5%!important;
+        font-size: 10px!important;
+    }
+    
+    .input-group.item_price {
+        width: 90%!important;
+        margin: 10px 5%!important;
+    }
+    
+    #item_price-input {
+        font-size: 12px!important;
+    }
+    
+    #item_size {
+        width: 90%!important;
+        margin: 0px 5%!important;
+    }
+    
+    .sell_now-btn {
+        width: 90%!important;
+        margin: 15px 5%!important;
+    }
+    
+    .search_item-results {
+        width: 90%!important;
+        margin: -6px 5%!important;
+    }
+    
+    .item_asset-results {
+        width: 20%!important;
+    }
+    
+    .item_description-results {
+        line-height: 9px!important;
+        width: 80%!important;
+    }
+    
+    .item_description-results p {
+        font-size: 14px!important;
+        margin-top: 10px!important;
+        margin-left: 10px!important;
+        font-weight: 600!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+    .directions {
+        margin: 50px 0 0 10px!important;
+        font-size: 10px!important;
+        text-align: center;
+    }
+    
+    .item_radios {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .item_radios .form-check-inline {
+        margin: 10px 50px!important;
+    }
+    
+    #search_item {
+        width: 90%!important;
+        margin: 10px 5%!important;
+        font-size: 12px!important;
+    }
+    
+    #search_item_example {
+        margin: 0 5%!important;
+        font-size: 10px!important;
+    }
+    
+    .input-group.item_price {
+        width: 90%!important;
+        margin: 20px 5%!important;
+    }
+    
+    #item_price-input {
+        font-size: 12px!important;
+    }
+    
+    #item_size {
+        width: 90%!important;
+        margin: 15px 5%!important;
+    }
+    
+    .sell_now-btn {
+        width: 90%!important;
+        margin: 20px 5%!important;
+    }
+    
+    .search_item-results {
+        width: 90%!important;
+        margin: -6px 5%!important;
+    }
+    
+    .item_asset-results {
+        width: 40%!important;
+    }
+    
+    .item_description-results {
+        line-height: 9px!important;
+        width: 60%!important;
+    }
+    
+    .item_description-results p {
+        font-size: 10px!important;
+        margin-top: 10px!important;
+        margin-left: 10px!important;
+        font-weight: 500!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+   .directions {
+        margin: 10px 0 0 5px!important;
+        font-size: 10px!important;
+        text-align: center;
+    }
+    
+    .item_radios {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .item_radios .form-check-inline {
+        margin: 5px 50px!important;
+    }
+    
+    #search_item {
+        width: 90%!important;
+        margin: 0px 5%!important;
+        font-size: 12px!important;
+    }
+    
+    #search_item_example {
+        margin: 0 5%!important;
+        font-size: 10px!important;
+    }
+    
+    .input-group.item_price {
+        width: 90%!important;
+        margin: 5px 5%!important;
+    }
+    
+    #item_price-input {
+        font-size: 12px!important;
+    }
+    
+    #item_size {
+        width: 90%!important;
+        margin: 0px 5%!important;
+    }
+    
+    .sell_now-btn {
+        width: 90%!important;
+        margin: 10px 5%!important;
+    }
+    
+    .search_item-results {
+        width: 90%!important;
+        margin: -6px 5%!important;
+    }
+    
+    .item_asset-results {
+        width: 20%!important;
+    }
+    
+    .item_description-results {
+        line-height: 9px!important;
+        width: 80%!important;
+    }
+    
+    .item_description-results p {
+        font-size: 14px!important;
+        margin-top: 10px!important;
+        margin-left: 10px!important;
+        font-weight: 600!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    .directions {
+        margin: 0 0 0 10px!important;
+        font-size: 10px!important;
+        text-align: center;
+    }
+    
+    .item_radios {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .item_radios .form-check-inline {
+        margin: 10px 50px!important;
+    }
+    
+    #search_item {
+        width: 90%!important;
+        margin: 5px 5%!important;
+        font-size: 12px!important;
+    }
+    
+    #search_item_example {
+        margin: 0 5%!important;
+        font-size: 10px!important;
+    }
+    
+    .input-group.item_price {
+        width: 90%!important;
+        margin: 10px 5%!important;
+    }
+    
+    #item_price-input {
+        font-size: 12px!important;
+    }
+    
+    #item_size {
+        width: 90%!important;
+        margin: 0px 5%!important;
+    }
+    
+    .sell_now-btn {
+        width: 90%!important;
+        margin: 15px 5%!important;
+    }
+    
+    .search_item-results {
+        width: 90%!important;
+        margin: -6px 5%!important;
+    }
+    
+    .item_asset-results {
+        width: 40%!important;
+    }
+    
+    .item_description-results {
+        line-height: 9px!important;
+        width: 60%!important;
+    }
+    
+    .item_description-results p {
+        font-size: 10px!important;
+        margin-top: 10px!important;
+        margin-left: 10px!important;
+        font-weight: 500!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    .directions {
+        margin: 0 0 0 5px!important;
+        font-size: 10px!important;
+        text-align: center;
+    }
+    
+    .item_radios {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .item_radios .form-check-inline {
+        margin: 10px 50px!important;
+    }
+    
+    #search_item {
+        width: 90%!important;
+        margin: 5px 5%!important;
+        font-size: 12px!important;
+    }
+    
+    #search_item_example {
+        margin: 0 5%!important;
+        font-size: 10px!important;
+    }
+    
+    .input-group.item_price {
+        width: 90%!important;
+        margin: 10px 5%!important;
+    }
+    
+    #item_price-input {
+        font-size: 12px!important;
+    }
+    
+    #item_size {
+        width: 90%!important;
+        margin: 0px 5%!important;
+    }
+    
+    .sell_now-btn {
+        width: 90%!important;
+        margin: 15px 5%!important;
+    }
+    
+    .search_item-results {
+        width: 90%!important;
+        margin: -6px 5%!important;
+    }
+    
+    .item_asset-results {
+        width: 20%!important;
+    }
+    
+    .item_description-results {
+        line-height: 9px!important;
+        width: 80%!important;
+    }
+    
+    .item_description-results p {
+        font-size: 14px!important;
+        margin-top: 10px!important;
+        margin-left: 10px!important;
+        font-weight: 600!important;
+    }
+}
+/******************************************* SELL END *********************************************/
+
+/******************************************* ITEM **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    .item_container {
+        width: 100%!important;
+        margin: 25px 0 0 0!important;
+        height: 525px!important;
+    }
+    
+    .item_description {
+        width: 50%!important;
+    }
+    
+    .item_description .asset {
+        margin: 50px 10% 80px 10%!important;
+        width: 80%!important;
+    }
+    
+    .item_description .product_name {
+        font-size: 13px!important;
+    }
+    
+    .item_description .colorway {
+        font-size: 13px!important;
+    }
+    
+    .item_description .date {
+        font-size: 13px!important;
+    }
+    
+    .item_description p {
+        font-size: 15px!important;
+    }
+    
+    .sell_this {
+        width: 80%!important;
+        margin: 0 10%!important;
+        font-size: 13px!important;
+    }
+    
+    .item_offers {
+        padding: 5px 0!important;
+        width: 50%!important;
+    }
+    
+    .offer_description p {
+        font-size: 10px!important;
+    }
+    
+    .buy_now-btn, .counter_offer-btn {
+        font-size: 11px!important;
+        height: 36px!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .item_container {
+        width: 100%!important;
+        margin: 0px 0 0 0!important;
+        height: 310px!important;
+    }
+    
+    .item_description {
+        width: 60%!important;
+    }
+    
+    .item_description .asset {
+        margin: 0px 25% 10px 25%!important;
+        width: 50%!important;
+    }
+    
+    .item_description .product_name {
+        font-size: 14px!important;
+    }
+    
+    .item_description .colorway {
+        font-size: 14px!important;
+    }
+    
+    .item_description .date {
+        font-size: 14px!important;
+    }
+    
+    .item_description p {
+        font-size: 16px!important;
+    }
+    
+    .sell_this {
+        width: 80%!important;
+        margin: 0 10%!important;
+        font-size: 14px!important;
+    }
+    
+    .item_offers {
+        padding: 5px 8px!important;
+        width: 40%!important;
+    }
+    
+    .offer_description p {
+        font-size: 11px!important;
+    }
+    
+    .buy_now-btn, .counter_offer-btn {
+        font-size: 12px!important;
+        height: 40px!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+    .item_container {
+        width: 100%!important;
+        margin: 25px 0 0 0!important;
+        height: 525px!important;
+    }
+    
+    .item_description {
+        width: 50%!important;
+    }
+    
+    .item_description .asset {
+        margin: 50px 10% 80px 10%!important;
+        width: 80%!important;
+    }
+    
+    .item_description .product_name {
+        font-size: 14px!important;
+    }
+    
+    .item_description .colorway {
+        font-size: 14px!important;
+    }
+    
+    .item_description .date {
+        font-size: 14px!important;
+    }
+    
+    .item_description p {
+        font-size: 16px!important;
+    }
+    
+    .sell_this {
+        width: 80%!important;
+        margin: 0 10%!important;
+        font-size: 14px!important;
+    }
+    
+    .item_offers {
+        padding: 5px 1px!important;
+        width: 50%!important;
+    }
+    
+    .offer_description p {
+        font-size: 11px!important;
+    }
+    
+    .buy_now-btn, .counter_offer-btn {
+        font-size: 12px!important;
+        height: 40px!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+   .item_container {
+        width: 100%!important;
+        margin: 5px 0 0 0!important;
+        height: 345px!important;
+    }
+    
+    .item_description {
+        width: 60%!important;
+    }
+    
+    .item_description .asset {
+        margin: 0px 25% 10px 25%!important;
+        width: 50%!important;
+    }
+    
+    .item_description .product_name {
+        font-size: 15px!important;
+    }
+    
+    .item_description .colorway {
+        font-size: 15px!important;
+    }
+    
+    .item_description .date {
+        font-size: 15px!important;
+    }
+    
+    .item_description p {
+        font-size: 17px!important;
+    }
+    
+    .sell_this {
+        width: 80%!important;
+        margin: 0 10%!important;
+        font-size: 15px!important;
+    }
+    
+    .item_offers {
+        padding: 5px 8px!important;
+        width: 40%!important;
+    }
+    
+    .offer_description p {
+        font-size: 12px!important;
+    }
+    
+    .buy_now-btn, .counter_offer-btn {
+        font-size: 13px!important;
+        height: 40px!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    .item_container {
+        width: 100%!important;
+        margin: 0!important;
+        height: 466px!important;
+    }
+    
+    .item_description {
+        width: 50%!important;
+    }
+    
+    .item_description .asset {
+        margin: 50px 10% 80px 10%!important;
+        width: 80%!important;
+    }
+    
+    .item_description .product_name {
+        font-size: 12px!important;
+    }
+    
+    .item_description .colorway {
+        font-size: 12px!important;
+    }
+    
+    .item_description .date {
+        font-size: 12px!important;
+    }
+    
+    .item_description p {
+        font-size: 14px!important;
+    }
+    
+    .sell_this {
+        width: 80%!important;
+        margin: 0 10%!important;
+        font-size: 12px!important;
+    }
+    
+    .item_offers {
+        padding: 5px 0!important;
+        width: 50%!important;
+    }
+    
+    .offer_description p {
+        font-size: 9px!important;
+    }
+    
+    .buy_now-btn, .counter_offer-btn {
+        font-size: 10px!important;
+        height: 36px!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+    .item_container {
+        width: 100%!important;
+        margin: 0px 0 0 0!important;
+        height: 250px!important;
+    }
+    
+    .item_description {
+        width: 60%!important;
+    }
+    
+    .item_description .asset {
+        margin: 0px 30% 10px 30%!important;
+        width: 40%!important;
+    }
+    
+    .item_description .product_name {
+        font-size: 12px!important;
+    }
+    
+    .item_description .colorway {
+        font-size: 12px!important;
+    }
+    
+    .item_description .date {
+        font-size: 12px!important;
+    }
+    
+    .item_description p {
+        font-size: 14px!important;
+    }
+    
+    .sell_this {
+        width: 80%!important;
+        margin: 0 10%!important;
+        font-size: 12px!important;
+    }
+    
+    .item_offers {
+        padding: 5px 8px!important;
+        width: 40%!important;
+    }
+    
+    .offer_description p {
+        font-size: 10px!important;
+    }
+    
+    .buy_now-btn, .counter_offer-btn {
+        font-size: 11px!important;
+        height: 40px!important;
+    }
+}
+/******************************************* ITEM END *********************************************/
+
+/******************************************* PREFERENCES **********************************************/
+
+/* LAPTOP 1280x720 */
+@media all and (min-width: 1279px) {
+}
+
+/* IPHONE6/7/8 */
+
+@media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
+    .pref_logo {
+        width: 20%!important;
+        margin: 5px 40%!important;
+    }
+    
+    .brand_selection h1 {
+        font-size: 14px!important;
+    }
+    
+    .interest h1 {
+        font-size: 14px!important;
+    }
+    
+    .brand_selection #small {
+        font-size: 10px!important;
+    }
+    
+    .brand_selection img {
+        width: 40%!important;
+        margin: 10px 4.65%!important;
+    }
+    
+    .interest table tr td img {
+        width: 50%!important;
+    }
+    
+    .pref-btn {
+        width: 50%!important;
+        margin: 10px 25%!important;
+    }
+}
+
+@media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
+    .pref_logo {
+        width: 7%!important;
+        margin: 5px 46.5%!important;
+    }
+    
+    .brand_selection h1 {
+        font-size: 14px!important;
+    }
+    
+    .brand_selection #small {
+        font-size: 10px!important;
+    }
+    
+    .brand_selection img {
+        width: 10%!important;
+        margin: 10px 4.65%!important;
+    }
+    
+    .interest h1 {
+        font-size: 14px!important;
+    }
+    
+    .interest table tr td img {
+        width: 20%!important;
+    }
+    
+    .pref-btn {
+        width: 50%!important;
+        margin: 0px 25%!important;
+    }
+}
+
+/* IPHONE 6/7/8PLUS */
+
+@media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
+    .pref_logo {
+        width: 20%!important;
+        margin: 5px 40%!important;
+    }
+    
+    .brand_selection h1 {
+        font-size: 14px!important;
+    }
+    
+    .brand_selection #small {
+        font-size: 10px!important;
+    }
+    
+    .interest h1 {
+        font-size: 14px!important;
+    }
+    
+    .brand_selection img {
+        width: 40%!important;
+        margin: 10px 4.65%!important;
+    }
+    
+    .interest table tr td img {
+        width: 50%!important;
+    }
+    
+    .pref-btn {
+        width: 50%!important;
+        margin: 10px 25%!important;
+    }
+}
+
+@media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
+   .pref_logo {
+        width: 10%!important;
+        margin: 5px 45%!important;
+    }
+    
+    .brand_selection h1 {
+        font-size: 14px!important;
+    }
+    
+    .brand_selection #small {
+        font-size: 10px!important;
+    }
+    
+    .brand_selection img {
+        width: 10%!important;
+        margin: 10px 4.65%!important;
+    }
+    
+    .interest h1 {
+        font-size: 14px!important;
+    }
+    
+    .interest table tr td img {
+        width: 20%!important;
+    }
+    
+    .pref-btn {
+        width: 50%!important;
+        margin: 0px 25%!important;
+    }
+}
+
+/* IPHONE SE */
+
+@media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
+    .pref_logo {
+        width: 20%!important;
+        margin: 5px 40%!important;
+    }
+    
+    .brand_selection h1 {
+        font-size: 14px!important;
+    }
+    
+    .brand_selection #small {
+        font-size: 10px!important;
+    }
+    
+    .brand_selection img {
+        width: 40%!important;
+        margin: 10px 4.65%!important;
+    }
+    
+    .interest table tr td img {
+        width: 50%!important;
+    }
+    
+    .pref-btn {
+        width: 50%!important;
+        margin: 10px 25%!important;
+    }
+}
+
+@media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
+   .pref_logo {
+        width: 10%!important;
+        margin: 5px 45%!important;
+    }
+    
+    .brand_selection h1 {
+        font-size: 14px!important;
+    }
+    
+    .brand_selection #small {
+        font-size: 10px!important;
+    }
+    
+    .brand_selection img {
+        width: 10%!important;
+        margin: 10px 4.65%!important;
+    }
+    
+    .interest h1 {
+        font-size: 14px!important;
+    }
+    
+    .interest table tr td img {
+        width: 20%!important;
+    }
+    
+    .pref-btn {
+        width: 50%!important;
+        margin: 0px 25% 15px 25%!important;
+    }
+}
+/******************************************* PREFERENCES END *********************************************/
+
 
 /******************************************* GLOBAL *********************************************/
 
@@ -5488,6 +6657,12 @@
     -moz-transition: background-color 0.5s ease-out;
     -o-transition: background-color 0.5s ease-out;
     transition: background-color 0.5s ease-out;
+}
+
+input[type="radio"] {
+    -webkit-appearance: radio;
+    -o-appearance: radio;
+    -moz-appearance: radio;
 }
 
 html {
@@ -6105,19 +7280,23 @@ textarea {
     color: rgb(238, 234, 234);
 }
 
-.load_drop {
-    width: 15%;
-    margin: 0% 42.5% 100px 42.5%;
+.see_more {
+    width: 50%;
+    margin: 0% 25% 75px 25%;
     background: #fff;
     border: 1px solid #aa0000;
     color: #aa0000;
-    font-size: 14px;
+    font-size: 16px;
     padding: 5px;
     border-radius: 12px;
-    display: none;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-.load_drop:hover {
+.see_more:hover {
     background: #aa0000;
     color: #fff;
     cursor: pointer;

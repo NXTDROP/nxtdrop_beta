@@ -44,7 +44,7 @@
         <script type="text/javascript" src="js/dm_icon.js"></script>
         <script>
             $(document).ready(function() {
-                getPosts();
+                /*getPosts();
                 $('#posts-btn').click(function() {
                     var posts =  $('#posts-btn').css('background-color');
 
@@ -79,17 +79,17 @@
                         $('#likes-btn').css('background-color', '#aa0000');
                         $('#likes-btn').css('color', '#fff');
                     }
-                });
+                });*/
             });
 
-            function getPosts () {
+            /*function getPosts () {
                 $('#posts-btn').css('background-color', '#fff');
                 $('#posts-btn').css('color', '#aa0000');
                 $('#display-profile').html('<p id="loading-profile">LOADING...</p>');
                 $.ajax({
                     url: 'inc/profile-page-post.php',
                     type: 'GET',
-                    data: {u: <?php echo "'".$_GET['u']."'"; ?>},
+                    data: {u: <?php //echo "'".$_GET['u']."'"; ?>},
                     success: function(data) {
                         $('#display-profile').html(data);
                     }
@@ -103,7 +103,7 @@
                 $.ajax({
                     url: 'inc/like-page-post.php',
                     type: 'GET',
-                    data: {u: <?php echo "'".$_GET['u']."'"; ?>},
+                    data: {u: <?php //echo "'".$_GET['u']."'"; ?>},
                     success: function(data) {
                         $('#display-profile').html(data);
                     }
@@ -117,12 +117,12 @@
                 $.ajax({
                     url: 'inc/reviews-page.php',
                     type: 'GET',
-                    data: {u: <?php echo "'".$_GET['u']."'"; ?>},
+                    data: {u: <?php //echo "'".$_GET['u']."'"; ?>},
                     success: function(data) {
                         $('#display-profile').html(data);
                     }
                 });
-            }
+            }*/
         </script>
     </head>
 
@@ -130,17 +130,17 @@
         <?php include('inc/navbar/navbar.php'); ?>
         <?php include("inc/profile-info.php"); ?>
 
-        <div class="profile-navigation">
+        <!--<div class="profile-navigation">
             <button id="posts-btn">POSTS</button>
             <button id="likes-btn">LIKES</button>
-            <!--<button id="reviews-btn">REVIEWS</button>-->
-        </div>
+            <button id="reviews-btn">REVIEWS</button>
+        </div>-->
 
-        <div id="display-profile">
+        <!--<div id="display-profile">
             
         </div>
 
-        <p id="message"></p>
+        <p id="message"></p>-->
 
         <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/new-msg-post.php'); ?>

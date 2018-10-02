@@ -1,9 +1,9 @@
 <?php 
     session_start();
     require('dbh.php');
-    $model = $_GET['model'];
-    $getItem = $conn->prepare("SELECT brand, line, model, colorway, yearMade, assetURL FROM products WHERE model = ?");
-    $getItem->bind_param('s', $model);
+    $m = $_GET['model'];
+    $getItem = $conn->prepare("SELECT brand, line, model, colorway, yearMade, assetURL FROM products WHERE productID = ?");
+    $getItem->bind_param('i', $m);
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,10 +14,11 @@
         <?php include('inc/head.php'); ?>
         <script type="text/javascript">
             $(document).ready(function() {
+                checkTalk();
                 $.ajax({
                     url: 'inc/item/getOffers.php',
                     type: 'POST',
-                    data: {model: <?php echo "'".$model."'"; ?>},
+                    data: {model: <?php echo "'".$m."'"; ?>},
                     success: function(response) {
                         if(response === 'DB') {
                             alert('Network problems. Sorry, try later.');
@@ -40,7 +41,7 @@
             });
 
             function go_to_sell(model) {
-                window.location.href = 'sell.php?item=' + model;
+                window.location.href = 'sell/' + model;
             }
 
             function checkout(id) {
@@ -52,6 +53,42 @@
                 $('.transaction_main').show();
                 cOfferID = id;
                 iprice = price;
+            }
+
+            function checkTalk() {
+                $.ajax({
+                    url: 'inc/talk/checkTalk.php',
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                        if(jsonObject = JSON.parse(response)) {
+                            var count = jsonObject[0]['count'];
+                            if(count > 0) {
+                                console.log(jsonObject[0]['timestamp']);
+                                $('.talk-header > h2').html(count + ' New messages (tap to see)');
+                                $('.talk-popup').addClass('glow');
+                                setTimeout(() => {  
+                                    checkTalk();
+                                }, 10000);
+                            } else {
+                                $('.talk-header > h2').html('NXTDROP CHAT');
+                                $('.talk-popup').removeClass('glow');
+                                setTimeout(() => {  
+                                    checkTalk();
+                                }, 10000);
+                            }
+                        } else {
+                            setTimeout(() => {  
+                                checkTalk();
+                            }, 5000);
+                        }
+                    },
+                    error: function(response) {
+                        setTimeout(() => {  
+                            checkTalk();
+                        }, 5000);
+                    }   
+                });
             }
         </script>
     </head>
@@ -71,7 +108,7 @@
                 <p class="product_name"><?php echo $brand.', '.$line.', '.$model; ?></p>
                 <p>Colorway: <span class="colorway"><?php echo $colorway; ?></span></p>
                 <p>Release Date: <span class="date"><?php echo $yearMade; ?></span></p>
-                <button class="sell_this" onclick="go_to_sell('<?php echo $model; ?>')">Sell this item</button>
+                <button class="sell_this" onclick="go_to_sell('<?php echo $m; ?>')">Sell this item</button>
             </div>
 
             <div class="item_offers">

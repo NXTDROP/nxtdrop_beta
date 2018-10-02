@@ -1,7 +1,3 @@
-var key;
-$.getJSON('../credentials.json', function(json) {
-    key = json.APIKEYS.stripe.US.live.public;
-});
 var street;
 var city;
 var state;
@@ -19,7 +15,7 @@ var discountID;
 var discountAmount;
 var discountType;
 var discount;
-const stripe = Stripe("'"+key+"'");
+const stripe = Stripe('pk_live_ZeS4R1yiq76rObz3ADsgOs13');
 
 // Create an instance of Elements.
 var elements = stripe.elements();

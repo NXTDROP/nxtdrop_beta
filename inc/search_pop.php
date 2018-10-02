@@ -24,6 +24,10 @@
             });
         });
     });
+
+    function to_item(model) {
+        window.location.href = 'sneakers/' + model;
+    }
 </script>
 
 <div class="search_post">

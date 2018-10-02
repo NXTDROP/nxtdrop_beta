@@ -9,7 +9,7 @@
     NXTDROP: The Fashion Trade Centre
     </title>
     <head>
-        <!--<base href="https://nxtdrop.com/">-->
+       <!-- <base href="https://nxtdrop.com/">-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-signin-client_id" content="257002911489-cpnet2eibl9jo7a10deh20i7qphv5q3a.apps.googleusercontent.com">
         <link type="text/css" rel="stylesheet" href="logstylesheet.css" />

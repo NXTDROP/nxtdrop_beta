@@ -4,12 +4,14 @@
     $productID;
     if(isset($_GET['item'])) {
         $item = $_GET['item'];
-        $getID = $conn->prepare("SELECT productID FROM products WHERE model = ?");
+        $getID = $conn->prepare("SELECT productID, model FROM products WHERE productID = ?");
         $getID->bind_param('s', $item);
         $getID->execute();
-        $getID->bind_result($productID);
+        $getID->bind_result($productID, $model);
         $getID->fetch();
         $getID->close();
+    } else {
+        $item = '';
     }
 ?>
 <!DOCTYPE html>
@@ -36,8 +38,9 @@
                 }
             ?>
             $(document).ready(function() {
+                checkTalk();
                 if(typeof ID === 'number') {
-                    $('#search_item').val('<?php echo $item; ?>');
+                    $('#search_item').val("<?php echo $model; ?>");
                 }
                 $('.sell_now-btn').hover(function() {
                     $(this).css('background-color', '#c64d53');
@@ -180,6 +183,52 @@
                 ID = parseInt(PID);
                 $('.search_item-results').css('display', 'none');
             }
+
+            function checkTalk() {
+                $.ajax({
+                    url: 'inc/talk/checkTalk.php',
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                        if(jsonObject = JSON.parse(response)) {
+                            var count = jsonObject[0]['count'];
+                            if(count > 0) {
+                                console.log(jsonObject[0]['timestamp']);
+                                $('.talk-header > h2').html(count + ' New messages (tap to see)');
+                                $('.talk-popup').addClass('glow');
+                                setTimeout(() => {  
+                                    checkTalk();
+                                }, 10000);
+                            } else {
+                                $('.talk-header > h2').html('NXTDROP CHAT');
+                                $('.talk-popup').removeClass('glow');
+                                setTimeout(() => {  
+                                    checkTalk();
+                                }, 10000);
+                            }
+                        } else {
+                            setTimeout(() => {  
+                                checkTalk();
+                            }, 5000);
+                        }
+                    },
+                    error: function(response) {
+                        setTimeout(() => {  
+                            checkTalk();
+                        }, 5000);
+                    }   
+                });
+            }
+
+            function new_radio() {
+                $('#nlr').css('color', '#f27178');
+                $('#ulr').css('color', '#000');
+            } 
+
+            function used_radio() {
+                $('#nlr').css('color', '#000');
+                $('#ulr').css('color', '#f27178');
+            }
         </script>
     </head>
 
@@ -195,13 +244,13 @@
         </ol>
 
         <div class="item_radios">
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline" onclick="new_radio()">
                 <input name="item_condition" type="radio" id="new_item-radio" value="new" required>
-                <label class="form-check-label" for="new_item-radio"> New</label>
+                <label class="form-check-label" for="new_item-radio" id="nlr"> New</label>
             </div>
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline" onclick="used_radio()">
                 <input name="item_condition" type="radio" id="used_item-radio" value="used" required>
-                <label class="form-check-label" for="used_item-radio"> Used</label>
+                <label class="form-check-label" for="used_item-radio" id="ulr"> Used</label>
             </div>
         </div>
 

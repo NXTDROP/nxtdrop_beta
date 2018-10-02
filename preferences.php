@@ -206,7 +206,7 @@
     </head>
 
     <body>
-        <img src="img/nxtdroplogo.png" style="width: 5%; margin: 10px 47.5%;">
+        <img class="pref_logo" src="img/nxtdroplogo.png" style="width: 5%; margin: 10px 47.5%;">
 
         <div class="brand_selection">
             <h1>What brands are you interested in? Choose Two.</h1>

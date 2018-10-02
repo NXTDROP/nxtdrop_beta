@@ -5,7 +5,7 @@
         date_default_timezone_set("UTC");
     }
     else {
-        header("Location: welcome");
+        header("Location: https://nxtdrop.com/");
         exit();
     }
 ?>

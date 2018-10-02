@@ -1,8 +1,4 @@
-var key;
-$.getJSON('../credentials.json', function(json) {
-    key = json.APIKEYS.stripe.US.live.public;
-});
-const stripe = Stripe("'"+key+"'");
+const stripe = Stripe('pk_live_ZeS4R1yiq76rObz3ADsgOs13');
 
 $(document).ready(function() {
     updateInfo();
