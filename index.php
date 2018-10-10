@@ -1,6 +1,20 @@
 <?php 
     session_start();
     include 'dbh.php';
+
+    if(isset($_SESSION['uid'])) {
+        $checkCode = $conn->prepare("SELECT COUNT(*) FROM discountCode WHERE assignedTo = ?");
+        $checkCode->bind_param('i', $userID);
+        $userID = $_SESSION['uid'];
+        $checkCode->execute();
+        $checkCode->bind_result($count);
+        $checkCode->fetch();
+    }
+
+    if(!isset($_SESSION['uid']) && isset($_SESSION['last_visit']) && (time() - $_SESSION['last_visit'] > 600)) {
+        session_unset();
+        session_destroy();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +29,17 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 checkTalk();
+
+                setTimeout(() => {
+                    <?php
+                        if(isset($_SESSION['uid'])) {
+                            if($count < 1) {
+                                echo "$('.pop').fadeIn(); $('.pop_main').show();";
+                            }
+                            $checkCode->close();
+                        }
+                    ?>
+                }, 2500);
 
                 $('.see_more').click(function() {
                     $('.see_more').html('<i class="fas fa-circle-notch fa-spin"></i>');
@@ -250,6 +275,7 @@
         <?php include('inc/buyer_transaction_confirmation.php') ?>
         <?php include('inc/notificationPopUp/sellerConfirmation.php') ?>
         <?php include('inc/notificationPopUp/MM_verification.php') ?>
+        <?php include('inc/notificationPopUp/signUp.php'); ?>
         <?php //include('inc/giveaway/popUp.php') ?>
 
         <p id="message"></p>

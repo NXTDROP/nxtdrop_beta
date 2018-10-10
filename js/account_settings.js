@@ -1,4 +1,13 @@
 const stripe = Stripe('pk_live_ZeS4R1yiq76rObz3ADsgOs13');
+var fn = false;
+var ln = false;
+var dob = false;
+var adrs = false;
+var type = false;
+var personal_id_number = false;
+var business_name = false;
+var business_tax_id = false;
+var change =  false;
 
 $(document).ready(function() {
     updateInfo();
@@ -55,6 +64,32 @@ $(document).ready(function() {
         }
     });
 
+    $('#inputFirstName').change(function() {
+        fn = true;
+        ln = true;
+    });
+
+    $('#inputDay').change(function() {
+        dob = true;
+    });
+
+    $('#inputAddress').change(function() {
+        adrs = true;
+    });
+
+    $('input[name=entity]').change(function() {
+        type = true;
+    });
+
+    $('#inputSocial').change(function() {
+        personal_id_number = true;
+    });
+
+    $('#inputBusinessName').change(function() {
+        business_name = true;
+        business_tax_id = true;
+    });
+
     /*************** Personal Information Handling ***************************************/
     $('.personal_information').submit(function(e) {
         e.preventDefault();
@@ -71,8 +106,6 @@ $(document).ready(function() {
         var zip = document.querySelector('#inputZip').value;
         var entity = document.querySelector('input[name=entity]:checked').value;
         var social = document.querySelector('#inputSocial').value;
-
-        var complete_address = address + ', ' + city + ', ' + state + ' ' + zip;
 
         if(country == 'US') {
             var social_length = 4;
@@ -116,7 +149,7 @@ $(document).ready(function() {
                                             $('#personal_info_errors').html('Your SSN/SIN is invalid.');
                                         }
                                         else {
-                                            handlePersonalInfo(country, complete_address, first_name, last_name);
+                                            handlePersonalInfo(country, first_name, last_name, day, month, year, address, city, state, zip, entity, social);
                                         }
                                     }
                                 }
@@ -315,107 +348,169 @@ function dateDiffInYears(dateold, datenew) {
     return diff;
 }
 
-async function handlePersonalInfo(country, address, first_name, last_name) {
-    if(country == "US") {
+
+async function handlePersonalInfo(country, first_name, last_name, day, month, year, address, city, state, zip, entity, social) {
+
+    console.log('handePersonalInfo called');
+
+    var complete_address = address + ', ' + city + ', ' + state + ' ' + zip;
+
+    if(fn && ln && (!isEmpty(first_name) && !isEmpty(first_name)) &&  (!isEmpty(last_name) && !isEmpty(last_name))) {
         const result = await stripe.createToken('account', {
             legal_entity: {
                 first_name: document.querySelector('#inputFirstName').value,
                 last_name: document.querySelector('#inputLastName').value,
-                dob: {
-                    day: document.querySelector('#inputDay').value,
-                    month: document.querySelector('#inputMonth').value,
-                    year: document.querySelector('#inputYear').value
-                },
-                address: {
-                    line1: document.querySelector('#inputAddress').value,
-                    city: document.querySelector('#inputCity').value,
-                    state: document.querySelector('#inputState').value,
-                    postal_code: document.querySelector('#inputZip').value
-                },
-                type: document.querySelector('input[name=entity]:checked').value,
-                ssn_last_4: document.querySelector('#inputSocial').value,
-                business_name: document.querySelector('#inputBusinessName').value,
-                business_tax_id: document.querySelector('#inputBusinessNumber').value
             }
         });
 
-        if(result.token) {
-            $.ajax({
-                url: 'inc/account_settings/personalInfo.php',
-                type: 'POST',
-                data: {token: result.token.id, first_name: first_name, last_name: last_name, address: address},
-                success: function(data) {
-                    if(data != "") {
-                        $('#personal_info_errors').html(data);
-                        console.log('Error');
-                    }
-                    else {
-                        console.log('Perfect');
-                        $('#update_personalInfo').html('Update Personal Information');
-                        updateInfo();
-                    }
-                },
-                error: function() {
-                    $('#personal_info_errors').html('Error 100. Contact us @ support@nxtdrop.com or text us @ 267 670-4645');
-                }
-            });
-        }
-        else if (result.error) {
-            $('#personal_info_errors').html('Error 101. Contact us @ support@nxtdrop.com or text us @ 267 670-4645');
-        }
-    }
-    else if(country == "CA") {
-        const result = await stripe.createToken('account', {
-            legal_entity: {
-                first_name: document.querySelector('#inputFirstName').value,
-                last_name: document.querySelector('#inputLastName').value,
-                dob: {
-                    day: document.querySelector('#inputDay').value,
-                    month: document.querySelector('#inputMonth').value,
-                    year: document.querySelector('#inputYear').value
-                },
-                address: {
-                    line1: document.querySelector('#inputAddress').value,
-                    city: document.querySelector('#inputCity').value,
-                    state: document.querySelector('#inputState').value,
-                    postal_code: document.querySelector('#inputZip').value
-                },
-                type: document.querySelector('input[name=entity]:checked').value,
-                personal_id_number: document.querySelector('#inputSocial').value,
-                business_name: document.querySelector('#inputBusinessName').value,
-                business_tax_id: document.querySelector('#inputBusinessNumber').value
-            }
-        });
+        console.log('name changed');
 
-        if(result.token) {
-            $('#token_PI').val(result.token.id);
+        fn = false;
+        ln = false;
+
+        sendPersonalInfo(complete_address, first_name, last_name, result);
+        change = true;
+    } 
     
-            $.ajax({
-                url: 'inc/account_settings/personalInfo.php',
-                type: 'POST',
-                data: {token: result.token.id, first_name: first_name, last_name: last_name, address: address},
-                success: function(data) {
-                    if(data != "") {
-                        $('#personal_info_errors').html(data);
-                        console.log('Error');
-                    }
-                    else {
-                        console.log('Perfect');
-                        $('#update_personalInfo').html('Update Personal Information');
-                        updateInfo();
-                    }
-                },
-                error: function() {
-                    $('#personal_info_errors').html('Error 100. Contact us @ support@nxtdrop.com or text us @ 267 670-4645');
+    if(dob && (!isEmpty(day) && !isEmpty(day)) &&  (!isEmpty(month) && !isEmpty(month)) &&  (!isEmpty(year) && !isEmpty(year))) {
+        const result = await stripe.createToken('account', {
+            legal_entity: {
+                dob: {
+                    day: day,
+                    month: month,
+                    year: year
+                }
+            }
+        });
+
+        console.log('dob changed');
+
+        dob = false;
+
+        sendPersonalInfo(complete_address, first_name, last_name, result);
+        change = true;
+    }
+    
+    if(adrs && (!isEmpty(address) && !isEmpty(address)) &&  (!isEmpty(city) && !isEmpty(city)) &&  (!isEmpty(state) && !isEmpty(state)) && (!isEmpty(zip) && !isEmpty(zip))) {
+        const result = await stripe.createToken('account', {
+            legal_entity: {
+                address: {
+                    line1: address,
+                    city: city,
+                    state: state,
+                    postal_code: zip
+                }
+            }
+        });
+
+        console.log('address changed');
+
+        adrs =  false;
+
+        sendPersonalInfo(complete_address, first_name, last_name, result);
+        change = true;
+    }
+    
+    if(type) {
+        const result = await stripe.createToken('account', {
+            legal_entity: {
+                type: entity
+            }
+        });
+
+        console.log('entity changed');
+
+        type = false;
+
+        sendPersonalInfo(complete_address, first_name, last_name, result);
+        change = true;
+    }
+    
+    if(personal_id_number) {
+        if(country === 'US') {
+            const result = await stripe.createToken('account', {
+                legal_entity: {
+                    ssn_last_4: social
                 }
             });
+
+            console.log('ssn/personal_id changed');
+
+            sendPersonalInfo(complete_address, first_name, last_name, result);
+            change = true;
         }
-        else if (result.error) {
-            $('#personal_info_errors').html('Error 101. Contact us @ support@nxtdrop.com or text us @ 267 670-4645');
+        else if(country === 'CA') {
+            const result = await stripe.createToken('account', {
+                legal_entity: {
+                    personal_id_number: social
+                }
+            });
+
+            console.log('ssn/personal_id changed');
+
+            sendPersonalInfo(complete_address, first_name, last_name, result);
+            change = true;
         }
+
+        personal_id_number = false;
     }
-    else {
-        $('#personal_info_errors').html('Sorry. Try Later!');
+    
+    if(business_name && business_tax_id && (!isEmpty(document.querySelector('#inputBusinessName').value) && !isEmpty(document.querySelector('#inputBusinessName').value)) &&  (!isEmpty(document.querySelector('#inputBusinessNumber').value) && !isEmpty(document.querySelector('#inputBusinessNumber').value))) {
+        const result = await stripe.createToken('account', {
+            legal_entity: {
+                business_name: document.querySelector('#inputBusinessName').value,
+                business_tax_id: document.querySelector('#inputBusinessNumber').value
+            }
+        });
+
+        console.log('business changed');
+        business_name = false;
+        business_tax_id = false;
+
+        sendPersonalInfo(complete_address, first_name, last_name, result);
+        change = true;
+    }
+
+    if(!change) {
+        $('#update_personalInfo').html('No Changes');
+        setTimeout(() => {
+            $('#update_personalInfo').html('Update Personal Information');
+        }, 2000);
+        console.log('no changes');
+    } else {
+        updateInfo();
+    }
+}
+
+function sendPersonalInfo(address, first_name, last_name, result) {
+    console.log('sendPersonalInfo called');
+    if(result.token) {
+        console.log('result.token');
+        $.ajax({
+            url: 'inc/account_settings/personalInfo.php',
+            type: 'POST',
+            data: {token: result.token.id, first_name: first_name, last_name: last_name, address: address},
+            success: function(data) {
+                console.log(data);
+                if(data != "") {
+                    $('#personal_info_errors').html(data);
+                    console.log('Error');
+                }
+                else {
+                    console.log('Perfect');
+                    $('#update_personalInfo').html('Update Personal Information');
+                }
+            },
+            error: function() {
+                console.log(data);
+                $('#personal_info_errors').html('Error 100. Contact us @ support@nxtdrop.com or text us @ 267 670-4645');
+            }
+        });
+    }
+    else if (result.error) {
+        console.log('result.error');
+        console.log(result.error.message);
+        $('#personal_info_errors').html('Error 101. Contact us @ support@nxtdrop.com or text us @ 267 670-4645');
     }
 }
 

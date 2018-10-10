@@ -60,6 +60,7 @@
             type: 'POST',
             data: {price: Price, offerID: ID},
             success: function(response) {
+                console.log(response);
                 if(response === 'CONNECTION') {
                     alert('Log in or Sign Up to sell.');
                 } else if(response === 'DB') {
@@ -115,6 +116,7 @@
 
             <button id="send_counter">SEND OFFER</button>
             <button id="cancel_counter">CANCEL</button>
+            <p style="text-align: center; font-size: 10px;">Reminder: You can only send one counter-offer to this seller. But, you can try again if he declines.</p>
         </div>
     </div>       
 </div>

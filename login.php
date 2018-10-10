@@ -81,12 +81,14 @@
                                 success: function(response) {
                                     if (response == '') {
                                         window.location.replace('home'); 
+                                    } else if(response === 'preferences') {
+                                        window.location.replace('preferences');
                                     }
                                     else if (response === 'ACCOUNT') {
                                         $('.error_login').html('You must create an account to log in.').css('color', 'red');
                                         $('.login').fadeOut();
                                         $('.login_main').fadeOut();  
-                                    }
+                                    } 
                                     else if (response === 'DB') {
                                         $('.error_login').html('Cannot connect to server. Try again.').css('color', 'red');
                                         $('.login').fadeOut();
@@ -141,6 +143,8 @@
                                 success: function(response) {
                                     if (response == '') {
                                         window.location.replace('home'); 
+                                    } else if(response === 'preferences') {
+                                        window.location.replace('preferences');
                                     }
                                     else if (response === 'ACCOUNT') {
                                         $('.error_login').html('You must create an account to log in.').css('color', 'red');

@@ -10,6 +10,8 @@
         date_default_timezone_set("UTC");
         $confirmation_date = date("Y-m-d H:i:s", time());
         require_once('../../../credentials.php');
+        require_once('../../vendor/autoload.php');
+        require_once('../../email/Email.php');
         \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
         $resType = $conn->real_escape_string($_POST['resType']);
         $item_ID = $conn->real_escape_string($_POST['item_ID']);
@@ -28,26 +30,35 @@
                 $conn->autocommit(false);
                 $updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '$buyer_ID' AND target_id = '$seller_ID';");
-                $getBuyerInfo = $conn->query("SELECT * FROM transactions, thebag WHERE transactions.transactionID = '$transactionID' AND thebag.uid = transactions.buyerID");
+                $getBuyerInfo = $conn->query("SELECT * FROM transactions, thebag, users WHERE transactions.transactionID = '$transactionID' AND thebag.uid = transactions.buyerID AND transactions.buyerID = users.uid");
 
                 if($updateTrans && $deleteNotif && $getBuyerInfo) {
                     try {
                         // Use Stripe's library to make requests...
                         $info = $getBuyerInfo->fetch_assoc();
                         $amount = $info['totalPrice'] * 100;
-                        $buyerPaymentMethod = $info['out_token'];
-                        $ID = "'".$transactionID."'";
+                        $buyerPaymentMethod = $info['cus_id'];
                         $charge = \Stripe\Charge::create(array(
                             "amount" => $amount,
                             "currency" => "usd",
-                            "source" => $buyerPaymentMethod,
+                            "customer" => $buyerPaymentMethod,
                             "on_behalf_of" => $_SESSION['stripe_acc'],
-                            "transfer_group" => $ID
+                            "transfer_group" => $transactionID
                         ));
                         $chargeDate = date("Y-m-d H:i:s", time());
                         $chargeID = $charge->id;
                         $conn->query("INSERT INTO transactions SET chargeID = '$chargeID', chargeDate = '$chargeDate' WHERE transactionID = '$transactionID'");
                         $conn->commit();
+
+                        //SEND EMAIL TO BUYER
+                        $email = new Email($info['username'], $info['email'], 'orders@nxtdrop.com', 'Your order is confirmed', '');
+                        $email->setTransactionID($transactionID);
+                        $email->sendEmail('orderConfirmation');
+
+                        //SEND EMAIL TO BUYER
+                        $email = new Email($_SESSION['username'], $_SESSION['email'], 'orders@nxtdrop.com', 'SALE CONFIRMED!', '');
+                        $email->setTransactionID($transactionID);
+                        $email->sendEmail('orderConfirmation_seller');
                     } catch(\Stripe\Error\Card $e) {
                         // Since it's a decline, \Stripe\Error\Card will be caught
                         errorLog($e);
@@ -105,12 +116,20 @@
                 }
             }
             elseif($resType === "cancellation") {
+                $row = $result->fetch_assoc();
+                $transactionID = $row['transactionID'];
                 $conn->autocommit(false);
                 $updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date', cancellationDate = '$confirmation_date', cancelledBy = '$seller_ID' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '$buyer_ID' AND target_id = '$seller_ID';");
+                $getBuyerInfo = $conn->query("SELECT * FROM transactions, thebag, users WHERE transactions.transactionID = '$transactionID' AND thebag.uid = transactions.buyerID AND transactions.buyerID = users.uid");
 
-                if($updateTrans && $deleteNotif) {
+                if($updateTrans && $deleteNotif && $getBuyerInfo) {
+                    $info = $getBuyerInfo->fetch_assoc();
                     $conn->commit();
+                    //SEND EMAIL TO BUYER
+                    $email = new Email($info['username'], $info['email'], 'orders@nxtdrop.com', 'Sorry, your order is cancelled', '');
+                    $email->setTransactionID($transactionID);
+                    $email->sendEmail('orderConfirmation');
                 }
                 else {
                     $conn->rollback();

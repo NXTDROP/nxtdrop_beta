@@ -12,7 +12,6 @@
                 data: {resType: confirmation, item_ID: item_ID, buyer_ID: buyer_ID},
                 success: function(data) {
                     $('#confirm_order').html('Accept Order');
-                    alert(data);
                     if(data === 'CONNECT') {
                         $('.pageone').fadeOut();
                         $('.pagefour').show();
@@ -51,42 +50,47 @@
 
         $('#cancel_order').click(function() {
             $(this).html('<i class="fas fa-circle-notch fa-spin"></i>');
+            var conf =  confirm('Are you sure you want to cancel this order?');
             var confirmation = $(this).val();
-            $.ajax({
-                url: 'inc/notificationPopUp/seller_order_confirmation.php',
-                type: 'POST',
-                data: {resType: confirmation, item_ID: item_ID, buyer_ID: buyer_ID},
-                success: function(data) {
-                    alert(data);
-                    $('#cancel_order').html('Cancel Order');
-                    if(data === 'CONNECT') {
+            alert(conf);
+            if(conf) {
+                $.ajax({
+                    url: 'inc/notificationPopUp/seller_order_confirmation.php',
+                    type: 'POST',
+                    data: {resType: confirmation, item_ID: item_ID, buyer_ID: buyer_ID},
+                    success: function(data) {
+                        $('#cancel_order').html('Cancel Order');
+                        if(data === 'CONNECT') {
+                            $('.pageone').fadeOut();
+                            $('.pagefour').show();
+                        }
+                        else if(data === 'DB') {
+                            $('.pageone').fadeOut();
+                            $('.pagefour').show();
+                        }
+                        else if(data === 'SOLD') {
+                            $('.pagetwo').fadeOut();
+                            $('.pagethree').fadeOut();
+                            $('.pagefour').fadeOut();
+                            $('.pageone').show();
+                            $('.seller_Conf').fadeOut();
+                            $('.seller_Conf_main').fadeOut();
+                            alert('You sold this item already. List it again if you have more stocks.');
+                        }
+                        else if(data === '') {
+                            $('.pageone').fadeOut();
+                            $('.pagethree').show();
+                        }
+                    },
+                    error: function(data) {
+                        $(this).html('Cancel Order');
                         $('.pageone').fadeOut();
                         $('.pagefour').show();
                     }
-                    else if(data === 'DB') {
-                        $('.pageone').fadeOut();
-                        $('.pagefour').show();
-                    }
-                    else if(data === 'SOLD') {
-                        $('.pagetwo').fadeOut();
-                        $('.pagethree').fadeOut();
-                        $('.pagefour').fadeOut();
-                        $('.pageone').show();
-                        $('.seller_Conf').fadeOut();
-                        $('.seller_Conf_main').fadeOut();
-                        alert('You sold this item already. List it again if you have more stocks.');
-                    }
-                    else if(data === '') {
-                        $('.pageone').fadeOut();
-                        $('.pagethree').show();
-                    }
-                },
-                error: function(data) {
-                    $(this).html('Cancel Order');
-                    $('.pageone').fadeOut();
-                    $('.pagefour').show();
-                }
-            });
+                });
+            } else if(!conf) {
+                $('#cancel_order').html('Cancel Order');
+            }
         });
 
         $('.okay_btn').click(function() {

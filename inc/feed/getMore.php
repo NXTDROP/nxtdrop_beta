@@ -44,10 +44,10 @@
         echo '
         <div class="card">
             <table>
-                <tr class="lowest_price" onclick="item('."'".$model."'".')">
+                <tr class="lowest_price" onclick="item('."'".$productID."'".')">
                     <td>'.$low.'</td>
                 </tr>
-                <tr class="item_asset" onclick="item('."'".$model."'".')">
+                <tr class="item_asset" onclick="item('."'".$productID."'".')">
                     <td><img src="'.$assetURL.'" alt="'.$model.'"></td>
                 </tr>
                 <tr class="item_stats stats-'.$productID.'">
@@ -64,7 +64,7 @@
                         </table>
                     </td>
                 </tr>
-                <tr class="item_model" onclick="item('."'".$model."'".')">
+                <tr class="item_model" onclick="item('."'".$productID."'".')">
                     <td>'.$model.'</td>
                 </tr>
             </table>

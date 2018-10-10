@@ -543,6 +543,18 @@
     .talk-popup {
         width: 100%!important;
     }
+
+    .pop_main {
+        top: 100px!important;
+        width: 96%!important;
+        left: 2%!important;
+    }
+    
+    .img_discount, .display_discount {
+        font-size: 0.9em!important;
+        float: none!important;
+        width: 100%!important;
+    }
     
     .talk-header h2 {
         font-size: 12px!important;
@@ -629,6 +641,16 @@
     .talk-popup {
         display: none!important;
     }
+
+    .pop_main {
+        top: 90px!important;
+        width: 98%!important;
+        left: 1%!important;
+    }
+    
+    .img_discount, .display_discount {
+        font-size: 0.95em!important;
+    }
     
     #item-container {
         margin: 0!important;
@@ -710,6 +732,18 @@
     }
     
     .talk-popup {
+        width: 100%!important;
+    }
+
+    .pop_main {
+        top: 120px!important;
+        width: 96%!important;
+        left: 2%!important;
+    }
+    
+    .img_discount, .display_discount {
+        font-size: 0.8em!important;
+        float: none!important;
         width: 100%!important;
     }
     
@@ -798,6 +832,16 @@
     .talk-popup {
         display: none!important;
     }
+
+    .pop_main {
+        top: 90px!important;
+        width: 98%!important;
+        left: 1%!important;
+    }
+    
+    .img_discount, .display_discount {
+        font-size: 1em!important;
+    }
     
     #item-container {
         margin: 0!important;
@@ -879,6 +923,18 @@
     }
     
     .talk-popup {
+        width: 100%!important;
+    }
+
+    .pop_main {
+        top: 75px!important;
+        width: 96%!important;
+        left: 2%!important;
+    }
+    
+    .img_discount, .display_discount {
+        font-size: 0.9em!important;
+        float: none!important;
         width: 100%!important;
     }
     
@@ -966,6 +1022,28 @@
     
     .talk-popup {
         display: none!important;
+    }
+
+    .pop_main {
+        top: 90px!important;
+        width: 96%!important;
+        left: 2%!important;
+    }
+    
+    .CO_main {
+        top: 60px!important;
+    }
+    
+    .img_discount, .display_discount {
+        font-size: 0.9em!important;
+    }
+    
+    .display_discount p {
+        margin: 8px 0!important;
+    }
+    
+    .display_discount button {
+        margin: 0 25%!important;
     }
     
     #item-container {
@@ -2451,7 +2529,7 @@
     }
     
     .one_notif {
-        height: 60px!important;
+        min-height: 60px!important;
     }
     
     .profile_notif {
@@ -2758,7 +2836,7 @@
     }
     
     .one_notif {
-        height: 60px!important;
+        min-height: 60px!important;
     }
     
     .profile_notif {
@@ -3052,7 +3130,7 @@
     }
     
     .one_notif {
-        height: 70px!important;
+        min-height: 70px!important;
     }
     
     .profile_notif {
@@ -3363,7 +3441,7 @@
     }
     
     .one_notif {
-        height: 70px!important;
+        min-height: 70px!important;
     }
     
     .profile_notif {
@@ -3664,7 +3742,7 @@
     }
     
     .one_notif {
-        height: 60px!important;
+        min-height: 60px!important;
     }
     
     .profile_notif {
@@ -3967,7 +4045,7 @@
     }
     
     .one_notif {
-        height: 60px!important;
+        min-height: 60px!important;
     }
     
     .profile_notif {
@@ -6740,12 +6818,11 @@ a {
 }
 
 .fa-layers-counter {
-    font-size: 32px;
-    padding: 10px;
+    font-size: 25px;
+    padding: 0px;
     position: absolute;
-    margin: -12px -10px 0 0px;
-    width: 120px;
-    height: 50px;
+    margin: -8px -2px 0 0px;
+    height: 40px;
 }
 
 .fa-flag:hover {
@@ -7528,7 +7605,7 @@ textarea {
 
 .talk-msg {
     border-bottom: 1px solid #cccccc;
-    padding: 10px 0;
+    padding: 10px 5px;
 }
 
 .talk-msg img {
@@ -7543,6 +7620,10 @@ textarea {
     color: #ce4242;
     font-weight: 600;
     font-family: 'Ubuntu', sans-serif;
+}
+
+.talk_at {
+    margin: 0!important;    
 }
 
 .talk-msg a:hover {
@@ -9499,29 +9580,37 @@ ul li h2 {
 
 .one_notif {
     width: 100%;
-    display: block;
     color: #878787;
     font-size: 16px;
     font-weight: 300;
-    height: 80px;
+    min-height: 80px;
     border-bottom: 1px solid #e6e1e1;
 }
 
 .profile_notif {
-    width: 50px;
-    height: 50px;
+    float: left;
+    width: 10%;
     border: 1px solid #e6e1e1;
     border-radius: 50px;
-    object-fit: cover;
-    margin: 15px 5px 0 10px;
+    object-fit: contain;
     background: #fff;
+    margin: 15px 5px 0 5px;
+    height: 55px;
+}
+
+.message_notif {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    width: 70%;
+    margin: 10px 0 0 0;
 }
 
 .one_notif:hover {
     cursor: pointer;
     color: #000;
     text-decoration: none;
-    background: #aa0000;
+    background: #f48784;
 }
 
 #notif_user {
@@ -9530,13 +9619,6 @@ ul li h2 {
 
 #notif_user:hover {
     text-decoration: underline;
-}
-
-.message_notif {
-    position: absolute;
-    margin: 28px 0 0 0;
-    font-size: 12px;
-    font-weight: 700;
 }
 
 .post_img {

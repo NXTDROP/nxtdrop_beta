@@ -1,19 +1,11 @@
 <?php
-    include '../dbh.php';
-    $itemID = $_GET['itemID'];
-    $email = $_GET['email'];
-    $query = "SELECT * FROM users, transactions, shipping, thebag, offers, products WHERE transactions.transactionID = '$itemID' AND transactions.transactionID = shipping.transactionID AND transactions.sellerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = offers.offerID AND offers.productID = products.productID LIMIT 1";
-    $result = $conn->query($query);
-    $row = mysqli_fetch_assoc($result);
-    if($row['transactionID'] != '') {
-        $price = $row['price'];
-        $transactionID = $row['transactionID'];
-        $pic = $row['assetURL'];
-        $description = $row['model'];
-        $orderStatus = $row['status'];
-        $total = number_format($row['totalPrice'], 2, '.', ',');
-        $earn = number_format(($row['totalPrice']-$row['cost'])*0.87, 2, '.', ',');
-        $nxtdrop = number_format(($row['totalPrice']-$row['cost'])*0.13, 2, '.', ',');
+    if(isset($_GET['email'])) {
+        $email = $_GET['email'];
+        $uname = $_GET['username'];
+    }
+    else {
+        $email = '';
+        $uname = '';
     }
 ?>
 
@@ -22,8 +14,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>#<?php echo $transactionID; ?> -- <?php echo $description; ?></title>
         <base href="https://nxtdrop.com/">
+        <title></title>
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +49,6 @@
                 background-color: #FAFAFA;
                 height: 100%;
                 background: #fff;
-                color: #fff;
                 max-width: 696px;
                 margin: auto;   
             }
@@ -88,6 +79,23 @@
                 color: #8e8e8e;
                 padding: 10px;
             }
+            
+            .header {
+                color: #fff;
+            }
+
+            .content p {
+                font-family: 'Roboto', sans-serif;
+                color: #222222;
+                font-size: 14px;
+                letter-spacing: 1px;
+                font-weight: 400;
+            }
+
+            .content img {
+                width: 80%;
+                margin: 5px 10%;
+            }
 
             table {
                 width: 90%;
@@ -105,6 +113,31 @@
                 color: #8e8e8e;
             }
 
+            .content a p {
+                color: #bc3838;
+            }
+
+            a button {
+                padding: 10px;
+                text-transform: uppercase;
+                text-align: center;
+                background: #bc3838;
+                cursor: pointer;
+                border: none;
+                color: #fff;
+                font-weight: 500;
+                letter-spacing: 2px;
+                border-radius: 4px;
+                font-size: 12px;
+                width: 50%;
+                margin: 5px 25%;
+            }
+
+            h4 {
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+
             a:hover {
                 color: #bc3838;
             }
@@ -117,7 +150,7 @@
                 padding: 5px;
                 font-size: 16px;
                 color: #fff;
-                font-size: 'Roboto', sans-serif;
+                font-size: 'Archive Black', sans-serif;
                 font-weight: 700;
                 border-radius: 2px;
             }
@@ -127,6 +160,18 @@
                 border-color: tomato;
                 cursor: pointer;
             }
+
+            .badge {
+                background: #aa0000;
+                color: #fff;
+                padding: 3px;
+                border-radius: 8px;
+                font-size: 10px;
+            }
+
+            #under {
+                font-weight: 700;
+            }
         </style>
     </head>
 
@@ -135,40 +180,27 @@
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
 
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER #<?php echo $transactionID; ?></h2>
-
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.60rem; font-weight: 500;">Thank you for choosing NXTDROP account!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">You must login and confirm the sale unless you accepted a counter-offer.</p>
+                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">Daniel Arsham&apos;s collab with adidas droppping this week!</h2>
+                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 5px 0; font-size: 1.2rem; font-weight: 500;">&#x1F525 OR &#x2744?</p>
             </div>
 
-            <div class="content" style="overflow: hidden;">
-                <table style="margin: 10px;">
-                    <tr>
-                        <td><img src="<?php echo $pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
-                        <td><p style="color: #727272; width: 100%;"><?php echo $description; ?></p></td>
-                    </tr>
-                    <tr style="font-size: 14px;">
-                        <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
-                    </tr>
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">Total: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $total; ?></td>
-                    </tr>
-                    
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">You will earn: </td>
-                        <td style="color: #85bb65; text-align: right;">$<?php echo $earn; ?></td>
-                    </tr>
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">NXTDROP gets: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $nxtdrop; ?></td>
-                    </tr>
-                </table>
-                <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about the order. If you have concerns, contact us at support@nxtdrop.com.</p>
-                <a href="https://nxtdrop.com/signin"><button id="signin_btn">CONFIRM SALE</button></a>
-                <p style="color: #555555; font-weight: bold;">VERY IMPORTANT: You don&apos;t have to confirm the order if you accepted a counter-offer. If you did accept a counter-offer, you must ship the shoes and confirm it on the website within 2 business days to avoid a 15% penalty. You can also send an email to momar@nxtdrop.com with the shipping details to confirm.</p>
-                <p style="font-family: 'Gloria Hallelujah', cursive; color: #555555; font-size: 18px;">The NXTDROP Team.</p>
-                <p style="font-family: 'Gloria Hallelujah', cursive; color: #555555; font-size: 18px;">MONEY WAY!</p>
+            <div class="content">
+                <p>The artist Daniel Arsham collaborated with adidas to release his own version of the Futurecraft 4D. Like the Futurecraft "Aero Green", the 4D has the same green color. The shoes also have hidden details that appears when exposed to UV Light. The collab is set to release October 12th at a retail price of $450. &#x1F605</p>
+                <img src="https://nxtdrop.com/emailAsset/arsham4d.jpg" alt="Daniel Arsham x adidas Futurecraft 4D">
+                <p>Colorway: Aero Green</p>
+                <p>OFF-WHITE x Converse Chuck 70 released October 8th. Hope you had a chance to get your hands on them. If you didn&apos;t, they&apos;ll soon be up for sale on NXTDROP.</p>
+                <img src="https://nxtdrop.com/emailAsset/offwhiteconverse.jpg" alt="NikexOFF-WHITE Blazer Mid Grim Reaper">
+                <p>Colorway: White/Bold Orange-Black</p>
+                <p>Hypefest by HYPEBEAST occured last week-end and a lot of designers, brands and celebrities were present at the event. Nike displayed a new pair of Air Force 1 High in collaboration with ALYX Studio in all-black and all-white colorway. The cool thing about it is ALYX Studio&apos;s signature buckle at the ankle strap. Unfortunately, there is no release date yet, but stay tuned.</p>
+                <img src="https://nxtdrop.com/emailAsset/alyxaf1.jpg" alt="NikexOFF-WHITE Blazer Mid Grim Reaper">
+                <p>Colorway: White</p>
+                <h4>&#x1F525 Popular this week:</h4>
+                <a href="https://nxtdrop.com/sneakers/1000007"><p>adidas YEEZY Boost 350 Cream White</p></a>
+                <a href="https://nxtdrop.com/sneakers/1000275"><p>adidas Ultra Boost 2.0 White Reflective</p></a>
+                <a href="https://nxtdrop.com/sneakers/1000070"><p>Nike Air Presto Mid Acronym Dynamic Yellow</p></a>
+                <a href="https://nxtdrop.com/sneakers/1000028"><p>Air Jordan 4 Retro Raptors</p></a>
+                <p style="font-family: 'Gloria Hallelujah', cursive;">The NXTDROP Team.</p>
+                <p style="font-family: 'Gloria Hallelujah', cursive;">HAVE A GOOD wEEK!</p>
             </div>
 
             <div class="footer">
@@ -181,7 +213,7 @@
                     </tr>
                 </table>
                 <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">&copy; NXTDROP, Inc. All rights reserved.</p>
-                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from payment emails.</p>
+                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">If you prefer not to receive emails like this from NXTDROP, you may <a href="<?php echo 'https://nxtdrop.com/unsubscribe/'.$email; ?>" style="text-decoration: underline; color: #424242;">unsubscribe</a></p>
             </div>
         </div>
     </body>

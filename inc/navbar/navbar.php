@@ -75,6 +75,22 @@
         window.location.href = 'orderPlaced.php?transactionID=' + ID + '&tracking=true';
     }
 
+    function counterOfferConf(iPrice, cprice, offerID, cUserID, model) {
+        //alert('Initial price: ' + iPrice + ', Counter-offer price: ' + cprice + ', offerID: ' + offerID + ', Counter-offer userID: ' + cUserID + ', Model: ' + model);
+        $('.notif-main').fadeOut();
+        $('.notif-pop').fadeOut();
+        $('.CO').fadeIn();
+        $('.CO_main').show();
+        CO_iprice = iPrice;
+        CO_cprice = cprice;
+        CO_offerID = offerID;
+        CO_cUserID = cUserID;
+        CO_model = model;
+        $('#initial_price').html('Initital Price: $' + CO_iprice);
+        $('#counter_price').html('Price offered: $' + CO_cprice);
+        $('#model_CO').html('Model: ' + CO_model);
+    }
+
     check_notifications();
     load_notifications();
     check_inbox();
@@ -277,3 +293,5 @@
         </div>
     </div>
 </div>
+
+<?php require_once('inc/item/counterOfferConf.php'); ?>

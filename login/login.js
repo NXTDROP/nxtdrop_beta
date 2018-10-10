@@ -10,6 +10,8 @@ $(document).ready(function() {
             success: function(data) {
                 if (data == '') {
                     window.location.replace('home');
+                } else if(data === 'preferences') {
+                    window.location.replace('preferences');
                 }
                 else {
                     $('.error_login').html(data).css('color', 'red');
@@ -30,6 +32,8 @@ $(document).ready(function() {
                 success: function(data) {
                     if (data == '') {
                         window.location.replace('home');
+                    } else if(data === 'preferences') {
+                        window.location.replace('preferences');
                     }
                     else {
                         $('.error_login').html(data).css('color', 'red');
@@ -51,6 +55,8 @@ $(document).ready(function() {
                 success: function(data) {
                     if (data == '') {
                         window.location.replace('home');
+                    } else if(data === 'preferences') {
+                        window.location.replace('preferences');
                     }
                     else {
                         $('.error_login').html(data).css('color', 'red');

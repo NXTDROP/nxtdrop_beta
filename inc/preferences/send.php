@@ -18,15 +18,14 @@
             $brand2 = $_POST['brand2'];
             $interest = $_POST['interest'];
             $date = date("Y-m-d H:i:s", time());
-            die('GOOD');
 
-            /*if($send->execute()) {
+            if($send->execute()) {
                 $conn->commit();
                 die('GOOD');
             } else {
                 $conn->rollback();
                 die('DB');
-            }*/
+            }
         }
     }
 

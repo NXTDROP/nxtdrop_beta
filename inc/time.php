@@ -11,16 +11,16 @@
         
         if ($diff > 0) {
             if ($diff > 0 && $diff < 60) {
-                return $diff . " s";
+                return $diff . "s ago";
             }
             else if ($diff < 3600) {
-                return floor($diff/60) . " m";
+                return floor($diff/60) . "m ago";
             }
             else if ($diff/(3600) < 24) {
-                return floor($diff/3600) . " h";
+                return floor($diff/3600) . "h ago";
             }
             else if (floor($diff/86400)  < 7) {
-                return floor($diff/86400) . " d";
+                return floor($diff/86400) . "d ago";
             }
             else {
                 if (intval($new_date) == intval($new_date2)) {

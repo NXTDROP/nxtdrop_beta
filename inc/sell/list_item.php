@@ -4,7 +4,7 @@
     require_once('../../dbh.php');
     $conn->autocommit(false);
     $listItem = $conn->prepare("INSERT INTO offers (productID, sellerID, price, size, productCondition, date) VALUES (?, ?, ?, ?, ?, ?);");
-    $listItem->bind_param("iiiiss", $productID, $userID, $price, $size, $condition, $date);
+    $listItem->bind_param("iiidss", $productID, $userID, $price, $size, $condition, $date);
     date_default_timezone_set("UTC");
 
     if(!isset($_SESSION['uid'])) {

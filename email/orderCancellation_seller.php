@@ -136,6 +136,10 @@
                 border-color: tomato;
                 cursor: pointer;
             }
+
+            ol li {
+                list-style-type: decimal; 
+            }
         </style>
     </head>
 
@@ -144,47 +148,23 @@
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
 
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER #<?php echo $transactionID; ?></h2>
+                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER CANCELLED</h2>
 
                 <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.60rem; font-weight: 500;">Thank you for choosing NXTDROP account!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">This is your order summary.</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">You'll be charged once the seller confirm the order. You'll be notify ASAP!</p>
+                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">You cancelled this order.</p>
             </div>
 
             <div class="content" style="overflow: hidden;">
                 <table style="margin: 10px;">
                     <tr>
                         <td><img src="<?php echo 'https://nxtdrop.com/'.$pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
-                        <td><p style="color: #727272; width: 100%;"><?php echo $description; ?></p></td>
+                        <td><p style="color: #727272; width: 100%;"><?php echo $description; ?>, Size: US<?php echo $row['size']; ?></p></td>
                     </tr>
                     <tr style="font-size: 14px;">
                         <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
                     </tr>
-                    <tr style="font-size: 14px;">
-                        <td style="color: #727272;">Shipping To: </td>
-                    </tr>
-                    <tr style="font-size: 12px;">
-                        <td style="color: tomato;"><?php echo $row['first_name'].' '.$row['last_name']; ?><br><?php echo $row['shippingAddress'].''; ?> <br><br></td>
-                    </tr>
-                    <!--<tr style="font-size: 14px;">
-                        <td style="color: #727272;"><img src="https://localhost/nd-v1.00/img/cc.png" alt="CC" style="width: 40px;"></td>
-                    </tr>
-                    <tr style="font-size: 12px;">
-                        <td style="color: tomato;">Visa ending in 6368 <br><br></td>
-                    </tr>-->
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">Price: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $price; ?></td>
-                    </tr>
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">Shipping Cost: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $shippingCost; ?></td>
-                    </tr>
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">Total: </td>
-                        <td style="color: #85bb65; text-align: right;">$<?php echo $total; ?></td>
-                    </tr>
                 </table>
+                <p style="color: #494949; font-size: 18px;">You cancelled the order.</p>
                 <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 7 to 10 business days to receive an order. If you have concerns, contact us at support@nxtdrop.com.</p>
                 <a href="https://nxtdrop.com/signin"><button id="signin_btn">LOGIN</button></a>
             </div>

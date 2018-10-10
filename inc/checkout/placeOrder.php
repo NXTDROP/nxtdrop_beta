@@ -26,13 +26,13 @@
         $buyerID = $n_id;
 
         //GET SELLER INFO
-        $result = $conn->query("SELECT posts.uid, users.username, users.email, posts.product_price FROM posts, users WHERE posts.pid = '$item_ID' AND posts.uid = users.uid;");
+        $result = $conn->query("SELECT users.uid, users.username, users.email, offers.price FROM offers, users WHERE offers.offerID = '$item_ID' AND offers.sellerID = users.uid;");
         $row = $result->fetch_assoc();
 
         $seller_ID = $row['uid'];
         $sellerEmail = $row['email'];
         $sellerUsername = $row['username'];
-        $price = $row['product_price'];
+        $price = $row['price'];
         $status = "waiting shipment";
 
         $conn->autocommit(false);
@@ -63,13 +63,13 @@
 
             //SEND EMAIL TO BUYER
             $username = $_SESSION['username'];
-            $email = $_SESSION['email'];
-            $email = new Email($username, $email, 'stripeusa@nxdrop.com', 'Your NXTDROP Receipt [ORDER #'.$transactionID.']', '');
+            $buyerEmail = $_SESSION['email'];
+            $email = new Email($username, $buyerEmail, 'stripeusa@nxdrop.com', 'Your NXTDROP Receipt [ORDER #'.$transactionID.']', '');
             $email->setTransactionID($transactionID);
             $email->sendEmail('orderPlaced');
 
             //SEND EMAIL TO SELLER
-            $email = new Email($sellerUsername, $sellerEmail, 'stripeusa@nxdrop.com', 'Confirm order to get paid [ORDER #'.$transactionID.']', '');
+            $email = new Email($sellerUsername, $sellerEmail, 'stripeusa@nxdrop.com', 'Congratulations, your item SOLD!', '');
             $email->setTransactionID($transactionID);
             $email->sendEmail('sellerConfirmation');
 

@@ -12,6 +12,7 @@
         $getID->close();
     } else {
         $item = '';
+        $model = '';
     }
 ?>
 <!DOCTYPE html>

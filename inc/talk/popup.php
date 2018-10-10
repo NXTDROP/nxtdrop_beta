@@ -87,9 +87,13 @@
                             alert('We encoutering problems with our servers. Please, try later.');
                         } else {
                             if(jsonObject = JSON.parse(response)) {
-                                $('<div class="talk-msg"><a href="u/' + jsonObject[0]['username'] + '">' + jsonObject[0]['username'] + '</a><span class="talk-time">@ ' + jsonObject[0]['date'] + '</span><br><img src="'+ $('#nav-profile').attr('src') + '" alt="" title="' + jsonObject[0]['username'] + '"><span>' + jsonObject[0]['text'] + '</span></div>').insertBefore('#last');
+                                $('<div class="talk-msg"><a href="u/' + jsonObject[0]['username'] + '">@' + jsonObject[0]['username'] + '</a><span class="talk-time"> ' + jsonObject[0]['date'] + '</span><br><img src="'+ $('#nav-profile').attr('src') + '" alt="" title="' + jsonObject[0]['u'] + '"><span>' + jsonObject[0]['text'] + '</span></div>').insertBefore('#last');
                                 $('#talk-input').val('');
                                 $('.talk-messages').animate({scrollTop: $('.talk-messages')[0].scrollHeight}, 1000);
+                                if(!isBlank(jsonObject[0]['target']) && !isEmpty(jsonObject[0]['target'])) {
+                                    sendAtNotification(jsonObject[0]['target'], jsonObject[0]['sdate']);
+                                }
+                                //console.log(jsonObject[0]['target']);
                             } else {
                                 alert('We had a problem. Try later.');
                             }
@@ -170,6 +174,29 @@
             error: function(response) {
                 console.log(response);
                 alert('Sorry, we encoutered a problem. Service is down momentarily.');
+            }
+        });
+    }
+
+    function sendAtNotification(username, date) {
+        console.log('sendAtNotification called.');
+        console.log('username: ' + username + ', date: ' + date);
+        $.ajax({
+            url: 'inc/talk/atNotif.php',
+            type: 'POST',
+            data: {username: username, date: date},
+            success: function(response) {
+                console.log(response);
+                if(response === 'DB') {
+
+                } else if(response === 'GOOD') {
+
+                } else {
+
+                }
+            }, 
+            error: function(response) {
+
             }
         });
     }

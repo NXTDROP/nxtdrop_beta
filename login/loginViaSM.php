@@ -26,6 +26,14 @@
             $uid = $_SESSION['uid'];
             $sql = "UPDATE users SET last_connected = '$date' WHERE uid = '$uid'";
             mysqli_query($conn, $sql);
+
+            $q = "SELECT * FROM preferences WHERE userID = $uid;";
+            $r = $conn->query($q);
+                $c = mysqli_num_rows($r);
+
+            if($c < 1) {
+                die('preferences');
+            }
         }
         else {
             echo 'DB';

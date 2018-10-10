@@ -1,19 +1,11 @@
 <?php
-    include '../dbh.php';
-    $itemID = $_GET['itemID'];
-    $email = $_GET['email'];
-    $query = "SELECT * FROM users, transactions, shipping, thebag, offers, products WHERE transactions.transactionID = '$itemID' AND transactions.transactionID = shipping.transactionID AND transactions.sellerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = offers.offerID AND offers.productID = products.productID LIMIT 1";
-    $result = $conn->query($query);
-    $row = mysqli_fetch_assoc($result);
-    if($row['transactionID'] != '') {
-        $price = $row['price'];
-        $transactionID = $row['transactionID'];
-        $pic = $row['assetURL'];
-        $description = $row['model'];
-        $orderStatus = $row['status'];
-        $total = number_format($row['totalPrice'], 2, '.', ',');
-        $earn = number_format(($row['totalPrice']-$row['cost'])*0.87, 2, '.', ',');
-        $nxtdrop = number_format(($row['totalPrice']-$row['cost'])*0.13, 2, '.', ',');
+    if(isset($_GET['email'])) {
+        $email = $_GET['email'];
+        $uname = $_GET['username'];
+    }
+    else {
+        $email = '';
+        $uname = '';
     }
 ?>
 
@@ -22,8 +14,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>#<?php echo $transactionID; ?> -- <?php echo $description; ?></title>
         <base href="https://nxtdrop.com/">
+        <title>Halloween SZN is upon us &#x1F383</title>
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,7 +49,6 @@
                 background-color: #FAFAFA;
                 height: 100%;
                 background: #fff;
-                color: #fff;
                 max-width: 696px;
                 margin: auto;   
             }
@@ -88,6 +79,23 @@
                 color: #8e8e8e;
                 padding: 10px;
             }
+            
+            .header {
+                color: #fff;
+            }
+
+            .content p {
+                font-family: 'Roboto', sans-serif;
+                color: #222222;
+                font-size: 14px;
+                letter-spacing: 1px;
+                font-weight: 400;
+            }
+
+            .content img {
+                width: 80%;
+                margin: 5px 10%;
+            }
 
             table {
                 width: 90%;
@@ -105,6 +113,31 @@
                 color: #8e8e8e;
             }
 
+            .content a p {
+                color: #bc3838;
+            }
+
+            a button {
+                padding: 10px;
+                text-transform: uppercase;
+                text-align: center;
+                background: #bc3838;
+                cursor: pointer;
+                border: none;
+                color: #fff;
+                font-weight: 500;
+                letter-spacing: 2px;
+                border-radius: 4px;
+                font-size: 12px;
+                width: 50%;
+                margin: 5px 25%;
+            }
+
+            h4 {
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+
             a:hover {
                 color: #bc3838;
             }
@@ -117,7 +150,7 @@
                 padding: 5px;
                 font-size: 16px;
                 color: #fff;
-                font-size: 'Roboto', sans-serif;
+                font-size: 'Archive Black', sans-serif;
                 font-weight: 700;
                 border-radius: 2px;
             }
@@ -127,6 +160,18 @@
                 border-color: tomato;
                 cursor: pointer;
             }
+
+            .badge {
+                background: #aa0000;
+                color: #fff;
+                padding: 3px;
+                border-radius: 8px;
+                font-size: 10px;
+            }
+
+            #under {
+                font-weight: 700;
+            }
         </style>
     </head>
 
@@ -135,40 +180,25 @@
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
 
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER #<?php echo $transactionID; ?></h2>
-
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.60rem; font-weight: 500;">Thank you for choosing NXTDROP account!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">You must login and confirm the sale unless you accepted a counter-offer.</p>
+                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">Checks &#x2714 over Stripes?</h2>
+                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 5px 0; font-size: 0.85rem; font-weight: 500;">That&apos;s what we like! &#x1F509</p>
             </div>
 
-            <div class="content" style="overflow: hidden;">
-                <table style="margin: 10px;">
-                    <tr>
-                        <td><img src="<?php echo $pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
-                        <td><p style="color: #727272; width: 100%;"><?php echo $description; ?></p></td>
-                    </tr>
-                    <tr style="font-size: 14px;">
-                        <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
-                    </tr>
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">Total: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $total; ?></td>
-                    </tr>
-                    
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">You will earn: </td>
-                        <td style="color: #85bb65; text-align: right;">$<?php echo $earn; ?></td>
-                    </tr>
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">NXTDROP gets: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $nxtdrop; ?></td>
-                    </tr>
-                </table>
-                <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about the order. If you have concerns, contact us at support@nxtdrop.com.</p>
-                <a href="https://nxtdrop.com/signin"><button id="signin_btn">CONFIRM SALE</button></a>
-                <p style="color: #555555; font-weight: bold;">VERY IMPORTANT: You don&apos;t have to confirm the order if you accepted a counter-offer. If you did accept a counter-offer, you must ship the shoes and confirm it on the website within 2 business days to avoid a 15% penalty. You can also send an email to momar@nxtdrop.com with the shipping details to confirm.</p>
-                <p style="font-family: 'Gloria Hallelujah', cursive; color: #555555; font-size: 18px;">The NXTDROP Team.</p>
-                <p style="font-family: 'Gloria Hallelujah', cursive; color: #555555; font-size: 18px;">MONEY WAY!</p>
+            <div class="content">
+                <p>Nike is doing great with Virgil on its side. They released the "The Ten" collection last year and they are now droppping new colorways of the collection. For halloween SZN &#x1F383, they just released two new colorways of the Blazer Mid OFF-WHITE&#x2122 named "Hallows Eve" & "Grim Reaper". If you took an L yesterday, we got you!!! You can shop them on NXTDROP today!</p>
+                <img src="https://nxtdrop.com/asset/Nike-Blazer-Mid-Off-White-All-Hallows-Eve-Product.jpg" alt="NikexOFF-WHITE Blazer Mid Hallows Eve">
+                <p>Colorway: Canvas/Total Orange-Pale Vanilla-Black</p>
+                <a href="https://nxtdrop.com/sneakers/1000042"><button>Shop Now</button></a>
+                <img src="https://nxtdrop.com/asset/Nike-Blazer-Mid-Off-White-Grim-Reaper.jpg" alt="NikexOFF-WHITE Blazer Mid Grim Reaper">
+                <p>Colorway: Black/White-Cone-Black</p>
+                <a href="https://nxtdrop.com/sneakers/1000043"><button>Shop Now</button></a>
+                <h4>More Exciting Drops:</h4>
+                <a href="https://nxtdrop.com/sneakers/1000228"><p>Air Force 1 Low Sport NBA University Gold</p></a>
+                <a href="https://nxtdrop.com/sneakers/1000200"><p>Jordan Legacy 312 Toro</p></a>
+                <a href="https://nxtdrop.com/sneakers/1000209"><p>Air VaporMax Run Utility Black Reflect Silver</p></a>
+                <a href="https://nxtdrop.com/sneakers/1000230"><p>Air Max Deluxe Enamel Green</p></a>
+                <p style="font-family: 'Gloria Hallelujah', cursive;">The NXTDROP Team.</p>
+                <p style="font-family: 'Gloria Hallelujah', cursive;">LOVE!</p>
             </div>
 
             <div class="footer">
@@ -181,7 +211,7 @@
                     </tr>
                 </table>
                 <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">&copy; NXTDROP, Inc. All rights reserved.</p>
-                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from payment emails.</p>
+                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">If you prefer not to receive emails like this from NXTDROP, you may <a href="<?php echo 'https://nxtdrop.com/unsubscribe/'.$email; ?>" style="text-decoration: underline; color: #424242;">unsubscribe</a></p>
             </div>
         </div>
     </body>
