@@ -139,24 +139,24 @@
                 <hr>
                 <div class="summary-item">
                     <strong>Item</strong>
-                    <strong id="item-cost">$0.00</strong>
+                    <strong id="item-cost">US$0.00</strong>
                 </div>
 
                 <hr>
                 <div class="summary-discount">
                     <strong>Discount</strong>
-                    <strong id="item-discount">- $0.00</strong>
+                    <strong id="item-discount">- US$0.00</strong>
                 </div>
                 
                 <hr>
                 <div class="summary-total">
                     <strong>Total</strong>
-                    <strong id="total-order">$00.00</strong>
+                    <strong id="total-order">US$00.00</strong>
                 </div>
                 <hr>
             </div>
 
-            <button class="checkout-pay">Pay $00.00</button>
+            <button class="checkout-pay">Pay US$00.00</button>
             <button class="checkout-cancel" onclick="goBack();">Cancel Order</button>
         </div>
 

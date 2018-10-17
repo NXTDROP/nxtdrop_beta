@@ -31,7 +31,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>#<?php echo $transactionID; ?> -- <?php echo $description; ?></title>
+        <title>ORDER SHIPPED</title>
         <base href="https://nxtdrop.com/">
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">
@@ -148,10 +148,10 @@
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
 
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER CANCELLED</h2>
+                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER SHIPPED</h2>
 
                 <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.60rem; font-weight: 500;">Thank you for choosing NXTDROP!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">You cancelled this order.</p>
+                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">Your order has shipped to our facilities for authentication.</p>
             </div>
 
             <div class="content" style="overflow: hidden;">
@@ -161,10 +161,14 @@
                         <td><p style="color: #727272; width: 100%;"><?php echo $description; ?>, Size: US<?php echo $row['size']; ?></p></td>
                     </tr>
                     <tr style="font-size: 14px;">
-                        <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
+                        <td style="color: #727272;">Status: Shipped for verification</td>
                     </tr>
                 </table>
-                <p style="color: #494949; font-size: 18px;">You cancelled the order.</p>
+                <p style="color: #494949; font-size: 18px;">Reminder:</p>
+                <ol style="color: #555555; font-size: 12px; width: 80%; margin: 0 10%;">
+                    <li>Our expert will verify the product when it arrives at NXTDROP.</li>
+                    <li>You will receive a tracking number as soon as your item leaves the NXTDROP authentication hub.</li>
+                </ol>
                 <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 7 to 10 business days to receive an order. If you have concerns, contact us at support@nxtdrop.com.</p>
                 <a href="https://nxtdrop.com/signin"><button id="signin_btn">LOGIN</button></a>
             </div>
@@ -179,7 +183,7 @@
                     </tr>
                 </table>
                 <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">&copy; NXTDROP, Inc. All rights reserved.</p>
-                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from payment emails.</p>
+                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from order notification emails.</p>
             </div>
         </div>
     </body>

@@ -1,8 +1,10 @@
 <?php
     session_start();
-    include '../../dbh.php';
+    $db = '../../dbh.php';
+    include $db;
     require_once('../../../credentials.php');
     require_once('../../vendor/autoload.php');
+    require_once('../currencyConversion.php');
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
     \Stripe\Stripe::setApiKey($STRIPE_TEST_SECRET_KEY);
@@ -26,11 +28,18 @@
             } else {
                 $json = array();
 
+                if($data['type'] == 'cash' && $_SESSION['country'] == 'CA') {
+                    $amount = usdTocad($data['amount'], $db, false);
+                } else {
+                    $amount = $data['amount'];
+                }
+
                 $data = array(
                     'ID' => $data['ID'],
                     'code' => $data['code'],
                     'type' => $data['type'],
-                    'amount' => $data['amount']
+                    'amount' => $amount,
+                    'country' => $_SESSION['country']
                 );
 
                 array_push($json, $data);

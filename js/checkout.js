@@ -15,6 +15,8 @@ var discountID;
 var discountAmount;
 var discountType;
 var discount;
+var total;
+var currency;
 const stripe = Stripe('pk_live_ZeS4R1yiq76rObz3ADsgOs13');
 
 // Create an instance of Elements.
@@ -165,11 +167,11 @@ $(document).ready(function() {
                     success: function(data) {
                         if(data === 'ERROR 101') {
                             alert('You must be logged in to purchase an item.');
-                            $('.checkout-pay').html('Pay $'+total.toFixed(2));
+                            $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
                         }
                         else if(data === 'ERROR 102') {
                             alert('We have a problem. Please try to purchase later.');
-                            $('.checkout-pay').html('Pay $'+total.toFixed(2));
+                            $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
                         }
                         else {
                             window.location.replace('orderPlaced.php?transactionID='+data);
@@ -177,7 +179,7 @@ $(document).ready(function() {
                     },
                     error: function() {
                         alert('Sorry, we could not place your order. Contact our support team @ support@nxtdrop.com.');
-                        $('.checkout-pay').html('Pay $'+total.toFixed(2));
+                        $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
                     }
                 });
             }
@@ -215,6 +217,7 @@ $(document).ready(function() {
                             discountID = jsonObject[0]['ID'];
                             discountType = jsonObject[0]['type'];
                             discountAmount = jsonObject[0]['amount'];
+                            currency = jsonObject[0]['country'];
                             if (discountType === 'cash') {
                                 discount = parseFloat(discountAmount);
                                 total = total - discount;
@@ -222,10 +225,17 @@ $(document).ready(function() {
                                 discount = total * (discountAmount / 100);
                                 total = total - discount;
                             }
+
+                            if(country == 'CA') {
+                                currency = 'C$';
+                            } else {
+                                currency = '$';
+                            }
+
                             $('#discount-error').html('Discount Activated.').css('color', 'green');
-                            $('#total-order').html('$' + total.toFixed(2));
-                            $('.checkout-pay').html('Pay $' + total.toFixed(2));
-                            $('#item-discount').html('- $' + discount.toFixed(2));
+                            $('#total-order').html(currency + total.toFixed(2));
+                            $('.checkout-pay').html('Pay ' + currency + total.toFixed(2));
+                            $('#item-discount').html('- ' + currency + discount.toFixed(2));
                             $('#discount-btn').html('ADD PROMO CODE');
                         } else {
                             $('#discount-error').html('We have a problem. Please, try later.').css('color', 'tomato');
@@ -282,25 +292,27 @@ function getInfo() {
                     price = parseFloat(jsonObject[0]['price']);
                     pic = jsonObject[0]['pic'];
                     item = jsonObject[0]['item'];
-                    total = parseFloat(price + 0.00);
                     card_brand = jsonObject[0]['card_brand'];
                     card_last4 = jsonObject[0]['card_last4'];
                     seller_ID = jsonObject[0]['seller_ID'];
                     shipping = jsonObject[0]['shipping'];
+                    total = parseFloat(jsonObject[0]['total']);
 
-                    if(shipping != 'FREE') {
-                        total = price + shipping;
+                    if(country == 'CA') {
+                        currency = 'C$';
+                    } else {
+                        currency = '$';
                     }
 
-                    $('#item-cost').html('$'+price.toFixed(2));
-                    $('#item_price').html('$'+price.toFixed(2));
-                    $('#total-order').html('$'+total.toFixed(2));
-                    $('.checkout-pay').html('Pay $'+total.toFixed(2));
+                    $('#item-cost').html(currency+price.toFixed(2));
+                    $('#item_price').html(currency+price.toFixed(2));
+                    $('#total-order').html(currency+total.toFixed(2));
+                    $('.checkout-pay').html('Pay '+currency+total.toFixed(2));
                     $('#item_img').attr('src', pic);
                     $('#item_img').attr('alt', item);
                     $('#item_img').attr('title', item);
                     $('#item_description').html(item);
-                    $('#shipping-cost').html('$' + shipping);
+                    $('#shipping-cost').html(currency + shipping);
                     if(card_brand != "") $('label[for="card_on_file"]').html('Pay with ' + card_brand + '<i class="fas fa-credit-card" style="color: #aa0000; margin-left: 5px;"></i> ending in '+card_last4+'.');
                     else { $('#card_on_file').css('display', 'none'); $('label[for="card_on_file"]').css('display', 'none'); }
                     $(".load").fadeOut();

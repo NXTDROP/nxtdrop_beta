@@ -43,7 +43,14 @@
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '0' AND target_id = '$ID' AND middleman_id = '0';");
 
                 if($updateShipping && $deleteNotif) {
+                    $buyerID = $row['buyerID'];
+                    $buyerInfo = $conn->query("SELECT username, email FROM users WHERE uid = '$buyerID'");
+                    $info = $buyerID->fetch_assoc();
                     $conn->commit();
+                    //SEND EMAIL TO BUYER
+                    $email = new Email($info['username'], $info['email'], 'orders@nxtdrop.com', 'ORDER SHIPPED!', '');
+                    $email->setTransactionID($transaction_ID);
+                    $email->sendEmail('orderShipping');
                 }
                 else {
                     $conn->rollback();

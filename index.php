@@ -1,15 +1,41 @@
 <?php 
     session_start();
     include 'dbh.php';
+    $db = 'dbh.php';
+    require_once('inc/currencyConversion.php');
 
-    if(isset($_SESSION['uid'])) {
+    $checkLastSale = $conn->prepare("SELECT updated FROM last_sale;");
+    $checkLastSale->execute();
+    $checkLastSale->bind_result($update);
+    $checkLastSale->fetch();
+    $diff = strtotime(date("Y-m-d H:i:s", time())) - strtotime($update);
+    $diff = $diff / 60;
+    $checkLastSale->close();
+
+     if($diff > 10) {
+        $getNewOffer = $conn->prepare("SELECT offerID from offers ORDER BY RAND() LIMIT 1;");
+        $getNewOffer->execute();
+        $getNewOffer->bind_result($offerID);
+        $getNewOffer->fetch();
+        $getNewOffer->close();
+
+        $updateLastSale = $conn->prepare("UPDATE last_sale SET offerID = ?, updated = ? WHERE updated = ?");
+        $updateLastSale->bind_param('iss', $offerID, $date, $update);
+        $date = date("Y-m-d H:i:s", time());
+        $updateLastSale->execute();
+        $updateLastSale->close();
+     }
+
+
+    //$40 OFF
+    /*if(isset($_SESSION['uid'])) {
         $checkCode = $conn->prepare("SELECT COUNT(*) FROM discountCode WHERE assignedTo = ?");
         $checkCode->bind_param('i', $userID);
         $userID = $_SESSION['uid'];
         $checkCode->execute();
         $checkCode->bind_result($count);
         $checkCode->fetch();
-    }
+    }*/
 
     if(!isset($_SESSION['uid']) && isset($_SESSION['last_visit']) && (time() - $_SESSION['last_visit'] > 600)) {
         session_unset();
@@ -29,17 +55,18 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 checkTalk();
-
-                setTimeout(() => {
+                
+                /*$40 OFF */
+                /*setTimeout(() => {
                     <?php
-                        if(isset($_SESSION['uid'])) {
+                        /*if(isset($_SESSION['uid'])) {
                             if($count < 1) {
                                 echo "$('.pop').fadeIn(); $('.pop_main').show();";
                             }
                             $checkCode->close();
-                        }
+                        }*/
                     ?>
-                }, 2500);
+                }, 2500);*/
 
                 $('.see_more').click(function() {
                     $('.see_more').html('<i class="fas fa-circle-notch fa-spin"></i>');
@@ -190,6 +217,32 @@
 
         <div id="item-container">
             <?php
+                $getLastSale = $conn->prepare("SELECT products.assetURL, products.productID, products.model, offers.price FROM offers, last_sale, products WHERE last_sale.offerID = offers.offerID AND offers.productID = products.productID;");
+                $getLastSale->execute();
+                $getLastSale->bind_result($assetURL, $productID, $model, $price);
+                $getLastSale->fetch();
+                echo '<div id="last_sale">
+                        <a href="https://nxtdrop.com/sneakers/'.$productID.'">
+                            <table>
+                                <tr>
+                                    <p style="letter-spacing: 2px; color: #e53232;">LAST SALE</p>
+                                </tr>
+                                <tr>
+                                    <img src="https://nxtdrop.com/'.$assetURL.'" alt="'.$model.'">
+                                </tr>
+                                <tr>
+                                    <p>'.$model.'</p>
+                                </tr>
+                                <tr>
+                                    <p style="font-size: 16px; color: #85bb65;">$'.$price.'</p>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>';
+                    $getLastSale->close();      
+            ?>
+
+            <?php
                 if(isset($_SESSION['uid'])) {
                     $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products ORDER BY RAND() LIMIT 20;");
                     $getProducts->bind_param("ii", $_SESSION['uid'], $_SESSION['uid']);
@@ -205,7 +258,7 @@
                     if($min === null) {
                         $low = '';
                     } else {
-                        $low = '$'.$min.'+';
+                        $low = usdTocad($min, $db, true).'+';
                     }
 
                     if(isset($_SESSION['uid'])) {
@@ -275,7 +328,7 @@
         <?php include('inc/buyer_transaction_confirmation.php') ?>
         <?php include('inc/notificationPopUp/sellerConfirmation.php') ?>
         <?php include('inc/notificationPopUp/MM_verification.php') ?>
-        <?php include('inc/notificationPopUp/signUp.php'); ?>
+        <?php //include('inc/notificationPopUp/signUp.php'); ?>
         <?php //include('inc/giveaway/popUp.php') ?>
 
         <p id="message"></p>

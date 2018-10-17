@@ -47,7 +47,8 @@
                         ));
                         $chargeDate = date("Y-m-d H:i:s", time());
                         $chargeID = $charge->id;
-                        $conn->query("INSERT INTO transactions SET chargeID = '$chargeID', chargeDate = '$chargeDate' WHERE transactionID = '$transactionID'");
+                        $conn->query("UPDATE transactions SET chargeID = '$chargeID', chargeDate = '$chargeDate' WHERE transactionID = '$transactionID'");
+                        $conn->query("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$item_ID', '0', '$seller_ID', 'seller shipping', '$chargeDate');");
                         $conn->commit();
 
                         //SEND EMAIL TO BUYER
@@ -55,7 +56,7 @@
                         $email->setTransactionID($transactionID);
                         $email->sendEmail('orderConfirmation');
 
-                        //SEND EMAIL TO BUYER
+                        //SEND EMAIL TO SELLER
                         $email = new Email($_SESSION['username'], $_SESSION['email'], 'orders@nxtdrop.com', 'SALE CONFIRMED!', '');
                         $email->setTransactionID($transactionID);
                         $email->sendEmail('orderConfirmation_seller');

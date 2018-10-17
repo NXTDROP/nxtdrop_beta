@@ -200,7 +200,7 @@
                 <a href="https://nxtdrop.com/sneakers/1000070"><p>Nike Air Presto Mid Acronym Dynamic Yellow</p></a>
                 <a href="https://nxtdrop.com/sneakers/1000028"><p>Air Jordan 4 Retro Raptors</p></a>
                 <p style="font-family: 'Gloria Hallelujah', cursive;">The NXTDROP Team.</p>
-                <p style="font-family: 'Gloria Hallelujah', cursive;">HAVE A GOOD wEEK!</p>
+                <p style="font-family: 'Gloria Hallelujah', cursive;">TAKE CARE!</p>
             </div>
 
             <div class="footer">

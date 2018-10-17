@@ -1,8 +1,10 @@
 <?php
     session_start();
-    include '../../dbh.php';
+    $db = '../../dbh.php';
+    include $db;
     require_once('../../../credentials.php');
     require_once('../../vendor/autoload.php');
+    require_once('../currencyConversion.php');
     date_default_timezone_set("UTC");
     $date = date("Y-m-d H:i:s", time());
     \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
@@ -65,7 +67,17 @@
                         if($getTrans->num_rows > 0) {
                             $shipping = 13.65;
                         } else {
-                            $shipping = 'FREE';
+                            $shipping = 0;
+                        }
+
+                        if($country ==  'CA') {
+                            $total = usdTocad($item_price + $shipping, $db, false);
+                            $shipping = usdTocad($shipping, $db, false);
+                            $item_price = usdTocad($item_price, $db, false);
+                        } else {
+                            $total = $item_price + $shipping;
+                            $shipping = $shipping;
+                            $item_price = $item_price;
                         }
                         
 
@@ -83,7 +95,8 @@
                             'pic' => $item_pic,
                             'item' => $item_desc,
                             'seller_ID' => $seller_ID,
-                            'shipping' => $shipping
+                            'shipping' => $shipping,
+                            'total' => $total
                         );
                             
                         array_push($json, $data);

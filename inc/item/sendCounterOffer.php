@@ -2,7 +2,9 @@
 
     session_start();
     require_once('../../../credentials.php');
-    require_once('../../dbh.php');
+    $db = '../../dbh.php';
+    require_once($db);
+    require_once('../currencyConversion.php');
     require_once('../../vendor/autoload.php');
     require_once('../../email/Email.php');
     $conn->autocommit(false);
@@ -27,7 +29,13 @@
             if(!isset($_POST['price'])) {
                 die('MISSING');
             } else {
-                $price = $_POST['price'];
+                if($_SESSION['country'] == 'US') {
+                    $price = $_POST['price'];
+                } elseif ($_SESSION['country'] == 'CA') {
+                    $price = cadTousd($_POST['price'], $db, false);
+                } else {
+                    $price = $_POST['price'];
+                }
                 $userID = $_SESSION['uid'];
                 $date = date("Y-m-d H:i:s", time());
                 $userInfo->close();

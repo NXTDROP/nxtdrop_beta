@@ -1,29 +1,5 @@
 <?php
-    include '../dbh.php';
-    $transactionID = $_GET['transactionID'];
-    $email = $_GET['email'];
-    $query = "SELECT * FROM users, transactions, shipping, thebag, offers, products WHERE transactions.transactionID = '$transactionID' AND transactions.transactionID = shipping.transactionID AND transactions.buyerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = offers.offerID AND offers.productID = products.productID";
-    $result = $conn->query($query);
-    $row = mysqli_fetch_assoc($result);
-    if($row['transactionID'] != '') {
-        $price = $row['price'];
-        $transactionID = $row['transactionID'];
-        $pic = $row['assetURL'];
-        $description = $row['model'];
-        $orderStatus = $row['status'];
-        $price = number_format($row['price'], 2, '.', ',');
-        $total = number_format($row['totalPrice'], 2, '.', ',');
-
-        if($row['price'] == $row['totalPrice']) {
-            $shippingCost = 'FREE';
-        } else {
-            $shippingCost = number_format($row['cost'], 2, '.', ',');
-        }
-
-        if($row['price'] > ($row['totalPrice'] - $row['cost'])) {
-            $price = number_format($row['totalPrice'] - $row['cost'], 2, '.', ',');
-        }
-    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +7,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>#<?php echo $transactionID; ?> -- <?php echo $description; ?></title>
+        <title>XXX sent you $40 for your first sneaker purchase!</title>
         <base href="https://nxtdrop.com/">
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">
@@ -124,7 +100,7 @@
                 border: 1px solid #bc3838;
                 background: #bc3838;
                 padding: 5px;
-                font-size: 16px;
+                font-size: 20px;
                 color: #fff;
                 font-size: 'Archive Black', sans-serif;
                 font-weight: 700;
@@ -147,26 +123,12 @@
         <div class="container email_container">
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
-
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER CANCELLED</h2>
-
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.60rem; font-weight: 500;">Thank you for choosing NXTDROP!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">You cancelled this order.</p>
             </div>
 
-            <div class="content" style="overflow: hidden;">
-                <table style="margin: 10px;">
-                    <tr>
-                        <td><img src="<?php echo 'https://nxtdrop.com/'.$pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
-                        <td><p style="color: #727272; width: 100%;"><?php echo $description; ?>, Size: US<?php echo $row['size']; ?></p></td>
-                    </tr>
-                    <tr style="font-size: 14px;">
-                        <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
-                    </tr>
-                </table>
-                <p style="color: #494949; font-size: 18px;">You cancelled the order.</p>
-                <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 7 to 10 business days to receive an order. If you have concerns, contact us at support@nxtdrop.com.</p>
-                <a href="https://nxtdrop.com/signin"><button id="signin_btn">LOGIN</button></a>
+            <div class="content" style="overflow: hidden; color: #555555;">
+                <h2 style="text-align: center; margin: 10px 0; font-size: 38px;">XXX sent you $40 for your first sneaker purchase!</h2>
+                <p style="text-align: center; font-size: 20px; font-weight: 400;">On Nxtdrop, you can <b>buy</b> your favorite sneakers and make money on the side by <b>selling</b>. Nxtdrop authenticates every sneaker purchased and makes sure you never get scammed again. Just sign up by <b>October 15, 2018</b> to get $40 off your next purchase of $200 or more.</p>
+                <button id="signin_btn">Accept Invitation</button>
             </div>
 
             <div class="footer">
@@ -179,7 +141,6 @@
                     </tr>
                 </table>
                 <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">&copy; NXTDROP, Inc. All rights reserved.</p>
-                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from payment emails.</p>
             </div>
         </div>
     </body>

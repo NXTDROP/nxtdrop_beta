@@ -98,6 +98,20 @@
     }
 </script>
 
+<?php
+    if(isset($_SESSION['country'])) {
+        if($_SESSION['country'] ==  'US') {
+            $currency = '$';
+        } elseif ($_SESSION['country']) {
+            $currency = 'C$';
+        } else {
+            $currency = '$';
+        }
+    } else {
+        $currency = '$';
+    }
+?>
+
 <div class="transaction_pop">
     <div class="transaction_close close"></div>
     <div class="transaction_main">
@@ -106,7 +120,7 @@
 
             <div class="input-group mb-3 item_price">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
+                    <span class="input-group-text"><?php echo $currency; ?></span>
                 </div>
                 <input id="item_price-input" type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Enter Price">
                 <div class="input-group-append">

@@ -5034,6 +5034,20 @@
     label[for="same_address"] {
         font-size: 12px!important;
     }
+    
+    #discount-btn {
+        width: 45%!important;
+        font-size: 13px!important;
+    }
+    
+    #discount {
+        width: 45%!important;
+    }
+    
+    .load_main {
+        width: 100%!important;
+        left: 0!important;
+    }
 }
 
 @media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
@@ -5098,6 +5112,20 @@
     
     label[for="same_address"] {
         font-size: 14px!important;
+    }
+    
+    #discount-btn {
+        width: 45%!important;
+        font-size: 16px!important;
+    }
+    
+    #discount {
+        width: 45%!important;
+    }
+    
+    .load_main {
+        width: 100%!important;
+        left: 0!important;
     }
 }
 
@@ -5166,6 +5194,21 @@
     label[for="same_address"] {
         font-size: 14px!important;
     }
+    
+    #discount-btn {
+        width: 45%!important;
+        font-size: 15px!important;
+    }
+    
+    #discount {
+        width: 45%!important;
+        font-size: 15px!important;
+    }
+    
+    .load_main {
+        width: 100%!important;
+        left: 0!important;
+    }
 }
 
 @media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
@@ -5230,6 +5273,21 @@
     
     label[for="same_address"] {
         font-size: 14px!important;
+    }
+    
+    #discount-btn {
+        width: 45%!important;
+        font-size: 15px!important;
+    }
+    
+    #discount {
+        width: 45%!important;
+        font-size: 15px!important;
+    }
+
+    .load_main {
+        width: 100%!important;
+        left: 0!important;
     }
 }
 
@@ -5298,6 +5356,20 @@
     label[for="same_address"] {
         font-size: 11px!important;
     }
+    
+    #discount-btn {
+        width: 45%!important;
+        font-size: 13px!important;
+    }
+    
+    #discount {
+        width: 45%!important;
+    }
+
+    .load_main {
+        width: 100%!important;
+        left: 0!important;
+    }
 }
 
 @media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
@@ -5362,6 +5434,20 @@
     
     label[for="same_address"] {
         font-size: 14px!important;
+    }
+    
+    #discount-btn {
+        width: 45%!important;
+        font-size: 13px!important;
+    }
+    
+    #discount {
+        width: 45%!important;
+    }
+
+    .load_main {
+        width: 100%!important;
+        left: 0!important;
     }
 }
 /******************************************* RD CHECKOUT END *********************************************/
@@ -7731,6 +7817,30 @@ span.talk-time {
 .cold:hover {
     color: #6a8fe8;
 }
+
+#last_sale {
+    width: 50%;
+    border: 1px solid #cccccc;
+    margin: 10px 25%;
+    border-radius: 4px;
+}
+
+#last_sale img {
+    width: 40%;
+    margin: 0 30%;
+    height: 100%;
+}
+
+#last_sale p {
+    font-size: 13px;
+    text-align: center;
+    margin: 4px auto;
+    color: #333333;
+}
+
+#last_sale a {
+    text-decoration: none;
+}
 /******************************************* GLOBAL END *********************************************/
 
 /******************************************* ITEM *********************************************/
@@ -9592,10 +9702,10 @@ ul li h2 {
     width: 10%;
     border: 1px solid #e6e1e1;
     border-radius: 50px;
-    object-fit: contain;
+    object-fit: cover;
     background: #fff;
     margin: 15px 5px 0 5px;
-    height: 55px;
+    max-height: 55px;
 }
 
 .message_notif {

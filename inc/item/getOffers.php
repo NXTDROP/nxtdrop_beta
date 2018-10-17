@@ -2,6 +2,8 @@
 
     session_start();
     require_once('../../dbh.php');
+    $db = '../../dbh.php';
+    require_once('../currencyConversion.php');
     $getOffers = $conn->prepare("SELECT o.offerID, o.productCondition, o.price, o.size FROM offers o, products p WHERE p.productID = ? AND o.productID = p.productID;");
     $getOffers->bind_param("s", $model);
 
@@ -18,7 +20,7 @@
                     echo '<div class="offer">
                             <div class="offer_description">
                                 <p>Size: '.$size.'</p>
-                                <p style="font-weight: bold;">$'.$price.'</p>
+                                <p style="font-weight: bold;">'.usdTocad($price, $db, true).'</p>
                                 <p>Condition: '.$productCondition.'</p>
                             </div>
                             <button class="buy_now-btn" onclick="checkout('."'".$offerID."'".')">BUY NOW</button>
