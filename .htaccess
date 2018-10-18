@@ -1,0 +1,80 @@
+# Turn Rewrite Engine
+RewriteEngine On
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#Rewrite for index.php
+RewriteRule ^home index.php [NC,L]
+
+#Rewrite for welcom_home.php
+RewriteRule ^welcome welcome.php [NC,L]
+
+#Rewrite for likes.php
+RewriteRule ^likes likes.php [NC,L]
+
+#Rewrite for login.php
+RewriteRule ^signin login.php [NC,L]
+
+#Rewrite for signup
+RewriteRule ^signup signup.php [NC,L]
+
+#Rewrite for messages.php
+RewriteRule ^inbox messages.php [NC,L]
+
+#Rewrite for profile.php?u=xxxxxx
+RewriteRule ^u/(.+) profile.php?u=$1 [NC,L]
+
+#Rewrite for unsubscribe.php?email=xxxxx
+RewriteRule ^unsubscribe/([0-9a-zA-Z_-]+) unsubscribe.php?email=$1 [NC,L]
+
+#Rewrite for activateAccount.php?email=xxxxx
+RewriteRule ^activate/(.+) activateAccount.php?email=$1 [NC,L]
+
+#Rewrite for activateStripe.php?email=xxxxx
+RewriteRule ^stripeActivation/(.+) activateStripe.php?email=$1 [NC,L]
+
+#Rewrite for search.php?q=xxxxx
+RewriteRule ^search/([0-9a-zA-Z_-]+) search.php?q=$1 [NC,L]
+
+#Rewrite for post.php?=xxxxx
+RewriteRule ^p/([0-9a-zA-Z_-]+) post.php?p=$1 [NC,L]
+
+#Rewrite for edit-profile.php
+RewriteRule ^edit_profile edit-profile.php [NC,L]
+
+#Rewrite for TofU.php
+RewriteRule ^terms TofU.php [NC,L]
+
+#Rewrite for privacy.php
+RewriteRule ^privacy privacy.php [NC,L]
+
+#Rewrite for forgot-password.php
+RewriteRule ^forgot_password forgot-password.php [NC,L]
+
+#Rewrite for login/logout.php
+RewriteRule ^logout login/logout.php [NC,L]
+
+#Rewrite for report.php
+RewriteRule ^report report.php [NC,L]
+
+#Rewrite for dashboard.php
+RewriteRule ^dashboard dashboard.php [NC,L]
+
+#Rewite for account_settings.php
+RewriteRule ^settings account_settings.php [NC,L]
+
+#RewriteRule for checkout.php?item=xxxxxx
+RewriteRule ^checkout/([0-9a-zA-Z_-]+) checkout.php?item=$1 [NC,L]
+
+#RewriteRule for item.php?model=xxxxxx
+RewriteRule ^sneakers/(.+) item.php?model=$1 [NC,L]
+
+#Rewrite for preferences.php
+RewriteRule ^preferences preferences.php [NC,L]
+
+#Rewrite for sell.php
+RewriteRule ^sell/(.*) sell.php?item=$1 [NC,L]
+
+#RewriteRule for orderPlace.php?item=xxxxxx
+RewriteRule ^order/([0-9]+)/(.*) orderPlaced.php?transactionID=$1&tracking=$2 [NC,L]

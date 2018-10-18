@@ -215,33 +215,29 @@
     <body>
         <?php include('inc/navbar/navbar.php'); ?>
 
-        <div id="item-container">
-            <?php
-                $getLastSale = $conn->prepare("SELECT products.assetURL, products.productID, products.model, offers.price FROM offers, last_sale, products WHERE last_sale.offerID = offers.offerID AND offers.productID = products.productID;");
-                $getLastSale->execute();
-                $getLastSale->bind_result($assetURL, $productID, $model, $price);
-                $getLastSale->fetch();
-                echo '<div id="last_sale">
-                        <a href="https://nxtdrop.com/sneakers/'.$productID.'">
-                            <table>
-                                <tr>
-                                    <p style="letter-spacing: 2px; color: #e53232;">LAST SALE</p>
-                                </tr>
-                                <tr>
-                                    <img src="https://nxtdrop.com/'.$assetURL.'" alt="'.$model.'">
-                                </tr>
-                                <tr>
+        <?php
+            $getLastSale = $conn->prepare("SELECT products.assetURL, products.productID, products.model, offers.price FROM offers, last_sale, products WHERE last_sale.offerID = offers.offerID AND offers.productID = products.productID;");
+            $getLastSale->execute();
+            $getLastSale->bind_result($assetURL, $productID, $model, $price);
+            $getLastSale->fetch();
+            echo '<div id="last_sale">
+                    <a href="sneakers/'.$productID.'">
+                        <table>
+                            <tr>
+                                <td style="width: 15%; padding: 5px;"><p style="letter-spacing: 2px; color: #e53232; font-size: 30px; font-weight: bolder;">LAST SALE</p></td>
+                                <td><img src="'.$assetURL.'" alt="'.$model.'"></td>
+                                <td style="width: 15%; padding: 5px;">
                                     <p>'.$model.'</p>
-                                </tr>
-                                <tr>
-                                    <p style="font-size: 16px; color: #85bb65;">$'.$price.'</p>
-                                </tr>
-                            </table>
-                        </a>
-                    </div>';
-                    $getLastSale->close();      
-            ?>
+                                    <p style="font-size: 28px; color: #85bb65;">$'.$price.'</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </div>';
+            $getLastSale->close();      
+        ?>
 
+        <div id="item-container">
             <?php
                 if(isset($_SESSION['uid'])) {
                     $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products ORDER BY RAND() LIMIT 20;");

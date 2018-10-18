@@ -7819,16 +7819,15 @@ span.talk-time {
 }
 
 #last_sale {
-    width: 50%;
+    width: 76.5%;
     border: 1px solid #cccccc;
-    margin: 10px 25%;
+    margin: 10px auto;
     border-radius: 4px;
 }
 
 #last_sale img {
-    width: 40%;
-    margin: 0 30%;
-    height: 100%;
+    width: 30%;
+    margin: 0 35%;
 }
 
 #last_sale p {

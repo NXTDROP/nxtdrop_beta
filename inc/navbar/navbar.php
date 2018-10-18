@@ -203,7 +203,7 @@
         <span></span>
     </button>
 
-    <a href="https://nxtdrop.com" id="navbar-brand"><img src="https://nxtdrop.com/img/nxtdroplogo.png"></a>
+    <a href="./" id="navbar-brand"><img src="img/nxtdroplogo.png"></a>
 
     <div class="search-box">
         <input type="search" id="search" placeholder="Search..."/>
