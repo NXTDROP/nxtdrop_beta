@@ -12,7 +12,7 @@
     $diff = $diff / 60;
     $checkLastSale->close();
 
-     if($diff > 10) {
+    if($diff > 20) {
         $getNewOffer = $conn->prepare("SELECT offerID from offers ORDER BY RAND() LIMIT 1;");
         $getNewOffer->execute();
         $getNewOffer->bind_result($offerID);
@@ -24,7 +24,7 @@
         $date = date("Y-m-d H:i:s", time());
         $updateLastSale->execute();
         $updateLastSale->close();
-     }
+    }
 
 
     //$40 OFF
@@ -55,6 +55,12 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 checkTalk();
+                var num_MP = 4;
+                var num_NR = 4;
+
+                $('.carousel').carousel({
+                    interval: 10000
+                });
                 
                 /*$40 OFF */
                 /*setTimeout(() => {
@@ -68,15 +74,47 @@
                     ?>
                 }, 2500);*/
 
-                $('.see_more').click(function() {
-                    $('.see_more').html('<i class="fas fa-circle-notch fa-spin"></i>');
+                $('#feed > .see_more').click(function() {
+                    $('#feed > .see_more').html('<i class="fas fa-circle-notch fa-spin"></i>');
                     $.ajax({
                         url: 'inc/feed/getMore.php',
                         type: 'POST',
                         success: function(response) {
                             if(response != "ERROR") {
-                                $(response).insertBefore('.end_item');
-                                $('.see_more').html("See More");
+                                $(response).insertBefore('#feed > .end_item');
+                                $('#feed > .see_more').html("See More");
+                            }
+                        }
+                    });
+                });
+
+                $('#most-popular > .see_more').click(function() {
+                    $('#most-popular > .see_more').html('<i class="fas fa-circle-notch fa-spin"></i>');
+                    $.ajax({
+                        url: 'inc/feed/getMoreMP.php',
+                        type: 'POST',
+                        data: {num: num_MP},
+                        success: function(response) {
+                            if(response != "ERROR") {
+                                $(response).insertBefore('#most-popular > .end_item');
+                                $('#most-popular > .see_more').html("See More");
+                                num_MP = num_MP + 12;
+                            }
+                        }
+                    });
+                });
+
+                $('#new-releases > .see_more').click(function() {
+                    $('#new-releases > .see_more').html('<i class="fas fa-circle-notch fa-spin"></i>');
+                    $.ajax({
+                        url: 'inc/feed/getMoreNR.php',
+                        type: 'POST',
+                        data: {num: num_NR},
+                        success: function(response) {
+                            if(response != "ERROR") {
+                                $(response).insertBefore('#new-releases > .end_item');
+                                $('#new-releases > .see_more').html("See More");
+                                num_NR = num_NR + 12;
                             }
                         }
                     });
@@ -215,6 +253,33 @@
     <body>
         <?php include('inc/navbar/navbar.php'); ?>
 
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <!--<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img class="d-block w-100" src="img/test.png" alt="First slide">
+                </div>
+                <!--<div class="carousel-item">
+                <img class="d-block w-100" src="img/HalloweenTheme.png" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                <img class="d-block w-100" src="img/test.png" alt="Third slide">
+                </div>-->
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
         <?php
             $getLastSale = $conn->prepare("SELECT products.assetURL, products.productID, products.model, offers.price FROM offers, last_sale, products WHERE last_sale.offerID = offers.offerID AND offers.productID = products.productID;");
             $getLastSale->execute();
@@ -228,7 +293,7 @@
                                 <td><img src="'.$assetURL.'" alt="'.$model.'"></td>
                                 <td style="width: 15%; padding: 5px;">
                                     <p>'.$model.'</p>
-                                    <p style="font-size: 28px; color: #85bb65;">$'.$price.'</p>
+                                    <p style="font-size: 28px; color: #85bb65;">'.usdTocad($price, $db, true).'</p>
                                 </td>
                             </tr>
                         </table>
@@ -238,46 +303,48 @@
         ?>
 
         <div id="item-container">
-            <?php
-                if(isset($_SESSION['uid'])) {
-                    $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products ORDER BY RAND() LIMIT 20;");
-                    $getProducts->bind_param("ii", $_SESSION['uid'], $_SESSION['uid']);
-                    $getProducts->execute();
-                    $getProducts->bind_result($productID, $model, $assetURL, $heat, $cold, $min, $heated, $froze);
-                } else {
-                    $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products ORDER BY RAND() LIMIT 20;");
-                    $getProducts->execute();
-                    $getProducts->bind_result($productID, $model, $assetURL, $heat, $cold, $min);
-                }
-
-                while($getProducts->fetch()) {
-                    if($min === null) {
-                        $low = '';
+            <div id="most-popular">
+                <h2 id="feed-header">Most Popular</h2>
+                <?php
+                    if(isset($_SESSION['uid'])) {
+                        $getMostPopular = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products, product_rank WHERE products.productID = product_rank.productID ORDER BY product_rank.rank DESC LIMIT 4;");
+                        $getMostPopular->bind_param("ii", $_SESSION['uid'], $_SESSION['uid']);
+                        $getMostPopular->execute();
+                        $getMostPopular->bind_result($productID, $model, $assetURL, $heat, $cold, $min, $heated, $froze);
                     } else {
-                        $low = usdTocad($min, $db, true).'+';
+                        $getMostPopular = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products, product_rank WHERE products.productID = product_rank.productID ORDER BY product_rank.rank DESC LIMIT 4;");
+                        $getMostPopular->execute();
+                        $getMostPopular->bind_result($productID, $model, $assetURL, $heat, $cold, $min);
                     }
 
-                    if(isset($_SESSION['uid'])) {
-                        if($heated > 0) {
-                            $statsClass = 'class="num_stats_v"';
-                            $heatedClass = 'heated';
-                            $frozeClass = 'cold';
-                        } else if($froze > 0) {
-                            $statsClass = 'class="num_stats_v"';
-                            $frozeClass = 'froze';
-                            $heatedClass = 'heat';
+                    while($getMostPopular->fetch()) {
+                        if($min === null) {
+                            $low = '';
+                        } else {
+                            $low = usdTocad($min, $db, true).'+';
+                        }
+    
+                        if(isset($_SESSION['uid'])) {
+                            if($heated > 0) {
+                                $statsClass = 'class="num_stats_v"';
+                                $heatedClass = 'heated';
+                                $frozeClass = 'cold';
+                            } else if($froze > 0) {
+                                $statsClass = 'class="num_stats_v"';
+                                $frozeClass = 'froze';
+                                $heatedClass = 'heat';
+                            } else {
+                                $statsClass = 'class="num_stats_h"';
+                                $heatedClass = 'heat';
+                                $frozeClass = 'cold';
+                            }
                         } else {
                             $statsClass = 'class="num_stats_h"';
                             $heatedClass = 'heat';
                             $frozeClass = 'cold';
                         }
-                    } else {
-                        $statsClass = 'class="num_stats_h"';
-                        $heatedClass = 'heat';
-                        $frozeClass = 'cold';
-                    }
 
-                    echo '
+                        echo '
                     <div class="card">
                         <table>
                             <tr class="lowest_price" onclick="item('."'".$productID."'".')">
@@ -306,13 +373,179 @@
                         </table>
                     </div>
                     ';
-                }
-                $getProducts->close();
-            ?>
-            <div class="end_item"></div>
+                    }
+
+                    $getMostPopular->close();
+                ?>
+
+                <div class="end_item"></div>
+
+                <div class="see_more">See More</div>
+            </div>
+
+            <div id="new-releases">
+                <h2 id="feed-header">New Releases</h2>
+                <?php
+                    if(isset($_SESSION['uid'])) {
+                        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products ORDER BY products.yearMade DESC LIMIT 4;");
+                        $getNewReleases->bind_param("ii", $_SESSION['uid'], $_SESSION['uid']);
+                        $getNewReleases->execute();
+                        $getNewReleases->bind_result($productID, $model, $assetURL, $heat, $cold, $min, $heated, $froze);
+                    } else {
+                        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products ORDER BY products.yearMade DESC LIMIT 4;");
+                        $getNewReleases->execute();
+                        $getNewReleases->bind_result($productID, $model, $assetURL, $heat, $cold, $min);
+                    }
+
+                    while($getNewReleases->fetch()) {
+                        if($min === null) {
+                            $low = '';
+                        } else {
+                            $low = usdTocad($min, $db, true).'+';
+                        }
+    
+                        if(isset($_SESSION['uid'])) {
+                            if($heated > 0) {
+                                $statsClass = 'class="num_stats_v"';
+                                $heatedClass = 'heated';
+                                $frozeClass = 'cold';
+                            } else if($froze > 0) {
+                                $statsClass = 'class="num_stats_v"';
+                                $frozeClass = 'froze';
+                                $heatedClass = 'heat';
+                            } else {
+                                $statsClass = 'class="num_stats_h"';
+                                $heatedClass = 'heat';
+                                $frozeClass = 'cold';
+                            }
+                        } else {
+                            $statsClass = 'class="num_stats_h"';
+                            $heatedClass = 'heat';
+                            $frozeClass = 'cold';
+                        }
+
+                        echo '
+                    <div class="card">
+                        <table>
+                            <tr class="lowest_price" onclick="item('."'".$productID."'".')">
+                                <td>'.$low.'</td>
+                            </tr>
+                            <tr class="item_asset" onclick="item('."'".$productID."'".')">
+                                <td><img src="'.$assetURL.'" alt="'.$model.'"></td>
+                            </tr>
+                            <tr class="item_stats stats-'.$productID.'">
+                                <td>
+                                    <table style="width: 100%;">
+                                        <tr '.$statsClass.' id="stats-'.$productID.'">
+                                            <td style="width: 50%;" class="heat_stats" id="heat-stats-'.$productID.'">'.$heat.'</td>
+                                            <td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
+                                            <td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr class="item_model" onclick="item('."'".$productID."'".')">
+                                <td>'.$model.'</td>
+                            </tr>
+                        </table>
+                    </div>
+                    ';
+                    }
+
+                    $getNewReleases->close();
+                ?>
+
+                <div class="end_item"></div>
+
+                <div class="see_more">See More</div>
+            </div>
+
+            <div id="feed">
+                <h2 id="feed-header">NXTDROP Pick&apos;s</h2>
+                <?php
+                    if(isset($_SESSION['uid'])) {
+                        $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products ORDER BY RAND() LIMIT 12;");
+                        $getProducts->bind_param("ii", $_SESSION['uid'], $_SESSION['uid']);
+                        $getProducts->execute();
+                        $getProducts->bind_result($productID, $model, $assetURL, $heat, $cold, $min, $heated, $froze);
+                    } else {
+                        $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products ORDER BY RAND() LIMIT 12;");
+                        $getProducts->execute();
+                        $getProducts->bind_result($productID, $model, $assetURL, $heat, $cold, $min);
+                    }
+
+                    while($getProducts->fetch()) {
+                        if($min === null) {
+                            $low = '';
+                        } else {
+                            $low = usdTocad($min, $db, true).'+';
+                        }
+    
+                        if(isset($_SESSION['uid'])) {
+                            if($heated > 0) {
+                                $statsClass = 'class="num_stats_v"';
+                                $heatedClass = 'heated';
+                                $frozeClass = 'cold';
+                            } else if($froze > 0) {
+                                $statsClass = 'class="num_stats_v"';
+                                $frozeClass = 'froze';
+                                $heatedClass = 'heat';
+                            } else {
+                                $statsClass = 'class="num_stats_h"';
+                                $heatedClass = 'heat';
+                                $frozeClass = 'cold';
+                            }
+                        } else {
+                            $statsClass = 'class="num_stats_h"';
+                            $heatedClass = 'heat';
+                            $frozeClass = 'cold';
+                        }
+
+                        echo '
+                    <div class="card">
+                        <table>
+                            <tr class="lowest_price" onclick="item('."'".$productID."'".')">
+                                <td>'.$low.'</td>
+                            </tr>
+                            <tr class="item_asset" onclick="item('."'".$productID."'".')">
+                                <td><img src="'.$assetURL.'" alt="'.$model.'"></td>
+                            </tr>
+                            <tr class="item_stats stats-'.$productID.'">
+                                <td>
+                                    <table style="width: 100%;">
+                                        <tr '.$statsClass.' id="stats-'.$productID.'">
+                                            <td style="width: 50%;" class="heat_stats" id="heat-stats-'.$productID.'">'.$heat.'</td>
+                                            <td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 50%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
+                                            <td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr class="item_model" onclick="item('."'".$productID."'".')">
+                                <td>'.$model.'</td>
+                            </tr>
+                        </table>
+                    </div>
+                    ';
+                    }
+
+                    $getProducts->close();
+                ?>
+
+                <div class="end_item"></div>
+
+                <div class="see_more">See More</div>
+            </div>
         </div>
 
-        <div class="see_more">See More</div>
+        <footer>
+        </footer>
 
         <?php include('inc/talk/popup.php') ?>
         <?php //include('inc/drop/new-drop-pop.php'); ?>

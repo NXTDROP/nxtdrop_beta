@@ -183,7 +183,14 @@
                                         $('.pref-btn').html('Redirecting...');
                                     }, 2000);
                                     setTimeout(() => {
-                                        window.location.replace('home');
+                                        window.location.href = <?php 
+                                            if(isset($_SESSION['rdURL'])) {
+                                                echo "'".$_SESSION['rdURL']."'";
+                                            }
+                                            else {
+                                                echo 'home';
+                                            }
+                                                ?>;
                                     }, 4000);
                                 } else {
                                     setTimeout(() => {

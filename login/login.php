@@ -34,6 +34,10 @@
                 $sql = "UPDATE users SET last_connected = '$date' WHERE uid = '$uid'";
                 mysqli_query($conn, $sql);
 
+                if(isset($_SESSION['rdURL'])) {
+                    die('redirect');
+                }
+
                 $q = "SELECT * FROM preferences WHERE userID = $uid;";
                 $r = $conn->query($q);
                 $c = mysqli_num_rows($r);

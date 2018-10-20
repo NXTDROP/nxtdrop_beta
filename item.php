@@ -2,6 +2,9 @@
     session_start();
     require('dbh.php');
     $m = $_GET['model'];
+    if(!isset($_SESSION['uid'])) {
+        $_SESSION['rdURL'] = $_SERVER['REQUEST_URI'];
+    }
     $getItem = $conn->prepare("SELECT brand, line, model, colorway, yearMade, assetURL FROM products WHERE productID = ?");
     $getItem->bind_param('i', $m);
 ?>

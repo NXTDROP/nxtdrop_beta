@@ -26,9 +26,14 @@
                             <p style="font-weight: bold;">'.usdTocad($price, $db, true).'</p>
                             <p>Condition: '.$productCondition.'</p>
                         </div>
-                        <button class="buy_now-btn" onclick="checkout('."'".$offerID."'".')">BUY NOW</button>
-                        <button class="counter_offer-btn" onclick="counter('."'".$offerID."', "."'".$price."'".')">COUNTER-OFFER</button>
-                    </div>';
+                        <button class="buy_now-btn" onclick="checkout('."'".$offerID."'".')">BUY NOW</button>';
+
+                if(isset($_SESSION['uid'])) {
+                    echo '<button class="counter_offer-btn" onclick="counter('."'".$offerID."', "."'".$price."'".')">COUNTER-OFFER</button>';
+                } else {
+                    echo '<button class="counter_offer-btn" onclick="checkout('."'".$offerID."'".')">COUNTER-OFFER</button>';
+                }
+                echo '</div>';
             }
         } else {
             die('DB');

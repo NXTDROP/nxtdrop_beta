@@ -38,10 +38,24 @@
                 }
             }
         } else {
-            if($display) {
-                return '$'.$usdPrice;
+            $currency = 'CAD';
+            $getConversion->bind_param('s', $currency);
+            if($getConversion->execute()) {
+                $getConversion->bind_result($conversion);
+                $getConversion->fetch();
+                $newPrice = $usdPrice * $conversion;
+                $getConversion->close();
+                if($display) {
+                    return 'C$'.ceil($newPrice);
+                } else {
+                    return ceil($newPrice);
+                }
             } else {
-                return $usdPrice;
+                if($display) {
+                    return '$'.$usdPrice;
+                } else {
+                    return $usdPrice;
+                }
             }
         }
     }

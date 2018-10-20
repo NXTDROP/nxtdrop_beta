@@ -2,6 +2,8 @@
     session_start();
     include '../../dbh.php';
     date_default_timezone_set("UTC");
+    $db = '../../dbh.php';
+    require_once('../currencyConversion.php');
     $date = date("Y-m-d H:i:s", time());
     if(isset($_SESSION['uid'])) {
         $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products ORDER BY RAND() LIMIT 20;");
@@ -18,7 +20,7 @@
         if($min === null) {
             $low = '';
         } else {
-            $low = '$'.$min.'+';
+            $low = usdTocad($min, $db, true).'+';
         }
 
         if(isset($_SESSION['uid'])) {

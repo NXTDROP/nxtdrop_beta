@@ -9,7 +9,7 @@
     NXTDROP: The Fashion Trade Centre
     </title>
     <head>
-       <!-- <base href="https://nxtdrop.com/">-->
+       <base href="https://nxtdrop.com/">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-signin-client_id" content="257002911489-cpnet2eibl9jo7a10deh20i7qphv5q3a.apps.googleusercontent.com">
         <link type="text/css" rel="stylesheet" href="logstylesheet.css" />
@@ -119,6 +119,8 @@
         <header>
             <a href="home"><img id ="logo" src="img/nxtdroplogo.png" width="125px"></a>
         </header>
+
+        <p style="font-size: 20px; color: #222222; text-align: center; margin-bottom: 10px;">Have an account?<a href="signin" style="text-decoration: none; color: tomato;" onClick="ga('send', 'event', 'button', 'click', 'SignUpBtn LP');"> Login »</a></p>
         
         <div class="form-container">
             <button class="fb_login" onClick="fb_signup();"><i class="fab fa-facebook"></i> Sign Up with Facebook</button>
@@ -141,7 +143,6 @@
                 <p id="form-message" style="font-size: 13px; font-weight: 500;"></p>
             </form action="" method="POST">
         </div>
-        <p style="color: tomato; font-size: 12px; text-align: center; margin: 0px 0 0 0;"><a href="signin" style="color: tomato;">back to login page</a></p>
         <?php include('regis/modalRegistration.php') ?>
         <?php include('regis/social_regis.php') ?>
     </body>

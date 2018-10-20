@@ -191,7 +191,7 @@
         });
 
         $('.drop-btn').click(function() {
-            window.location.href = 'sell.php';
+            window.location.href = 'sell/';
         });
     });
 </script>
@@ -240,7 +240,7 @@
 
             <button class="alert-btn" title="Notifications" style="display: none"><i class="fa fa-bell"></i></button>
             
-            <a id="login-btn" href="signin"><button class="sign-btn" title="Login/Sign Up">SIGN IN</button></a>';
+            <a id="login-btn" href="signup"><button class="sign-btn" title="Login/Sign Up">SIGN UP</button></a>';
         }
     ?>
 </nav>
@@ -254,6 +254,7 @@
                 <?php
                     if (isset($_SESSION['uid'])) {
                         echo '
+                        <a href="sell"><li><span><i class="fas fa-plus" style="color: #888888;"></i></span>SELL</li></a>
                         <a href="dashboard"><li><span><i class="fas fa-clipboard" style="color: #888888;"></i></span>DASHBOARD</li></a>
                         <a href="inbox" id="inbox"><li><span><i class="fas fa-envelope"></i></span>INBOX</li></a>
                         <a id="notif"><li><span><i class="fas fa-bell"></i></span>NOTIFICATIONS</li></a>
@@ -266,8 +267,8 @@
             <?php
                 if (!isset($_SESSION['uid'])) {
                     echo '<hr/>
-                    <p id="signin-message">Sign in now to buy, sell, trade and discover fashion!</p>
-                    <a href="signin" id="signin-slide-btn">SIGN IN</a>';
+                    <p id="signin-message">Sign up now to buy, sell and discover fashion!</p>
+                    <a href="signup" id="signin-slide-btn">SIGN UP</a>';
                 }
             ?>
             <hr/>
