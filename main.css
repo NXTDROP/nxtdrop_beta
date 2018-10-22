@@ -99,6 +99,30 @@
     .carousel-item img {
         height: 150px!important;
     }
+    
+    footer ul li {
+        font-size: .7em!important;
+    }
+    
+    footer table {
+        margin: 0px 0 50px 0!important;
+    }
+    
+    footer table tr td {
+        font-size: 0.6em!important;
+        padding: 2px!important;
+    }
+    
+    .request_container #request {
+        margin: 10px 0!important;
+        width: 100%!important;
+        font-size: 0.6em!important;
+    }
+    
+    .request_container #send_request {
+        font-size: 0.7em!important;
+        padding: 10px!important;
+    }
 }
 
 @media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
@@ -188,6 +212,17 @@
     
     .carousel-item img {
         height: 250px!important;
+    }
+    
+    .request_container #request {
+        margin: 10px 0!important;
+        width: 100%!important;
+        font-size: 0.6em!important;
+    }
+    
+    .request_container #send_request {
+        font-size: 0.7em!important;
+        padding: 10px!important;
     }
 }
 
@@ -286,6 +321,30 @@
     .carousel-item img {
         height: 175px!important;
     }
+    
+    footer ul li {
+        font-size: .8em!important;
+    }
+    
+    footer table {
+        margin: 0px 0 50px 0!important;
+    }
+    
+    footer table tr td {
+        font-size: 0.7em!important;
+        padding: 2px!important;
+    }
+    
+    .request_container #request {
+        margin: 10px 0!important;
+        width: 100%!important;
+        font-size: 0.6em!important;
+    }
+    
+    .request_container #send_request {
+        font-size: 0.7em!important;
+        padding: 10px!important;
+    }
 }
 
 @media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
@@ -376,6 +435,17 @@
     .carousel-item img {
         height: 250px!important;
     }
+    
+    .request_container #request {
+        margin: 10px 0!important;
+        width: 100%!important;
+        font-size: 0.6em!important;
+    }
+    
+    .request_container #send_request {
+        font-size: 0.7em!important;
+        padding: 10px!important;
+    }
 }
 
 /* IPHONE SE */
@@ -464,6 +534,35 @@
     .carousel-item img {
         height: 150px!important;
     }
+    
+    footer ul li {
+        font-size: .5em!important;
+    }
+    
+    footer table {
+        margin: 0px 0 50px 0!important;
+    }
+    
+    footer table tr td {
+        font-size: 0.5em!important;
+        padding: 2px!important;
+    }
+    
+    .request_container {
+        width: 100%!important;
+        margin: 0!important;
+    }
+    
+    .request_container #request {
+        margin: 10px 0!important;
+        width: 100%!important;
+        font-size: 0.6em!important;
+    }
+    
+    .request_container #send_request {
+        font-size: 0.7em!important;
+        padding: 10px!important;
+    }
 }
 
 @media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
@@ -550,6 +649,17 @@
     .carousel-item img {
         height: 250px!important;
     }
+    
+    .request_container #request {
+        margin: 10px 0!important;
+        width: 100%!important;
+        font-size: 0.6em!important;
+    }
+    
+    .request_container #send_request {
+        font-size: 0.7em!important;
+        padding: 10px!important;
+    }
 }
 /******************************************* RD NAVBAR END *********************************************/
 
@@ -597,7 +707,7 @@
     
     #item-container {
         width: 100%!important;
-        margin: 0!important;
+        margin: 0 0 25px 0!important;
     }
     
     .card {
@@ -695,7 +805,7 @@
     }
     
     #item-container {
-        margin: 0!important;
+        margin: 0 0 25px 0!important;
         width: 100%!important;
     }
     
@@ -804,7 +914,7 @@
     
     #item-container {
         width: 100%!important;
-        margin: 0!important;
+        margin: 0 0 25px 0!important;
     }
     
     .card {
@@ -902,7 +1012,7 @@
     }
     
     #item-container {
-        margin: 0!important;
+        margin: 0 0 25px 0!important;
         width: 100%!important;
     }
     
@@ -1011,7 +1121,7 @@
     
     #item-container {
         width: 100%!important;
-        margin: 0!important;
+        margin: 0 0 25px 0!important;
     }
     
     .card {
@@ -1121,7 +1231,7 @@
     }
     
     #item-container {
-        margin: 0!important;
+        margin: 0 0 25px 0!important;
         width: 100%!important;
     }
     
@@ -6365,7 +6475,7 @@
 @media all and (min-width: 375px) and (max-width: 413px) and (orientation: portrait) {
     .item_container {
         width: 100%!important;
-        margin: 25px 0 0 0!important;
+        margin: 25px 0 600px 0!important;
         height: 525px!important;
     }
     
@@ -6418,7 +6528,7 @@
 @media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
     .item_container {
         width: 100%!important;
-        margin: 0px 0 0 0!important;
+        margin: 0px 0 600px 0!important;
         height: 310px!important;
     }
     
@@ -6473,7 +6583,7 @@
 @media all and (min-width: 414px) and (max-width: 1278px) and (orientation: portrait) {
     .item_container {
         width: 100%!important;
-        margin: 25px 0 0 0!important;
+        margin: 25px 0 700px 0!important;
         height: 525px!important;
     }
     
@@ -6526,7 +6636,7 @@
 @media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
    .item_container {
         width: 100%!important;
-        margin: 5px 0 0 0!important;
+        margin: 5px 0 500px 0!important;
         height: 345px!important;
     }
     
@@ -6581,7 +6691,7 @@
 @media all and (min-width: 320px) and (max-width: 374px) and (orientation: portrait) {
     .item_container {
         width: 100%!important;
-        margin: 0!important;
+        margin: 0 0 560px 0!important;
         height: 466px!important;
     }
     
@@ -6634,7 +6744,7 @@
 @media all and (min-width: 568px) and (max-width: 666px) and (orientation: landscape) {
     .item_container {
         width: 100%!important;
-        margin: 0px 0 0 0!important;
+        margin: 0 0 560px 0!important;
         height: 250px!important;
     }
     
@@ -7630,7 +7740,7 @@ textarea {
 }
 
 #item-container .card {
-    margin: 2px 2.363%;
+    margin: 2px 2.36%;
     display: inline-block;
     width: 20%;
     padding: 5px;
@@ -7901,7 +8011,7 @@ span.talk-time {
 
 .item_container {
     width: 95%;
-    margin: 25px 2.5%;
+    margin: 25px 2.5% 350px 2.5%;
     height: 525px;
     padding: 0;
     border: 1px solid #cccccc;
@@ -8221,6 +8331,56 @@ ol.directions li {
     cursor: pointer;
 }
 
+footer {
+    padding: 25px;
+    background: #191919;
+    position: absolute;
+    width: 100%;
+}
+
+footer ul li {
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.links {
+    cursor: pointer;
+}
+
+.links p a {
+    text-decoration: none;
+    color: #d36058;
+}
+
+.links p a:hover {
+    color: #e26c63;
+}
+
+footer table {
+    width: 100%;
+    margin: 30px 0;
+}
+
+footer table tr td {
+    padding: 5px;
+    text-align: center;
+    font-size: 0.7em;
+    color: #fff;
+}
+
+footer table tr td a {
+    color: #d36058;
+}
+
+footer table tr td a:hover {
+    text-decoration: none;
+    color: #e26c63;
+}
 /******************************************* INDEX END *********************************************/
 
 /******************************************* PROFILE *********************************************/
@@ -9620,6 +9780,7 @@ ul li h2 {
     font-size: 14px;
     padding: 10px;
     font-weight: 600;
+    letter-spacing: 2px;
 }
 
 .menu-footer a:hover {
@@ -10785,3 +10946,149 @@ ul li h2 {
 }
 
 /******************************************* MM SHIPPING END *****************************************************/
+
+/******************************************* BLOG ****************************************************************/
+@import url('https://fonts.googleapis.com/css?family=Lato');
+.latest_post {
+    width: 90%;
+    margin: 10px 5%;
+    font-family: 'Lato', sans-serif;
+}
+
+.latest_post h2 {
+   margin: 35px 0;
+   text-align: center;
+}
+
+.blog_post {
+    width: 30%;
+    margin: 10px 1.5%;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.blog_post table {
+    width: 100%;
+}
+
+#blog_img img {
+    width: 100%;
+}
+
+#blog_date {
+    text-align: center;
+    font-size: 13px;
+    color: #555555;
+}
+
+#blog_title {
+    text-align: center;
+    font-size: 18px;
+    color: #333333;
+    font-weight: 700;
+}
+
+#blog_author {
+    text-align: center;
+    font-size: 13px;
+    color: tomato;
+}
+
+.load_more_blog {
+    width: 40%;
+    margin: 20px 30%;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+.load_more_blog:hover {
+    background-color: tomato;
+}
+
+.carousel_blog {
+    margin-top: -60px;
+    width: 100%;
+    height: 400px;
+}
+
+.blog_post_single {
+    font-family: 'Lato', sans-serif;
+}
+
+.blog_post_single h1 {
+    text-align: center;
+    font-weight: 700;
+    margin: 50px 0 0 0;
+    font-size: 45px;
+}
+
+.blog_post_single h5 {
+    text-align: center;
+    color: tomato;
+}
+
+.blog_post_single h6 {
+    text-align: center;
+    margin: 10px 0 50px 0;
+}
+
+#single_img img {
+    width: 40%;
+    margin: 10px 30%;
+}
+
+#single_content {
+    width: 80%;
+    margin: 10px 10%;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 200%;
+    color: #333333;
+    word-spacing: 5px;
+}
+
+/******************************************* BLOG END ************************************************************/
+
+/******************************************* REQUEST *************************************************************/
+
+.request_container {
+    width: 100%;
+    padding: 25px;
+}
+
+.request_container #request {
+    margin: 60px 5%;
+    width: 90%;
+    border: 1px solid #cccccc;
+    padding: 8px;
+    height: 200px;
+    font-size: 0.8em;
+    resize: none;
+}
+
+.request_container #send_request {
+    width: 40%;
+    margin: 5px 30%;
+    font-size: 1.5em;
+    color: #fff;
+    border: none;
+    background: tomato;
+    cursor: pointer;
+    border-radius: 4px;
+    letter-spacing: 2px;
+}
+
+.request_container #send_request:hover {
+    background: #d36058;
+}
+
+/******************************************* REQUEST END *********************************************************/

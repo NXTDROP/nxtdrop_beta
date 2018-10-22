@@ -120,6 +120,8 @@
                 </p>
             </div>
         </div>
+
+        <?php require_once('inc/footer.php'); ?>
         
         <?php include('inc/item/counter_offer.php') ?>
         <?php include('inc/talk/popup.php') ?>

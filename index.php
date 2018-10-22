@@ -464,7 +464,7 @@
             </div>
 
             <div id="feed">
-                <h2 id="feed-header">NXTDROP Pick&apos;s</h2>
+                <h2 id="feed-header">Discovery</h2>
                 <?php
                     if(isset($_SESSION['uid'])) {
                         $getProducts = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products ORDER BY RAND() LIMIT 12;");
@@ -544,8 +544,7 @@
             </div>
         </div>
 
-        <footer>
-        </footer>
+        <?php require_once('inc/footer.php'); ?>
 
         <?php include('inc/talk/popup.php') ?>
         <?php //include('inc/drop/new-drop-pop.php'); ?>

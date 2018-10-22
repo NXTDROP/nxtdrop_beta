@@ -273,9 +273,10 @@
             ?>
             <hr/>
             <div class="menu-footer">
-                <p>&copy NXTDROP Inc. 2018</p>
+                <p>&copy; 2018 NXTDROP, INC. - Canada&apos;s #1 Sneaker Marketplace</p>
                 <a href="terms">TERMS OF USE</a>
                 <a href="privacy">PRIVACY</a>
+                <a href="blog/">BLOG</a>
             </div>
         </div>
     </div>

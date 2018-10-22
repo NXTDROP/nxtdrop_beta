@@ -331,5 +331,7 @@
 
         <p id="message"></p>
 
+        <?php require_once('inc/footer.php'); ?>
+
     </body>
 </html>

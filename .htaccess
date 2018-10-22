@@ -78,3 +78,6 @@ RewriteRule ^sell/(.*) sell.php?item=$1 [NC,L]
 
 #RewriteRule for orderPlace.php?item=xxxxxx
 RewriteRule ^order/([0-9]+)/(.*) orderPlaced.php?transactionID=$1&tracking=$2 [NC,L]
+
+#RewriteRule for request.php
+RewriteRule ^request request.php [NC,L]

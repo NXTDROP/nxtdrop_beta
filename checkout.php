@@ -160,6 +160,8 @@
             <button class="checkout-cancel" onclick="goBack();">Cancel Order</button>
         </div>
 
+        <?php require_once('inc/footer.php'); ?>
+
         <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/search_pop.php'); ?>
         <?php include('inc/checkout/loadingInfo.php'); ?>
