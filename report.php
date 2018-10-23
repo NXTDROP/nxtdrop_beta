@@ -6,7 +6,7 @@
 
 <html>
     <title>
-    NXTDROP: The Fashion Trade Centre
+        Send Report - NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
     <head>
         <base href="https://nxtdrop.com/">

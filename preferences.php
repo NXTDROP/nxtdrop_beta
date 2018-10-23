@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
     <title>
-        NXTDROP: The Fashion Trade Centre
+        Your Preferences - NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
-    <head>
+    <head> 
         <?php include('inc/head.php'); ?>
 
         <style type="text/css">
@@ -188,7 +188,7 @@
                                                 echo "'".$_SESSION['rdURL']."'";
                                             }
                                             else {
-                                                echo 'home';
+                                                echo "'".'home'."'";
                                             }
                                                 ?>;
                                     }, 4000);

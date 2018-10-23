@@ -6,12 +6,39 @@
 
 <html>
     <title>
-    NXTDROP: The Fashion Trade Centre
+        Login - NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
     <head>
-       <base href="https://nxtdrop.com/">
+        <?php
+            if($_SERVER['SERVER_NAME'] === 'localhost') {
+                $base = 'https://localhost/nd-v1.00/';
+            } else {
+                $base = 'https://nxtdrop.com/';
+            }
+        ?>
+        <base href="<?php echo $base; ?>">
        <!--<base href="https://localhost/nd-v1.00/">-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape.">
+        <meta name="keywords" content="nxtdrop, next drop, nxt drop, sneaker, adidas, streetwear, nike, nmd, air jordan, sneakers, deadstock, resell, hypebeast">
+        <meta name="robots" content="index, follow">
+        <meta name="google" content="notranslate">
+        <meta name="language" content="english">
+        <meta name="twitter:card" value="summary" />
+        <meta name="twitter:site" content="@nxtdrop" />
+        <meta name="twitter:title" content="NXTDROP - Canada's #1 Sneaker Marketplace: Buy and Sell Authentic Sneakers" />
+        <meta name="twitter:description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape." />
+        <meta name="twitter:creator" content="@nxtdrop" />
+        <meta name="twitter:image" content="/img/nxtdroplogo.png" />
+        <meta name="twitter:image:alt" content="NXTDROP" />
+        <meta property="og:title" content="NXTDROP - Canada's #1 Sneaker Marketplace: Buy and Sell Authentic Sneakers" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="www.nxtdrop.com" />
+        <meta property="og:image" content="/img/nxtdroplogo.png" />
+        <meta property="og:description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape." />
+        <meta property="og:site_name" content="NXTDROP" />
+        <meta http-equiv="Content-Language" content="en">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="google-signin-client_id" content="257002911489-cpnet2eibl9jo7a10deh20i7qphv5q3a.apps.googleusercontent.com">
         <link type="text/css" rel="stylesheet" href="logstylesheet.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -79,7 +106,13 @@ $(document).ready(function() {
                     window.location.replace('preferences');
                 }
                 else if(data === 'redirect') {
-                    window.location.href = <?php echo "'".$_SESSION['rdURL']."'"; ?>;
+                    window.location.href = <?php 
+                            if(isset($_SESSION['rdURL'])) {
+                                echo "'".$_SESSION['rdURL']."'";
+                            } else {
+                                echo "'".'home'."'";
+                            }
+                         ?>;
                 }
                 else {
                     $('.error_login').html(data).css('color', 'red');
@@ -104,7 +137,13 @@ $(document).ready(function() {
                         window.location.replace('preferences');
                     }
                     else if(data === 'redirect') {
-                        window.location.href = <?php echo "'".$_SESSION['rdURL']."'"; ?>;
+                        window.location.href = <?php 
+                            if(isset($_SESSION['rdURL'])) {
+                                echo "'".$_SESSION['rdURL']."'";
+                            } else {
+                                echo "'".'home'."'";
+                            }
+                         ?>;
                     }
                     else {
                         $('.error_login').html(data).css('color', 'red');
@@ -130,7 +169,13 @@ $(document).ready(function() {
                         window.location.replace('preferences');
                     }
                     else if(data === 'redirect') {
-                        window.location.href = <?php echo "'".$_SESSION['rdURL']."'"; ?>;
+                        window.location.href = <?php 
+                            if(isset($_SESSION['rdURL'])) {
+                                echo "'".$_SESSION['rdURL']."'";
+                            } else {
+                                echo "'".'home'."'";
+                            }
+                         ?>;
                     }
                     else {
                         $('.error_login').html(data).css('color', 'red');
@@ -173,7 +218,13 @@ $(document).ready(function() {
                                         $('.login_main').fadeOut();  
                                     }
                                     else if(response === 'redirect') {
-                                        window.location.href = <?php echo "'".$_SESSION['rdURL']."'"; ?>;
+                                        window.location.href = <?php 
+                                            if(isset($_SESSION['rdURL'])) {
+                                                echo "'".$_SESSION['rdURL']."'";
+                                            } else {
+                                                echo "'".'home'."'";
+                                            }
+                                        ?>;
                                     }
                                     else {
                                         $('.error_login').html(response).css('color', 'red');
@@ -236,6 +287,15 @@ $(document).ready(function() {
                                         $('.error_login').html('Cannot connect to server. Try again.').css('color', 'red');
                                         $('.login').fadeOut();
                                         $('.login_main').fadeOut();  
+                                    }
+                                    else if(response === 'redirect') {
+                                        window.location.href = <?php 
+                                            if(isset($_SESSION['rdURL'])) {
+                                                echo "'".$_SESSION['rdURL']."'";
+                                            } else {
+                                                echo "'".'home'."'";
+                                            }
+                                        ?>;
                                     }
                                     else {
                                         $('.error_login').html(response).css('color', 'red');

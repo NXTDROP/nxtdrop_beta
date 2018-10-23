@@ -87,7 +87,7 @@
 
 <html>
     <title>
-    NXTDROP: The Fashion Trade Centre
+        Edit Your Profile - NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
     <head>
         <base href="https://nxtdrop.com/">

@@ -7,11 +7,21 @@
     }
     $getItem = $conn->prepare("SELECT brand, line, model, colorway, yearMade, assetURL FROM products WHERE productID = ?");
     $getItem->bind_param('i', $m);
+    $getItem->execute();
+    $getItem->bind_result($brand, $line, $model, $colorway, $yearMade, $assetURL);
+    $getItem->fetch();
+    $getItem->close();
 ?>
 <!DOCTYPE html>
 <html>
     <title>
-        NXTDROP: The Fashion Trade Centre
+        <?php
+            if(isset($_GET['model'])) {
+                echo $model.' - NXTDROP - Canada&apos;s #1 Sneaker Marketplace';
+            } else {
+                echo 'NXTDROP - Canada&apos;s #1 Sneaker Marketplace';
+            }
+        ?>
     </title>
     <head>
         <?php include('inc/head.php'); ?>
@@ -100,10 +110,7 @@
         <?php include('inc/navbar/navbar.php'); ?>
         
         <?php
-            $getItem->execute();
-            $getItem->bind_result($brand, $line, $model, $colorway, $yearMade, $assetURL);
-            $getItem->fetch();
-            $getItem->close();
+            
         ?>
         <div class="item_container">
             <div class="item_description">

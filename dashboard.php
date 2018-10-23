@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <title>
-        NXTDROP: The Fashion Trade Centre
+        Dashboard - NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
 
     <head>

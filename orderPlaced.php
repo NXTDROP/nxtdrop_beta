@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <title>
-        NXTDROP: The Fashion Trade Centre
+        NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
     <head>
         <?php include('inc/head.php'); ?>

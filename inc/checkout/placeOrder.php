@@ -10,7 +10,6 @@
 
     $item_ID = $_POST['item_ID'];
     $fullAddress = $_POST['shippingAddress'];
-    if(isset($_POST['discountID'])) {$discountID = $_POST['discountID'];}
     $totalPrice = $_POST['totalPrice'];
     $shippingCost = $_POST['shippingCost'];
     $n_id = $_SESSION['uid'];
@@ -52,8 +51,11 @@
         $addNotification = $conn->query("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$item_ID', '$n_id', '$seller_ID', 'item sold', '$purchaseDate')");
 
         //ADD DISCOUNT IF USED
-        if($discountID != "0") {
+        if(isset($_POST['discountID'])) {
+            $discountID = $_POST['discountID'];
             $addDiscount = $conn->query("INSERT INTO discountUsed (ID, usedBy, dateUsed, transactionID) VALUES ('$discountID', '$n_id', '$purchaseDate', '$transactionID');");
+        } else {
+            $addDiscount = true;
         }
 
 

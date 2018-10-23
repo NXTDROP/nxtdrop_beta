@@ -45,10 +45,11 @@
 <!DOCTYPE html>
 <html>
     <title>
-        NXTDROP: The Fashion Trade Centre
+        NXTDROP - Canada's #1 Sneaker Marketplace: Buy and Sell Authentic Sneakers
     </title>
     <head>
         <?php include('inc/head.php'); ?>
+        <meta name="google-site-verification" content="gtQha3Cxmccl9OP-yqL0bohCuLMM5TbHK9eh0rUeVzU" />
         <!-- Javasripts -->
         <script type="text/javascript" src="js/delete-post.js"></script>
         <script type="text/javascript" src="js/like-unlike-post.js"></script>
@@ -386,13 +387,15 @@
             <div id="new-releases">
                 <h2 id="feed-header">New Releases</h2>
                 <?php
+                    $dateToday = date("Y-m-d", time());
                     if(isset($_SESSION['uid'])) {
-                        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products ORDER BY products.yearMade DESC LIMIT 4;");
-                        $getNewReleases->bind_param("ii", $_SESSION['uid'], $_SESSION['uid']);
+                        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products WHERE products.yearMade <= ? ORDER BY products.yearMade DESC LIMIT 4;");
+                        $getNewReleases->bind_param("iis", $_SESSION['uid'], $_SESSION['uid'], $dateToday);
                         $getNewReleases->execute();
                         $getNewReleases->bind_result($productID, $model, $assetURL, $heat, $cold, $min, $heated, $froze);
                     } else {
-                        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products ORDER BY products.yearMade DESC LIMIT 4;");
+                        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products WHERE products.yearMade <= ? ORDER BY products.yearMade DESC LIMIT 4;");
+                        $getNewReleases->bind_param("s", $dateToday);
                         $getNewReleases->execute();
                         $getNewReleases->bind_result($productID, $model, $assetURL, $heat, $cold, $min);
                     }

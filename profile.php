@@ -30,7 +30,7 @@
 <html>
     <title>
     <?php
-        echo ''.$fullname.'&#8217s closet &#x25FE NXTDROP: THE FASHION TRADE CENTER';
+        echo ''.$fullname.'&#8217s closet &#x25FE - NXTDROP - Canada&apos;s #1 Sneaker Marketplace';
     ?>
     </title>
     <head>
