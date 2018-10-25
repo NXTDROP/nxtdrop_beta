@@ -4,11 +4,12 @@
 ?>
 <!DOCTYPE html>
 <html>
+    <head>
+    <?php include('inc/head.php'); ?>
     <title>
         Product Request - NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
-    <head>
-    <?php include('inc/head.php'); ?>
+    <link rel="canonical" href="https://nxtdrop.com/request" />
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#send_request').click(function() {
@@ -56,6 +57,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <?php include('inc/navbar/navbar.php'); ?>
         <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/search_pop.php') ?>

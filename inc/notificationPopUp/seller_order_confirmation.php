@@ -62,19 +62,23 @@
                         $email->sendEmail('orderConfirmation_seller');
                     } catch(\Stripe\Error\Card $e) {
                         // Since it's a decline, \Stripe\Error\Card will be caught
-                        errorLog($e);
-                        $conn->rollback();
                         $body = $e->getJsonBody();
                         $err  = $body['error'];
-                        $log = 'TransactionID: '.$transactionID."\n".'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Param is:' . $err['param'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-                        rror_log($log, 1, "stripeusa@nxtdrop.com", "subject: Important! CARD DECLINED");
-                        echo 'Sorry, the payment method for this purchase was declined. This order will be cancelled. Thank you for choosing NXTDROP.';
-                        /*print('Status is:' . $e->getHttpStatus() . "\n");
-                        print('Type is:' . $err['type'] . "\n");
-                        print('Code is:' . $err['code'] . "\n");
-                        // param is '' in this case
-                        print('Param is:' . $err['param'] . "\n");
-                        print('Message is:' . $err['message'] . "\n");*/
+                        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+                        $email = new \SendGrid\Mail\Mail(); 
+                        $email->setFrom("admin@nxtdrop.com", "NXTDROP");
+                        $email->setSubject("URGENT! Error Update User Regis.");
+                        $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
+                        $html = "<p>".$log."<br> Card Declined</p>";
+                        $email->addContent("text/html", $html);
+                        $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                        try {
+                            $response = $sendgrid->send($email);
+                        } catch (Exception $e) {
+                            die('DB');
+                        }
+
+                        die('DB');
                     } catch (\Stripe\Error\RateLimit $e) {
                         // Too many requests made to the API too quickly
                         $conn->rollback();
@@ -88,9 +92,23 @@
                     } catch (\Stripe\Error\Authentication $e) {
                         // Authentication with Stripe's API failed
                         // (maybe you changed API keys recently)
-                        $conn->rollback();
-                        errorLog($e);
-                        echo 'DB';
+                        $body = $e->getJsonBody();
+                        $err  = $body['error'];
+                        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+                        $email = new \SendGrid\Mail\Mail(); 
+                        $email->setFrom("admin@nxtdrop.com", "NXTDROP");
+                        $email->setSubject("URGENT! Error Update User Regis.");
+                        $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
+                        $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
+                        $email->addContent("text/html", $html);
+                        $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                        try {
+                            $response = $sendgrid->send($email);
+                        } catch (Exception $e) {
+                            die('DB');
+                        }
+
+                        die('DB');
                     } catch (\Stripe\Error\ApiConnection $e) {
                         // Network communication with Stripe failed
                         $conn->rollback();
@@ -99,10 +117,8 @@
                     } catch (\Stripe\Error\Base $e) {
                         // Display a very generic error to the user, and maybe send
                         // yourself an email
-                        $body = $e->getJsonBody();
-                        $err  = $body['error'];
-                        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Param is:' . $err['param'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-                        error_log($log, 1, "stripeusa@nxtdrop.com", "subject: Important! Error Stripe");
+                        //SEND ALERT EMAIL
+            
                         $conn->rollback();
                         echo 'DB';
                     } catch (Exception $e) {
@@ -145,7 +161,7 @@
 
         $body = $e->getJsonBody();
         $err  = $body['error'];
-        $log_msg = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Param is:' . $err['param'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
 
         if (!file_exists($log_filename))
         {
@@ -153,7 +169,7 @@
             mkdir($log_filename, 0777, true);
         }
         $log_file_data = $log_filename.'/log_' . date('d-M-Y') . '.log';
-        file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
+        file_put_contents($log_file_data, $log . "\n", FILE_APPEND);
     }
 
 ?>

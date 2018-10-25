@@ -14,17 +14,19 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <title>
-        <?php
-            if(isset($_GET['model'])) {
-                echo $model.' - NXTDROP - Canada&apos;s #1 Sneaker Marketplace';
-            } else {
-                echo 'NXTDROP - Canada&apos;s #1 Sneaker Marketplace';
-            }
-        ?>
-    </title>
     <head>
-        <?php include('inc/head.php'); ?>
+        <?php include('inc/head_item.php'); ?>
+        <title>
+            <?php
+                if(isset($_GET['model'])) {
+                    echo $model.' - NXTDROP - Canada&apos;s #1 Sneaker Marketplace';
+                } else {
+                    echo 'NXTDROP - Canada&apos;s #1 Sneaker Marketplace';
+                    $m = '';
+                }
+            ?>
+        </title>
+        <link rel="canonical" href="https://nxtdrop.com/sneakers/<?php echo $m; ?>" />
         <script type="text/javascript">
             $(document).ready(function() {
                 checkTalk();
@@ -107,6 +109,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <?php include('inc/navbar/navbar.php'); ?>
         
         <?php

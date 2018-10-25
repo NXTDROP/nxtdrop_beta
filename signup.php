@@ -9,6 +9,13 @@
         Sign Up - NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
     <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-546WBVB');</script>
+<!-- End Google Tag Manager -->
         <?php
             if($_SERVER['SERVER_NAME'] === 'localhost') {
                 $base = 'https://localhost/nd-v1.00/';
@@ -17,12 +24,13 @@
             }
         ?>
         <base href="<?php echo $base; ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape.">
-        <meta name="keywords" content="nxtdrop, next drop, nxt drop, sneaker, adidas, streetwear, nike, nmd, air jordan, sneakers, deadstock, resell, hypebeast">
-        <meta name="robots" content="index, follow">
-        <meta name="google" content="notranslate">
-        <meta name="language" content="english">
+        <link rel="canonical" href="https://nxtdrop.com/signup" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape." />
+        <meta name="keywords" content="nxtdrop, next drop, nxt drop, sneaker, adidas, streetwear, nike, nmd, air jordan, sneakers, deadstock, resell, hypebeast" />
+        <meta name="robots" content="index, follow" />
+        <meta name="google" content="notranslate" />
+        <meta name="language" content="english" />
         <meta name="twitter:card" value="summary" />
         <meta name="twitter:site" content="@nxtdrop" />
         <meta name="twitter:title" content="NXTDROP - Canada's #1 Sneaker Marketplace: Buy and Sell Authentic Sneakers" />
@@ -36,7 +44,7 @@
         <meta property="og:image" content="/img/nxtdroplogo.png" />
         <meta property="og:description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape." />
         <meta property="og:site_name" content="NXTDROP" />
-        <meta http-equiv="Content-Language" content="en">
+        <meta http-equiv="Content-Language" content="en" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="google-signin-client_id" content="257002911489-cpnet2eibl9jo7a10deh20i7qphv5q3a.apps.googleusercontent.com">
         <link type="text/css" rel="stylesheet" href="logstylesheet.css" />
@@ -47,30 +55,13 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://apis.google.com/js/api.js"></script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126110764-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'UA-126110764-1');
-        </script>
-
-        <!-- Google Analytics -->
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-126110764-1', 'auto');
-            ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <script>
             //FACEBOOK SIGN UP 
             window.fbAsyncInit = function() {

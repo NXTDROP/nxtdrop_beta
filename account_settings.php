@@ -18,6 +18,7 @@
 
     <head>
         <?php include('inc/head.php'); ?>
+        <link rel="canonical" href="https://nxtdrop.com/settings" />
         <!-- Javasripts -->
         <script>var country = <?php echo "'".$country."'"; ?>;</script>
         <script src="js/account_settings.js"></script>
@@ -52,6 +53,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         
         <?php include('inc/navbar/navbar.php'); ?>
 

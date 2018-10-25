@@ -5,11 +5,19 @@
 <!DOCTYPE html>
 
 <html>
-    <title>
-        Email Subscription - NXTDROP - Canada's #1 Sneaker Marketplace
-    </title>
     <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-546WBVB');</script>
+<!-- End Google Tag Manager -->
+        <title>
+            Email List Subscription - NXTDROP - Canada's #1 Sneaker Marketplace
+        </title>
         <base href="https://nxtdrop.com/">
+        <link rel="canonical" href="https://nxtdrop.com/unsubscribe" />
         <link type="text/css" rel="stylesheet" href="unsubscribe.css" />
         <meta name="description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape.">
         <meta name="keywords" content="nxtdrop, next drop, nxt drop, sneaker, adidas, streetwear, nike, nmd, air jordan, sneakers, deadstock, resell, hypebeast">
@@ -36,6 +44,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <header>
             <a href="home"><img id ="logo"src="img/nxtdroplogo.png" width="125px"></a>
         </header>

@@ -34,6 +34,7 @@
     </title>
     <head>
         <?php include('inc/head.php'); ?>
+        <link rel="canonical" href="https://nxtdrop.com/sell" />
         <!-- Javasripts -->
         <script type="text/javascript" src="js/delete-post.js"></script>
         <script type="text/javascript" src="js/like-unlike-post.js"></script>
@@ -246,6 +247,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <?php include('inc/navbar/navbar.php'); ?>
 
         <ol class="directions">

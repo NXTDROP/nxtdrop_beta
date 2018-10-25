@@ -1,5 +1,7 @@
 <?php
-    include '../dbh.php';
+    $db = '../dbh.php';
+    include $db;
+    require_once('../inc/currencyConversion.php');
     $transactionID = $_GET['transactionID'];
     $email = $_GET['email'];
     $query = "SELECT * FROM users, transactions, shipping, thebag, offers, products WHERE transactions.transactionID = '$transactionID' AND transactions.transactionID = shipping.transactionID AND transactions.buyerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = offers.offerID AND offers.productID = products.productID";
@@ -11,17 +13,39 @@
         $pic = $row['assetURL'];
         $description = $row['model'];
         $orderStatus = $row['status'];
-        $price = number_format($row['price'], 2, '.', ',');
-        $total = number_format($row['totalPrice'], 2, '.', ',');
+        $price = $row['price'];
+        $total = $row['totalPrice'];
+        
+        if($row['country'] == 'US') {
+            $price = $number_format($price, 2, '.', ',');
+            $total = $number_format($total, 2, '.', ',');
+        } elseif ($row['country'] == 'CA') {
+            $price = usdTocad($price, $db, false);
+            $total = usdTocad($total, $db, false);
+            $price = 'C$'.number_format($price, 2, '.', ',');
+            $total = 'C$'.number_format($total, 2, '.', ',');
+        } else {
+            $price = $number_format($price, 2, '.', ',');
+            $total = $number_format($total, 2, '.', ',');
+        }
 
         if($row['price'] == $row['totalPrice']) {
             $shippingCost = 'FREE';
         } else {
-            $shippingCost = number_format($row['cost'], 2, '.', ',');
+            if($row['country'] == 'CA') {
+                $shippingCost = usdTocad($row['cost'], $db, false);
+                $shippingCost = 'C$'.number_format($shippingCost, 2, '.', ',');
+            } else {
+                $shippingCost = '$'.number_format($row['cost'], 2, '.', ',');;
+            }
         }
 
         if($row['price'] > ($row['totalPrice'] - $row['cost'])) {
             $price = number_format($row['totalPrice'] - $row['cost'], 2, '.', ',');
+
+            if($row['country'] == 'CA') {
+                $price = usdTocad($price, $db, true);
+            }
         }
     }
 ?>
@@ -174,15 +198,15 @@
                     </tr>-->
                     <tr style="font-size: 13px;">
                         <td style="color: #727272;">Price: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $price; ?></td>
+                        <td style="color: tomato; text-align: right;"><?php echo $price; ?></td>
                     </tr>
                     <tr style="font-size: 13px;">
                         <td style="color: #727272;">Shipping Cost: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $shippingCost; ?></td>
+                        <td style="color: tomato; text-align: right;"><?php echo $shippingCost; ?></td>
                     </tr>
                     <tr style="font-size: 13px;">
                         <td style="color: #727272;">Total: </td>
-                        <td style="color: #85bb65; text-align: right;">$<?php echo $total; ?></td>
+                        <td style="color: #85bb65; text-align: right;"><?php echo $total; ?></td>
                     </tr>
                 </table>
                 <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 7 to 10 business days to receive an order. If you have concerns, contact us at support@nxtdrop.com.</p>

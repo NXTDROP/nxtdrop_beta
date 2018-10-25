@@ -4,14 +4,19 @@
 ?>
 <!DOCTYPE html>
 <html>
+    <head>
+    <?php include('inc/head.php'); ?>
     <title>
         Terms of Use - NXTDROP - Canada's #1 Sneaker Marketplace
     </title>
-    <head>
-    <?php include('inc/head.php'); ?>
+    <link rel="canonical" href="https://nxtdrop.com/terms" />
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <?php include('inc/navbar/navbar.php'); ?>
         <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/search_pop.php') ?>
@@ -70,7 +75,7 @@ We may terminate our relationship with You immediately at any time and for any r
         <p>Upon termination of our relationship, we will immediately revoke your license to use the Product and block all access to your account, and may delete all data and information associated with your account thirty (30) days after such termination. If you do not log into your account for twelve (12) or more months, we may treat your account as “inactive” and permanently cancel your account upon delivery of written notice and delete your information thirty (30) days after such notice has been delivered.</br></br>Material posted to the Product will be removed after thirty (30) days, unless You renew the posting.
         </p></br>
         <h3>6.       USE OF THE PRODUCT</h3>
-        <p>In order to use the Product, a user must register using our registration page located at <a href="login_signup">www.nxtdrop.com/login_signup</a>.</br></br>
+        <p>In order to use the Product, a user must register using our registration page located at <a href="signin">www.nxtdrop.com/login_signup</a>.</br></br>
  
  <b>Registration Information:</b> You agree and understand that You are responsible for maintaining the confidentiality of your password, which, together with your e-mail address or username (“User ID”), allows You to access the Product. The User ID and password, together with any other contact information You provide us at the time of signing up for the Product form your “Registration Information.”  You agree that all Registration Information provided to us will be accurate and up-to-date. You agree to keep your password secure. We will not be liable if we are unable to retrieve or reset a lost password. If You become aware of any unauthorized use of your password or account, You agree to notify us via e-mail at [INSERT EMAIL ADDRESS] as soon as possible.</br></br>
   

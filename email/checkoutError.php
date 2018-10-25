@@ -1,19 +1,7 @@
 <?php
     include '../dbh.php';
-    $itemID = $_GET['itemID'];
     $email = $_GET['email'];
-    $query = "SELECT * FROM users, transactions, shipping, thebag, offers, products WHERE transactions.transactionID = '$itemID' AND transactions.transactionID = shipping.transactionID AND transactions.sellerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = offers.offerID AND offers.productID = products.productID LIMIT 1";
-    $result = $conn->query($query);
-    $row = mysqli_fetch_assoc($result);
-    if($row['transactionID'] != '') {
-        $price = $row['price'];
-        $transactionID = $row['transactionID'];
-        $pic = $row['assetURL'];
-        $description = $row['model'];
-        $orderStatus = $row['status'];
-        $total = number_format($row['totalPrice'], 2, '.', ',');
-        $earn = number_format(($row['totalPrice']-$row['cost'])*0.87, 2, '.', ',');
-    }
+    $username = $_GET['username']
 ?>
 
 <!DOCTYPE html>
@@ -21,14 +9,14 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>#<?php echo $transactionID; ?> -- <?php echo $description; ?></title>
+        <title></title>
         <base href="https://nxtdrop.com/">
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Font-Awesome -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Righteous|Roboto" rel="stylesheet">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 
         <style>
@@ -52,7 +40,7 @@
             }
 
             body {
-                font-family: 'Roboto', sans-serif;
+                font-family: 'Archive Black', sans-serif;
                 background-color: #FAFAFA;
                 height: 100%;
                 background: #fff;
@@ -116,7 +104,7 @@
                 padding: 5px;
                 font-size: 16px;
                 color: #fff;
-                font-size: 'Roboto', sans-serif;
+                font-size: 'Archive Black', sans-serif;
                 font-weight: 700;
                 border-radius: 2px;
             }
@@ -126,6 +114,36 @@
                 border-color: tomato;
                 cursor: pointer;
             }
+
+            ol li {
+                list-style-type: decimal; 
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .card img {
+                width: 70%;
+                margin: 2.5px 15%;
+            }
+            .card a button {
+                width: 60%;
+                margin: 2.5px 20%;
+                padding: 5px;
+                background: #bc3838;
+                border: none;
+                color: #fff;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-weight: 700;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+            .card a button:hover {
+                background: tomato;
+            }
         </style>
     </head>
 
@@ -134,36 +152,30 @@
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
 
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER #<?php echo $transactionID; ?></h2>
-
+                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">We apologize!</h2>
+                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">We've been facing issues with our platform lately and we want to apologize.</p>
                 <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.60rem; font-weight: 500;">Thank you for choosing NXTDROP!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">You must login and confirm the sale unless you accepted a counter-offer.</p>
             </div>
 
             <div class="content" style="overflow: hidden;">
-                <table style="margin: 10px;">
-                    <tr>
-                        <td><img src="<?php echo $pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
-                        <td><p style="color: #727272; width: 100%;"><?php echo $description; ?></p></td>
-                    </tr>
-                    <tr style="font-size: 14px;">
-                        <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
-                    </tr>
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">Total: </td>
-                        <td style="color: tomato; text-align: right;">$<?php echo $total; ?></td>
-                    </tr>
-                    
-                    <tr style="font-size: 13px;">
-                        <td style="color: #727272;">You will earn: </td>
-                        <td style="color: #85bb65; text-align: right;">$<?php echo $earn; ?></td>
-                    </tr>
-                </table>
-                <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about the order. If you have concerns, contact us at support@nxtdrop.com.</p>
-                <a href="https://nxtdrop.com/signin"><button id="signin_btn">CONFIRM SALE</button></a>
-                <p style="color: #555555; font-weight: bold;">VERY IMPORTANT: You don&apos;t have to confirm the order if you accepted a counter-offer. If you did accept a counter-offer, you must ship the shoes and confirm it on the website within 2 business days to avoid a 15% penalty. You can also send an email to momar@nxtdrop.com with the shipping details to confirm.</p>
-                <p style="font-family: 'Gloria Hallelujah', cursive; color: #555555; font-size: 18px;">The NXTDROP Team.</p>
-                <p style="font-family: 'Gloria Hallelujah', cursive; color: #555555; font-size: 18px;">MONEY WAY!</p>
+                <p style="color: #222222;">Hi <?php echo $username; ?></p>
+                <p style="color: #222222;">Some people encoutered an error message when trying to make a purchase. We sincerely apologize. Luckily, our team of engineers fixed the issue and the checkout page is back working. <span style="font-weight: 700; font-size: 18px;">We are offering you C$20 OFF your next purchase. Reply to this email with "YES" before October 29th to get your discount code.</span><br><br><br> Sorry for the inconvience once again.</p>
+                <br><br>
+                <h1 style="color: #222222; text-align: center;">Popular this Week</h1>
+                <p style="color: #222222; text-align: center;">Check out the most popular sneakers selling on NXTDROP this week! 🔥🔥🔥</p>
+                <?php
+                    $getMostPopular = $conn->prepare("SELECT products.productID, products.model, products.assetURL FROM products, product_rank WHERE products.productID = product_rank.productID ORDER BY product_rank.rank DESC LIMIT 4;");
+                    $getMostPopular->execute();
+                    $getMostPopular->bind_result($productID, $model, $assetURL);
+
+                    while($getMostPopular->fetch()) {
+                        echo '<div class="card">
+                                <img src="'.$assetURL.'" alt="'.$model.'">
+                                <p style="color: #222222; text-align: center;">'.$model.'</p>
+                                <a href="https://nxtdrop.com/sneakers/'.$productID.'"><button>See Offers</button></a>
+                            </div>';
+                    }
+                ?>
             </div>
 
             <div class="footer">
@@ -176,7 +188,7 @@
                     </tr>
                 </table>
                 <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">&copy; NXTDROP, Inc. All rights reserved.</p>
-                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from payment emails.</p>
+                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from this type of email.</p>
             </div>
         </div>
     </body>

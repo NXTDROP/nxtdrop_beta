@@ -12,11 +12,19 @@ $purchaseDate = date("Y-m-d H:i:s", time());
 $email->setTransactionID('1');
 $email->sendEmail('orderShipping');*/
 
+$getUsers = $conn->prepare("SELECT username, email FROM users WHERE uid = 1000002");
+$getUsers->execute();
+$getUsers->bind_result($username, $email);
+while($getUsers->fetch()) {
+    $email3 = new Email($username, $email, 'support@nxdrop.com', 'Your last purchase attempt!', '');
+    if($email3->sendEmail('checkoutError.php')) {
+        echo $username.' DONE!';
+    } else {
+        echo $username.' ERROR!';
+    }
+}
 
-/*$email2 = new Email('momarcissex', 'momar@nxtdrop.com', 'orders@nxdrop.com', 'YOUR ORDER IS ARRIVING!', '');
-$email2->setTransactionID('1');
-$email2->sendEmail('sellerShipping');*/
+$getUsers->close();
 
-$email3 = new Email('Russia12345', 'cambellscustomhomes@gmail.com', 'orders@nxdrop.com', 'YOUR ORDER IS ARRIVING!', '');
-$email3->setTransactionID('1');
-$email3->sendEmail('sellerShipping');
+/*$email3 = new Email('Russia12345', 'cambellscustomhomes@gmail.com', 'orders@nxdrop.com', 'Hope you like your order!', '');
+$email3->sendEmail('purchaseFollowUp');*/

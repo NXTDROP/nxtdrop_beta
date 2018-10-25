@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="EN">
     <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-546WBVB');</script>
+<!-- End Google Tag Manager -->
         <base href="https://nxtdrop.com/">
+        <link rel="canonical" href="https://nxtdrop.com/welcome" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie-edge">
 
-        <title>NXTDROP: The Fashion Trade Centre</title>
+        <title>NXTDROP - Canada's #1 Sneaker Marketplace</title>
 
         <!-- CSS -->
         <link type="text/css" rel="stylesheet" href="ss_welcome.css" />
@@ -45,6 +53,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <div class="main_container" style="opacity: 0.95;">
             <div style="opacity: 1!important;">
                 <script type="text/javascript" src="js/welcome.js"></script>

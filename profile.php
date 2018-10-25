@@ -35,6 +35,7 @@
     </title>
     <head>
         <?php include('inc/head.php'); ?>
+        <link rel="canonical" href="https://nxtdrop.com/u/<?php echo $fullname; ?>" />
         <!-- Javasripts -->
         <script type="text/javascript" src="js/menu-dropdown.js"></script>
         <script type="text/javascript" src="js/post-popup.js"></script>
@@ -127,6 +128,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <?php include('inc/navbar/navbar.php'); ?>
         <?php include("inc/profile-info.php"); ?>
 

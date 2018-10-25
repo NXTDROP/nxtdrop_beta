@@ -157,11 +157,14 @@
                 case 'orderShipping':
                     $this->orderShipping();
                     break;
+                case 'purchaseFollowUp':
+                    $this->purchaseFollowUp();
+                    break;
                 default:
                     $u = 'https://nxtdrop.com/email/'.$type.'?email='.$this->getRecipientEmail().'&username='.$this->getRecipient();
                     $url = str_replace(" ", "%20", $u);
                     $c = file_get_contents($url);
-                    if(!$this->deliverMail($c, 'NEWSDROP by NXTDROP')) {
+                    if(!$this->deliverMail($c, 'NXTDROP SUPPORT TEAM')) {
                         echo 'false';
                     }
                     break;
@@ -365,6 +368,15 @@
 
         private function orderShipping() {
             $u = 'https://nxtdrop.com/email/orderShipping.php?email='.$this->getRecipientEmail().'&transactionID='.$this->getTransactionID();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c, 'NXTDROP')) {
+                echo 'false';
+            }
+        }
+
+        private function purchaseFollowUp() {
+            $u = 'https://nxtdrop.com/email/purchaseFollowUp.php?email='.$this->getRecipientEmail();
             $url = str_replace(" ", "%20", $u);
             $c = file_get_contents($url);
             if(!$this->deliverMail($c, 'NXTDROP')) {

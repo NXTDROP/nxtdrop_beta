@@ -4,11 +4,13 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <title>
-        Your Preferences - NXTDROP - Canada's #1 Sneaker Marketplace
-    </title>
     <head> 
         <?php include('inc/head.php'); ?>
+        <title>
+            Your Preferences - NXTDROP - Canada's #1 Sneaker Marketplace
+        </title>
+        <link rel="canonical" href="https://nxtdrop.com/preferences">
+        
 
         <style type="text/css">
             body {
@@ -213,6 +215,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <img class="pref_logo" src="img/nxtdroplogo.png" style="width: 5%; margin: 10px 47.5%;">
 
         <div class="brand_selection">

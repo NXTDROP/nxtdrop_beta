@@ -11,11 +11,12 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <title>
-        Checkout - NXTDROP - Canada's #1 Sneaker Marketplace
-    </title>
     <head>
         <?php include('inc/head.php'); ?>
+        <title>
+            Checkout - NXTDROP - Canada's #1 Sneaker Marketplace
+        </title>
+        <link rel="canonical" href="https://nxtdrop.com/checkout.php">
         <!-- Javasripts -->
         <script type="text/javascript">
             var item_ID = <?php echo "'".$_GET['item']."'"; ?>;
@@ -27,6 +28,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         
         <?php include('inc/navbar/navbar.php'); ?>
 

@@ -1,10 +1,12 @@
 <?php
 
     session_start();
-    include '../../dbh.php';
+    $db = '../../dbh.php';
+    include $db;
     include('../../../credentials.php');
     include('../../vendor/autoload.php');
     include('../../email/Email.php');
+    require_once('../currencyConversion.php');
     date_default_timezone_set("UTC");
     $purchaseDate = date("Y-m-d H:i:s", time());
 
@@ -33,6 +35,14 @@
         $sellerUsername = $row['username'];
         $price = $row['price'];
         $status = "waiting shipment";
+
+        if($_SESSION['country'] == 'US') {
+            $totalPrice = $totalPrice;
+        } elseif ($_SESSION['country'] == 'CA') {
+            $totalPrice = cadTousd($totalPrice, $db, false);
+        } else {
+            $totalPrice = $totalPrice;
+        }
 
         $conn->autocommit(false);
 

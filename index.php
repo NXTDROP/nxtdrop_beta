@@ -49,6 +49,7 @@
     </title>
     <head>
         <?php include('inc/head.php'); ?>
+        <link rel="canonical" href="https://nxtdrop.com" />
         <meta name="google-site-verification" content="gtQha3Cxmccl9OP-yqL0bohCuLMM5TbHK9eh0rUeVzU" />
         <!-- Javasripts -->
         <script type="text/javascript" src="js/delete-post.js"></script>
@@ -252,6 +253,10 @@
     </head>
 
     <body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
         <?php include('inc/navbar/navbar.php'); ?>
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
