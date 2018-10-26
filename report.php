@@ -18,6 +18,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </title>
         <base href="https://nxtdrop.com/">
         <link rel="canonical" href="https://nxtdrop.com/report" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape." />
+        <meta name="keywords" content="nxtdrop, next drop, nxt drop, sneaker, adidas, streetwear, nike, nmd, air jordan, sneakers, deadstock, resell, hypebeast" />
+        <meta name="robots" content="noodp, noydir, index, follow, archive" />
+        <meta name="google" content="notranslate" />
+        <meta name="language" content="english" />
+        <meta name="twitter:card" value="summary" />
+        <meta name="twitter:site" content="@nxtdrop" />
+        <meta name="twitter:title" content="NXTDROP - Canada's #1 Sneaker Marketplace: Buy and Sell Authentic Sneakers" />
+        <meta name="twitter:description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape." />
+        <meta name="twitter:creator" content="@nxtdrop" />
+        <meta name="twitter:image" content="/img/nxtdroplogo.png" />
+        <meta name="twitter:image:alt" content="NXTDROP" />
+        <meta property="og:title" content="NXTDROP - Canada's #1 Sneaker Marketplace: Buy and Sell Authentic Sneakers" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="www.nxtdrop.com" />
+        <meta property="og:image" content="/img/nxtdroplogo.png" />
+        <meta property="og:description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape." />
+        <meta property="og:site_name" content="NXTDROP" />
+        <meta http-equiv="Content-Language" content="en" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link type="text/css" rel="stylesheet" href="stylesheet_report.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

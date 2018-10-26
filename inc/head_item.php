@@ -14,7 +14,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 ?>
 <base href="<?php echo $base; ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="noodp, noydir, index, follow, archive" />
 <meta name="google" content="notranslate" />
 <meta name="language" content="english" />
 <meta name="twitter:card" value="summary" />
