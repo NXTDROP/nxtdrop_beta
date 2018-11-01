@@ -28,13 +28,16 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+<script>
+    fbq('track', 'Purchase');
+</script>
         <?php include('inc/navbar/navbar.php'); ?>
 
         <?php
             $transactionID = $_GET['transactionID'];
             if($_SESSION['country']) $country = "United States";
             elseif($_SESSION['country']) $country = "Canada";
-            $query = "SELECT p.assetURL, p.model, o.price, s.cost, t.shippingAddress, s.MM_Carrier, s.MM_TrackingNumber, t.transactionID, t.totalPrice, t.sellerID, t.middlemanID, tb.first_name, tb.last_name, t.status FROM users u, transactions t, shipping s, thebag tb, offers o, products p WHERE t.transactionID = '$transactionID' AND t.transactionID = s.transactionID AND t.sellerID = u.uid AND u.uid = tb.uid AND t.itemID = o.offerID AND o.productID = p.productID";
+            $query = "SELECT p.assetURL, p.model, o.price, s.cost, t.shippingAddress, s.MM_Carrier, s.MM_TrackingNumber, t.transactionID, t.totalPrice, t.sellerID, t.middlemanID, tb.first_name, tb.last_name, t.status, u.username FROM users u, transactions t, shipping s, thebag tb, offers o, products p WHERE t.transactionID = '$transactionID' AND t.transactionID = s.transactionID AND t.sellerID = u.uid AND u.uid = tb.uid AND t.itemID = o.offerID AND o.productID = p.productID";
             $result = $conn->query($query);
             $row = mysqli_fetch_assoc($result);
             if($row['transactionID'] === '') {
@@ -66,7 +69,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p style="text-align: center;">Thank you for shopping with us!</p>
             <p style="text-align: center; font-weight: 800; color: tomato;">Order Status: <?php echo $row['status']; ?></p>
             <p id="order-id">Order ID: #<?php echo $row['transactionID']; ?></p>
-            <!--<p id="order-sellerInfo">Seller: <a href="profile.php?u=<?php echo $row['username']; ?>"><?php echo $row['username']; ?></a></p>-->
+            <!--<p id="order-sellerInfo">Seller: <a href="profile.php?u=<?php //echo $row['username']; ?>"><?php //echo $row['username']; ?></a></p>-->
             <h3>Shipping To:</h3>
             <p id="order-buyerInfo" <?php echo $style; ?>><?php echo $row['first_name'].' '.$row['last_name']; ?> <br>
             <?php echo $row['shippingAddress'].'<br>'.$country; ?></p>

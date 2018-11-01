@@ -75,10 +75,10 @@
                         try {
                             $response = $sendgrid->send($email);
                         } catch (Exception $e) {
-                            die('DB');
+                            die('CARD');
                         }
 
-                        die('DB');
+                        die('CARD');
                     } catch (\Stripe\Error\RateLimit $e) {
                         // Too many requests made to the API too quickly
                         $conn->rollback();
@@ -92,6 +92,7 @@
                     } catch (\Stripe\Error\Authentication $e) {
                         // Authentication with Stripe's API failed
                         // (maybe you changed API keys recently)
+                        $conn->rollback();
                         $body = $e->getJsonBody();
                         $err  = $body['error'];
                         $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());

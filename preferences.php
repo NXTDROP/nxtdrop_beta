@@ -219,6 +219,9 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-546WBVB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+<script>
+    fbq('track', 'CompleteRegistration');
+</script>
         <img class="pref_logo" src="img/nxtdroplogo.png" style="width: 5%; margin: 10px 47.5%;">
 
         <div class="brand_selection">

@@ -169,9 +169,9 @@
     });
 </script>
 
-<div class="payout">
+<div class="payout popup_window">
     <div class="payout_close close"></div>
-    <div class="payout_main">
+    <div class="payout_main popup_window_main">
     <h2 id="payout_title"></h2>
         <div class="payout_content">
             <p>SEND</p>

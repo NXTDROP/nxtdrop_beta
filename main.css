@@ -3017,6 +3017,12 @@
     .transaction_review_main #rating_stars {
         padding: 0 75px!important;
     }
+    
+    .popup_window_main {
+        width: 90%!important;
+        left: 5%!important;
+        top: 80px!important;
+    }
 }
 
 @media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
@@ -3309,6 +3315,14 @@
     
     .transaction_review_main #rating_stars {
         padding: 0 220px!important;
+    }
+    
+    .popup_window_main {
+        width: 90%!important;
+        left: 5%!important;
+        top: 80px!important;
+        height: 250px!important;
+        overflow: auto!important;
     }
 }
 
@@ -3622,6 +3636,12 @@
     .transaction_review_main #rating_stars {
         padding: 0 98px!important;
     }
+    
+    .popup_window_main {
+        width: 90%!important;
+        left: 5%!important;
+        top: 80px!important;
+    }
 }
 
 @media all and (min-width: 736px) and (max-width: 1279px) and (orientation: landscape) {
@@ -3916,6 +3936,14 @@
     
     .transaction_review_main #rating_stars {
         padding: 0 259px!important;
+    }
+    
+    .popup_window_main {
+        width: 90%!important;
+        left: 5%!important;
+        top: 80px!important;
+        height: 300px!important;
+        overflow: auto!important;
     }
 }
 
@@ -4226,6 +4254,12 @@
         width: 95%!important;
         margin: 10px 2.5%!important;
     }
+    
+    .popup_window_main {
+        width: 90%!important;
+        left: 5%!important;
+        top: 60px!important;
+    }
 }
 
 @media all and (min-width: 565px) and (max-width: 666px) and (orientation: landscape) {
@@ -4516,6 +4550,14 @@
     
     .transaction_review_main #rating_stars {
         padding: 0 175px!important;
+    }
+    
+    .popup_window_main {
+        width: 90%!important;
+        left: 5%!important;
+        top: 80px!important;
+        height: 200px!important;
+        overflow: auto!important;
     }
 }
 

@@ -45,8 +45,8 @@
                     $row = $result->fetch_assoc();
 
                     try {
-                        $account = \Stripe\Account::retrieve($s_ID);
-                        $customer = \Stripe\Customer::retrieve($cus_ID);
+                        $account = \Stripe\Account::retrieve('acct_1DDOOJFlt1nPeNqh');
+                        $customer = \Stripe\Customer::retrieve('cus_DehnKmKWFGJYyS');
                         
                         $street = $account['legal_entity']['address']['line1'];
                         $city = $account['legal_entity']['address']['city'];
@@ -54,7 +54,7 @@
                         $postalCode = $account['legal_entity']['address']['postal_code'];
                         $country = $_SESSION['country'];
                         if(isset($customer->default_source)) {
-                            $card = $customer->sources->retrieve($row['out_token']);
+                            $card = $customer->sources->retrieve('card_1DOWeWDkjLI4EiIr3AQdThaj');
                             $card_last4 = $card->last4;
                             $card_brand = $card->brand;
                         }
@@ -63,7 +63,7 @@
                             $card_last4 = "";
                         }
 
-                        $getTrans = $conn->query("SELECT *  FROM transactions WHERE buyerID = '$n_ID'");
+                        $getTrans = $conn->query("SELECT * FROM transactions WHERE buyerID = '$n_ID'");
                         if($getTrans->num_rows > 0) {
                             $shipping = 13.65;
                         } else {

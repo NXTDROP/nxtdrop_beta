@@ -16,6 +16,7 @@
         private $SD;
         private $tID;
         private $ext;
+        private $news;
 
         public function __construct($recipient, $recipientEmail, $from, $subject, $cc) {
             $this->setRecipient($recipient);
@@ -63,6 +64,10 @@
             $this->ext = $ext;
         }
 
+        public function setNewsletter($news) {
+            $this->news = $news;
+        }
+
         private function getRecipient() {
             return $this->recipient;
         }
@@ -93,6 +98,10 @@
 
         private function getExt() {
             return $this->ext;
+        }
+
+        private function getNewsletter() {
+            return $this->news;
         }
 
         public function sendEmail($type) {
@@ -159,6 +168,9 @@
                     break;
                 case 'purchaseFollowUp':
                     $this->purchaseFollowUp();
+                    break;
+                case 'newsletter':
+                    $this->newsletter();
                     break;
                 default:
                     $u = 'https://nxtdrop.com/email/'.$type.'?email='.$this->getRecipientEmail().'&username='.$this->getRecipient();
@@ -380,6 +392,15 @@
             $url = str_replace(" ", "%20", $u);
             $c = file_get_contents($url);
             if(!$this->deliverMail($c, 'NXTDROP')) {
+                echo 'false';
+            }
+        }
+
+        private function newsletter() {
+            $u = 'https://nxtdrop.com/email/newsletter/'.$this->getNewsletter().'?email='.$this->getRecipientEmail().'&username='.$this->getRecipient();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c, 'NEWS by NXTDROP')) {
                 echo 'false';
             }
         }

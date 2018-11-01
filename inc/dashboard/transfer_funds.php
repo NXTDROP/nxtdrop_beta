@@ -16,8 +16,8 @@
     $transfer_type = $_POST['type'];
     $available_amount = $balance['available'][0]['amount'];
 
-    if ($available_amount >= 0) {
-        echo 'Your balance is US$0.00. You cannot initiate a transfer.';
+    if ($available_amount <= 0) {
+        echo 'Your balance is $0.00. You cannot initiate a transfer.';
     }
     else  {
         if ($currency == 'cad' && $transfer_type == 1) {
@@ -33,6 +33,7 @@
                     ), array('stripe_account' => $stripe_id));
                 } catch (\Stripe\Error\RateLimit $e) {
                     // Too many requests made to the API too quickly
+                    $conn->rollback();
                     errorLog($e);
                     echo 'DB';
                 } catch (\Stripe\Error\InvalidRequest $e) {
@@ -42,8 +43,23 @@
                 } catch (\Stripe\Error\Authentication $e) {
                     // Authentication with Stripe's API failed
                     // (maybe you changed API keys recently)
-                    errorLog($e);
-                    echo 'DB';
+                    $body = $e->getJsonBody();
+                    $err  = $body['error'];
+                    $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+                    $email = new \SendGrid\Mail\Mail(); 
+                    $email->setFrom("admin@nxtdrop.com", "NXTDROP");
+                    $email->setSubject("URGENT! Error Update User Regis.");
+                    $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
+                    $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
+                    $email->addContent("text/html", $html);
+                    $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                    try {
+                        $response = $sendgrid->send($email);
+                    } catch (Exception $e) {
+                        die('DB');
+                    }
+
+                    die('DB');
                 } catch (\Stripe\Error\ApiConnection $e) {
                     // Network communication with Stripe failed
                     errorLog($e);
@@ -51,10 +67,8 @@
                 } catch (\Stripe\Error\Base $e) {
                     // Display a very generic error to the user, and maybe send
                     // yourself an email
-                    $body = $e->getJsonBody();
-                    $err  = $body['error'];
-                    $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Param is:' . $err['param'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-                    error_log($log, 1, "stripeusa@nxtdrop.com", "subject: Important! Error Stripe");
+                    //SEND ALERT EMAIL
+        
                     echo 'DB';
                 } catch (Exception $e) {
                     // Something else happened, completely unrelated to Stripe
@@ -71,17 +85,34 @@
                     ), array('stripe_account' => $stripe_id));
                 } catch (\Stripe\Error\RateLimit $e) {
                     // Too many requests made to the API too quickly
+                    $conn->rollback();
                     errorLog($e);
                     echo 'DB';
                 } catch (\Stripe\Error\InvalidRequest $e) {
                     // Invalid parameters were supplied to Stripe's API
+                    $conn->rollback();
                     errorLog($e);
                     echo 'DB';
                 } catch (\Stripe\Error\Authentication $e) {
                     // Authentication with Stripe's API failed
                     // (maybe you changed API keys recently)
-                    errorLog($e);
-                    echo 'DB';
+                    $body = $e->getJsonBody();
+                    $err  = $body['error'];
+                    $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+                    $email = new \SendGrid\Mail\Mail(); 
+                    $email->setFrom("admin@nxtdrop.com", "NXTDROP");
+                    $email->setSubject("URGENT! Error Update User Regis.");
+                    $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
+                    $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
+                    $email->addContent("text/html", $html);
+                    $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                    try {
+                        $response = $sendgrid->send($email);
+                    } catch (Exception $e) {
+                        die('DB');
+                    }
+
+                    die('DB');
                 } catch (\Stripe\Error\ApiConnection $e) {
                     // Network communication with Stripe failed
                     errorLog($e);
@@ -89,10 +120,7 @@
                 } catch (\Stripe\Error\Base $e) {
                     // Display a very generic error to the user, and maybe send
                     // yourself an email
-                    $body = $e->getJsonBody();
-                    $err  = $body['error'];
-                    $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Param is:' . $err['param'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-                    error_log($log, 1, "stripeusa@nxtdrop.com", "subject: Important! Error Stripe");
+                    //SEND ALERT EMAIL
                     echo 'DB';
                 } catch (Exception $e) {
                     // Something else happened, completely unrelated to Stripe
@@ -107,7 +135,7 @@
 
         $body = $e->getJsonBody();
         $err  = $body['error'];
-        $log_msg = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Param is:' . $err['param'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
 
         if (!file_exists($log_filename))
         {
@@ -115,6 +143,6 @@
             mkdir($log_filename, 0777, true);
         }
         $log_file_data = $log_filename.'/log_' . date('d-M-Y') . '.log';
-        file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
+        file_put_contents($log_file_data, $log . "\n", FILE_APPEND);
     }
 ?>

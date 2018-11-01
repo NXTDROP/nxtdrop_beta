@@ -1,7 +1,9 @@
 <?php
     session_start();
-    include '../../dbh.php';
+    $db = '../../dbh.php';
+    include $db;
     include '../time.php';
+    require_once('../currencyConversion.php');
 
     if (!isset($_SESSION['uid'])) {
         echo 'ERROR!';
@@ -67,8 +69,13 @@
                     echo '<div class="one_notif" onclick="confirmation('.$user_result['uid'].', '.$_SESSION['uid'].', '.$user_result['pid'].')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> sold you an item. <span class="notif_time">'.$date.'</span></span></div>';
                 }
                 else if($row['notification_type'] == 'item sold') {
+                    if($_SESSION['country'] == 'CA') {
+                        $price = usdTocad($user_result['price'], $db, true);
+                    } else {
+                        $price = 'US$'.$user_result['price'];
+                    }
                     $pic = "'".$user_result['assetURL']."'";
-                    $description = "'".$user_result['model'].', Size: US'.$user_result['size'].', Price: $'.$user_result['price']."'";
+                    $description = "'".$user_result['model'].', Size: US'.$user_result['size'].', Price: '.$price."'";
                     $buyer_id = "'".$user_result['uid']."'";
                     echo '<div class="one_notif" onclick="order_confirmation('.$user_result['offerID'].', '.$pic.', '.$description.', '.$buyer_id.')" '.$background.'><img src="https://nxtdrop.com/img/nxtdroplogo.png" alt="" class="profile_notif"><span class="message_notif">Your item just sold! Click to confirm order. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
                 }
@@ -89,7 +96,7 @@
                     $model = $user_result['model'];
                     $model = str_replace("&apos;", '', $model);
                     $model = "'".$model."'";
-                    echo '<div class="one_notif" onclick="counterOfferConf('.$user_result['price'].', '.$user_result['offer'].', '.$user_result['offerID'].', '.$user_result['uid'].', '.$model.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">@'.$user_result['username'].'</a> made you an offer for your '.$user_result['model'].' <span class="notif_time"> '.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
+                    echo '<div class="one_notif" onclick="counterOfferConf('.$user_result['price'].', '.$user_result['offer'].', '.$user_result['offerID'].', '.$user_result['uid'].', '.$model.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif">You received an offer for your '.$user_result['model'].' <span class="notif_time"> '.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
                 }
                 else {
                     echo '<div class="one_notif" onclick="go_to_inbox()" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> made you an offer. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';

@@ -15,7 +15,6 @@ var discountID;
 var discountAmount;
 var discountType;
 var discount;
-var total;
 var currency;
 const stripe = Stripe('pk_live_ZeS4R1yiq76rObz3ADsgOs13');
 

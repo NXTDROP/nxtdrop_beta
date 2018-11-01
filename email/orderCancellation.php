@@ -151,7 +151,7 @@
                 <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER CANCELLED</h2>
 
                 <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.60rem; font-weight: 500;">Thank you for choosing NXTDROP!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">Sorry, your order was cancelled.</p>
+                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">We apologize. 😞</p>
             </div>
 
             <div class="content" style="overflow: hidden;">
@@ -164,7 +164,7 @@
                         <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
                     </tr>
                 </table>
-                <p style="color: #494949; font-size: 18px;">Your order was cancelled by the buyer.</p>
+                <p style="color: #494949; font-size: 18px;">Sorry, your order was cancelled because the buyer failed to ship the shoes.</p>
                 <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 7 to 10 business days to receive an order. If you have concerns, contact us at support@nxtdrop.com.</p>
                 <a href="https://nxtdrop.com/signin"><button id="signin_btn">LOGIN</button></a>
             </div>
@@ -179,7 +179,7 @@
                     </tr>
                 </table>
                 <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">&copy; NXTDROP, Inc. All rights reserved.</p>
-                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from payment emails.</p>
+                <p style="font-size: 0.55rem; margin: 2.5px auto; width: 90%; text-align: center;">For security reasons, you cannot unsubscribe from this type of email.</p>
             </div>
         </div>
     </body>
