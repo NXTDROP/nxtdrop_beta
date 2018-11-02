@@ -2,7 +2,7 @@
 
     require_once('dbh.php');
 
-    $getProduct = $conn->prepare("SELECT productID FROM products WHERE productID > 1000380;");
+    $getProduct = $conn->prepare("SELECT productID FROM products WHERE productID > 1000586;");
     $getProduct->execute();
     $getProduct->bind_result($productID);
     $rank = 381;

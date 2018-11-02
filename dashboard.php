@@ -127,17 +127,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             $total_purchases = 0;
             $num_purchases = 0;
             while ($sales_row = mysqli_fetch_assoc($sales_results)) {
-                if ($sales_row['status'] == 'complete') {
+                if ($sales_row['status'] != 'cancelled') {
                     $total_sales += $sales_row['totalPrice'];
                     $num_sales++;
                 }
             }
 
             while ($purchases_row = mysqli_fetch_assoc($purchases_results)) {
-                //if ($purchases_row['status'] == 'complete') {
+                if ($purchases_row['status'] != 'cancelled') {
                     $total_purchases += $purchases_row['totalPrice'];
                     $num_purchases++;
-                //}
+                }
             }
         ?>
 
@@ -162,7 +162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <thead>
                 <tr>
                     <th>Item</th>
-                    <th>Price (in CA$)</th>
+                    <th>Total</th>
                     <th>Transaction Type</th>
                     <th>Transaction #</th>
                     <th>Status</th>

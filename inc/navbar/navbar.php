@@ -254,7 +254,7 @@
                 <?php
                     if (isset($_SESSION['uid'])) {
                         echo '
-                        <a href="sell"><li><span><i class="fas fa-plus" style="color: #888888;"></i></span>SELL</li></a>
+                        <a href="sell/"><li><span><i class="fas fa-plus" style="color: #888888;"></i></span>SELL</li></a>
                         <a href="dashboard"><li><span><i class="fas fa-clipboard" style="color: #888888;"></i></span>DASHBOARD</li></a>
                         <a href="inbox" id="inbox"><li><span><i class="fas fa-envelope"></i></span>INBOX</li></a>
                         <a id="notif"><li><span><i class="fas fa-bell"></i></span>NOTIFICATIONS</li></a>

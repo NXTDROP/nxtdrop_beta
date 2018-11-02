@@ -7,12 +7,12 @@
     $date = date("Y-m-d H:i:s", time());
     $num = $_POST['num'];
     if(isset($_SESSION['uid'])) {
-        $getMostPopular = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products, product_rank WHERE products.productID = product_rank.productID ORDER BY product_rank.rank DESC LIMIT ?, 12;");
+        $getMostPopular = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products, product_rank WHERE products.productID = product_rank.productID ORDER BY product_rank.rank DESC LIMIT ?, 20;");
         $getMostPopular->bind_param("iii", $_SESSION['uid'], $_SESSION['uid'], $num);
         $getMostPopular->execute();
         $getMostPopular->bind_result($productID, $model, $assetURL, $heat, $cold, $min, $heated, $froze);
     } else {
-        $getMostPopular = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products, product_rank WHERE products.productID = product_rank.productID ORDER BY product_rank.rank DESC LIMIT ?, 12;");
+        $getMostPopular = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products, product_rank WHERE products.productID = product_rank.productID ORDER BY product_rank.rank DESC LIMIT ?, 20;");
         $getMostPopular->bind_param("i", $num);
         $getMostPopular->execute();
         $getMostPopular->bind_result($productID, $model, $assetURL, $heat, $cold, $min);

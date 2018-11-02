@@ -61,7 +61,7 @@
                 var num_NR = 4;
 
                 $('.carousel').carousel({
-                    interval: 10000
+                    interval: 6000
                 });
                 
                 /*$40 OFF */
@@ -100,7 +100,7 @@
                             if(response != "ERROR") {
                                 $(response).insertBefore('#most-popular > .end_item');
                                 $('#most-popular > .see_more').html("See More");
-                                num_MP = num_MP + 12;
+                                num_MP = num_MP + 20;
                             }
                         }
                     });
@@ -260,30 +260,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <?php include('inc/navbar/navbar.php'); ?>
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <!--<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
-            </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
                 <img class="d-block w-100" src="img/test.png" alt="First slide">
                 </div>
-                <!--<div class="carousel-item">
-                <img class="d-block w-100" src="img/HalloweenTheme.png" alt="Second slide">
-                </div>
                 <div class="carousel-item">
+                <img class="d-block w-100" src="img/YeezyMauveCarousel.png" alt="Second slide">
+                </div>
+                <!--<div class="carousel-item">
                 <img class="d-block w-100" src="img/test.png" alt="Third slide">
                 </div>-->
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
 
         <?php

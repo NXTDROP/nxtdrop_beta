@@ -1,30 +1,41 @@
 <?php
     session_start();
-    include '../../dbh.php';
+    $db = '../../dbh.php';
+    require_once('../currencyConversion.php');
+    include $db;
     $uid = $_SESSION['uid'];
     $num = $_POST['transaction_num'];
-    $transactions_query = "SELECT * FROM transactions, posts WHERE transactions.itemID = posts.pid AND (transactions.sellerID = '$uid' OR transactions.buyerID = '$uid') ORDER BY transactions.purchaseDate DESC LIMIT $num;";
+    $transactions_query = "SELECT * FROM transactions, offers, products WHERE transactions.itemID = offers.offerID AND (transactions.sellerID = '$uid' OR transactions.buyerID = '$uid') AND offers.productID = products.productID ORDER BY transactions.purchaseDate DESC LIMIT $num;";
     $transactions_results = mysqli_query($conn, $transactions_query); 
 
     while ($transactions_row = mysqli_fetch_assoc($transactions_results)) {
         $itemID = $transactions_row['itemID'];
         $date = date_create($transactions_row['purchaseDate']);
-        $item = $transactions_row['caption'];
+        $item = $transactions_row['model'];
         $price = $transactions_row['totalPrice'];
+
+        if($_SESSION['country'] == 'US') {
+            $price = '$'.$price;
+        } else if($_SESSION['country'] == 'CA') {
+            $price = usdTocad($price, $db, true);
+        } else {
+            $price = usdTocad($price, $db, true);
+        }
+
         $transaction_num = $transactions_row['transactionID'];
         $status = $transactions_row['status'];
         if ($uid == $transactions_row['sellerID']) {
             $color = 'style="color: #85bb65"';
-            $price = '+ $'.$price;
+            $price = '+ '.$price;
             $transaction_type = "SALE";
         }
         else {
             $color = 'style="color: #ef0404"';
-            $price = '- $'.$price;
+            $price = '- '.$price;
             $transaction_type = "PURCHASE";
         }
 
-        $transactionProduct = '<a href="orderPlaced.php?item='.$itemID.'">'.$item.'</a>';
+        $transactionProduct = '<a href="orderPlaced.php?transactionID='.$transaction_num.'">'.$item.'</a>';
 
         echo '<tr>
             <td>'.$transactionProduct.'</td>

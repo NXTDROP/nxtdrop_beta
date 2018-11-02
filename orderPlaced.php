@@ -1,6 +1,8 @@
 <?php 
     session_start();
-    include "dbh.php";
+    $db = "dbh.php";
+    require_once('inc/currencyConversion.php');
+    include $db;
     if (isset($_SESSION['uid'])) {
         date_default_timezone_set("UTC");
     }
@@ -43,7 +45,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if($row['transactionID'] === '') {
                 header("Location: home");
             }
-            if($_SESSION['uid'] != ($row['sellerID'] || $row['middlemanID'])) {
+            if($_SESSION['uid'] == ($row['sellerID'] || $row['middlemanID'])) {
                 $style = 'style="background-color: #000; color: #000;"';
                 $row['first_name'] = '';
                 $row['last_name'] = '';
@@ -52,6 +54,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
             else {
                 $style = '';
+            }
+
+            if($_SESSION['country'] == 'US') {
+                $currency = "$";
+            } else if($_SESSION['country'] == "CA") {
+                $currency = "CA$";
+                $row['cost'] = usdTocad($row['cost'], $db, false);
+                $row['price'] = usdTocad($row['price'], $db, false);
+                $row['totalPrice'] = usdTocad($row['totalPrice'], $db, false);
+            } else {
+                $currency = "$";
             }
 
             if($row['MM_Carrier'] != '') {
@@ -75,11 +88,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <?php echo $row['shippingAddress'].'<br>'.$country; ?></p>
             <p style="color: tomato;">Carrier: <?php echo $carrier; ?></p>
             <p style="color: tomato;">Tracking #: <?php echo $trackingno; ?></p>
-            <p id="order-shippingCost">Shipping Cost: $<?php echo number_format($row['cost'], 2, '.', ','); ?></p>
+            <p id="order-shippingCost">Shipping Cost: <?php echo $currency.number_format($row['cost'], 2, '.', ','); ?></p>
             <h3>Item Details</h3>
             <img src="<?php echo $row['assetURL']; ?>"><span><?php echo $row['model']; ?></span>
-            <p id="order-itemPrice">Price: $<?php echo number_format($row['price'], 2, '.', ','); ?></p>
-            <h2 id="order-total">Total: $<?php echo number_format($row['totalPrice'], 2, '.', ','); ?></h2>
+            <p id="order-itemPrice">Price: <?php echo $currency.number_format($row['price'], 2, '.', ','); ?></p>
+            <h2 id="order-total">Total: <?php echo $currency.number_format($row['totalPrice'], 2, '.', ','); ?></h2>
         </div>
 
         <?php include('inc/drop/new-drop-pop.php'); ?>
