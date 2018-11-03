@@ -6,7 +6,7 @@
     $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
     $pwd = md5($pwd);
 
-    $sql = "SELECT * FROM users WHERE (username='$username' OR email='$username');";
+    $sql = "SELECT * FROM users WHERE (blocked = '0' AND active_account = '1' AND email = '$username') OR (username = '$username' AND blocked = '0' AND active_account = '1')";
     $result = $conn->query($sql);
     $check = mysqli_num_rows($result);
 

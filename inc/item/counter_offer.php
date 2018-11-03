@@ -53,12 +53,12 @@
         });
     });
 
-    function sendCounter(ID, Price) {
+    function sendCounter(offerID, Price) {
         $("#send_counter").html('<i class="fas fa-circle-notch fa-spin"></i>');
         $.ajax({
             url: 'inc/item/sendCounterOffer.php',
             type: 'POST',
-            data: {price: Price, offerID: ID},
+            data: {price: Price, offerID: offerID},
             success: function(response) {
                 console.log(response);
                 if(response === 'CONNECTION') {
@@ -77,6 +77,12 @@
                         $(".transaction_pop").fadeOut();
                         $(".transaction_main").fadeOut();
                     }, 2500);
+                } else if(response === 'CARD') {
+                    $('#send_counter').html('Send Offer');
+                    $('.card_pop').fadeIn();
+                    $('.card_main').show();
+                    // Add an instance of the card Element into the `card-element` <div>.
+                    card.mount('#card-element');
                 } else if (response === 'MISSING') {
                     $('#send_counter').html('Blank Price field.');
                     setTimeout(() => {
@@ -134,3 +140,5 @@
         </div>
     </div>       
 </div>
+
+<?php require_once('inc/item/CO_card.php'); ?>

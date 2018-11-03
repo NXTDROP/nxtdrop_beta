@@ -352,7 +352,7 @@ function handleCC(token) {
                 return true;
             }
             else {
-                return false
+                return false;
             }
         },
         error: function(data) {

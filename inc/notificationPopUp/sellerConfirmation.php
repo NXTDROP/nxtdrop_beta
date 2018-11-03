@@ -29,6 +29,10 @@
                         $('.seller_Conf').fadeOut();
                         $('.seller_Conf_main').fadeOut();
                         alert('You sold this item already. List it again if you have more stocks.');
+                    } else if(data === 'CARD') {
+                            $('.pageone').fadeOut();
+                            $('.pagefour').show();
+                            $('#sellerConf_error').html("There is a problem on the buyer's side. We'll contact you via email once it is fixed. Thanks for you patience!");
                     }
                     else if(data === '') {
                         $('.pageone').fadeOut();

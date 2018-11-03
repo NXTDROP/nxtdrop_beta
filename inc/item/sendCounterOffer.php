@@ -18,10 +18,29 @@
     $sendNotif->bind_param("iiiss", $offerID, $userID, $targetID, $type, $date);
     date_default_timezone_set("UTC");
 
+    $checkToken = $conn->prepare("SELECT out_token FROM thebag WHERE uid = ?");
+    $checkToken->bind_param("i", $userID);
+
     if(!isset($_SESSION['uid'])) {
         die('CONNECTION');
     } else {
         $offerID = $_POST['offerID'];
+        $userID = $_SESSION['uid'];
+
+        if($checkToken->execute()) {
+            $checkToken->bind_result($out_token);
+            $checkToken->fetch();
+
+            if($out_token == "") {
+                $checkToken->close();
+                $conn->rollback();
+                die('CARD');
+            }
+            $checkToken->close();
+        } else {
+            $conn->rollback();
+            die('DB');
+        }
 
         if($userInfo->execute()) {
             $userInfo->bind_result($targetID, $targetU, $targetE);
