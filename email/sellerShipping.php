@@ -169,7 +169,7 @@
                         <td style="color: #727272;">Carrier: <?php echo $carrier; ?></td>
                     </tr>
                     <tr style="font-size: 14px;">
-                        <td style="color: #727272;">Tracking #:<a href="https://www.canadapost.ca/trackweb/en#/search?searchFor=<?php echo $tracking; ?>" style="color: #bc3838;"> <?php echo $tracking; ?></a></td>
+                        <td style="color: #727272;">Tracking #:<a href="https://www.ups.com/track?loc=en_US&tracknum=<?php echo $tracking; ?>&requester=WT/trackdetails" style="color: #bc3838;"> <?php echo $tracking; ?></a></td>
                     </tr>
                 </table>
                 <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 2 to 3 business days to arrive. If you have concerns, contact us at support@nxtdrop.com.</p>

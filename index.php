@@ -262,11 +262,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img class="d-block w-100" src="img/test.png" alt="First slide">
+                <img class="d-block w-100" src="img/YeezyMauveCarousel.png" alt="First slide">
                 </div>
-                <div class="carousel-item">
+                <!--<div class="carousel-item">
                 <img class="d-block w-100" src="img/YeezyMauveCarousel.png" alt="Second slide">
-                </div>
+                </div>-->
                 <!--<div class="carousel-item">
                 <img class="d-block w-100" src="img/test.png" alt="Third slide">
                 </div>-->

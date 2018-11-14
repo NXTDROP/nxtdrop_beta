@@ -121,67 +121,26 @@ $(document).ready(function() {
     });
 
     $('.checkout-pay').click(function() {
-        var cardVerification;
         $('.checkout-pay').html('<i class="fas fa-circle-notch fa-spin"></i>');
         if(!$('#card_on_file').prop('checked')) {
+            //console.log("if statement");
             stripe.createToken(card).then(function(result) {
                 if (result.error) {
                   // Inform the customer that there was an error.
                   var errorElement = document.getElementById('card-errors');
                   errorElement.textContent = result.error.message;
+                  $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+                  alert("Card information invalid.");
+                  //console.log("if statement");
                 } else {
-                  // Send the token to your server.
-                  cardVerification = handleCC(result.token);
+                    //console.log("else statement");
+                    // Send the token to your server.
+                    cardVerification = handleCC(result.token);
                 }
             });
-        }
-        
-        var streetInput = $('#street').val();
-        var cityInput = $('#city').val();
-        var postalCodeInput = $('#postalCode').val();
-        var stateInput = $('#state').val();
-        var countryInput = $('#country').val();
-        if((isBlank(streetInput) || isEmpty(streetInput)) || (isBlank(cityInput) || isEmpty(cityInput)) || (isBlank(postalCodeInput) || isEmpty(postalCodeInput)) || (isBlank(stateInput) || isEmpty(stateInput)) || (isBlank(countryInput) || isEmpty(countryInput)))  {
-            $('input').css('border-color', 'red');
-            $('select').css('border-color', 'red');
-            alert('You forgot your shipping address?');
-            setTimeout(resetBorderColor, 10000);
-        }
-        else {
-            if(cardVerification == false) {
-                alert('Sorry, your card was rejected.');
-            }
-            else {
-                var fullAddress = streetInput + ', ' + cityInput + ', ' + stateInput + ' ' + postalCodeInput + ', ' + countryInput;
-                //console.log('ID: ' + item_ID + ', Address: ' + fullAddress + ', DiscountID: ' + discountID  + ', Total: ' + total);
-
-                if(typeof shipping != 'number') {
-                    shipping = 0.00;
-                }
-
-                $.ajax({
-                    url: 'inc/checkout/placeOrder.php',
-                    type: 'POST',
-                    data: {item_ID: item_ID, shippingAddress: fullAddress, discountID: discountID, totalPrice: total, shippingCost: shipping},
-                    success: function(data) {
-                        if(data === 'ERROR 101') {
-                            alert('You must be logged in to purchase an item.');
-                            $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
-                        }
-                        else if(data === 'ERROR 102') {
-                            alert('We have a problem. Please try to purchase later.');
-                            $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
-                        }
-                        else {
-                            window.location.replace('orderPlaced.php?transactionID='+data);
-                        }
-                    },
-                    error: function() {
-                        alert('Sorry, we could not place your order. Contact our support team @ support@nxtdrop.com.');
-                        $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
-                    }
-                });
-            }
+        } else {
+            //console.log("else statement");
+            placeOrder();
         }
     });
 
@@ -343,22 +302,29 @@ function resetBorderColor() {
 }
 
 function handleCC(token) {
-    $.ajax({
-        url: 'inc/account_settings/CCHandle.php',
-        type: 'POST',
-        data: {token: token.id},
-        success: function(data) {
-            if (data == "") {
-                return true;
+    if(token != '') {
+        $.ajax({
+            url: 'inc/account_settings/CCHandle.php',
+            type: 'POST',
+            data: {token: token.id},
+            success: function(data) {
+                if (data == "") {
+                    placeOrder();
+                }
+                else {
+                    alert('Sorry, your card was declined.');
+                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+                }
+            },
+            error: function() {
+                alert('Sorry, your card was declined.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
             }
-            else {
-                return false;
-            }
-        },
-        error: function(data) {
-            return false;
-        }
-    });
+        });
+    } else {
+        alert('Card information invalid.');
+        $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+    }
 }
 
 function changeState(country) {
@@ -369,5 +335,59 @@ function changeState(country) {
     else if(country == "US") {
         $('#state').html('<option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="DC">District Of Columbia</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>');
         $('#postalCode').attr('placeholder', '90046');
+    }
+}
+
+function placeOrder() {
+    console.log("placeOrder called!");
+    var streetInput = $('#street').val();
+    var cityInput = $('#city').val();
+    var postalCodeInput = $('#postalCode').val();
+    var stateInput = $('#state').val();
+    var countryInput = $('#country').val();
+    if((isBlank(streetInput) || isEmpty(streetInput)) || (isBlank(cityInput) || isEmpty(cityInput)) || (isBlank(postalCodeInput) || isEmpty(postalCodeInput)) || (isBlank(stateInput) || isEmpty(stateInput)) || (isBlank(countryInput) || isEmpty(countryInput)))  {
+        $('input').css('border-color', 'red');
+        $('select').css('border-color', 'red');
+        alert('You forgot your shipping address?');
+        $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+        setTimeout(resetBorderColor, 10000);
+    }
+    else {
+        var fullAddress = streetInput + ', ' + cityInput + ', ' + stateInput + ' ' + postalCodeInput + ', ' + countryInput;
+        //console.log('ID: ' + item_ID + ', Address: ' + fullAddress + ', DiscountID: ' + discountID  + ', Total: ' + total);
+
+        if(typeof shipping != 'number') {
+            shipping = 0.00;
+        }
+
+        $.ajax({
+            url: 'inc/checkout/placeOrder.php',
+            type: 'POST',
+            data: {item_ID: item_ID, shippingAddress: fullAddress, discountID: discountID, totalPrice: total, shippingCost:shipping},
+            success: function(data) {
+                if(data === 'ERROR 101') {
+                    alert('You must be logged in to purchase an item.');
+                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+                }
+                else if(data === 'ERROR 102') {
+                    alert('We have a problem. Please try to purchase later.');
+                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+                } else if(data === 'DB') {
+                    alert('We have a problem. Please try to purchase later.');
+                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+                } else if(data === 'CARD') {
+                    alert('Your card was declined.');
+                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+                }
+                else {
+                    window.location.replace('orderPlaced.php?transactionID='+data);
+                }
+            },
+            error: function(data) {
+                console.log(data);
+                alert('Sorry, we could not place your order. Contact our support team @ support@nxtdrop.com.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+            }
+        });
     }
 }
