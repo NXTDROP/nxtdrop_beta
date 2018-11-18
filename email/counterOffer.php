@@ -198,13 +198,13 @@
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
 
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;"><?php echo $username; ?> made you an offer!</h2>
+                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">You have a counter-offer!</h2>
                 <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 5px 0; font-size: 0.85rem; font-weight: 500;">Log in and open the notification tab to accept or decline this offer.</p>
             </div>
 
             <div class="content">
                 <p>Hi, </p>
-                <p><?php echo $username; ?> made you an offer for your "<?php echo $model; ?>". Below is a summary of the deal.</p>
+                <p>You received an offer for your "<?php echo $model; ?>". Below is a summary of the deal.</p>
                 <h2>Summary</h2>
                 <p>Model: <?php echo $model; ?></p>
                 <p>Your initial offer: $<?php echo $iprice; ?></p>

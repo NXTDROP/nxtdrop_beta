@@ -62,13 +62,29 @@
                     $type = 'counter-offer';
                     $listItem->close();
                     if($sendNotif->execute()) {
-                        $email = new Email($targetU, $targetE, 'notifications@nxtdrop.com', $_SESSION['username'].' sent you a counter-offer! Will you take it?', '');
+                        $email = new Email($targetU, $targetE, 'notifications@nxtdrop.com', 'You received a counter-offer! Will you take it?', '');
                         $conn->commit();
                         $email->setExt('offerID='.$offerID.'&userID='.$userID);
                         $email->sendEmail('counterOffer');
-                        $conn->commit();
-                        $sendNotif->close();
-                        die('GOOD');
+
+                        //SEND ALERT EMAIL
+                        $email = new \SendGrid\Mail\Mail(); 
+                        $email->setFrom("stripeusa@nxtdrop.com", "NXTDROP");
+                        $email->setSubject("Counter-Offer ALERT!!!!");
+                        $email->addTo('admin@nxtdrop.com', 'NXTDROP TEAM');
+                        $html = "<p>".$_SESSION['username']." made an counter-offer. Offer ID: ".$offerID.", Price: ".$price.".</p>";
+                        $email->addContent("text/html", $html);
+                        $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                        try {
+                            $sendgrid->send($email);
+                            $conn->commit();
+                            $sendNotif->close();
+                            die('GOOD');
+                        } catch (Exception $e) {
+                            $conn->commit();
+                            $sendNotif->close();
+                            die('GOOD');
+                        }
                     } else {
                         $conn->rollback();
                         die('DB');

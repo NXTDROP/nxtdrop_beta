@@ -56,7 +56,7 @@ src="https://www.facebook.com/tr?id=1908028209510021&ev=PageView
 <base href="<?php echo $base; ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="The safest way to buy and sell sneakers in Canada. All sneakers are guaranteed authentic. Browse brands like Adidas, Yeezy, Nike, Air Jordans, Off-White, NMDs, Supreme, and Bape." />
-<meta name="keywords" content="nxtdrop, stockx, stock x, goat, goat app, adidas yeezy, retro jordans, next drop, nxt drop, sneaker, adidas, streetwear, nike, nmd, air jordan, sneakers, deadstock, resell, hypebeast" />
+<meta name="keywords" content="buy yeezy, buy jordans, yeezy purchase, nxtdrop, jordan shop, adidas yeezy buy" />
 <meta name="robots" content="noodp, noydir, index, follow, archive" />
 <meta name="google" content="notranslate" />
 <meta name="language" content="english" />

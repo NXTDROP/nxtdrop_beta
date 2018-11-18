@@ -76,11 +76,9 @@
             
             try {
                 // Use Stripe's library to make requests...
-                $info = $getBuyerInfo->fetch_assoc();
-                $amount = $info['totalPrice'] * 100;
-                $buyerPaymentMethod = $info['cus_id'];
+                $amount = $totalPrice * 100;
                 $charge = \Stripe\Charge::create(array(
-                    "amount" => $totalPrice,
+                    "amount" => $amount,
                     "currency" => "usd",
                     "customer" => $cus_id,
                     "on_behalf_of" => $s_id,
@@ -114,6 +112,8 @@
                 $sendgrid = new \SendGrid($SD_TEST_API_KEY);
                 try {
                     $sendgrid->send($email);
+                    $conn->commit();
+                    die($transactionID);
                 } catch (Exception $e) {
                     //PRINT TID
                     $conn->commit();
@@ -127,7 +127,7 @@
                 $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
                 $email = new \SendGrid\Mail\Mail(); 
                 $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                $email->setSubject("URGENT! Error Update User Regis.");
+                $email->setSubject("URGENT! Error PO.");
                 $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
                 $html = "<p>".$log."<br> Card Declined. Username: ".$_SESSION['username'].", itemID: ".$item_ID.", totalPrice: ".$totalPrice."</p>";
                 $email->addContent("text/html", $html);
@@ -158,7 +158,7 @@
                 $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
                 $email = new \SendGrid\Mail\Mail(); 
                 $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                $email->setSubject("URGENT! Error Update User Regis.");
+                $email->setSubject("URGENT! Error PO.");
                 $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
                 $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
                 $email->addContent("text/html", $html);

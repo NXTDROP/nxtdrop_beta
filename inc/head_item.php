@@ -67,7 +67,7 @@ src="https://www.facebook.com/tr?id=1908028209510021&ev=PageView
                 echo '<meta name="og:title" content="'.$model.' - NXTDROP - Canada&apos;s #1 Sneaker Marketplace" />';
                 echo '<meta name="twitter:description" content="Buy and Sell '.$model.' on NXTDROP and many other '.$brand.' shoes." />';
                 echo '<meta name="og:description" content="Buy and Sell '.$model.' on NXTDROP and many other '.$brand.' shoes." />';
-                echo '<meta name="keywords" content="'.$brand.', '.$line.', '.$model.', sneakers, nxtdrop, buy, real, shoes" />';
+                echo '<meta name="keywords" content="buy '.$brand.', buy '.$line.', buy '.$model.', sneakers, nxtdrop, real, shoes" />';
             } else {
                 echo 'NXTDROP - Canada&apos;s #1 Sneaker Marketplace';
             }

@@ -11,7 +11,7 @@
     $getCO = $conn->prepare("SELECT offer, date, username, email FROM counterOffer, users WHERE offerID = ? AND userID = ? AND userID = uid");
     $addReviewCO = $conn->prepare("INSERT INTO reviewedCO (offerID, userID, offer, date, status, reviewDate) VALUES (?, ?, ?, ?, ?, ?)");
     $deleteCO = $conn->prepare("DELETE FROM counterOffer WHERE offerID = ? AND userID = ?");
-    $getBuyerInfo = $conn->prepare("SELECT users.stripe_id, address, out_token FROM users, thebag WHERE users.uid = ? AND thebag.uid = users.uid;");
+    $getBuyerInfo = $conn->prepare("SELECT users.stripe_id, address, users.cus_id FROM users, thebag WHERE users.uid = ? AND thebag.uid = users.uid;");
     $deleteNotif = $conn->prepare("DELETE FROM notifications WHERE post_id = ? AND user_id = ? AND target_id = ? AND notification_type = 'counter-offer'");
 
     if(!isset($_SESSION['uid'])) {
@@ -86,7 +86,7 @@
                                 $charge = \Stripe\Charge::create(array(
                                     "amount" => $amount,
                                     "currency" => "usd",
-                                    "source" => $buyerPaymentMethod,
+                                    "customer" => $buyerPaymentMethod,
                                     "on_behalf_of" => $_SESSION['stripe_acc'],
                                     "transfer_group" => $ID
                                 ));
@@ -106,9 +106,9 @@
                                 $email->sendEmail('orderPlaced');
 
                                 //SEND EMAIL TO SELLER
-                                $email = new Email($_SESSION['username'], $_SESSION['email'], 'stripeusa@nxdrop.com', 'Confirm order to get paid [ORDER #'.$transactionID.']', '');
+                                $email = new Email($_SESSION['username'], $_SESSION['email'], 'stripeusa@nxdrop.com', 'SALE CONFIRMED!', '');
                                 $email->setTransactionID($transactionID);
-                                $email->sendEmail('sellerConfirmation');
+                                $email->sendEmail('orderConfirmation_seller');
 
                                 die('GOOD');
                             } catch(\Stripe\Error\Card $e) {
@@ -120,7 +120,7 @@
                                 //send prepare email with error message
                                 $email = new \SendGrid\Mail\Mail(); 
                                 $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                                $email->setSubject("URGENT! Card Decline!");
+                                $email->setSubject("URGENT! Card Decline COC!!!");
                                 $email->addTo('stripeusa@nxtdrop.com', 'NXTDROP');
                                 $html = "<p>".$log."</p>";
                                 $email->addContent("text/html", $html);
@@ -151,7 +151,7 @@
                                 $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
                                 $email = new \SendGrid\Mail\Mail(); 
                                 $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                                $email->setSubject("URGENT! Error Send Counter-Offer COnfirmation.");
+                                $email->setSubject("URGENT! Error COC.");
                                 $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
                                 $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
                                 $email->addContent("text/html", $html);
@@ -179,7 +179,7 @@
                                 //send prepare email with error message
                                 $email = new \SendGrid\Mail\Mail(); 
                                 $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                                $email->setSubject("URGENT! Error Update User Regis.");
+                                $email->setSubject("URGENT! Error COC.");
                                 $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
                                 $html = "<p>".$log."</p>";
                                 $email->addContent("text/html", $html);

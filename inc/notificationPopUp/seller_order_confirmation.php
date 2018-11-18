@@ -36,18 +36,9 @@
                     try {
                         // Use Stripe's library to make requests...
                         $info = $getBuyerInfo->fetch_assoc();
-                        $amount = $info['totalPrice'] * 100;
-                        $buyerPaymentMethod = $info['cus_id'];
-                        $charge = \Stripe\Charge::create(array(
-                            "amount" => $amount,
-                            "currency" => "usd",
-                            "customer" => $buyerPaymentMethod,
-                            "on_behalf_of" => $_SESSION['stripe_acc'],
-                            "transfer_group" => $transactionID
-                        ));
-                        $chargeDate = date("Y-m-d H:i:s", time());
-                        $chargeID = $charge->id;
-                        $conn->query("UPDATE transactions SET chargeID = '$chargeID', chargeDate = '$chargeDate' WHERE transactionID = '$transactionID'");
+                        $charge = \Stripe\Charge::retrieve($info['chargeID']);
+                        $charge->capture();
+
                         $conn->query("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$item_ID', '0', '$seller_ID', 'seller shipping', '$chargeDate');");
                         $conn->commit();
 
@@ -67,7 +58,7 @@
                         $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
                         $email = new \SendGrid\Mail\Mail(); 
                         $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                        $email->setSubject("URGENT! Error Update User Regis.");
+                        $email->setSubject("URGENT! Card Declined SOC!!!");
                         $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
                         $html = "<p>".$log."<br> Card Declined</p>";
                         $email->addContent("text/html", $html);
@@ -98,7 +89,7 @@
                         $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
                         $email = new \SendGrid\Mail\Mail(); 
                         $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                        $email->setSubject("URGENT! Error Update User Regis.");
+                        $email->setSubject("URGENT! Error SOC.");
                         $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
                         $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
                         $email->addContent("text/html", $html);
@@ -137,17 +128,92 @@
                 $row = $result->fetch_assoc();
                 $transactionID = $row['transactionID'];
                 $conn->autocommit(false);
-                $updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date', cancellationDate = '$confirmation_date', cancelledBy = '$seller_ID' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
+                $updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date', cancellationDate = '$confirmation_date', cancelledBy = '$seller_ID', status = 'cancelled' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '$buyer_ID' AND target_id = '$seller_ID';");
                 $getBuyerInfo = $conn->query("SELECT * FROM transactions, thebag, users WHERE transactions.transactionID = '$transactionID' AND thebag.uid = transactions.buyerID AND transactions.buyerID = users.uid");
 
                 if($updateTrans && $deleteNotif && $getBuyerInfo) {
-                    $info = $getBuyerInfo->fetch_assoc();
-                    $conn->commit();
-                    //SEND EMAIL TO BUYER
-                    $email = new Email($info['username'], $info['email'], 'orders@nxtdrop.com', 'Sorry, your order is cancelled', '');
-                    $email->setTransactionID($transactionID);
-                    $email->sendEmail('orderConfirmation');
+
+                    try {
+                        // Use Stripe's library to make requests...
+                        $info = $getBuyerInfo->fetch_assoc();
+                        $refund = \Stripe\Refund::create([
+                            "charge" => $info['chargeID']
+                        ]);
+
+                        $conn->commit();
+
+                        //SEND EMAIL TO BUYER
+                        $email = new Email($info['username'], $info['email'], 'orders@nxtdrop.com', 'Sorry, your order is cancelled', '');
+                        $email->setTransactionID($transactionID);
+                        $email->sendEmail('orderConfirmation');
+                    } catch(\Stripe\Error\Card $e) {
+                        // Since it's a decline, \Stripe\Error\Card will be caught
+                        $body = $e->getJsonBody();
+                        $err  = $body['error'];
+                        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+                        $email = new \SendGrid\Mail\Mail(); 
+                        $email->setFrom("admin@nxtdrop.com", "NXTDROP");
+                        $email->setSubject("URGENT! Card Declined SOC!!!");
+                        $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
+                        $html = "<p>".$log."<br> Card Declined</p>";
+                        $email->addContent("text/html", $html);
+                        $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                        try {
+                            $response = $sendgrid->send($email);
+                        } catch (Exception $e) {
+                            die('CARD');
+                        }
+
+                        die('CARD');
+                    } catch (\Stripe\Error\RateLimit $e) {
+                        // Too many requests made to the API too quickly
+                        $conn->rollback();
+                        errorLog($e);
+                        echo 'DB';
+                    } catch (\Stripe\Error\InvalidRequest $e) {
+                        // Invalid parameters were supplied to Stripe's API
+                        $conn->rollback();
+                        errorLog($e);
+                        echo 'DB';
+                    } catch (\Stripe\Error\Authentication $e) {
+                        // Authentication with Stripe's API failed
+                        // (maybe you changed API keys recently)
+                        $conn->rollback();
+                        $body = $e->getJsonBody();
+                        $err  = $body['error'];
+                        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+                        $email = new \SendGrid\Mail\Mail(); 
+                        $email->setFrom("admin@nxtdrop.com", "NXTDROP");
+                        $email->setSubject("URGENT! Error Seller Order Confirmation.");
+                        $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
+                        $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
+                        $email->addContent("text/html", $html);
+                        $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                        try {
+                            $response = $sendgrid->send($email);
+                        } catch (Exception $e) {
+                            die('DB');
+                        }
+
+                        die('DB');
+                    } catch (\Stripe\Error\ApiConnection $e) {
+                        // Network communication with Stripe failed
+                        $conn->rollback();
+                        errorLog($e);
+                        echo 'DB';
+                    } catch (\Stripe\Error\Base $e) {
+                        // Display a very generic error to the user, and maybe send
+                        // yourself an email
+                        //SEND ALERT EMAIL
+            
+                        $conn->rollback();
+                        echo 'DB';
+                    } catch (Exception $e) {
+                        // Something else happened, completely unrelated to Stripe
+                        $conn->rollback();
+                        echo 'DB';
+                    }
                 }
                 else {
                     $conn->rollback();
