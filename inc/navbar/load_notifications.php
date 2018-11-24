@@ -37,6 +37,9 @@
                 elseif($row['notification_type'] == 'item sold') {
                     $sql = "SELECT users.username, users.uid, profile.status, products.assetURL, products.model, offers.offerID, offers.size, offers.price FROM offers, users, profile, products, transactions WHERE offers.offerID = $post_id AND transactions.buyerID = users.uid AND transactions.itemID = offers.offerID AND profile.uid = users.uid AND offers.productID = products.productID LIMIT 1;";
                 }
+                elseif($row['notification_type'] == 'promo') {
+                    $sql = "SELECT holidayOffers.productID, products.assetURL, products.model FROM holidayOffers, products WHERE holidayOffers.productID = products.productID AND holidayOffers.productID = $post_id";
+                }
                 else {
                     $sql = "SELECT * FROM posts, users, profile WHERE posts.pid = $post_id AND profile.uid = $uid AND users.uid = $uid";
                 }
@@ -98,6 +101,9 @@
                     $model = "'".$model."'";
                     echo '<div class="one_notif" onclick="counterOfferConf('.$user_result['price'].', '.$user_result['offer'].', '.$user_result['offerID'].', '.$user_result['uid'].', '.$model.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif">You received an offer for your '.$user_result['model'].' <span class="notif_time"> '.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
                 }
+                else if($row['notification_type'] == 'promo') {
+                    echo '<div class="one_notif" onclick="checkoutPromo('.$post_id.')" '.$background.'><img src="https://nxtdrop.com/img/nxtdroplogo.png" alt="" class="profile_notif"><span class="message_notif">CONGRATULATIONS!!! Click to checkout your item. <span class="notif_time"> '.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
+                }
                 else {
                     echo '<div class="one_notif" onclick="go_to_inbox()" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif"><a href="u/'.$user_result['username'].'" id="notif_user">'.$user_result['username'].'</a> made you an offer. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['pic'].'" alt="" class="post_img"></div>';
                 }
@@ -105,3 +111,9 @@
         }
     }
 ?>
+
+<script type="text/javascript">
+    function checkoutPromo(id) {
+        window.location.href = '2checkout.php?item=' + id;
+    }
+</script>

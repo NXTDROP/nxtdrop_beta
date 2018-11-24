@@ -17,49 +17,11 @@ var discountType;
 var discount;
 var currency;
 var curr;
-const stripe = Stripe('pk_live_ZeS4R1yiq76rObz3ADsgOs13');
-
-// Create an instance of Elements.
-var elements = stripe.elements();
-
-// Custom styling can be passed to options when creating an Element.
-var style = {
-    base: {
-        color: '#32325d',
-        lineHeight: '18px',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-        color: '#aab7c4'
-        }
-    },
-    invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a'
-    }
-};
-
-// Create an instance of the card Element.
-var card = elements.create('card', {style: style});
-
-// Handle real-time validation errors from the card Element.
-card.addEventListener('change', function(event) {
-    var displayError = document.getElementById('card-errors');
-    if (event.error) {
-        displayError.textContent = event.error.message;
-    } else {
-        displayError.textContent = '';
-    }
-});
 
 $(document).ready(function() {
     $(".load").fadeIn();
     $(".load_main").show();
     getInfo();
-
-    // Add an instance of the card Element into the `card-element` <div>.
-    card.mount('#card-element');
 
     $('#country').change(function() {
         if($(this).val() == "CA") {
@@ -213,7 +175,7 @@ $(document).ready(function() {
 
 function getInfo() {
     $.ajax({
-        url: 'inc/checkout/getInfo.php',
+        url: 'inc/checkout/2getInfo.php',
         type: 'POST',
         data: {item_ID: item_ID},
         success: function(data) {
@@ -341,56 +303,37 @@ function changeState(country) {
     }
 }
 
-function placeOrder() {
+function placeOrderPP(chargeID) {
     console.log("placeOrder called!");
-    var streetInput = $('#street').val();
-    var cityInput = $('#city').val();
-    var postalCodeInput = $('#postalCode').val();
-    var stateInput = $('#state').val();
-    var countryInput = $('#country').val();
-    if((isBlank(streetInput) || isEmpty(streetInput)) || (isBlank(cityInput) || isEmpty(cityInput)) || (isBlank(postalCodeInput) || isEmpty(postalCodeInput)) || (isBlank(stateInput) || isEmpty(stateInput)) || (isBlank(countryInput) || isEmpty(countryInput)))  {
-        $('input').css('border-color', 'red');
-        $('select').css('border-color', 'red');
-        alert('You forgot your shipping address?');
-        $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
-        setTimeout(resetBorderColor, 10000);
-    }
-    else {
-        var fullAddress = streetInput + ', ' + cityInput + ', ' + stateInput + ' ' + postalCodeInput + ', ' + countryInput;
-        //console.log('ID: ' + item_ID + ', Address: ' + fullAddress + ', DiscountID: ' + discountID  + ', Total: ' + total);
-
-        if(typeof shipping != 'number') {
-            shipping = 0.00;
-        }
-
-        $.ajax({
-            url: 'inc/checkout/placeOrder.php',
-            type: 'POST',
-            data: {item_ID: item_ID, shippingAddress: fullAddress, discountID: discountID, totalPrice: total, shippingCost:shipping},
-            success: function(data) {
-                if(data === 'ERROR 101') {
-                    alert('You must be logged in to purchase an item.');
-                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
-                }
-                else if(data === 'ERROR 102') {
-                    alert('We have a problem. Please try to purchase later.');
-                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
-                } else if(data === 'DB') {
-                    alert('We have a problem. Please try to purchase later.');
-                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
-                } else if(data === 'CARD') {
-                    alert('Your card was declined.');
-                    $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
-                }
-                else {
-                    window.location.replace('orderPlaced.php?transactionID='+data);
-                }
-            },
-            error: function(data) {
-                console.log(data);
-                alert('Sorry, we could not place your order. Contact our support team @ support@nxtdrop.com.');
+    $(".load").fadeIn();
+    $(".load_main").show();
+    $.ajax({
+        url: 'inc/checkout/placeOrderPP.php',
+        type: 'POST',
+        data: {item_ID: item_ID, discountID: discountID, totalPrice: total, shippingCost:shipping, chargeID: chargeID},
+        success: function(data) {
+            if(data === 'ERROR 101') {
+                alert('You must be logged in to purchase an item.');
                 $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
             }
-        });
-    }
+            else if(data === 'ERROR 102') {
+                alert('We have a problem. Please try to purchase later.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+            } else if(data === 'DB') {
+                alert('We have a problem. Please try to purchase later.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+            } else if(data === 'CARD') {
+                alert('Your card was declined.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+            }
+            else {
+                window.location.href = '2orderPlaced.php?transactionID=' + data;
+            }
+        },
+        error: function(data) {
+            console.log(data);
+            alert('Sorry, we could not place your order. Contact our support team @ support@nxtdrop.com.');
+            $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+        }
+    });
 }

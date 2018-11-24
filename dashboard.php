@@ -89,8 +89,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 $currrency_name = "CAD";
             }
 
-            $available_balance = number_format($balance['available'][0]['amount']/100, 2, ".", ",");
-            $pending_balance = number_format($balance['pending'][0]['amount']/100, 2, ".", ",");
+            if($acc_id != '') {
+                $available_balance = number_format($balance['available'][0]['amount']/100, 2, ".", ",");
+                $pending_balance = number_format($balance['pending'][0]['amount']/100, 2, ".", ",");
+            } else {
+                $available_balance = 0.00;
+                $pending_balance = 0.00;
+            }
         ?>
 
         <div class="balances">

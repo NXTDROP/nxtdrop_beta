@@ -291,12 +291,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="carousel-item">
                 <img class="d-block w-100" src="img/NotForResale.png" alt="Not For Resale Banner">
                 </div>
-                <div class="carousel-item active">
+                <div class="carousel-item">
                 <img class="d-block w-100" src="img/UnionXaj1.png" alt="Jordan 1 Retro High Union LA Banner">
                 </div>
-                <!--<div class="carousel-item">
-                <img class="d-block w-100" src="img/test.png" alt="Third slide">
-                </div>-->
+                <div class="carousel-item active">
+                <img class="d-block w-100" src="img/BlackFridayCarouselNxtdrop.png" alt="Black Friday Promo">
+                </div>
             </div>
         </div>
 
@@ -323,81 +323,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ?>
 
         <div id="item-container">
-        <div id="promo">
-                <h2 id="feed-header" style="color: #ff3333;">Black Friday Drop</h2>
-
-                <style>
-                    #promo button {
-                        border: none;
-                        border-radius: 4px;
-                        background: #368312;
-                        color: #fff;
-                        padding: 5px;
-                        font-size: 12px;
-                        letter-spacing: 2px;
-                        margin: 5px 0;
-                        cursor: pointer;
-                    }
-
-                    #promo button:hover {
-                        background: #5eab3a;
-                    }
-                </style>
-
-                <?php
-
-                    function prenium($retailPrice, $marketPrice) {
-                        return '+ '.number_format(($marketPrice/$retailPrice*100) - 100, 1, '.', ',');
-                    }
-
-                    if(isset($_SESSION['uid'])) {
-                        $connected = true;
-                    } else {
-                        $connected = false;
-                    }
-
-                    $getPromoFeed = $conn->prepare("SELECT retailPrice, marketPrice, p.productID, model, brand, yearMade, assetURL FROM holidayOffers h, products p WHERE h.productID = p.productID;");
-                    $getPromoFeed->execute();
-                    $getPromoFeed->bind_result($retailPrice, $marketPrice, $productID, $model, $brand, $yearMade, $assetURL);
-
-                    while($getPromoFeed->fetch()) {
-                        $prenium = prenium($retailPrice, $marketPrice);
-                        echo '
-                        <div class="card">
-                            <table>
-                                <tr class="lowest_price">
-                                    <td>$'.$retailPrice.'</td>
-                                </tr>
-                                <tr class="item_asset" onclick="">
-                                    <td><img src="'.$assetURL.'" alt="'.$model.'"></td>
-                                </tr>
-                                <tr class="item_model">
-                                    <td>'.$model.'</td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <table style="width: 100%; color: #555555;">
-                                            <tr>
-                                                <td>Market Avg. Price</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="color: #368312;">$'.$marketPrice.'</td>
-                                            </tr>
-                                            <tr><td style="color: #368312; font-size: 10px;">('.$prenium.')</td></tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td onclick="promo('.$productID.', '."'".$assetURL."'".', '."'".$yearMade."'".', '."'$".$retailPrice."'".', '."'".$model."'".', '."'".$brand."'".', '.$connected.')"><button>ENTER RAFFLE</button></td>
-                                </tr>
-                            </table>
-                        </div>';
-                    }
-
-                    $getPromoFeed->close();
-                ?>
-            </div>
-
             <div id="most-popular">
                 <h2 id="feed-header">Most Popular</h2>
                 <?php

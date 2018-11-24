@@ -89,6 +89,8 @@
                 $chargeDate = date("Y-m-d H:i:s", time());
                 $chargeID = $charge->id;
                 $conn->query("UPDATE transactions SET chargeID = '$chargeID', chargeDate = '$chargeDate' WHERE transactionID = '$transactionID'");
+
+                $conn->commit();
                 
                 //SEND EMAIL TO BUYER
                 $username = $_SESSION['username'];
@@ -112,11 +114,9 @@
                 $sendgrid = new \SendGrid($SD_TEST_API_KEY);
                 try {
                     $sendgrid->send($email);
-                    $conn->commit();
                     die($transactionID);
                 } catch (Exception $e) {
                     //PRINT TID
-                    $conn->commit();
                     die($transactionID);
                 }
             } catch(\Stripe\Error\Card $e) {
