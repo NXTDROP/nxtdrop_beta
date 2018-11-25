@@ -7,11 +7,11 @@
     if(isset($_SESSION['uid'])) {
         $userID = $_SESSION['uid'];
         if(isset($_SESSION['talkTimestamp'])) {
-            $checkTalk = $conn->prepare("SELECT COUNT(*) FROM talk WHERE date > ? AND userID != ?");
+            $checkTalk = $conn->prepare("SELECT COUNT(*) FROM talk WHERE date > ? AND userID = ?");
             $checkTalk->bind_param("si", $tTimestamp, $userID);
             $tTimestamp = $_SESSION['talkTimestamp'];
         } else {
-            $getLastActivity = $conn->prepare("SELECT last_activity FROM users WHERE uid != ?");
+            $getLastActivity = $conn->prepare("SELECT last_activity FROM users WHERE uid = ?");
             $getLastActivity->bind_param("i", $userID);
             $getLastActivity->execute();
             $getLastActivity->bind_result($time);
