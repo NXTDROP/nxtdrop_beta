@@ -21,7 +21,7 @@ $(document).ready(function() {
         var pwd = $("#pwd").val();
         var cPwd = $("#cPwd").val();
         var submit = $("#submit").val();
-        $("#form-message").load("newpwdregis.php", {
+        $("#form-message").load("pwd.rec/newpwdregis.php", {
             cPwd: cPwd,
             pwd: pwd,
             email: email,

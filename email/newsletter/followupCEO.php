@@ -15,7 +15,7 @@
     <head>
         <meta charset="utf-8">
         <base href="https://nxtdrop.com/">
-        <title></title>
+        <title>Black Friday Drop 🔥</title>
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,13 +59,13 @@
             }
 
             p {
-                font-size: 18px;
+                font-size: 20px;
                 line-height: 30px;
             }
 
             h1 {
                 margin: 10px auto;
-                font-size: 32px;
+                font-size: 24px;
             }
 
             #logo {
@@ -109,14 +109,13 @@
         <img src="https://nxtdrop.com/img/nxtdroplogo.png" alt="NXTDROP, Inc. Logo" id="logo">
 
         <div class="content">
-            <h1>Dear <?php echo $uname; ?>,</h1><br>
-            <p>Thank you for entering our Black Friday raffle. Congratulations your name was drawn. Please login and check your notifications to checkout your item.</p><br>
-
-            <p>Thanks again for participating.</p><br>
-
-            <p>The NXTDROP Team.</p>
-
-            <p style="font-size: 20px; color: #c7001b;">If you do not checkout your item before 11:59PM, you won&apos;t be able to claim it later.</p>
+            <h1>Dear <?php echo $uname; ?>,</h1>
+            <p>I noticed that you completed your first purchase with us. At NXTDROP, we are striving to provide the best sneaker shopping experience in Canada and appreciate that you gave us a shot. I hope that my team and I met your expectations. </p>
+            <p>Because we are a bunch of perfectionists, we want to not only meet but exceed your expectations next time. Thus, I would appreciate it if you shoot me an email at <a href="mailto:ceo@nxtdrop.com">ceo@nxtdrop.com</a> with your comments on how your first experience with Nxtdrop was and what we can improve in the future.</p>
+            <p>I am looking forward to hearing from you. <br>
+            Thank you so much, <br>
+            Yusuf <br>
+            Co-founder & CEO</p>
         </div>
 
         <div class="footer">

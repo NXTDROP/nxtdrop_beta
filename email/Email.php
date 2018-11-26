@@ -400,7 +400,7 @@
             $u = 'https://nxtdrop.com/email/newsletter/'.$this->getNewsletter().'?email='.$this->getRecipientEmail().'&username='.$this->getRecipient();
             $url = str_replace(" ", "%20", $u);
             $c = file_get_contents($url);
-            if(!$this->deliverMail($c, 'The NXTDROP Team')) {
+            if(!$this->deliverMail($c, 'Yusuf from NXTDROP')) {
                 echo 'false';
             }
         }

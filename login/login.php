@@ -11,7 +11,7 @@
     $check = mysqli_num_rows($result);
 
     if($check < 1) {
-        echo 'Username/Password incorrect.';
+        echo 'Username/Password incorrect OR Activate your Account.';
         die;
     }
     else {
