@@ -79,7 +79,7 @@
             $email->setFrom("stripeusa@nxtdrop.com", "NXTDROP PAYMENTS");
             $email->setSubject("Transaction #".$transactionID."");
             $email->addTo('admin@nxtdrop.com', 'NXTDROP TEAM');
-            $html = "<p>".$username." bought an item. Order #".$transactionID.", Total Price: ".$totalPrice.".</p>";
+            $html = "<p>".$sellerUsername." bought an item. Order #".$transactionID.", Total Price: ".$totalPrice.".</p>";
             $email->addContent("text/html", $html);
             $sendgrid = new \SendGrid($SD_TEST_API_KEY);
             try {
