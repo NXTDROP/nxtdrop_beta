@@ -1,7 +1,9 @@
 <?php 
     session_start();
-    include 'dbh.php';
+    $db = 'dbh.php';
+    include $db;
     include 'inc/num_conversion.php';
+    require_once('inc/currencyConversion.php');
     function isFriend($uname) {
         include 'dbh.php';
         $follower_username = $uname;
@@ -45,85 +47,52 @@
         <script type="text/javascript" src="js/dm_icon.js"></script>
         <script>
             $(document).ready(function() {
-                /*getPosts();
-                $('#posts-btn').click(function() {
-                    var posts =  $('#posts-btn').css('background-color');
+                var num = 12;
+                var username = <?php echo "'".$fullname."'"; ?>;
 
-                    if (posts == "rgb(170, 0, 0)") {
-                        getPosts();
-                        $('#likes-btn').css('background-color', '#aa0000');
-                        $('#likes-btn').css('color', '#fff');
-                        $('#reviews-btn').css('background-color', '#aa0000');
-                        $('#reviews-btn').css('color', '#fff');
-                    }
+                $('#most-popular > .see_more').click(function() {
+                    $('#most-popular > .see_more').html('<i class="fas fa-circle-notch fa-spin"></i>');
+                    $.ajax({
+                        url: 'inc/profile/getMore.php',
+                        type: 'POST',
+                        data: {num: num, username: username},
+                        success: function(response) {
+                            if(response != "ERROR") {
+                                $(response).insertBefore('#most-popular > .end_item');
+                                $('#most-popular > .see_more').html("See More");
+                                num = num + 12;
+                            }
+                        }
+                    });
                 });
-
-                $('#likes-btn').click(function() {
-                    var likes =  $('#likes-btn').css('background-color');
-
-                    if (likes == "rgb(170, 0, 0)") {
-                        getLikes();
-                        $('#posts-btn').css('background-color', '#aa0000');
-                        $('#posts-btn').css('color', '#fff');
-                        $('#reviews-btn').css('background-color', '#aa0000');
-                        $('#reviews-btn').css('color', '#fff');
-                    }
-                });
-
-                $('#reviews-btn').click(function() {
-                    var reviews =  $('#reviews-btn').css('background-color');
-
-                    if (reviews == "rgb(170, 0, 0)") {
-                        getReviews();
-                        $('#posts-btn').css('background-color', '#aa0000');
-                        $('#posts-btn').css('color', '#fff');
-                        $('#likes-btn').css('background-color', '#aa0000');
-                        $('#likes-btn').css('color', '#fff');
-                    }
-                });*/
             });
 
-            /*function getPosts () {
-                $('#posts-btn').css('background-color', '#fff');
-                $('#posts-btn').css('color', '#aa0000');
-                $('#display-profile').html('<p id="loading-profile">LOADING...</p>');
+            function editListing(productID, model) {
+                $(".editListing_pop").fadeIn();
+                $(".editListing_main").show();
+                $('.editListing_main > h2').html(model);
+                $(".editListing_content").html('<i class="fas fa-circle-notch fa-spin"></i>');
+
                 $.ajax({
-                    url: 'inc/profile-page-post.php',
-                    type: 'GET',
-                    data: {u: <?php //echo "'".$_GET['u']."'"; ?>},
-                    success: function(data) {
-                        $('#display-profile').html(data);
+                    url: 'inc/profile/getlistings.php',
+                    type: 'POST',
+                    data: {productID: productID},
+                    success: function(response) {
+                        if(response == "not connected") {
+                            $('.editListing_content').html('<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p><p>Log in.</p>');
+                        } else if(response == "error1") {
+                            $('.editListing_content').html('<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p><p>Error. Try later.</p>');
+                        } else if(response == "DB") {
+                            $('.editListing_content').html('<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p><p>Error. Try later.</p>');
+                        } else {
+                            $('.editListing_content').html(response);
+                        }
+                    },
+                    error: function() {
+                        $('.editListing_content').html('<p><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p><p>Error. Try later.</p>');
                     }
                 });
             }
-
-            function getLikes () {
-                $('#likes-btn').css('background-color', '#fff');
-                $('#likes-btn').css('color', '#aa0000');
-                $('#display-profile').html('<p id="loading-profile">LOADING...</p>');
-                $.ajax({
-                    url: 'inc/like-page-post.php',
-                    type: 'GET',
-                    data: {u: <?php //echo "'".$_GET['u']."'"; ?>},
-                    success: function(data) {
-                        $('#display-profile').html(data);
-                    }
-                });
-            }
-
-            function getReviews () {
-                $('#reviews-btn').css('background-color', '#fff');
-                $('#reviews-btn').css('color', '#aa0000');
-                $('#display-profile').html('<p id="loading-profile">LOADING...</p>');
-                $.ajax({
-                    url: 'inc/reviews-page.php',
-                    type: 'GET',
-                    data: {u: <?php //echo "'".$_GET['u']."'"; ?>},
-                    success: function(data) {
-                        $('#display-profile').html(data);
-                    }
-                });
-            }*/
         </script>
     </head>
 
@@ -135,17 +104,68 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <?php include('inc/navbar/navbar.php'); ?>
         <?php include("inc/profile-info.php"); ?>
 
-        <!--<div class="profile-navigation">
-            <button id="posts-btn">POSTS</button>
-            <button id="likes-btn">LIKES</button>
-            <button id="reviews-btn">REVIEWS</button>
-        </div>-->
+        <div id="item-container">
+            <div id="most-popular">
+                <?php
+                    if(isset($_GET['u']) && isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
+                        echo '<h2 id="feed-header">Your Closet</h2>';
+                        $getCloset = $conn->prepare("SELECT p.productID, p.model, p.assetURL, MIN(o.price), COUNT(o.offerID) FROM users u, offers o, products p WHERE u.username = ? AND u.uid = o.sellerID AND o.productID = p.productID AND o.offerID NOT IN (SELECT offers.offerID FROM offers, transactions WHERE offers.offerID = transactions.itemID AND o.sellerID = offers.sellerID AND transactions.status != 'cancelled') GROUP BY p.model ORDER BY p.model ASC LIMIT 12;");
+                        $getCloset->bind_param("s", $fullname);
+                        $getCloset->execute();
+                        $getCloset->bind_result($productID, $model, $assetURL, $min, $numListed);
 
-        <!--<div id="display-profile">
-            
+                        while($getCloset->fetch()) {
+                            if($min === null) {
+                                $low = '';
+                            } else {
+                                $low = usdTocad($min, $db, true).'+';
+                            }
+
+                            if($numListed > 1) {
+                                $numListed = $numListed.' Pairs';
+                            } else {
+                                $numListed = $numListed. ' Pair';
+                            }
+
+                            if(isset($_SESSION['uid'])) {
+                                if($_SESSION['username'] == $fullname) {
+                                    $onclick = 'onclick="editListing('."'".$productID."'".', '."'".$model."'".')"';
+                                } else {
+                                    $onclick = '';
+                                }
+                            } else {
+                                $onclick = '';
+                            }
+
+                            echo '
+                        <div class="card">
+                            <table>
+                                <tr class="lowest_price" '.$onclick.'>
+                                    <td>'.$low.'</td>
+                                </tr>
+                                <tr class="item_asset" '.$onclick.'>
+                                    <td><img src="'.$assetURL.'" alt="'.$model.'"></td>
+                                </tr>
+                                <tr class="item_model" '.$onclick.'>
+                                    <td>'.$model.'</td>
+                                </tr>
+                                <tr style="color: #555;">
+                                <td>'.$numListed.'</td>
+                                </tr>
+                            </table>
+                        </div>
+                        ';
+                        }
+
+                        echo '<div class="end_item"></div>
+
+                        <div class="see_more">See More</div>';
+
+                        $getCloset->close();
+                    }
+                ?>
+            </div>
         </div>
-
-        <p id="message"></p>-->
 
         <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/new-msg-post.php'); ?>
@@ -154,6 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <?php include('inc/search_pop.php') ?>
         <?php include('inc/buyer_transaction_confirmation.php') ?>
         <?php include('inc/follow_display.php') ?>
+        <?php include('inc/profile/editListing.php'); ?>
 
     </body>
 

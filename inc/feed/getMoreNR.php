@@ -8,12 +8,12 @@
     $num = $_POST['num'];
     $dateToday = date("Y-m-d", time());
     if(isset($_SESSION['uid'])) {
-        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products WHERE products.yearMade <= ? ORDER BY products.yearMade DESC LIMIT ?, 12;");
+        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE offers.productID = products.productID AND price NOT IN (SELECT price FROM offers, transactions WHERE offers.productID = products.productID AND offers.offerID = transactions.itemID)) AS minPrice, (SELECT COUNT(userID) FROM heat WHERE userID = ? AND heat.productID = products.productID) AS heated, (SELECT COUNT(userID) FROM cold WHERE userID = ? AND cold.productID = products.productID) AS froze FROM products WHERE products.yearMade <= ? ORDER BY products.yearMade DESC LIMIT ?, 12;");
         $getNewReleases->bind_param("iisi", $_SESSION['uid'], $_SESSION['uid'], $dateToday, $num);
         $getNewReleases->execute();
         $getNewReleases->bind_result($productID, $model, $assetURL, $heat, $cold, $min, $heated, $froze);
     } else {
-        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE productID = products.productID) AS minPrice FROM products WHERE products.yearMade <= ? ORDER BY products.yearMade DESC LIMIT ?, 12;");
+        $getNewReleases = $conn->prepare("SELECT products.productID, products.model, products.assetURL, (SELECT COUNT(*) FROM heat WHERE productID = products.productID) AS heat, (SELECT COUNT(*) FROM cold WHERE productID = products.productID) AS cold, (SELECT MIN(price) FROM offers WHERE offers.productID = products.productID AND price NOT IN (SELECT price FROM offers, transactions WHERE offers.productID = products.productID AND offers.offerID = transactions.itemID)) AS minPrice FROM products WHERE products.yearMade <= ? ORDER BY products.yearMade DESC LIMIT ?, 12;");
         $getNewReleases->bind_param("si", $dateToday, $num);
         $getNewReleases->execute();
         $getNewReleases->bind_result($productID, $model, $assetURL, $heat, $cold, $min);

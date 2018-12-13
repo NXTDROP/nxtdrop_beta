@@ -729,6 +729,11 @@
     .transaction_pop .promo_main {
         top: 60px!important;
     }
+
+    .editListing_main {
+        width: 100%!important;
+        left: 0!important;
+    }
     
     .promo_main table {
         margin: 10px 0!important;
@@ -844,6 +849,11 @@
     .transaction_pop .promo_main {
         top: 60px!important;
         height: 300px!important;
+    }
+
+    .editListing_main {
+        width: 100%!important;
+        left: 0!important;
     }
     
     .promo_main table {
@@ -979,6 +989,11 @@
     .transaction_pop .promo_main {
         top: 60px!important;
     }
+
+    .editListing_main {
+        width: 100%!important;
+        left: 0!important;
+    }
     
     .promo_main table {
         margin: 10px 0!important;
@@ -1094,6 +1109,11 @@
     .transaction_pop .promo_main {
         top: 60px!important;
         height: 325px!important;
+    }
+
+    .editListing_main {
+        width: 100%!important;
+        left: 0!important;
     }
     
     .promo_main table {
@@ -1229,6 +1249,11 @@
     .transaction_pop .promo_main {
         top: 60px!important;
     }
+
+    .editListing_main {
+        width: 100%!important;
+        left: 0!important;
+    }
     
     .promo_main table {
         margin: 10px 0!important;
@@ -1356,6 +1381,17 @@
     .transaction_pop .promo_main {
         top: 60px!important;
         height: 250px!important;
+    }
+
+    .editListing_main {
+        width: 100%!important;
+        left: 0!important;
+        height: 65%!important;
+        top: 60px!important;
+    }
+    
+    .editListing_main h2 {
+        font-size: 16px!important;
     }
     
     .promo_main table {
@@ -8898,6 +8934,93 @@ footer table tr td a:hover {
     cursor: pointer;
     background: red;
     color: #fff;
+}
+
+.editListing_pop {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+    z-index: 20;
+}
+
+.editListing_close {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+}
+
+.editListing_main {
+    width: 50%;
+    background: #fff;
+    z-index: 4;
+    position: fixed;
+    top: 65px;
+    height: 80%;
+    border-radius: 4px;
+    left: 25%;
+    display: none;
+    overflow: auto;
+}
+
+.editListing_main h2 {
+    text-align: center;
+    border-bottom: 1px solid #f27178;
+    padding: 10px 0;
+    font-size: 30px;
+    font-weight: 800;
+    font-family: 'Ubuntu', sans-serif;
+    background: #f27178;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.editListing_content {
+    padding: 10px;
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: auto;
+}
+
+.one_item_listing {
+    margin: 0;
+    width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.one_item_listing .item_price {
+    margin: 0!important;
+    width: 100%!important;
+}
+
+.one_item_listing button {
+    margin: 5px 25%;
+    width: 50%;
+    border: none;
+    border-radius: 8px;
+    background: #f27178;
+    padding: 5px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.one_item_listing button:hover {
+    background: #aa0000;
+}
+
+.one_item_listing h4 {
+    text-align: center;
+    font-size: 14px;
 }
 /******************************************* PROFILE END *********************************************/
 
