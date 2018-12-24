@@ -6,4 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'WePay' => $vendorDir . '/wepay/php-sdk/wepay.php',
+    'WePayException' => $vendorDir . '/wepay/php-sdk/wepay.php',
+    'WePayPermissionException' => $vendorDir . '/wepay/php-sdk/wepay.php',
+    'WePayRequestException' => $vendorDir . '/wepay/php-sdk/wepay.php',
+    'WePayServerException' => $vendorDir . '/wepay/php-sdk/wepay.php',
 );

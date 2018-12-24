@@ -1,6 +1,7 @@
 {
     "require": {
         "stripe/stripe-php": "^6.15",
-        "sendgrid/sendgrid": "^7.2"
+        "sendgrid/sendgrid": "^7.2",
+        "wepay/php-sdk": "0.3.1"
     }
 }

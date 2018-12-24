@@ -59,7 +59,7 @@ $(document).ready(function() {
     getInfo();
 
     // Add an instance of the card Element into the `card-element` <div>.
-    card.mount('#card-element');
+    //card.mount('#card-element');
 
     $('#country').change(function() {
         if($(this).val() == "CA") {

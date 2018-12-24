@@ -45,11 +45,20 @@ class ComposerStaticInit6e22df1d4cd4e4e27504be9a14133976
         ),
     );
 
+    public static $classMap = array (
+        'WePay' => __DIR__ . '/..' . '/wepay/php-sdk/wepay.php',
+        'WePayException' => __DIR__ . '/..' . '/wepay/php-sdk/wepay.php',
+        'WePayPermissionException' => __DIR__ . '/..' . '/wepay/php-sdk/wepay.php',
+        'WePayRequestException' => __DIR__ . '/..' . '/wepay/php-sdk/wepay.php',
+        'WePayServerException' => __DIR__ . '/..' . '/wepay/php-sdk/wepay.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6e22df1d4cd4e4e27504be9a14133976::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6e22df1d4cd4e4e27504be9a14133976::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit6e22df1d4cd4e4e27504be9a14133976::$classMap;
 
         }, null, ClassLoader::class);
     }

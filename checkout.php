@@ -18,10 +18,36 @@
         </title>
         <link rel="canonical" href="https://nxtdrop.com/checkout.php">
         <!-- Javasripts -->
+        <script type="text/javascript" src="https://www.wepay.com/min/js/iframe.wepay.js"></script>
         <script type="text/javascript">
             var item_ID = <?php echo "'".$_GET['item']."'"; ?>;
-            function goBack() {
-                window.history.back();
+            function goNext() {
+                $('.checkout-cancel').html('<i class="fas fa-circle-notch fa-spin"></i>');
+                var streetInput = $('#street').val();
+                var cityInput = $('#city').val();
+                var postalCodeInput = $('#postalCode').val();
+                var stateInput = $('#state').val();
+                var countryInput = $('#country').val();
+                if((isBlank(streetInput) || isEmpty(streetInput)) || (isBlank(cityInput) || isEmpty(cityInput)) || (isBlank(postalCodeInput) || isEmpty(postalCodeInput)) || (isBlank(stateInput) || isEmpty(stateInput)) || (isBlank(countryInput) || isEmpty(countryInput)))  {
+                    $('input').css('border-color', 'red');
+                    $('select').css('border-color', 'red');
+                    alert('You forgot your shipping address?');
+                    $('.checkout-cancel').html('NEXT');
+                    setTimeout(resetBorderColor, 10000);
+                } else {
+                    var fullAddress = streetInput + ', ' + cityInput + ', ' + stateInput + ' ' + postalCodeInput + ', ' + countryInput;
+
+                    $.ajax({
+                        url: 'inc/checkout/wePayCheckout.php',
+                        type: 'POST',
+                        data: {amount: total, shippingCost: shipping, itemID: item_ID, discountID: discountID, shippingAddress: fullAddress, item: item},
+                        success: function(response) {
+                            $(response).insertAfter('.checkout-cancel');
+                            $("input").attr('disabled', 'disabled')
+                            $(".checkout-cancel").hide();                   
+                        }
+                    });
+                }
             }
         </script>
         <script type="text/javascript" src="js/checkout.js"></script>
@@ -47,20 +73,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="checkout-buyer-info">
                 <h3>Personal Information</h3>
-                <h4>Payment Method</h4>
+
+                <!--<h4>Payment Method</h4>
                 <div class="form-group">
                     <label for="card-element">
                     Credit or Debit
                     </label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="When storing your card details, we send over a request to the issuing bank for either a $0 or a $1 authorization to verify that the card is issued and the bank will allow it to be authorized."></i></span>
                     <div id="card-element">
-                    <!-- A Stripe Element will be inserted here. -->
+                     A Stripe Element will be inserted here. 
                     </div>
 
-                    <!-- Used to display form errors. -->
+                     Used to display form errors. 
                     <div id="card-errors" role="alert"></div>
                 </div>
                 <input type="checkbox" id="card_on_file">
-                <label for="card_on_file">No Card on File</label>
+                <label for="card_on_file">No Card on File</label>-->
                 <h4>Shipping To</h4>
                 <input type="checkbox" id="same_address">
                 <label for="same_address">Check if shipping address same as personal address.</label>
@@ -161,8 +188,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <hr>
             </div>
 
-            <button class="checkout-pay">Pay US$00.00</button>
-            <button class="checkout-cancel" onclick="goBack();">Cancel Order</button>
+            <button class="checkout-cancel" onclick="goNext();">Next</button>
         </div>
 
         <?php require_once('inc/footer.php'); ?>

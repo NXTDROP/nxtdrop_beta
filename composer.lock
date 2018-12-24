@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f14530e2b3604fa9a8da5dc0e074fae",
+    "content-hash": "5ec96df3a2a9ee81f052c34e06fe56a6",
     "packages": [
         {
             "name": "sendgrid/php-http-client",
@@ -167,6 +167,53 @@
                 "stripe"
             ],
             "time": "2018-08-03T10:54:52+00:00"
+        },
+        {
+            "name": "wepay/php-sdk",
+            "version": "0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wepay/PHP-SDK.git",
+                "reference": "2a89ceb2954d117d082f869d3bfcb7864e6c2a7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wepay/PHP-SDK/zipball/2a89ceb2954d117d082f869d3bfcb7864e6c2a7d",
+                "reference": "2a89ceb2954d117d082f869d3bfcb7864e6c2a7d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "wepay.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "WePay",
+                    "email": "api@wepay.com"
+                }
+            ],
+            "description": "WePay APIv2 SDK for PHP",
+            "keywords": [
+                "payment",
+                "sdk",
+                "wepay"
+            ],
+            "time": "2017-01-21T07:03:26+00:00"
         }
     ],
     "packages-dev": [],
