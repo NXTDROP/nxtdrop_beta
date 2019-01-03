@@ -1,6 +1,6 @@
 <footer>
             <ul>
-                <li><p>&copy; 2018 NXTDROP, INC. - Canada&apos;s #1 Sneaker Marketplace</p></li>
+                <li><p>&copy; 2019 NXTDROP, INC. - Canada&apos;s #1 Sneaker Marketplace</p></li>
                 <li class="links"><p><a href="terms">Terms</a></p></li>
                 <li class="links"><p><a href="privacy">Privacy</a></p></li>
                 <li class="links"><p><a href="blog">Blog</a></p></li>

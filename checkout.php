@@ -73,25 +73,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <div class="checkout-buyer-info">
                 <h3>Personal Information</h3>
-
-                <!--<h4>Payment Method</h4>
-                <div class="form-group">
-                    <label for="card-element">
-                    Credit or Debit
-                    </label><span><i class="fas fa-info-circle" style="margin-left: 10px;" data-html="true" data-placement="top" data-trigger="hover" data-toggle="popover" data-content="When storing your card details, we send over a request to the issuing bank for either a $0 or a $1 authorization to verify that the card is issued and the bank will allow it to be authorized."></i></span>
-                    <div id="card-element">
-                     A Stripe Element will be inserted here. 
-                    </div>
-
-                     Used to display form errors. 
-                    <div id="card-errors" role="alert"></div>
-                </div>
-                <input type="checkbox" id="card_on_file">
-                <label for="card_on_file">No Card on File</label>-->
                 <h4>Shipping To</h4>
-                <input type="checkbox" id="same_address">
+                <!--<input type="checkbox" id="same_address">
                 <label for="same_address">Check if shipping address same as personal address.</label>
-                <br>
+                <br>-->
                 <input type="text" name="street" id="street" placeholder="Street">
                 <input type="text" name="line2" id="line2" placeholder="Apt/Suite/Etc...">
                 <input type="text" name="city" id="city" placeholder="City">

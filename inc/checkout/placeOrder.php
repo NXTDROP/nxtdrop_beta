@@ -16,7 +16,6 @@
     $shippingCost = $_POST['shippingCost'];
     $chargeID = $_POST['checkout_id'];
     $n_id = $_SESSION['uid'];
-    $cus_id = $_SESSION['cus_id'];
 
     if(!isset($_SESSION['uid'])) {
         echo 'ERROR 101';

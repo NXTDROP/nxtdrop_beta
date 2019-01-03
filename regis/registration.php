@@ -4,7 +4,7 @@
     require_once('../../credentials.php');
     require_once('../vendor/autoload.php');
     include('../email/Email.php');
-    \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
+    \Stripe\Stripe::setApiKey($STRIPE_TEST_SECRET_KEY);
     date_default_timezone_set("UTC"); 
     $date = date("Y-m-d H:i:s", time());
 
@@ -85,130 +85,40 @@
                 $insertICode = true; //= $conn->query("INSERT INTO users_code (uid, invite_code, dateGenerated) VALUES ('$uid', '$iCode', '$iCodeDate')");
                 
                 if($createProfile && $insertICode && $showInvite) {
-                    try {
-                        // Use Stripe's library to make requests...
-                        $acct = \Stripe\Account::create(array(
-                            "country" => "$country",
-                            "type" => "custom", 
-                            "email" => "$email",
-                            "tos_acceptance" => array(
-                                "date" => time(),
-                                "ip" => $_SERVER['REMOTE_ADDR']
-                            )
-                        ));
+                    $thebag = $conn->query("INSERT INTO thebag (uid) VALUES ('$uid')");
+                    if($thebag) {
+                        $conn->commit();
+                        session_start();
+                        $_SESSION['uid'] = $uid;
+                        $_SESSION['name'] = $name;
+                        $_SESSION['username'] = $uName;
+                        $_SESSION['email'] = $email;
+                        $_SESSION['country'] = $country;
 
-                        $cus = \Stripe\Customer::create(array(
-                            "email" => "$email",
-                        ));
-
-                        $cus_id = $cus->id;
-                        $account_id = $acct->id;
-                        $updateUsers = $conn->query("UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';");
-                        $thebag = $conn->query("INSERT INTO thebag (uid, stripe_id) VALUES ('$uid', '$account_id')");
-                        if($updateUsers && $thebag) {
-                            $conn->commit();
-                            session_start();
-                            $_SESSION['uid'] = $uid;
-                            $_SESSION['name'] = $name;
-                            $_SESSION['username'] = $uName;
-                            $_SESSION['email'] = $email;
-                            $_SESSION['stripe_acc'] = $account_id;
-                            $_SESSION['cus_id'] = $cus_id;
-                            $_SESSION['country'] = $country;
-
-                            $createEmail = new Email($name, $email, 'hello@nxtdrop.com', 'Hi '.$uName.', welcome to NXTDROP', '');
-                            if(!$createEmail->sendEmail('registration')) {
-                                echo '';
-                            }
+                        $createEmail = new Email($name, $email, 'hello@nxtdrop.com', 'Hi '.$uName.', welcome to NXTDROP', '');
+                        if(!$createEmail->sendEmail('registration')) {
+                            echo '';
                         }
-                        else {
-                            $email = new \SendGrid\Mail\Mail(); 
-                            $email->setFrom("admin@nxtdrop.com", "NXTDROP ERROR");
-                            $email->setSubject("URGENT! Error Registration Stripe.");
-                            $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
-                            $html = "<p>Username: " . $uName . ", stripe_id: " . $account_id . ", customer_id: " . $cus_id . ", Date: " . date("Y-m-d H:i:s", time()) . ", Message: Couldn't update Stripe accounts IDs to Database. Please do so manually. Thank You!</p>";
-                            $email->addContent("text/html", $html);
-                            $sendgrid = new \SendGrid($SD_TEST_API_KEY);
-                            try {
-                                $sendgrid->send($email);
-                            } catch (Exception $e) {
-                                $cu = \Stripe\Customer::retrieve($cus_id);
-                                $ac = \Stripe\Account::retrieve($account_id);
-                                $cu->delete();
-                                $ac->delete();
-                                $conn->rollback();
-                                die('DB');
-                            }  
-                            $conn->commit();          
-                        }
-                    } catch (\Stripe\Error\RateLimit $e) {
-                        // Too many requests made to the API too quickly
-                        errorLog($e);
-                        $conn->rollback();
-                        die('DB');
-                    } catch (\Stripe\Error\InvalidRequest $e) {
-                        // Invalid parameters were supplied to Stripe's API
-                        errorLog($e);
-                        $conn->rollback();
-                        die('DB');
-                    } catch (\Stripe\Error\Authentication $e) {
-                        // Authentication with Stripe's API failed
-                        // (maybe you changed API keys recently)
-                        $body = $e->getJsonBody();
-                        $err  = $body['error'];
-                        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-                        $email = new \SendGrid\Mail\Mail(); 
-                        $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                        $email->setSubject("URGENT! Error Update User Regis.");
-                        $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
-                        $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
-                        $email->addContent("text/html", $html);
-                        $sendgrid = new \SendGrid($SD_TEST_API_KEY);
-                        try {
-                            $response = $sendgrid->send($email);
-                        } catch (Exception $e) {
-                            die('DB');
-                        }
-                        $conn->rollback();
-                        die('DB');
-                    } catch (\Stripe\Error\ApiConnection $e) {
-                        // Network communication with Stripe failed
-                        errorLog($e);
-                        $conn->rollback();
-                        die('DB');
-                    } catch (\Stripe\Error\Base $e) {
-                        // Display a very generic error to the user, and maybe send
-                        // yourself an email
-
-                        //get error
-                        $body = $e->getJsonBody();
-                        $err  = $body['error'];
-                        $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-
-                        //send prepare email with error message
-                        $email = new \SendGrid\Mail\Mail(); 
-                        $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                        $email->setSubject("URGENT! Error Update User Regis.");
-                        $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
-                        $html = "<p>".$log."</p>";
-                        $email->addContent("text/html", $html);
-                        $sendgrid = new \SendGrid($SD_TEST_API_KEY);
-
-                        //send email
-                        try {
-                            $response = $sendgrid->send($email);
-                        } catch (Exception $e) {
-                            die('DB');
-                        }
-
-                        errorLog($e);
-                        $conn->rollback();
-                        die('DB');
                     }
-                    catch (Exception $e) {
-                        // Something else happened, completely unrelated to Stripe
-                        $conn->rollback();
-                        die('DB');
+                    else {
+                        $email = new \SendGrid\Mail\Mail(); 
+                        $email->setFrom("admin@nxtdrop.com", "NXTDROP ERROR");
+                        $email->setSubject("URGENT! Error Registration Stripe.");
+                        $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
+                        $html = "<p>Username: " . $uName . ", stripe_id: " . $account_id . ", customer_id: " . $cus_id . ", Date: " . date("Y-m-d H:i:s", time()) . ", Message: Couldn't update Stripe accounts IDs to Database. Please do so manually. Thank You!</p>";
+                        $email->addContent("text/html", $html);
+                        $sendgrid = new \SendGrid($SD_TEST_API_KEY);
+                        try {
+                            $sendgrid->send($email);
+                        } catch (Exception $e) {
+                            $cu = \Stripe\Customer::retrieve($cus_id);
+                            $ac = \Stripe\Account::retrieve($account_id);
+                            $cu->delete();
+                            $ac->delete();
+                            $conn->rollback();
+                            die('DB');
+                        }  
+                        $conn->commit();          
                     }
                 }
                 else {
@@ -243,7 +153,7 @@
 
         $body = $e->getJsonBody();
         $err  = $body['error'];
-        $log_msg = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
+        $log_msg = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
 
         if (!file_exists($log_filename))
         {

@@ -72,7 +72,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <?php include('inc/navbar/navbar.php'); ?>
 
         <?php
-            $uid = $_SESSION['uid'];
+            /*$uid = $_SESSION['uid'];
             $query = "SELECT stripe_id FROM users WHERE uid = '$uid'";
             $result = mysqli_fetch_assoc(mysqli_query($conn, $query));
             $acc_id = $result['stripe_id'];
@@ -95,17 +95,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             } else {
                 $available_balance = 0.00;
                 $pending_balance = 0.00;
-            }
+            }*/
         ?>
 
-        <div class="balances">
+        <!--<div class="balances">
             <div class="available_balance">
-                <strong><?php echo $currrency.$available_balance ?></strong>
-                <p>Available Balance (<?php echo $currrency_name ?>)</p>
+                <strong><?php //echo $currrency.$available_balance ?></strong>
+                <p>Available Balance (<?php //echo $currrency_name ?>)</p>
             </div>
             <div class="funds_on_hold">
-                <strong><?php echo $currrency.$pending_balance ?></strong>
-                <p>Funds on Hold (<?php echo $currrency_name ?>)</p>
+                <strong><?php //echo $currrency.$pending_balance ?></strong>
+                <p>Funds on Hold (<?php //echo $currrency_name ?>)</p>
             </div>
         </div>
 
@@ -120,9 +120,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </div>
 
-        <button id="bank_cards">Bank & Cards Settings</button>
+        <button id="bank_cards">Bank & Cards Settings</button>-->
 
         <?php
+            $uid = $_SESSION['uid'];
+
+            if ($_SESSION['country'] == 'US') {
+                $currrency = 'US$';
+                $currrency_name = "USD";
+            }
+            else {
+                $currrency = 'CA$';
+                $currrency_name = "CAD";
+            }
+
             $sales_query = "SELECT * FROM transactions WHERE sellerID = '$uid'";
             $purchases_query = "SELECT * FROM transactions WHERE buyerID = '$uid'";
             $sales_results = mysqli_query($conn, $sales_query);
@@ -184,6 +195,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <?php include('inc/drop/new-drop-pop.php'); ?>
         <?php include('inc/search_pop.php') ?>
         <?php include('inc/buyer_transaction_confirmation.php') ?>
-        <?php include('inc/dashboard/payout_pop.php') ?>
+        <?php //include('inc/dashboard/payout_pop.php') ?>
     </body>
 </html>

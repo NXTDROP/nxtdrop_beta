@@ -258,7 +258,7 @@
                         <a href="dashboard"><li><span><i class="fas fa-clipboard" style="color: #888888;"></i></span>DASHBOARD</li></a>
                         <a id="notif"><li><span><i class="fas fa-bell"></i></span>NOTIFICATIONS</li></a>
                         <a href="u/'.$username.'"><li><span><i class="fa fa-user" aria-hidden="true"></i></span>PROFILE</li></a>
-                        <a href="settings"><li><span><i class="fas fa-cog" style="color: #888888;"></i></span>SETTINGS</li></a>
+                        <!--<a href="settings"><li><span><i class="fas fa-cog" style="color: #888888;"></i></span>SETTINGS</li></a>-->
                         <a href="logout"><li><span><i class="fas fa-sign-out-alt" aria-hidden="true"></i></span>LOGOUT</li></a>';
                     }
                 ?>

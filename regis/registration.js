@@ -99,7 +99,7 @@ $(document).ready(function() {
                             $('#submit').html('Create Account');
                             $('.regis').fadeOut();
                             $('.regis_main').fadeOut();
-                            console.log(data);
+                            alert(data);
                         }
                     },
                     error: function(data) {

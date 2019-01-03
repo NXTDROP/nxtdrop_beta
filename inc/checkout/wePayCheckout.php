@@ -1,4 +1,7 @@
 <?php
+    session_start();
+    $db = '../../dbh.php';
+    require_once('../currencyConversion.php');
     $amount = $_POST['amount'];
     $shippingCost = $_POST['shippingCost'];
     $itemID = $_POST['itemID'];
@@ -32,10 +35,10 @@
     WePay::useProduction($client_id, $client_secret);
     $wepay = new WePay($access_token);
 
+    $total = $amount;
+
     if($_SESSION['country'] == 'CA') {
-        $currency = 'CAD';
-    } else {
-        $currency = 'USD';
+        $amount = cadTousd($amount, $db, false);
     }
 
     // create the checkout
@@ -44,12 +47,12 @@
         'amount'            => $amount,
         'short_description' => $description,
         'type'              => 'goods',
-        'currency'          => $currency,
+        'currency'          => "USD",
         'fee'               => array(
             'fee_payer'     => 'payee_from_app'
         ),
         'hosted_checkout'   => array(
-            'redirect_uri'      => $redirectURI.$itemID.'&amount='.$amount.'&shippingAddress='.$shippingAddress.'&shippingCost='.$shippingCost.'&discountID='.$discountID,
+            'redirect_uri'      => $redirectURI.$itemID.'&amount='.$total.'&shippingAddress='.$shippingAddress.'&shippingCost='.$shippingCost.'&discountID='.$discountID,
             'mode'              => 'iframe'
         )
     ));
