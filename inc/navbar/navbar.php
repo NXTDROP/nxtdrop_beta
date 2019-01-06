@@ -236,10 +236,8 @@
             <a href="u/'.$username.'"><img id="nav-profile" src="'.$pic.'"/></a>';
         }
         else {
-            echo '<button class="drop-btn" title="List/Request An Item" style="display: none"><i class="fa fa-plus" aria-hidden="true"></i></button>
-
-            <button class="alert-btn" title="Notifications" style="display: none"><i class="fa fa-bell"></i></button>
-            
+            echo '
+            <a href="signin"><button class="login-btn" title="Login/Sign Up">LOGIN</button></a>
             <a id="login-btn" href="signup"><button class="sign-btn" title="Login/Sign Up">SIGN UP</button></a>';
         }
     ?>

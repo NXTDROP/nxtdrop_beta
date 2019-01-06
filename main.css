@@ -57,6 +57,10 @@
     .sign-btn {
         font-size: 12px!important;
     }
+    
+    .login-btn {
+        display: none;
+    }
 
     #search {
         font-size: 9px!important;
@@ -280,6 +284,10 @@
     .sign-btn {
         font-size: 12px!important;
     }
+    
+    .login-btn {
+        display: none;
+    }
 
     #search {
         font-size: 10px!important;
@@ -491,6 +499,10 @@
 
     .sign-btn {
         font-size: 12px!important;
+    }
+    
+    .login-btn {
+        display: none;
     }
 
     #search {
@@ -9914,6 +9926,22 @@ ul li h2 {
     cursor: pointer;
 }
 
+.login-btn {
+    height: 36px;
+    padding: 5px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    background: none;
+    color: #aa0000;
+    letter-spacing: 2px;
+}
+
+.login-btn:hover {
+    cursor: pointer;
+}
+
+
 .search-box {
     display: flex;
     height: 36px;
@@ -10155,7 +10183,7 @@ ul li h2 {
 }
 
 #login-btn {
-    margin-left: 5%;
+    margin-left: 1%;
 }
 
 .search_bar_index input {
