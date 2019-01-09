@@ -21,8 +21,8 @@
     // TEST application settings
     /*$account_id = 1329085590; // your app's account_id
     $client_id = 52447;
-    $client_secret = "98ac089d97";
-    $access_token = "STAGE_1a0530e17fd8ef8f110d6480bdba589784b3026f026f700ee386c55fee065736";*/ // your app's access_token
+    $client_secret = "c53e19b34e";
+    $access_token = "STAGE_c21ff99af9ac88077362f7897271ed1dcabcbf2f23e60767ef0eaed07b42687e";*/ // your app's access_token
 
     // PRODUCTION application settings
     $account_id = 574797532; // your app's account_id

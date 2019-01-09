@@ -13,8 +13,8 @@
 
         if($status == 'accepted') {
             $title = 'Congratulations, your counter-offer was accepted';
-            $a = 'You&apos;ll receive another email with the details of your purchase.';
-            $b = 'Now, just relax and wait for your brand new pair. We&apos;ve got everything under control.';
+            $a = 'Please log in and check your notifications to checkout your item. If you don&apos;t checkout the item in 2 business days, you&aposll lose this deal.';
+            $b = 'Once checked out, just relax and wait for your brand new pair. We&apos;ve got everything under control.';
         } elseif($status == 'declined') {
             $title = 'Sorry, your counter-offer was rejected';
             $a = 'Sorry that you couldn&apos;t get the pair you wanted. You can send another counter-offer whenever you feel like it.';

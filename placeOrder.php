@@ -28,7 +28,7 @@
                 var shippingAddress = <?php echo "'".$_GET['shippingAddress']."'"; ?>;
                 var shippingCost = <?php echo "'".$_GET['shippingCost']."'"; ?>;
                 <?php if($_GET['discountID'] != '') {echo 'var discountID = '.$_GET['discountID'].';';} else{echo 'var discountID;';} ?>;
-                var checkout_id = <?php echo "'".$_GET['checkout_id']."'"; ?>
+                var checkout_id = <?php echo "'".$_GET['checkout_id']."'"; ?>;
 
                 $.ajax({
                     url: 'inc/checkout/placeOrder.php',

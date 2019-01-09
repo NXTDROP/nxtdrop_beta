@@ -27,7 +27,7 @@
         $offerID = $_POST['offerID'];
         $userID = $_SESSION['uid'];
 
-        if($checkToken->execute()) {
+        /*if($checkToken->execute()) {
             $checkToken->bind_result($out_token);
             $checkToken->fetch();
 
@@ -40,7 +40,7 @@
         } else {
             $conn->rollback();
             die('DB');
-        }
+        }*/
 
         if($userInfo->execute()) {
             $userInfo->bind_result($targetID, $targetU, $targetE);

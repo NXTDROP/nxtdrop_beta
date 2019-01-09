@@ -3,9 +3,8 @@
     session_unset();
     session_destroy();
 
-    if(isset($_COOKIE['rememberme'])) {
-        setcookie('rememberme', null, -1);
-    }
+    unset($_COOKIE['rememberme']);
+    setcookie("rememberme", "", time() - 3600, '/');
 
     header("Location: home");
     exit();

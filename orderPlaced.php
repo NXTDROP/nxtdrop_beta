@@ -1,6 +1,7 @@
 <?php 
     session_start();
     $db = "dbh.php";
+    require_once('login/rememberMe.php');
     require_once('inc/currencyConversion.php');
     include $db;
     if (isset($_SESSION['uid'])) {

@@ -13,6 +13,7 @@
     $deleteCO = $conn->prepare("DELETE FROM counterOffer WHERE offerID = ? AND userID = ?");
     $getBuyerInfo = $conn->prepare("SELECT users.stripe_id, address, users.cus_id FROM users, thebag WHERE users.uid = ? AND thebag.uid = users.uid;");
     $deleteNotif = $conn->prepare("DELETE FROM notifications WHERE post_id = ? AND user_id = ? AND target_id = ? AND notification_type = 'counter-offer'");
+    $sendNotif = $conn->prepare("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES (?, ?, ?, ?, ?)");
 
     if(!isset($_SESSION['uid'])) {
         die('CONNECTION');
@@ -23,7 +24,7 @@
 
         if($confirmation == 'accepted') {
             //CREATE TRANSACTION
-            $addTransaction = $conn->prepare("INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate, confirmationDate, totalPrice) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+            /*$addTransaction = $conn->prepare("INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate, confirmationDate, totalPrice) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 
             $getTrans = $conn->query("SELECT *  FROM transactions WHERE buyerID = '$userID'");
             if($getTrans->num_rows > 0) {
@@ -33,7 +34,7 @@
             }
 
             $price = $_POST['price'];
-            $totalPrice = $price + $shipping;
+            $totalPrice = $price + $shipping;*/
 
             $getBuyerInfo->bind_param('i', $userID);
             $getCO->bind_param('ii', $offerID, $userID);
@@ -47,24 +48,29 @@
                     $getBuyerInfo->fetch();
                     $getBuyerInfo->close();
     
-                    $status = 'waiting shipment';
+                    /*$status = 'waiting shipment';
                     $purchaseDate = date("Y-m-d H:i:s", time());
-                    $confirmationDate = $purchaseDate;
+                    $confirmationDate = $purchaseDate;*/
                     $seller_ID = $_SESSION['uid'];
-                    $addTransaction->bind_param('iisisssd', $offerID, $seller_ID , $buyerAddress, $userID, $status, $purchaseDate, $confirmationDate, $totalPrice);
+                    /*$addTransaction->bind_param('iisisssd', $offerID, $seller_ID , $buyerAddress, $userID, $status, $purchaseDate, $confirmationDate, $totalPrice);
                     if($addTransaction->execute()) {
-                        $addTransaction->close();
+                        $addTransaction->close();*/
     
                         //GET TRANSACTIONID JUST CREATED ABOVE
-                        $getTID = $conn->query("SELECT transactionID FROM transactions WHERE itemID = '$offerID' AND sellerID = '$seller_ID' AND purchaseDate = '$purchaseDate';");
+                        /*$getTID = $conn->query("SELECT transactionID FROM transactions WHERE itemID = '$offerID' AND sellerID = '$seller_ID' AND purchaseDate = '$purchaseDate';");
                         $data = $getTID->fetch_assoc();
                         $transactionID = $data['transactionID'];
     
                         //CREATE SHIPMENT
-                        $addShipping = $conn->query("INSERT INTO shipping (transactionID, cost) VALUES ('$transactionID', '$shipping');");
+                        $addShipping = $conn->query("INSERT INTO shipping (transactionID, cost) VALUES ('$transactionID', '$shipping');");*/
     
                         //DELETE notification
                         $deleteNotif->bind_param('iii', $offerID, $userID, $seller_ID);
+
+                        //SEND notification
+                        $type = 'counter-offer checkout';
+                        $date = date("Y-m-d H:i:s", time());
+                        $sendNotif->bind_param("iiiss", $offerID, $seller_ID, $userID, $type, $date);
     
                         //ADD CO to reviewedCO table
                         $date = date("Y-m-d H:i:s", time());
@@ -74,142 +80,34 @@
                         //DELETE COUNTEROFFER
                         $deleteCO->bind_param('ii', $offerID, $userID);
     
-                        if($addShipping && $deleteNotif->execute() && $addReviewCO->execute() && $deleteCO->execute()) {
+                        if($deleteNotif->execute() && $addReviewCO->execute() && $deleteCO->execute() && $sendNotif->execute()) {
                             $deleteNotif->close();
                             $addReviewCO->close();
                             $deleteCO->close();
+                            $sendNotif->close();
 
-                            try {
-                                // Use Stripe's library to make requests...
-                                $amount = $totalPrice * 100;
-                                $ID = "'".$transactionID."'";
-                                $charge = \Stripe\Charge::create(array(
-                                    "amount" => $amount,
-                                    "currency" => "usd",
-                                    "customer" => $buyerPaymentMethod,
-                                    "on_behalf_of" => $_SESSION['stripe_acc'],
-                                    "transfer_group" => $ID
-                                ));
-                                $chargeDate = date("Y-m-d H:i:s", time());
-                                $chargeID = $charge->id;
-                                $conn->query("INSERT INTO transactions SET chargeID = '$chargeID', chargeDate = '$chargeDate' WHERE transactionID = '$transactionID'");
-                                $conn->commit();
+                            //EMAIL TO BUYER COUNTEROFFERCONFIRMATION
+                            $email = new Email($buyerUsername, $buyerEmail, 'orders@nxtdrop.com', 'Congratulations, your counter-offer was accepted', '');
+                            $email->setExt('offerID='.$offerID.'&userID='.$userID);
+                            $email->sendEmail('counterOfferConf');
 
-                                //EMAIL TO BUYER COUNTEROFFERCONFIRMATION
-                                $email = new Email($buyerUsername, $buyerEmail, 'orders@nxtdrop.com', 'Congratulations, your counter-offer was accepted', '');
-                                $email->setExt('offerID='.$offerID.'&userID='.$userID);
-                                $email->sendEmail('counterOfferConf');
-
-                                //EMAIL TO BUYER ORDERPLACED
-                                $email = new Email($buyerUsername, $buyerEmail, 'stripeusa@nxdrop.com', 'Your NXTDROP Receipt [ORDER #'.$transactionID.']', '');
-                                $email->setTransactionID($transactionID);
-                                $email->sendEmail('orderPlaced');
-
-                                //SEND EMAIL TO SELLER
-                                $email = new Email($_SESSION['username'], $_SESSION['email'], 'stripeusa@nxdrop.com', 'SALE CONFIRMED!', '');
-                                $email->setTransactionID($transactionID);
-                                $email->sendEmail('orderConfirmation_seller');
-
-                                die('GOOD');
-                            } catch(\Stripe\Error\Card $e) {
-                                // Since it's a decline, \Stripe\Error\Card will be caught
-                                $body = $e->getJsonBody();
-                                $err  = $body['error'];
-                                $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-    
-                                //send prepare email with error message
-                                $email = new \SendGrid\Mail\Mail(); 
-                                $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                                $email->setSubject("URGENT! Card Decline COC!!!");
-                                $email->addTo('stripeusa@nxtdrop.com', 'NXTDROP');
-                                $html = "<p>".$log."</p>";
-                                $email->addContent("text/html", $html);
-                                $sendgrid = new \SendGrid($SD_TEST_API_KEY);
-    
-                                //send email
-                                try {
-                                    $response = $sendgrid->send($email);
-                                    $conn->rollback();
-                                    die('CARD');
-                                } catch (Exception $e) {
-                                    $conn->rollback();
-                                    die('CARD');
-                                }
-                            } catch (\Stripe\Error\RateLimit $e) {
-                                // Too many requests made to the API too quickly
-                                $conn->rollback();
-                                die('DB');
-                            } catch (\Stripe\Error\InvalidRequest $e) {
-                                // Invalid parameters were supplied to Stripe's API
-                                $conn->rollback();
-                                die('DB');
-                            } catch (\Stripe\Error\Authentication $e) {
-                                // Authentication with Stripe's API failed
-                                // (maybe you changed API keys recently)
-                                $body = $e->getJsonBody();
-                                $err  = $body['error'];
-                                $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-                                $email = new \SendGrid\Mail\Mail(); 
-                                $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                                $email->setSubject("URGENT! Error COC.");
-                                $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
-                                $html = "<p>".$log."<br> Cannot connect to Stripe. Authentication Problem.</p>";
-                                $email->addContent("text/html", $html);
-                                $sendgrid = new \SendGrid($SD_TEST_API_KEY);
-                                try {
-                                    $response = $sendgrid->send($email);
-                                    $conn->rollback();
-                                    die('DB');
-                                } catch (Exception $e) {
-                                    $conn->rollback();
-                                    die('DB');
-                                }
-                            } catch (\Stripe\Error\ApiConnection $e) {
-                                // Network communication with Stripe failed
-                                $conn->rollback();
-                                die('DB');
-                            } catch (\Stripe\Error\Base $e) {
-                                // Display a very generic error to the user, and maybe send
-                                // yourself an email
-                                //get error
-                                $body = $e->getJsonBody();
-                                $err  = $body['error'];
-                                $log = 'Status is:' . $e->getHttpStatus() . "\n" . 'Type is:' . $err['type'] . "\n" . 'Code is:' . $err['code'] . "\n" . 'Message is:' . $err['message'] . "\n" . 'Date:' . date("Y-m-d H:i:s", time());
-    
-                                //send prepare email with error message
-                                $email = new \SendGrid\Mail\Mail(); 
-                                $email->setFrom("admin@nxtdrop.com", "NXTDROP");
-                                $email->setSubject("URGENT! Error COC.");
-                                $email->addTo('momar@nxtdrop.com', 'MOMAR CISSE');
-                                $html = "<p>".$log."</p>";
-                                $email->addContent("text/html", $html);
-                                $sendgrid = new \SendGrid($SD_TEST_API_KEY);
-    
-                                //send email
-                                try {
-                                    $response = $sendgrid->send($email);
-                                } catch (Exception $e) {
-                                    die('DB');
-                                }
-                                $conn->rollback();
-                                die('DB');
-                            } catch (Exception $e) {
-                                // Something else happened, completely unrelated to Stripe
-                                $conn->rollback();
-                                die('DB');
-                            }
+                            $conn->commit();
+                            die('GOOD');
                         } else {
                             $conn->rollback();
                             die('DB');
                         }
-                    } else {
+                    /*} else {
                         $conn->rollback();
                         die('DB');
-                    }
+                    }*/
                 } else {
                     $conn->rollback();
                     die('DB');
                 }
+            } else {
+                $conn->rollback();
+                die('DB');
             }
 
         } elseif($confirmation == 'declined') {

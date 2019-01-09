@@ -1,5 +1,7 @@
 <?php 
     include 'dbh.php';
+    $db = 'dbh.php';
+    require_once('login/rememberMe.php');
     session_start();
 
     if (isset($_SESSION['uid'])) {

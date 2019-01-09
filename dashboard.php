@@ -1,6 +1,8 @@
 <?php 
     session_start();
     include "dbh.php";
+    $db = 'dbh.php';
+    require_once('login/rememberMe.php');
     require_once('../credentials.php');
     require_once('vendor/autoload.php');
     \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);

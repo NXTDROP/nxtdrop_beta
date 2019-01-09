@@ -20,7 +20,7 @@ var curr;
 const stripe = Stripe('pk_live_ZeS4R1yiq76rObz3ADsgOs13');
 
 // Create an instance of Elements.
-var elements = stripe.elements();
+/*var elements = stripe.elements();
 
 // Custom styling can be passed to options when creating an Element.
 var style = {
@@ -51,7 +51,26 @@ card.addEventListener('change', function(event) {
     } else {
         displayError.textContent = '';
     }
-});
+});*/
+
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+}
+
+var co = findGetParameter('co');
+
+if(!co) {
+    co = false;
+} else {
+    co = true;
+}
 
 $(document).ready(function() {
     $(".load").fadeIn();
@@ -215,7 +234,7 @@ function getInfo() {
     $.ajax({
         url: 'inc/checkout/getInfo.php',
         type: 'POST',
-        data: {item_ID: item_ID},
+        data: {item_ID: item_ID, co: co},
         success: function(data) {
             if(data === "ERROR") {
                 $(".load").fadeOut();

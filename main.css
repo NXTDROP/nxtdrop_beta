@@ -9034,6 +9034,27 @@ footer table tr td a:hover {
     text-align: center;
     font-size: 14px;
 }
+
+#search-closet {
+    margin: 25px auto;
+}
+
+#search-bar-closet {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 50%;
+    margin: auto 25% 25px 25%;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+#search-closet-results {
+    display: none;
+}
 /******************************************* PROFILE END *********************************************/
 
 /******************************************* DM *********************************************/

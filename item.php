@@ -1,6 +1,8 @@
 <?php 
     session_start();
     require('dbh.php');
+    $db = 'dbh.php';
+    require_once('login/rememberMe.php');
     $m = $_GET['model'];
     if(!isset($_SESSION['uid'])) {
         $_SESSION['rdURL'] = $_SERVER['REQUEST_URI'];

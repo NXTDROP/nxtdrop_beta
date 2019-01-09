@@ -1,6 +1,8 @@
 <?php 
     session_start();
     include "dbh.php";
+    $db = 'dbh.php';
+    require_once('login/rememberMe.php');
     if (isset($_SESSION['uid'])) {
         date_default_timezone_set("UTC");
     }

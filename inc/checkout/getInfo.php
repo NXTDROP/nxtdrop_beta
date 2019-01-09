@@ -9,6 +9,7 @@
     $date = date("Y-m-d H:i:s", time());
     \Stripe\Stripe::setApiKey($STRIPE_LIVE_SECRET_KEY);
     $item_ID = $_POST['item_ID'];
+    $co = $_POST['co'];
     $n_ID = $_SESSION['uid'];
     $s_ID = $_SESSION['stripe_acc'];
     $cus_ID = $_SESSION['cus_id'];
@@ -21,16 +22,24 @@
             echo 'ID';
         }
         else {
-            $query = "SELECT o.price, p.assetURL, p.model, o.sellerID FROM products p, offers o WHERE o.offerID = '$item_ID' AND o.productID = p.productID";
+            if($co == 'true') {
+                $query = "SELECT o.price, p.assetURL, p.model, o.sellerID, r.offer, o.size FROM products p, offers o, reviewedCO r WHERE o.offerID = '$item_ID' AND o.productID = p.productID AND o.offerID = r.offerID AND r.userID = '$n_ID' AND r.status = 'accepted'";
+            } else {
+                $query = "SELECT o.price, p.assetURL, p.model, o.sellerID, o.size FROM products p, offers o WHERE o.offerID = '$item_ID' AND o.productID = p.productID";
+            }
             $result = $conn->query($query);
             if(mysqli_num_rows($result) < 1) {
                 echo 'ID';
             }
             else {
                 $row = $result->fetch_assoc();
-                $item_price = $row['price'];
+                if($co == 'true') {
+                    $item_price = $row['offer'];
+                } else {
+                    $item_price = $row['price'];
+                }
                 $item_pic = $row['assetURL'];
-                $item_desc = $row['model'];
+                $item_desc = $row['model'].' SIZE US'.$row['size'];
                 $seller_ID = $row['sellerID'];
                 $country = $_SESSION['country'];
                 $query = "SELECT * FROM thebag WHERE uid = '$n_ID'";

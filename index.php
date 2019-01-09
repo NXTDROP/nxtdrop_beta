@@ -1,8 +1,8 @@
 <?php 
     session_start();
-    require_once('login/rememberMe.php');
     include 'dbh.php';
     $db = 'dbh.php';
+    require_once('login/rememberMe.php');
     require_once('inc/currencyConversion.php');
 
     $checkLastSale = $conn->prepare("SELECT updated FROM last_sale;");

@@ -46,8 +46,20 @@
 
         $conn->autocommit(false);
 
-        //CREATE TRANSACTION
-        $addTransaction = $conn->query("INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate, totalPrice, chargeID, chargeDate) VALUES ('$item_ID', '$seller_ID', '$fullAddress', '$buyerID', '$status', '$purchaseDate', '$totalPrice', '$chargeID', '$purchaseDate');");
+        //check if the order is the result of a counter-offer
+        $result = $conn->query("SELECT * FROM reviewedCO WHERE reviewedCO.offerID = '$item_ID' AND reviewedCO.userID = '$buyerID' AND reviewedCO.status = 'accepted';");
+
+        if(mysqli_num_rows($result) > 0) {
+            //CREATE TRANSACTION
+            $addTransaction = $conn->query("INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate, confirmationDate, totalPrice, chargeID, chargeDate) VALUES ('$item_ID', '$seller_ID', '$fullAddress', '$buyerID', '$status', '$purchaseDate', '$purchaseDate', '$totalPrice', '$chargeID', '$purchaseDate');");
+            //CREATE NOTIFICATION
+            $addNotification = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND target_id = '$buyerID' AND notification_type = 'counter-offer checkout';");
+        } else {
+            //CREATE TRANSACTION
+            $addTransaction = $conn->query("INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate, totalPrice, chargeID, chargeDate) VALUES ('$item_ID', '$seller_ID', '$fullAddress', '$buyerID', '$status', '$purchaseDate', '$totalPrice', '$chargeID', '$purchaseDate');");
+            //CREATE NOTIFICATION
+            $addNotification = $conn->query("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$item_ID', '$n_id', '$seller_ID', 'item sold', '$purchaseDate')");
+        }
 
         //GET TRANSACTIONID JUST CREATED ABOVE
         $getTID = $conn->query("SELECT transactionID FROM transactions WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND purchaseDate = '$purchaseDate';");
@@ -56,9 +68,6 @@
 
         //CREATE SHIPMENT
         $addShipping = $conn->query("INSERT INTO shipping (transactionID, cost) VALUES ('$transactionID', '$shippingCost');");
-
-        //CREATE NOTIFICATION
-        $addNotification = $conn->query("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$item_ID', '$n_id', '$seller_ID', 'item sold', '$purchaseDate')");
 
         //ADD DISCOUNT IF USED
         if(isset($_POST['discountID'])) {

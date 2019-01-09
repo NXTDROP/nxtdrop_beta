@@ -111,11 +111,14 @@
                             $('.CO_main > h2').html("Counter-offer Review");
                         }, 2500);
                     } else if(response === 'GOOD') {
-                        $('.pop').fadeOut();
-                        $('.pop_main').fadeOut();
+                        $('.CO_main > h2').html("Confirmed! Don't ship until you receive a confirmation email please. Thanks!");
+                        setTimeout(() => {
+                            $('.pop').fadeOut();
+                            $('.pop_main').fadeOut();
+                        }, 5000);
                         setTimeout(() => {
                             $('.CO_main > h2').html("Counter-offer Review");
-                        }, 2500);
+                        }, 5000);
                     } else {
                         $('.CO_main > h2').html("Couldn't review. Try later.");
                         setTimeout(() => {

@@ -1,6 +1,8 @@
 <?php 
     session_start();
     include "dbh.php";
+    $db = 'dbh.php';
+    require_once('login/rememberMe.php');
 ?>
 <!DOCTYPE html>
 <html>

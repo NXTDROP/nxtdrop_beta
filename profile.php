@@ -1,6 +1,7 @@
 <?php 
     session_start();
     $db = 'dbh.php';
+    require_once('login/rememberMe.php');
     include $db;
     include 'inc/num_conversion.php';
     require_once('inc/currencyConversion.php');
@@ -65,6 +66,28 @@
                         }
                     });
                 });
+
+                $('#search-bar-closet').keyup(function(e) {
+                    $('#search-closet-results').fadeIn();
+                    var q = $(this).val();             
+                    if(isEmpty(q) || isBlank(q)) {
+                        $('#search-closet-results').hide();
+                        $('#search-closet-results').fadeOut();
+                    } else {
+                        $.ajax({
+                            url: 'inc/profile/searchCloset.php',
+                            type: 'POST',
+                            data: {q: q},
+                            success: function(response) {
+                                if(isBlank(response) || isEmpty(response)) {
+                                    $('#search-closet-results').html('NO RESULT').css("text-align", "center");
+                                } else {
+                                    $('#search-closet-results').html(response);
+                                }
+                            }
+                        });
+                    }
+                });
             });
 
             function editListing(productID, model) {
@@ -93,6 +116,14 @@
                     }
                 });
             }
+
+            function isBlank(str) {
+                return (!str || /^\s*$/.test(str));
+            }
+
+            function isEmpty(str) {
+                return (!str || 0 === str.length);
+            }
         </script>
     </head>
 
@@ -105,6 +136,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <?php include("inc/profile-info.php"); ?>
 
         <div id="item-container">
+            <?php
+                if(isset($_GET['u']) && isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
+                    echo '<div id="search-closet">
+                        <input type="text" name="search" id="search-bar-closet" placeholder="Search your closet...">
+                        <div id="search-closet-results">
+        
+                        </div>
+                    </div>';
+                }
+            ?>
             <div id="most-popular">
                 <?php
                     if(isset($_GET['u']) && isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
@@ -138,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             }
 
                             echo '
-                        <div class="card">
+                        <div class="card" id="'.$model.'">
                             <table>
                                 <tr class="lowest_price" '.$onclick.'>
                                     <td>'.$low.'</td>

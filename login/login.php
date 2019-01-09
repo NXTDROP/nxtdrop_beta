@@ -58,7 +58,7 @@
         $cookie = $user . ':' . $token;
         $mac = hash_hmac('sha256', $cookie, SECRET_KEY);
         $cookie .= ':' . $mac;
-        setcookie('rememberme', $cookie);
+        setcookie('rememberme', $cookie, time() + (86400 * 30), "/");
     }
 
     function storeTokenForUser($user, $token) {
@@ -69,7 +69,7 @@
         $result = $conn->query($sql);
         $check = mysqli_num_rows($result);
         if($check > 0) {
-            $sql = "UPDATE rememberMe SET token = $token WHERE uid = $user";
+            $sql = "UPDATE rememberMe SET token = '$token', date = '$date' WHERE uid = $user";
             mysqli_query($conn, $sql);
         } else {
             $sql = "INSERT INTO rememberMe (uid, token, date) VALUES ('$user', '$token', '$date')";
