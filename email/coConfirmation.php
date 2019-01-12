@@ -13,7 +13,7 @@
 
         if($status == 'accepted') {
             $title = 'Congratulations, your counter-offer was accepted';
-            $a = 'Please log in and check your notifications to checkout your item. If you don&apos;t checkout the item in 2 business days, you&aposll lose this deal.';
+            $a = 'Please log in and check your notifications to checkout your item. If you don&apos;t checkout the item in 2 business days, you&apos;ll lose this deal.';
             $b = 'Once checked out, just relax and wait for your brand new pair. We&apos;ve got everything under control.';
         } elseif($status == 'declined') {
             $title = 'Sorry, your counter-offer was rejected';
@@ -215,7 +215,7 @@
                 <p><?php echo $a; ?></p>
                 <img src="https://nxtdrop.com/<?php echo $asset; ?>" alt="<?php echo $model; ?>" style="width: 100%;">
                 <p style="font-family: 'Gloria Hallelujah', cursive;">The NXTDROP Team.</p>
-                <p style="font-family: 'Gloria Hallelujah', cursive;">STAY COZY.</p>
+                <p style="font-family: 'Gloria Hallelujah', cursive;">ALWAYS STRIVE AND PROSPER.</p>
             </div>
 
             <div class="footer">

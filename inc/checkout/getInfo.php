@@ -11,8 +11,8 @@
     $item_ID = $_POST['item_ID'];
     $co = $_POST['co'];
     $n_ID = $_SESSION['uid'];
-    $s_ID = $_SESSION['stripe_acc'];
-    $cus_ID = $_SESSION['cus_id'];
+    /*$s_ID = $_SESSION['stripe_acc'];
+    $cus_ID = $_SESSION['cus_id'];*/
 
     if(!isset($_SESSION['uid'])) {
         echo "CONNECTION";

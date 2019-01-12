@@ -85,13 +85,13 @@
                             $addReviewCO->close();
                             $deleteCO->close();
                             $sendNotif->close();
+                            $conn->commit();
 
                             //EMAIL TO BUYER COUNTEROFFERCONFIRMATION
                             $email = new Email($buyerUsername, $buyerEmail, 'orders@nxtdrop.com', 'Congratulations, your counter-offer was accepted', '');
                             $email->setExt('offerID='.$offerID.'&userID='.$userID);
                             $email->sendEmail('counterOfferConf');
 
-                            $conn->commit();
                             die('GOOD');
                         } else {
                             $conn->rollback();

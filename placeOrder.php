@@ -37,18 +37,17 @@
                     success: function(data) {
                         console.log(data);
                         if(data === 'ERROR 101') {
-                            $('.load_content').html('You must be logged in to purchase an item.');
+                            window.location.replace('home');
                         } else if(data === 'ERROR 102') {
-                            $('.load_content').html('We have a problem. Please contact support@nxtdrop.com.');
+                            window.location.replace('home');
                         } else if(data === 'DB') {
-                            $('.load_content').html('We have a problem. Please contact support@nxtdrop.com.');
+                            window.location.replace('home');
                         } else {
                             window.location.replace('orderPlaced.php?transactionID='+data);
                         }
                     },
                     error: function(data) {
-                        console.log(data);
-                        $('.load_content').html('Sorry, we could not place your order. Contact our support team @ support@nxtdrop.com.');
+                        window.location.replace('home');
                     }
                 });
             });

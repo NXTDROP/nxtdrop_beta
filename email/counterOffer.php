@@ -208,7 +208,7 @@
                 <h2>Summary</h2>
                 <p>Model: <?php echo $model; ?></p>
                 <p>Your initial offer: $<?php echo $iprice; ?></p>
-                <p><?php echo $username; ?>&apos;s offer: $<?php echo $cprice; ?></p>
+                <p>Counter-offer: $<?php echo $cprice; ?></p>
                 <a href="https://nxtdrop.com/signin"><button>Accept/Decline Offer</button></a>
                 <p style="font-family: 'Gloria Hallelujah', cursive;">The NXTDROP Team.</p>
                 <p style="font-family: 'Gloria Hallelujah', cursive;">CHOOSE WISELY!</p>

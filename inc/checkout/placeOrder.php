@@ -39,7 +39,6 @@
             $totalPrice = $totalPrice;
         } elseif ($_SESSION['country'] == 'CA') {
             $totalPrice = cadTousd($totalPrice, $db, false);
-            $shippingCost = 13.65;
         } else {
             $totalPrice = $totalPrice;
         }
