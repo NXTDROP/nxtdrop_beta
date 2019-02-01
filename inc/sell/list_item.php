@@ -6,7 +6,7 @@
     require_once('../currencyConversion.php');
     $conn->autocommit(false);
     $listItem = $conn->prepare("INSERT INTO offers (productID, sellerID, price, size, productCondition, date) VALUES (?, ?, ?, ?, ?, ?);");
-    $listItem->bind_param("iiidss", $productID, $userID, $price, $size, $condition, $date);
+    $listItem->bind_param("iiddss", $productID, $userID, $price, $size, $condition, $date);
     date_default_timezone_set("UTC");
 
     if(!isset($_SESSION['uid'])) {

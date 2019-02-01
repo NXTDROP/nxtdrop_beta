@@ -11,7 +11,13 @@
     $purchaseDate = date("Y-m-d H:i:s", time());
 
     $item_ID = $_POST['itemID'];
-    $fullAddress = $_POST['shippingAddress'];
+    
+    if(isset($_POST['shippingAddress'])) {
+        $fullAddress = $_POST['shippingAddress'];
+    } else {
+        $fullAddress = '';
+    }
+
     $totalPrice = $_POST['amount'];
     $shippingCost = $_POST['shippingCost'];
     $chargeID = $_POST['checkout_id'];

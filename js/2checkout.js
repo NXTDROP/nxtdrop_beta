@@ -175,7 +175,7 @@ $(document).ready(function() {
 
 function getInfo() {
     $.ajax({
-        url: 'inc/checkout/2getInfo.php',
+        url: 'inc/checkout/getInfo.php',
         type: 'POST',
         data: {item_ID: item_ID},
         success: function(data) {

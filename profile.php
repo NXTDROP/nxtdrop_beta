@@ -150,7 +150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <?php
                     if(isset($_GET['u']) && isset($_SESSION['uid']) && $_GET['u'] == $_SESSION['username']) {
                         echo '<h2 id="feed-header">Your Closet</h2>';
-                        $getCloset = $conn->prepare("SELECT p.productID, p.model, p.assetURL, MIN(o.price), COUNT(o.offerID) FROM users u, offers o, products p WHERE u.username = ? AND u.uid = o.sellerID AND o.productID = p.productID AND o.offerID NOT IN (SELECT offers.offerID FROM offers, transactions WHERE offers.offerID = transactions.itemID AND o.sellerID = offers.sellerID AND transactions.status != 'cancelled') GROUP BY p.model ORDER BY p.model ASC LIMIT 12;");
+                        $getCloset = $conn->prepare("SELECT p.productID, p.model, p.assetURL, MIN(o.price), COUNT(o.offerID) FROM users u, offers o, products p WHERE u.username = ? AND u.uid = o.sellerID AND o.productID = p.productID AND o.offerID NOT IN (SELECT * FROM (SELECT o.offerID FROM offers o, counterOffer r WHERE o.offerID = r.offerID UNION SELECT o.offerID FROM offers o, transactions t WHERE o.offerID = t.itemID AND t.status != 'cancelled' UNION SELECT o.offerID FROM offers o, reviewedCO r WHERE o.offerID = r.offerID AND r.status = 'accepted') AS A) GROUP BY p.model ORDER BY p.model ASC LIMIT 12;");
                         $getCloset->bind_param("s", $fullname);
                         $getCloset->execute();
                         $getCloset->bind_result($productID, $model, $assetURL, $min, $numListed);

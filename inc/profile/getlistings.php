@@ -4,7 +4,9 @@
     require_once('../../dbh.php');
     $db = '../../dbh.php';
     require_once('../currencyConversion.php');
-    $getOffers = $conn->prepare("SELECT size, price, offerID FROM offers WHERE sellerID = ? AND productID = ? AND offerID NOT IN (SELECT itemID FROM transactions, offers WHERE transactions.status != 'cancelled' and offers.offerID = transactions.itemID) ORDER BY size ASC");
+    //$getOffers = $conn->prepare("SELECT size, price, offerID FROM offers WHERE sellerID = ? AND productID = ? AND offerID NOT IN (SELECT itemID FROM transactions, offers WHERE transactions.status != 'cancelled' and offers.offerID = transactions.itemID) ORDER BY size ASC");
+
+    $getOffers = $conn->prepare("SELECT size, price, offerID FROM offers WHERE sellerID = ? AND productID = ? AND offerID NOT IN (SELECT * FROM (SELECT o.offerID FROM offers o, counterOffer r WHERE o.offerID = r.offerID UNION SELECT o.offerID FROM offers o, transactions t WHERE o.offerID = t.itemID AND t.status != 'cancelled' UNION SELECT o.offerID FROM offers o, reviewedCO r WHERE o.offerID = r.offerID AND r.status = 'accepted') AS A) ORDER BY size ASC");
 
     if(!isset($_SESSION['uid'])) {
         die('not connected');

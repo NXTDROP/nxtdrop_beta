@@ -1,8 +1,6 @@
 <?php 
     session_start();
     include "dbh.php";
-    $db = 'dbh.php';
-    require_once('login/rememberMe.php');
     if (isset($_SESSION['uid'])) {
         date_default_timezone_set("UTC");
     }
@@ -20,36 +18,10 @@
         </title>
         <link rel="canonical" href="https://nxtdrop.com/checkout.php">
         <!-- Javasripts -->
-        <script type="text/javascript" src="https://www.wepay.com/min/js/iframe.wepay.js"></script>
         <script type="text/javascript">
             var item_ID = <?php echo "'".$_GET['item']."'"; ?>;
-            function goNext() {
-                $('.checkout-cancel').html('<i class="fas fa-circle-notch fa-spin"></i>');
-                var streetInput = $('#street').val();
-                var cityInput = $('#city').val();
-                var postalCodeInput = $('#postalCode').val();
-                var stateInput = $('#state').val();
-                var countryInput = $('#country').val();
-                if((isBlank(streetInput) || isEmpty(streetInput)) || (isBlank(cityInput) || isEmpty(cityInput)) || (isBlank(postalCodeInput) || isEmpty(postalCodeInput)) || (isBlank(stateInput) || isEmpty(stateInput)) || (isBlank(countryInput) || isEmpty(countryInput)))  {
-                    $('input').css('border-color', 'red');
-                    $('select').css('border-color', 'red');
-                    alert('You forgot your shipping address?');
-                    $('.checkout-cancel').html('NEXT');
-                    setTimeout(resetBorderColor, 10000);
-                } else {
-                    var fullAddress = streetInput + ', ' + cityInput + ', ' + stateInput + ' ' + postalCodeInput + ', ' + countryInput;
-
-                    $.ajax({
-                        url: 'inc/checkout/wePayCheckout.php',
-                        type: 'POST',
-                        data: {amount: total, shippingCost: shipping, itemID: item_ID, discountID: discountID, shippingAddress: fullAddress, item: item},
-                        success: function(response) {
-                            $(response).insertAfter('.checkout-cancel');
-                            $("input").attr('disabled', 'disabled')
-                            $(".checkout-cancel").hide();                   
-                        }
-                    });
-                }
+            function goBack() {
+                window.history.back();
             }
         </script>
         <script type="text/javascript" src="js/checkout.js"></script>
@@ -71,75 +43,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <img id="item_img">
                 <span id="item_description"></span>
                 <p id="item_price"></p>
-            </div>  
-
-            <div class="checkout-buyer-info">
-                <h3>Personal Information</h3>
-                <h4>Shipping To</h4>
-                <!--<input type="checkbox" id="same_address">
-                <label for="same_address">Check if shipping address same as personal address.</label>
-                <br>-->
-                <input type="text" name="street" id="street" placeholder="Street">
-                <input type="text" name="line2" id="line2" placeholder="Apt/Suite/Etc...">
-                <input type="text" name="city" id="city" placeholder="City">
-                <select name="state" id="state">
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="AZ">Arizona</option>
-                    <option value="AR">Arkansas</option>
-                    <option value="CA">California</option>
-                    <option value="CO">Colorado</option>
-                    <option value="CT">Connecticut</option>
-                    <option value="DE">Delaware</option>
-                    <option value="DC">District Of Columbia</option>
-                    <option value="FL">Florida</option>
-                    <option value="GA">Georgia</option>
-                    <option value="HI">Hawaii</option>
-                    <option value="ID">Idaho</option>
-                    <option value="IL">Illinois</option>
-                    <option value="IN">Indiana</option>
-                    <option value="IA">Iowa</option>
-                    <option value="KS">Kansas</option>
-                    <option value="KY">Kentucky</option>
-                    <option value="LA">Louisiana</option>
-                    <option value="ME">Maine</option>
-                    <option value="MD">Maryland</option>
-                    <option value="MA">Massachusetts</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="MS">Mississippi</option>
-                    <option value="MO">Missouri</option>
-                    <option value="MT">Montana</option>
-                    <option value="NE">Nebraska</option>
-                    <option value="NV">Nevada</option>
-                    <option value="NH">New Hampshire</option>
-                    <option value="NJ">New Jersey</option>
-                    <option value="NM">New Mexico</option>
-                    <option value="NY">New York</option>
-                    <option value="NC">North Carolina</option>
-                    <option value="ND">North Dakota</option>
-                    <option value="OH">Ohio</option>
-                    <option value="OK">Oklahoma</option>
-                    <option value="OR">Oregon</option>
-                    <option value="PA">Pennsylvania</option>
-                    <option value="RI">Rhode Island</option>
-                    <option value="SC">South Carolina</option>
-                    <option value="SD">South Dakota</option>
-                    <option value="TN">Tennessee</option>
-                    <option value="TX">Texas</option>
-                    <option value="UT">Utah</option>
-                    <option value="VT">Vermont</option>
-                    <option value="VA">Virginia</option>
-                    <option value="WA">Washington</option>
-                    <option value="WV">West Virginia</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="WY">Wyoming</option>
-                </select>
-                <select name="country" id="country">
-                    <option value="US">United States of America</option>
-                    <option value="CA">Canada</option>
-                </select>
-                <input type="text" name="Zip" id="postalCode" placeholder="90046">
             </div>
 
             <div>
@@ -175,7 +78,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <hr>
             </div>
 
-            <button class="checkout-cancel" onclick="goNext();">Next</button>
+            <div id="paypal-button-container"></div>
+            <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+            <script>
+                // Render the PayPal button
+                paypal.Button.render({
+                // Set your environment
+                env: 'production', // sandbox | production
+
+                // Specify the style of the button
+                style: {
+                    layout: 'vertical',  // horizontal | vertical
+                    size:   'medium',    // medium | large | responsive
+                    shape:  'rect',      // pill | rect
+                    color:  'black'       // gold | blue | silver | white | black
+                },
+
+                // Specify allowed and disallowed funding sources
+                //
+                // Options:
+                // - paypal.FUNDING.CARD
+                // - paypal.FUNDING.CREDIT
+                // - paypal.FUNDING.ELV
+                funding: {
+                    allowed: [
+                        paypal.FUNDING.CARD,
+                        paypal.FUNDING.CREDIT
+                    ],
+                    disallowed: []
+                },
+
+                // Enable Pay Now checkout flow (optional)
+                commit: true,
+
+                // PayPal Client IDs - replace with your own
+                // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+                client: {
+                    sandbox: 'AfVudjpf1yvFL7Z3JHi7DyQZA4fM7boFL02Mq-ddkXq-yH9tDM6XwamvOsIAbUiNtpwYDEE7oLJ_h1iB',
+                    production: 'AWHEmQ_9C-XeYg-PVgorL364RF7JSAZAsuV1P1N8JSq3F5IxL52T7Qwn7CxZs_1JyhYzDVO4LXkotuIa'
+                },
+
+                payment: function (data, actions) {
+                    return actions.payment.create({
+                        payment: {
+                        transactions: [
+                            {
+                            amount: {
+                                total: total,
+                                currency: curr
+                            }
+                            }
+                        ]
+                        }
+                    });
+                },
+
+                onAuthorize: function (data, actions) {
+                return actions.payment.execute()
+                    .then(function () {
+                        placeOrderPP(data.paymentID);
+                        console.log(data);
+                    });
+                }
+                }, '#paypal-button-container');
+            </script>
         </div>
 
         <?php require_once('inc/footer.php'); ?>

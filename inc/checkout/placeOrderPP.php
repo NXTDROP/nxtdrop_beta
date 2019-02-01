@@ -14,6 +14,7 @@
     $totalPrice = $_POST['totalPrice'];
     $shippingCost = $_POST['shippingCost'];
     $chargeID = $_POST['chargeID'];
+    $fullAddress = '';
     $n_id = $_SESSION['uid'];
     $s_id = $_SESSION['stripe_acc'];
     $cus_id = $_SESSION['cus_id'];
@@ -27,13 +28,12 @@
         $buyerID = $n_id;
 
         //GET SELLER INFO
-        $result = $conn->query("SELECT users.uid, users.username, users.email, holidayOffers.retailPrice FROM users, holidayOffers WHERE users.uid = 2 AND holidayOffers.productID = '$item_ID'");
+        $result = $conn->query("SELECT users.uid, users.username, users.email FROM offers, users WHERE offers.offerID = '$item_ID' AND offers.sellerID = users.uid;");
         $row = $result->fetch_assoc();
 
         $seller_ID = $row['uid'];
         $sellerEmail = $row['email'];
         $sellerUsername = $row['username'];
-        $price = $row['retailPrice'];
         $status = "waiting shipment";
 
         if($_SESSION['country'] == 'US') {
@@ -47,8 +47,20 @@
 
         $conn->autocommit(false);
 
-        //CREATE TRANSACTION
-        $addTransaction = $conn->query("INSERT INTO transactions (itemID, sellerID, buyerID, status, purchaseDate, totalPrice, chargeID, chargeDate) VALUES ('$item_ID', '$seller_ID', '$buyerID', '$status', '$purchaseDate', '$totalPrice', '$chargeID', '$purchaseDate');");
+        //check if the order is the result of a counter-offer
+        $result = $conn->query("SELECT * FROM reviewedCO WHERE reviewedCO.offerID = '$item_ID' AND reviewedCO.userID = '$buyerID' AND reviewedCO.status = 'accepted';");
+
+        if(mysqli_num_rows($result) > 0) {
+            //CREATE TRANSACTION
+            $addTransaction = $conn->query("INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate, confirmationDate, totalPrice, chargeID, chargeDate) VALUES ('$item_ID', '$seller_ID', '$fullAddress', '$buyerID', '$status', '$purchaseDate', '$purchaseDate', '$totalPrice', '$chargeID', '$purchaseDate');");
+            //CREATE NOTIFICATION
+            $addNotification = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND target_id = '$buyerID' AND notification_type = 'counter-offer checkout';");
+        } else {
+            //CREATE TRANSACTION
+            $addTransaction = $conn->query("INSERT INTO transactions (itemID, sellerID, shippingAddress, buyerID, status, purchaseDate, totalPrice, chargeID, chargeDate) VALUES ('$item_ID', '$seller_ID', '$fullAddress', '$buyerID', '$status', '$purchaseDate', '$totalPrice', '$chargeID', '$purchaseDate');");
+            //CREATE NOTIFICATION
+            $addNotification = $conn->query("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$item_ID', '$n_id', '$seller_ID', 'item sold', '$purchaseDate')");
+        }
 
         //GET TRANSACTIONID JUST CREATED ABOVE
         $getTID = $conn->query("SELECT transactionID FROM transactions WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND purchaseDate = '$purchaseDate';");
@@ -61,16 +73,13 @@
         //ADD DISCOUNT IF USED
         if(isset($_POST['discountID'])) {
             $discountID = $_POST['discountID'];
-            $addDiscount = $conn->query("INSERT INTO discountUsed (ID, usedBy, dateUsed, transactionID) VALUES ('$discountID', '$n_id', '$purchaseDate', '$transactionID');");
+            $addDiscount = $conn->query("INSERT INTO discountUsed (ID, usedBy, dateUsed, transactionID) VALUES ('$discountID', '$buyerID', '$purchaseDate', '$transactionID');");
         } else {
             $addDiscount = true;
         }
 
-        $deletePromoNotification = $conn->query("DELETE FROM notifications WHERE target_id = '$buyerID' AND notification_type = 'promo';");
-
-
         //CHECK IF DATA WAS INSERTED IN DB IF NOT ROLLBACK AND PRINT ERROR, OTHERWISE COMMIT, SEND EMAIL TO BUYER AND PRINT TID
-        if($addShipping && $addTransaction && $addDiscount && $deletePromoNotification) {
+        if($addShipping && $addTransaction && $addDiscount && $addNotification) {
 
             $conn->commit();
 

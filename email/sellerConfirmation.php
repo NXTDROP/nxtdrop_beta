@@ -10,6 +10,7 @@
         $transactionID = $row['transactionID'];
         $pic = $row['assetURL'];
         $description = $row['model'];
+        $size = $row['size'];
         $orderStatus = $row['status'];
         $total = number_format($row['totalPrice'], 2, '.', ',');
         $earn = number_format(($row['totalPrice']-$row['cost'])*0.87, 2, '.', ',');
@@ -144,7 +145,7 @@
                 <table style="margin: 10px;">
                     <tr>
                         <td><img src="<?php echo $pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
-                        <td><p style="color: #727272; width: 100%;"><?php echo $description; ?></p></td>
+                        <td><p style="color: #727272; width: 100%;"><?php echo $description.' SIZE US'.$size; ?></p></td>
                     </tr>
                     <tr style="font-size: 14px;">
                         <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>

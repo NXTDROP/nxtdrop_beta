@@ -71,9 +71,17 @@
             $newPrice = $cadPrice / $conversion;
             $getConversion->close();
             if($display) {
-                return '$'.floor($newPrice);
+                if($newPrice <= 1) {
+                    return '$'.number_format($newPrice, 2);
+                } else {
+                    return '$'.floor($newPrice);
+                }
             } else {
-                return floor($newPrice);
+                if($newPrice < 1) {
+                    return number_format($newPrice, 2);
+                } else {
+                    return floor($newPrice);
+                }
             }
         } else {
             if($display) {

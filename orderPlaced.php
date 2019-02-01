@@ -40,7 +40,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             $transactionID = $_GET['transactionID'];
             if($_SESSION['country']) $country = "United States";
             elseif($_SESSION['country']) $country = "Canada";
-            $query = "SELECT p.assetURL, p.model, o.price, s.cost, t.shippingAddress, s.MM_Carrier, s.MM_TrackingNumber, t.transactionID, t.totalPrice, t.sellerID, t.middlemanID, tb.first_name, tb.last_name, t.status, u.username FROM users u, transactions t, shipping s, thebag tb, offers o, products p WHERE t.transactionID = '$transactionID' AND t.transactionID = s.transactionID AND t.sellerID = u.uid AND u.uid = tb.uid AND t.itemID = o.offerID AND o.productID = p.productID";
+            $query = "SELECT p.assetURL, p.model, o.price, s.cost, t.shippingAddress, s.MM_Carrier, s.MM_TrackingNumber, t.transactionID, t.totalPrice, t.sellerID, t.middlemanID, tb.first_name, tb.last_name, t.status, u.username FROM users u, transactions t, shipping s, thebag tb, offers o, products p WHERE t.transactionID = '$transactionID' AND t.transactionID = s.transactionID AND t.buyerID = u.uid AND u.uid = tb.uid AND t.itemID = o.offerID AND o.productID = p.productID";
             $result = $conn->query($query);
             $row = mysqli_fetch_assoc($result);
             if($row['transactionID'] === '') {

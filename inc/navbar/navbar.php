@@ -196,6 +196,13 @@
     });
 </script>
 
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  New to NXTDROP? <a id="faqbtn" href="faq">Check out FAQ</a>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
 <nav class="navbar navbar-expand-xl sticky-top">
     <button class="toggle_btn">
         <span></span>
@@ -274,6 +281,7 @@
                 <a href="terms">TERMS OF USE</a>
                 <a href="privacy">PRIVACY</a>
                 <a href="blog/">BLOG</a>
+                <a href="mailto:support@nxtdrop.com">CONTACT US</a>
             </div>
         </div>
     </div>

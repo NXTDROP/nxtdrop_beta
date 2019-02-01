@@ -81,3 +81,6 @@ RewriteRule ^order/([0-9]+)/(.*) orderPlaced.php?transactionID=$1&tracking=$2 [N
 
 #RewriteRule for request.php
 RewriteRule ^request request.php [NC,L]
+
+#RewriteRule for faq.php
+RewriteRule ^faq faq.php [NC,L]

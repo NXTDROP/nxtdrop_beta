@@ -127,6 +127,10 @@
         font-size: 0.7em!important;
         padding: 10px!important;
     }
+    
+    .btn {
+        font-size: 0.62em!important;
+    }
 }
 
 @media all and (min-width: 667px) and (max-width: 735px) and (orientation: landscape) {
@@ -574,6 +578,10 @@
     .request_container #send_request {
         font-size: 0.7em!important;
         padding: 10px!important;
+    }
+    
+    .btn {
+        font-size: 0.52em!important;
     }
 }
 
@@ -7224,6 +7232,21 @@
 
 /******************************************* GLOBAL *********************************************/
 
+.alert-dismissible #faqbtn {
+    background: #f27178;
+    border: none;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 0.7em;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.alert-dismissible #faqbtn:hover {
+    background: #aa0000;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -11514,3 +11537,40 @@ ul li h2 {
 }
 
 /******************************************* REQUEST END *********************************************************/
+
+/******************************************* FAQ *****************************************************************/
+#general-info, #contact-info, #selling-nxtdrop, #buying-nxtdrop {
+    width: 100%;
+    margin: 0;
+}
+
+.accordion .card {
+    width: auto!important;
+    height: auto!important;
+    margin: 0!important;
+}
+
+#general-info > h2, #contact-info > h2, #selling-nxtdrop > h2, #buying-nxtdrop > h2 {
+    text-align: center;
+    margin: 50px auto;
+}
+
+.collapsetwo {
+    height: 0px;
+    padding: 0;
+}
+
+.mb-0 {
+    text-align: center;
+}
+
+.mb-0 button {
+    color: tomato;
+}
+
+.mb-0 button:hover {
+    text-decoration: none;
+    color: #aa0000;
+}
+
+/******************************************* FAQ END *****************************************************************/

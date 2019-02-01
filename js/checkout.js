@@ -215,6 +215,7 @@ $(document).ready(function() {
                             $('.checkout-pay').html('Pay ' + currency + total.toFixed(2));
                             $('#item-discount').html('- ' + currency + discount.toFixed(2));
                             $('#discount-btn').html('ADD PROMO CODE');
+                            $('#discount-btn').attr('disabled', 'disabled');
                         } else {
                             $('#discount-error').html('We have a problem. Please, try later.').css('color', 'tomato');
                             $(this).html('ADD PROMO CODE');
@@ -412,4 +413,40 @@ function placeOrder() {
             }
         });
     }
+}
+
+function placeOrderPP(chargeID) {
+    console.log("placeOrder called!");
+    $(".load").fadeIn();
+    $(".load_main").show();
+    $.ajax({
+        url: 'inc/checkout/placeOrderPP.php',
+        type: 'POST',
+        data: {item_ID: item_ID, discountID: discountID, totalPrice: total, shippingCost:shipping, chargeID: chargeID},
+        success: function(data) {
+            console.log(data);
+            if(data === 'ERROR 101') {
+                alert('You must be logged in to purchase an item.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+            }
+            else if(data === 'ERROR 102') {
+                alert('We have a problem. Please try to purchase later.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+            } else if(data === 'DB') {
+                alert('We have a problem. Please try to purchase later.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+            } else if(data === 'CARD') {
+                alert('Your card was declined.');
+                $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+            }
+            else {
+                window.location.href = 'orderPlaced.php?transactionID=' + data;
+            }
+        },
+        error: function(data) {
+            console.log(data);
+            alert('Sorry, we could not place your order. Contact our support team @ support@nxtdrop.com.');
+            $('.checkout-pay').html('Pay '+ currency +total.toFixed(2));
+        }
+    });
 }
