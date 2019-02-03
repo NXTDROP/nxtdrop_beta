@@ -54,7 +54,7 @@
                         </h5>
                     </div>
                     <div id="generalone" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionTwo">
-                        <div class="card-body">Founded in 2018 and based in Toronto, Ontario, NXTDROP an online sneaker marketplace. It is also the safest way to buy and sell sneakers in Canada. If you're looking to buy rare sneakers or make money selling, NXTDROP is the place for you. We offer an authentication service to make sure all the shoes sold are 100% authentic.</div>
+                        <div class="card-body">Founded in 2018 and based in Toronto, Ontario, NXTDROP is an online sneaker marketplace. It is also the safest way to buy and sell sneakers in Canada. If you're looking to buy rare sneakers or make money selling, NXTDROP is the place for you. We offer an authentication service to make sure all the shoes sold are 100% authentic.</div>
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
                         </h5>
                     </div>
                     <div id="generaltwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionTwo">
-                        <div class="card-body">Sellers list their sneaker on NXTDROP, while buyers browse over a 1,000 sneakers on the website. If a buyer make a purchase, sellers are required to ship their sneakers to us for verification. Once they're authenticated, we'll ship them to you. If we find that the shoes are replicas or are not in condition, we'll cancel the order and refund you.</div>
+                        <div class="card-body">Sellers list their sneaker on NXTDROP, while buyers browse over a 1,000 sneakers on the website. If a buyer makes a purchase, the seller is required to ship the sneakers to us for verification. Once we authenticate the sneakers, we'll ship them to you. If we find that the shoes are replicas or are not in condition, we'll cancel the order and refund you.</div>
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@
                         </h5>
                     </div>
                     <div id="buyingone" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionThree">
-                        <div class="card-body">If you purchase on NXTDROP, we accept American Express, Discover, MasterCard and Visa. We'll soon accept PayPal. Stay Tuned!</div>
+                        <div class="card-body">If you purchase on NXTDROP, we accept American Express, Discover, MasterCard, Visa, and PayPal.</div>
                     </div>
                 </div>
 
@@ -103,7 +103,7 @@
                         </h5>
                     </div>
                     <div id="buyingtwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionThree">
-                        <div class="card-body">It can happen that our payment processors is unable to complete your purchase. Make sure that the information that you entered is correct. If the information you entered is correct, we recommend contacting the card issuing bank. If you're still having issues, please email us at help@nxtdrop.com.</div>
+                        <div class="card-body">Our payment processor may be unable to complete a purchase. Make sure that the information that you entered is accurate. If the information you entered is correct, we recommend reaching the card issuing bank. If you're still having issues, please email us at help@nxtdrop.com.</div>
                     </div>
                 </div>
 
@@ -114,7 +114,7 @@
                         </h5>
                     </div>
                     <div id="buyingthree" class="collapse" aria-labelledby="headingOne" data-parent="#accordionThree">
-                        <div class="card-body">You may cancel your order before it is confirmed by the seller. If the seller already confirmed, the order cannot be cancelled. <br> Please note: You can't cancel an order if you checkout following a counter-offer.</div>
+                        <div class="card-body">You may cancel your order before the seller confirms it. <br> Please note: You can't cancel an order if you check out following a counter-offer.</div>
                     </div>
                 </div>
 
@@ -125,7 +125,7 @@
                         </h5>
                     </div>
                     <div id="buyingfour" class="collapse" aria-labelledby="headingOne" data-parent="#accordionThree">
-                        <div class="card-body">We, at NXTDROP, work hard to ensure all shoes are 100% authentic. We review all sellers and their products. If you purchase from NXTDROP, the seller is required to ship the sneakers to us for verification before we ship them to you. If we find that the shoes are replicas or are not in condition, we'll cancel the order and refund you.</div>
+                        <div class="card-body">We, at NXTDROP, work hard to ensure all shoes are 100% authentic. We review all sellers and their products. If you purchase from NXTDROP, the seller is required to ship the sneakers to us for verification before we ship them to you. If we find that the shoes are replicas or not in condition, we'll cancel the order and refund you.</div>
                     </div>
                 </div>
 
@@ -158,7 +158,7 @@
                         </h5>
                     </div>
                     <div id="buyingseven" class="collapse" aria-labelledby="headingOne" data-parent="#accordionThree">
-                        <div class="card-body">The shipping cost is CA$18 within Canada. Customers may incur additional charges for sneaker packs and heavy items. Since all shoes come to us for verification first, orders will typically arrive at destination within 7-10 business days for domestic customers.</div>
+                        <div class="card-body">The shipping cost is CA$18 within Canada. Customers may incur additional charges for sneaker packs and heavy items. Since all shoes come to us for verification first, orders will typically arrive at the destination within 7-10 business days for domestic customers.</div>
                     </div>
                 </div>
 
@@ -169,7 +169,7 @@
                         </h5>
                     </div>
                     <div id="buyingeight" class="collapse" aria-labelledby="headingOne" data-parent="#accordionThree">
-                        <div class="card-body">Since all shoes come to us for authentication first, it typically takes 7-10 business days for orders to our domestic customers. It takes 3-4 days to get to us, 1-2 days to authenticate and 3-4 days days to ship to you. As soon as we authenticate your sneakers, we'll ship them out to you and send you a link to track your package via email.</div>
+                        <div class="card-body">Since all shoes come to us for authentication first, it typically takes 7-10 business days for orders to deliver domestically. It takes 3-4 days to get to us, 1-2 days to authenticate and 3-4 days to ship to you. As soon as we authenticate your sneakers, we'll ship them out to you and send you a link to track your package via email.</div>
                     </div>
                 </div>
 
@@ -180,7 +180,7 @@
                         </h5>
                     </div>
                     <div id="buyingnine" class="collapse" aria-labelledby="headingOne" data-parent="#accordionThree">
-                        <div class="card-body">Log in to your account, go to "Dashboard" and see if your order was shipped. If we shipped you order, please contact us at support@nxtdrop.com.</div>
+                        <div class="card-body">Log in to your account, go to "Dashboard" and see if your order shipped. If we shipped your order, please contact us at support@nxtdrop.com.</div>
                     </div>
                 </div>
             </div>
@@ -239,7 +239,7 @@
                         </h5>
                     </div>
                     <div id="sellingeleven" class="collapse" aria-labelledby="headingOne" data-parent="#accordionFour">
-                        <div class="card-body">Once the sale is confirmed by you, you'll have to ship us the sneakers at your own expense. We're currently working to provide free shipping or a drop-off location in your city.</div>
+                        <div class="card-body">Once you confirm an order, you'll have to ship us the sneakers at your own expense. We're currently working to provide free shipping or a drop-off location in your city.</div>
                     </div>
                 </div>
 
@@ -261,7 +261,7 @@
                         </h5>
                     </div>
                     <div id="sellingfive" class="collapse" aria-labelledby="headingOne" data-parent="#accordionFour">
-                        <div class="card-body">Your earnings will be deposited to your bank account automatically two business days after we authentic your sneakers. Make sure that you enter the accurate information when settings up your seller account. Business days are Monday - Friday, excluding holidays and if you cash out after business hours, the first day would be the following business day.</div>
+                        <div class="card-body">Your earnings will be deposited to your bank account automatically after we authentic the sneakers. Make sure that you enter the accurate information when settings up your seller account. Business days are Monday - Friday, excluding holidays and if you cash out after business hours, the first day would be the following business day. <br><br> Note: It takes two business days for the funds to show up on your account.</div>
                     </div>
                 </div>
 
@@ -283,7 +283,7 @@
                         </h5>
                     </div>
                     <div id="sellingseven" class="collapse" aria-labelledby="headingOne" data-parent="#accordionFour">
-                        <div class="card-body">Congrats! First confirm the order, then you will receive an email with the address to ship the sneakers. <br> Remember: You have two business days to ship the shoes to us, otherwise you might receive a $15 penalty.</div>
+                        <div class="card-body">Congrats! First, confirm the order, then you will receive an email with the address to ship the sneakers. <br><br> Reminder: You have two business days to ship the shoes to us otherwise you might receive a $15 penalty.</div>
                     </div>
                 </div>
 
@@ -294,7 +294,7 @@
                         </h5>
                     </div>
                     <div id="sellingnine" class="collapse" aria-labelledby="headingOne" data-parent="#accordionFour">
-                        <div class="card-body">If the sneakers do not pass the verification process, the buyer will be refunded the full amount and you will have the option to get your sneakers back or let NXTDROP dispose of it. If you want NXTDROP to ship you the sneakers back, you will have to pay for the shipping costs.</div>
+                        <div class="card-body">If the sneakers do not pass the verification process, we will refund the buyer the full amount, and you will have the option to get your sneakers back or let NXTDROP dispose of it. If you want NXTDROP to ship you the sneakers back, you will have to pay for the shipping costs.</div>
                     </div>
                 </div>
 
@@ -305,7 +305,7 @@
                         </h5>
                     </div>
                     <div id="sellingten" class="collapse" aria-labelledby="headingOne" data-parent="#accordionFour">
-                        <div class="card-body">If you accepted an offer but the received an offer, most times the buyer did not have enough money. We authorize payments once the buyer make a purchase, however, the funds may not be available at the time we are capturing them from his bank. If you encounter such a problem, do not worry. We probably know about it too because we keep track of those things. <br> Please Note: Never ship sneakers unless you receive a confirmation email telling you so.</div>
+                        <div class="card-body">If you accepted an offer but received an error message, most times the buyer did not have enough money. We authorize payments once the buyer makes a purchase, but the funds may not be available at the time we are capturing them from the bank. If you encounter such a problem, do not worry. We probably know about it too because we keep track of those things. <br><br> Reminder: Never ship sneakers unless you receive a confirmation email telling you so.</div>
                     </div>
                 </div>
             </div>

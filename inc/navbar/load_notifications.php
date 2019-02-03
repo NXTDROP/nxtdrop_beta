@@ -32,7 +32,7 @@
                     $sql = "SELECT talk.message, users.username, profile.status FROM talk, users, profile WHERE talk.talkID = $post_id AND talk.userID = users.uid AND profile.uid = users.uid";
                 }
                 elseif($row['notification_type'] == 'counter-offer') {
-                    $sql = "SELECT users.username, profile.status, products.assetURL, products.model, offers.price, counterOffer.offer, offers.offerID, users.uid FROM offers, users, profile, products, counterOffer WHERE offers.offerID = $post_id AND counterOffer.userID = users.uid AND counterOffer.offerID = offers.offerID AND profile.uid = users.uid AND offers.productID = products.productID";
+                    $sql = "SELECT users.username, profile.status, products.assetURL, products.model, offers.price, counterOffer.offer, offers.offerID, users.uid, offers.size FROM offers, users, profile, products, counterOffer WHERE offers.offerID = $post_id AND counterOffer.userID = users.uid AND counterOffer.offerID = offers.offerID AND profile.uid = users.uid AND offers.productID = products.productID";
                 }
                 elseif($row['notification_type'] == 'item sold') {
                     $sql = "SELECT users.username, users.uid, profile.status, products.assetURL, products.model, offers.offerID, offers.size, offers.price FROM offers, users, profile, products, transactions WHERE offers.offerID = $post_id AND transactions.buyerID = users.uid AND transactions.itemID = offers.offerID AND profile.uid = users.uid AND offers.productID = products.productID LIMIT 1;";
@@ -101,7 +101,7 @@
                 else if($row['notification_type'] == 'counter-offer') {
                     $model = $user_result['model'];
                     $model = str_replace("&apos;", '', $model);
-                    $model = "'".$model."'";
+                    $model = "'".$model." US".$user_result['size']."'";
                     echo '<div class="one_notif" onclick="counterOfferConf('.$user_result['price'].', '.$user_result['offer'].', '.$user_result['offerID'].', '.$user_result['uid'].', '.$model.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif">You received an offer for your '.$user_result['model'].' <span class="notif_time"> '.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
                 }
                 else if($row['notification_type'] == 'promo') {
