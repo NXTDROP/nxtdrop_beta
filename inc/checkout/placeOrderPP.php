@@ -82,13 +82,24 @@
         if($addShipping && $addTransaction && $addDiscount && $addNotification) {
 
             $conn->commit();
+            //SEND EMAIL TO BUYER
+            $username = $_SESSION['username'];
+            $buyerEmail = $_SESSION['email'];
+            $email = new Email($username, $buyerEmail, 'payments@nxdrop.com', 'Your NXTDROP Receipt [ORDER #'.$transactionID.']', '');
+            $email->setTransactionID($transactionID);
+            $email->sendEmail('orderPlaced');
+
+            //SEND EMAIL TO SELLER
+            $email = new Email($sellerUsername, $sellerEmail, 'payments@nxdrop.com', 'Congratulations, your item SOLD!', '');
+            $email->setTransactionID($transactionID);
+            $email->sendEmail('sellerConfirmation');
 
             //SEND ALERT EMAIL
             $email = new \SendGrid\Mail\Mail(); 
             $email->setFrom("stripeusa@nxtdrop.com", "NXTDROP PAYMENTS");
             $email->setSubject("Transaction #".$transactionID."");
             $email->addTo('admin@nxtdrop.com', 'NXTDROP TEAM');
-            $html = "<p>".$sellerUsername." bought an item. Order #".$transactionID.", Total Price: ".$totalPrice.".</p>";
+            $html = "<p>".$$username." bought an item. Order #".$transactionID.", Total Price: ".$totalPrice.".</p>";
             $email->addContent("text/html", $html);
             $sendgrid = new \SendGrid($SD_TEST_API_KEY);
             try {

@@ -28,18 +28,18 @@
                 $row = $result->fetch_assoc();
                 $transactionID = $row['transactionID'];
                 $conn->autocommit(false);
-                $updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
+                //$updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '$buyer_ID' AND target_id = '$seller_ID';");
                 $getBuyerInfo = $conn->query("SELECT * FROM transactions, thebag, users WHERE transactions.transactionID = '$transactionID' AND thebag.uid = transactions.buyerID AND transactions.buyerID = users.uid");
 
-                if($updateTrans && $deleteNotif && $getBuyerInfo) {
+                if($deleteNotif && $getBuyerInfo) {
                     try {
                         // Use Stripe's library to make requests...
                         $info = $getBuyerInfo->fetch_assoc();
-                        $charge = \Stripe\Charge::retrieve($info['chargeID']);
-                        $charge->capture();
+                        //$charge = \Stripe\Charge::retrieve($info['chargeID']);
+                        //$charge->capture();
 
-                        $conn->query("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$item_ID', '0', '$seller_ID', 'seller shipping', '$chargeDate');");
+                        //$conn->query("INSERT INTO notifications (post_id, user_id, target_id, notification_type, date) VALUES ('$item_ID', '0', '$seller_ID', 'seller shipping', '$chargeDate');");
                         $conn->commit();
 
                         //SEND EMAIL TO BUYER
@@ -51,7 +51,11 @@
                         $email = new Email($_SESSION['username'], $_SESSION['email'], 'orders@nxtdrop.com', 'SALE CONFIRMED!', '');
                         $email->setTransactionID($transactionID);
                         $email->sendEmail('orderConfirmation_seller');
-                    } catch(\Stripe\Error\Card $e) {
+                    } catch (Exception $e) {
+                        // Something else happened, completely unrelated to Stripe
+                        $conn->rollback();
+                        echo 'DB';
+                    } /*catch(\Stripe\Error\Card $e) {
                         // Since it's a decline, \Stripe\Error\Card will be caught
                         $body = $e->getJsonBody();
                         $err  = $body['error'];
@@ -113,11 +117,7 @@
             
                         $conn->rollback();
                         echo 'DB';
-                    } catch (Exception $e) {
-                        // Something else happened, completely unrelated to Stripe
-                        $conn->rollback();
-                        echo 'DB';
-                    }
+                    }*/
                 }
                 else {
                     $conn->rollback();
@@ -128,18 +128,18 @@
                 $row = $result->fetch_assoc();
                 $transactionID = $row['transactionID'];
                 $conn->autocommit(false);
-                $updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date', cancellationDate = '$confirmation_date', cancelledBy = '$seller_ID', status = 'cancelled' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
+                //$updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date', cancellationDate = '$confirmation_date', cancelledBy = '$seller_ID', status = 'cancelled' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '$buyer_ID' AND target_id = '$seller_ID';");
                 $getBuyerInfo = $conn->query("SELECT * FROM transactions, thebag, users WHERE transactions.transactionID = '$transactionID' AND thebag.uid = transactions.buyerID AND transactions.buyerID = users.uid");
 
-                if($updateTrans && $deleteNotif && $getBuyerInfo) {
+                if($deleteNotif && $getBuyerInfo) {
 
                     try {
                         // Use Stripe's library to make requests...
                         $info = $getBuyerInfo->fetch_assoc();
-                        $refund = \Stripe\Refund::create([
+                        /*$refund = \Stripe\Refund::create([
                             "charge" => $info['chargeID']
-                        ]);
+                        ]);*/
 
                         $conn->commit();
 
@@ -147,7 +147,11 @@
                         $email = new Email($info['username'], $info['email'], 'orders@nxtdrop.com', 'Sorry, your order is cancelled', '');
                         $email->setTransactionID($transactionID);
                         $email->sendEmail('orderConfirmation');
-                    } catch(\Stripe\Error\Card $e) {
+                    } catch (Exception $e) {
+                        // Something else happened, completely unrelated to Stripe
+                        $conn->rollback();
+                        echo 'DB';
+                    } /*catch(\Stripe\Error\Card $e) {
                         // Since it's a decline, \Stripe\Error\Card will be caught
                         $body = $e->getJsonBody();
                         $err  = $body['error'];
@@ -209,11 +213,7 @@
             
                         $conn->rollback();
                         echo 'DB';
-                    } catch (Exception $e) {
-                        // Something else happened, completely unrelated to Stripe
-                        $conn->rollback();
-                        echo 'DB';
-                    }
+                    } */
                 }
                 else {
                     $conn->rollback();
