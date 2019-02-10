@@ -11,6 +11,7 @@
     while ($transactions_row = mysqli_fetch_assoc($transactions_results)) {
         $itemID = $transactions_row['itemID'];
         $date = date_create($transactions_row['purchaseDate']);
+        $date = date_add($date, date_interval_create_from_date_string("-5 hours"));
         $item = $transactions_row['model'];
         $price = $transactions_row['totalPrice'];
 

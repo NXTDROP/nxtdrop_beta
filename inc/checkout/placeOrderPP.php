@@ -40,7 +40,9 @@
             $totalPrice = $totalPrice;
         } elseif ($_SESSION['country'] == 'CA') {
             $totalPrice = cadTousd($totalPrice, $db, false);
-            $shippingCost = 13.65;
+            if($shippingCost != 0) {
+                $shippingCost = 13.65;
+            }
         } else {
             $totalPrice = $totalPrice;
         }
@@ -99,7 +101,7 @@
             $email->setFrom("stripeusa@nxtdrop.com", "NXTDROP PAYMENTS");
             $email->setSubject("Transaction #".$transactionID."");
             $email->addTo('admin@nxtdrop.com', 'NXTDROP TEAM');
-            $html = "<p>".$$username." bought an item. Order #".$transactionID.", Total Price: ".$totalPrice.".</p>";
+            $html = "<p>".$username." bought an item. Order #".$transactionID.", Total Price: ".$totalPrice.".</p>";
             $email->addContent("text/html", $html);
             $sendgrid = new \SendGrid($SD_TEST_API_KEY);
             try {

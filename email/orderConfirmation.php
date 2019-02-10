@@ -1,5 +1,7 @@
 <?php
-    include '../dbh.php';
+    $db = '../dbh.php';
+    include $db;
+    require_once('../inc/currencyConversion.php');
     $transactionID = $_GET['transactionID'];
     $email = $_GET['email'];
     $query = "SELECT * FROM users, transactions, shipping, thebag, offers, products WHERE transactions.transactionID = '$transactionID' AND transactions.transactionID = shipping.transactionID AND transactions.buyerID = users.uid AND users.uid = thebag.uid AND transactions.itemID = offers.offerID AND offers.productID = products.productID";
@@ -14,14 +16,36 @@
         $price = number_format($row['price'], 2, '.', ',');
         $total = number_format($row['totalPrice'], 2, '.', ',');
 
+        if($row['country'] == 'US') {
+            $price = $number_format($price, 2, '.', ',');
+            $total = $number_format($total, 2, '.', ',');
+        } elseif ($row['country'] == 'CA') {
+            $price = usdTocad($price, $db, false);
+            $total = usdTocad($total, $db, false);
+            $price = 'C$'.number_format($price, 2, '.', ',');
+            $total = 'C$'.number_format($total, 2, '.', ',');
+        } else {
+            $price = $number_format($price, 2, '.', ',');
+            $total = $number_format($total, 2, '.', ',');
+        }
+
         if($row['price'] == $row['totalPrice']) {
             $shippingCost = 'FREE';
         } else {
-            $shippingCost = number_format($row['cost'], 2, '.', ',');
+            if($row['country'] == 'CA') {
+                $shippingCost = usdTocad($row['cost'], $db, false);
+                $shippingCost = 'C$'.number_format($shippingCost, 2, '.', ',');
+            } else {
+                $shippingCost = '$'.number_format($row['cost'], 2, '.', ',');;
+            }
         }
 
         if($row['price'] > ($row['totalPrice'] - $row['cost'])) {
             $price = number_format($row['totalPrice'] - $row['cost'], 2, '.', ',');
+
+            if($row['country'] == 'CA') {
+                $price = usdTocad($price, $db, true);
+            }
         }
     }
 ?>
@@ -161,7 +185,7 @@
                         <td><p style="color: #727272; width: 100%;"><?php echo $description; ?>, Size: US<?php echo $row['size']; ?></p></td>
                     </tr>   
                     <tr>
-                        <td style="color: #727272;">Your order total is $<?php echo $total; ?></td>
+                        <td style="color: #727272;">Your order total is <?php echo $total; ?></td>
                     </tr>
                     <tr style="font-size: 14px;">
                         <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
