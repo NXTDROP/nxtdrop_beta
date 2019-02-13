@@ -379,11 +379,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <table style="width: 100%;">
                                         <tr '.$statsClass.' id="stats-'.$productID.'">
                                             <td style="width: 50%;" class="heat_stats" id="heat-stats-'.$productID.'">'.$heat.'</td>
-                                            <td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>
+                                            <!--<td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>-->
                                         </tr>
                                         <tr>
-                                            <td style="width: 50%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
-                                            <td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>
+                                            <td style="width: 100%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
+                                            <!--<td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>-->
                                         </tr>
                                     </table>
                                 </td>
@@ -461,11 +461,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <table style="width: 100%;">
                                         <tr '.$statsClass.' id="stats-'.$productID.'">
                                             <td style="width: 50%;" class="heat_stats" id="heat-stats-'.$productID.'">'.$heat.'</td>
-                                            <td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>
+                                            <!--<td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>-->
                                         </tr>
                                         <tr>
-                                            <td style="width: 50%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
-                                            <td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>
+                                            <td style="width: 100%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
+                                            <!--<td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>-->
                                         </tr>
                                     </table>
                                 </td>
@@ -541,11 +541,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <table style="width: 100%;">
                                         <tr '.$statsClass.' id="stats-'.$productID.'">
                                             <td style="width: 50%;" class="heat_stats" id="heat-stats-'.$productID.'">'.$heat.'</td>
-                                            <td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>
+                                            <!--<td style="width: 50%;" class="cold_stats" id="cold-stats-'.$productID.'">'.$cold.'</td>-->
                                         </tr>
                                         <tr>
-                                            <td style="width: 50%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
-                                            <td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>
+                                            <td style="width: 100%;"><i class="fas fa-fire '.$heatedClass.'" title="Heat" id="heat-'.$productID.'" onclick="heat('.$productID.');"></i></td>
+                                            <!--<td style="width: 50%;"><i class="fas fa-snowflake '.$frozeClass.'" title="Pass" id="cold-'.$productID.'" onclick="cold('.$productID.');"></i></td>-->
                                         </tr>
                                     </table>
                                 </td>
