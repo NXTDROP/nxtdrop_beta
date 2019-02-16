@@ -172,6 +172,9 @@
                 case 'newsletter':
                     $this->newsletter();
                     break;
+                case 'authenticationFailed':
+                    $this->authenticationFailed();
+                    break;
                 default:
                     $u = 'https://nxtdrop.com/email/'.$type.'?email='.$this->getRecipientEmail().'&username='.$this->getRecipient();
                     $url = str_replace(" ", "%20", $u);
@@ -401,6 +404,15 @@
             $url = str_replace(" ", "%20", $u);
             $c = file_get_contents($url);
             if(!$this->deliverMail($c, 'NXTDROP TEAM')) {
+                echo 'false';
+            }
+        }
+
+        private function authenticationFailed() {
+            $u = 'https://nxtdrop.com/email/authenticationFailed.php?email='.$this->getRecipientEmail().'&transactionID='.$this->getTransactionID();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c, 'NXTDROP')) {
                 echo 'false';
             }
         }

@@ -6,7 +6,7 @@
     require_once('../currencyConversion.php');
     //$getOffers = $conn->prepare("SELECT A.offerID, A.productCondition, A.price, A.size FROM (SELECT o.offerID, o.productCondition, o.price, o.size FROM offers o, products p WHERE p.productID = ? AND o.productID = p.productID) A LEFT JOIN (SELECT o.offerID, o.productCondition, o.price, o.size FROM offers o, products p, transactions t, reviewedCO r WHERE p.productID = ? AND o.productID = p.productID AND o.offerID = t.itemID AND t.status != 'cancelled' AND o.offerID = r.offerID AND r.status = 'accepted') B ON A.offerID = B.offerID WHERE B.offerID IS NULL ORDER BY A.size;");
 
-    $getOffers = $conn->prepare("SELECT o.offerID, o.productCondition, o.price, o.size FROM offers o, products p WHERE p.productID = ? AND o.productID = p.productID AND o.offerID NOT IN (SELECT * FROM (SELECT o.offerID FROM offers o, reviewedCO r WHERE o.offerID = r.offerID AND r.status = 'accepted') AS A UNION (SELECT o.offerID FROM offers o, transactions t WHERE o.offerID = t.itemID AND t.status != 'cancelled'));");
+    $getOffers = $conn->prepare("SELECT o.offerID, o.productCondition, MIN(o.price), o.size FROM offers o, products p WHERE p.productID = ? AND o.productID = p.productID AND o.offerID NOT IN (SELECT * FROM (SELECT o.offerID FROM offers o, reviewedCO r WHERE o.offerID = r.offerID AND r.status = 'accepted') AS A UNION (SELECT o.offerID FROM offers o, transactions t WHERE o.offerID = t.itemID AND t.status != 'cancelled')) GROUP BY o.size;");
     $getOffers->bind_param("s", $model);
 
     /*if(!isset($_SESSION['uid'])) {
