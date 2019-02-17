@@ -1,5 +1,8 @@
 <?php
     include '../dbh.php';
+    include '../../credentials.php';
+    include '../inc/geolocation.php';
+    date_default_timezone_set("UTC"); 
     session_start();
 
     $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -35,6 +38,7 @@
                 mysqli_query($conn, $sql);
 
                 onLogin($uid);
+                locationSetup($IPGeolocation);
 
                 if(isset($_SESSION['rdURL'])) {
                     die('redirect');
