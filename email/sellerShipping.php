@@ -172,6 +172,10 @@
                         <td style="color: #727272;">Tracking #:<a href="https://www.ups.com/track?loc=en_US&tracknum=<?php echo $tracking; ?>&requester=WT/trackdetails" style="color: #bc3838;"> <?php echo $tracking; ?></a></td>
                     </tr>
                 </table>
+                <p style="color: #494949; font-size: 18px;">Note:</p>
+                <ol style="color: #555555; font-size: 12px; width: 80%; margin: 0 10%;">
+                    <li>Tracking information may not be available until several hours after the carrier picks up the package(s). Carriers normally pick up in the late afternoon.</li>
+                </ol>
                 <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 2 to 3 business days to arrive. If you have concerns, contact us at support@nxtdrop.com.</p>
                 <a href="https://nxtdrop.com/signin"><button id="signin_btn">LOGIN</button></a>
             </div>
