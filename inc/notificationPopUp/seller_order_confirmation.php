@@ -28,11 +28,11 @@
                 $row = $result->fetch_assoc();
                 $transactionID = $row['transactionID'];
                 $conn->autocommit(false);
-                //$updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
+                $updateTrans = $conn->query("UPDATE transactions SET confirmationDate = '$confirmation_date' WHERE itemID = '$item_ID' AND sellerID = '$seller_ID' AND buyerID = '$buyer_ID' AND confirmationDate = '0000-00-00 00:00:00';");
                 $deleteNotif = $conn->query("DELETE FROM notifications WHERE post_id = '$item_ID' AND user_id = '$buyer_ID' AND target_id = '$seller_ID';");
                 $getBuyerInfo = $conn->query("SELECT * FROM transactions, thebag, users WHERE transactions.transactionID = '$transactionID' AND thebag.uid = transactions.buyerID AND transactions.buyerID = users.uid");
 
-                if($deleteNotif && $getBuyerInfo) {
+                if($deleteNotif && $getBuyerInfo && $updateTrans) {
                     try {
                         // Use Stripe's library to make requests...
                         $info = $getBuyerInfo->fetch_assoc();

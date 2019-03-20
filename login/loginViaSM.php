@@ -1,5 +1,7 @@
 <?php
     include '../dbh.php';
+    include '../../credentials.php';
+    include '../inc/geolocation.php';
     session_start();
 
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -28,6 +30,7 @@
             mysqli_query($conn, $sql);
 
             onLogin($uid);
+            locationSetup($IPGeolocation);
 
             if(isset($_SESSION['rdURL'])) {
                 die('redirect');

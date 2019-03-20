@@ -175,6 +175,9 @@
                 case 'authenticationFailed':
                     $this->authenticationFailed();
                     break;
+                case 'orderReceived':
+                    $this->orderReceived();
+                    break;
                 default:
                     $u = 'https://nxtdrop.com/email/'.$type.'?email='.$this->getRecipientEmail().'&username='.$this->getRecipient();
                     $url = str_replace(" ", "%20", $u);
@@ -249,6 +252,15 @@
 
         private function middlemanVerification() {
             $u = 'https://nxtdrop.com/email/middlemanVerification.php?email='.$this->getRecipientEmail().'&transactionID='.$this->getTransactionID();
+            $url = str_replace(" ", "%20", $u);
+            $c = file_get_contents($url);
+            if(!$this->deliverMail($c, 'NXTDROP')) {
+                echo 'false';
+            }
+        }
+
+        private function orderReceived() {
+            $u = 'https://nxtdrop.com/email/orderReceived.php?email='.$this->getRecipientEmail().'&transactionID='.$this->getTransactionID();
             $url = str_replace(" ", "%20", $u);
             $c = file_get_contents($url);
             if(!$this->deliverMail($c, 'NXTDROP')) {

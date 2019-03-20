@@ -2,7 +2,7 @@
     function locationSetup($key) {
         include '../dbh.php';
         $apiKey = $key;
-        $ip = "184.145.126.67"; //Client IP Address
+        $ip = getRealIpAddr(); //Client IP Address
         $location = getGeolocation($apiKey, $ip);
         $decodeLocation = json_decode($location, true);
 
@@ -37,5 +37,22 @@
         ));
 
         return curl_exec($cURL);
+    }
+
+    function getRealIpAddr()
+{
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
+        {
+        $ip=$_SERVER['HTTP_CLIENT_IP'];
+        }
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+        {
+        $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        else
+        {
+        $ip=$_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
     }
 ?>

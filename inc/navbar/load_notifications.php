@@ -81,13 +81,13 @@
                         $price = 'US$'.$user_result['price'];
                     }
                     $pic = "'".$user_result['assetURL']."'";
-                    $description = "'".$user_result['model'].', Size: US'.$user_result['size'].', Price: '.$price."'";
+                    $description = "'".addcslashes($user_result['model'], "'").', Size: US'.$user_result['size'].', Price: '.$price."'";
                     $buyer_id = "'".$user_result['uid']."'";
                     echo '<div class="one_notif" onclick="order_confirmation('.$user_result['offerID'].', '.$pic.', '.$description.', '.$buyer_id.')" '.$background.'><img src="https://nxtdrop.com/img/nxtdroplogo.png" alt="" class="profile_notif"><span class="message_notif">Your item just sold! Click to confirm order. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
                 }
                 else if($row['notification_type'] == 'middleman verification') {
                     $pic = "'".$user_result['assetURL']."'";
-                    $description = "'".$user_result['model']."'";
+                    $description = "'".addcslashes($user_result['model'], "'")."'";
                     $buyer_id = "'".$user_result['uid']."'";
                     echo '<div class="one_notif" onclick="order_verification('.$user_result['offerID'].', '.$pic.', '.$description.', '.$buyer_id.')" '.$background.'><span class="message_notif">&nbsp Item waiting for authentication. Click to send verification report. <span class="notif_time">'.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
                 }
@@ -99,10 +99,10 @@
                     echo '<div class="one_notif"  '.$background.'><img src="https://nxtdrop.com/'.$user_result['status'].'" alt="" class="profile_notif"><div class="message_notif">&nbsp <a href="'.$user_result['username'].'">@'.$user_result['username'].'</a> mentioned you: '.$user_result['message'].' &nbsp<span class="notif_time">'.$date.'</div></span></div>';
                 }
                 else if($row['notification_type'] == 'counter-offer') {
-                    $model = $user_result['model'];
+                    $model = addcslashes($user_result['model'], "'");
                     $model = str_replace("&apos;", '', $model);
                     $model = "'".$model." US".$user_result['size']."'";
-                    echo '<div class="one_notif" onclick="counterOfferConf('.$user_result['price'].', '.$user_result['offer'].', '.$user_result['offerID'].', '.$user_result['uid'].', '.$model.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif">You received an offer for your '.$user_result['model'].' <span class="notif_time"> '.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
+                    echo '<div class="one_notif" onclick="counterOfferConf('.$user_result['price'].', '.$user_result['offer'].', '.$user_result['offerID'].', '.$user_result['uid'].', '.$model.')" '.$background.'><img src="'.$user_result['status'].'" alt="" class="profile_notif"><span class="message_notif">You received an offer for your '.addcslashes($user_result['model'], "'").' <span class="notif_time"> '.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';
                 }
                 else if($row['notification_type'] == 'promo') {
                     echo '<div class="one_notif" onclick="checkoutPromo('.$post_id.')" '.$background.'><img src="https://nxtdrop.com/img/nxtdroplogo.png" alt="" class="profile_notif"><span class="message_notif">CONGRATULATIONS!!! Click to checkout your item. <span class="notif_time"> '.$date.'</span></span><img src="'.$user_result['assetURL'].'" alt="" class="post_img"></div>';

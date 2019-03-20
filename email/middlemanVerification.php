@@ -31,7 +31,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>ORDER SHIPPED</title>
+        <title>ORDER VERIFIED</title>
         <base href="https://nxtdrop.com/">
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">

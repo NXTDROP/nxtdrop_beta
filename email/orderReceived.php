@@ -31,7 +31,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>ORDER SHIPPED</title>
+        <title>ORDER ARRIVED</title>
         <base href="https://nxtdrop.com/">
         <meta name="description" content="Welcome to NXTDROP">
         <meta name="author" content="NXTDROP, Inc.">
@@ -148,10 +148,10 @@
             <div class="header">
                 <a href="https://nxtdrop.com"><img src="https://nxtdrop.com/img/nxtdropiconwhite.png" alt="NXTDROP, Inc." id="nxtdrop_icon"></a>
 
-                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER VERIFIED</h2>
+                <h2 style="font-size: 1.5rem; text-align: center; margin: 0 0 10px 0; font-family: Archive Black, sans-serif;">ORDER ARRIVED</h2>
 
                 <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 3px 0; font-size: 0.60rem; font-weight: 500;">Thank you for choosing NXTDROP!</p>
-                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">The shoes you ordered didn't pass our authentication process.</p>
+                <p style="text-align: center; font-family: Roboto, sans-serif; margin: 0 0 0 0; font-size: 0.60rem; font-weight: 500;">Your order arrived for authentication.</p>
             </div>
 
             <div class="content" style="overflow: hidden;">
@@ -160,12 +160,11 @@
                         <td><img src="<?php echo 'https://nxtdrop.com/'.$pic; ?>" alt="<?php echo $description; ?>" style="width: 45%;"></td>
                         <td><p style="color: #727272; width: 100%;"><?php echo $description; ?>, Size: US<?php echo $row['size']; ?></p></td>
                     </tr>
-                    <tr style="font-size: 14px;">
-                        <td style="color: #727272;">Status: cancelled</td>
-                    </tr>
                 </table>
-                <p style="color: #494949; font-size: 17px;">Message from Authentication Team:</p>
-                <p style="color: red;">The shoes that the seller shipped to us are replicas, therefore we can't ship them. You'll be refunded. It usually takes up to 2 business days for funds to appear in your statement.</p>
+                <p style="color: #494949; font-size: 18px;">Reminder:</p>
+                <ol style="color: #555555; font-size: 12px; width: 80%; margin: 0 10%;">
+                    <li>You will receive an emain as soon as we verify your shoes.</li>
+                </ol>
                 <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 7 to 10 business days to receive an order. If you have concerns, contact us at support@nxtdrop.com.</p>
                 <a href="https://nxtdrop.com/signin"><button id="signin_btn">LOGIN</button></a>
             </div>
