@@ -164,8 +164,8 @@
                         <td style="color: #727272;">Status: <?php echo $orderStatus; ?></td>
                     </tr>
                 </table>
-                <p style="color: #494949; font-size: 18px;">Sorry, your order was cancelled because the buyer failed to ship the shoes.</p>
-                <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">Check your dashboard for more information about your order. It usually takes 7 to 10 business days to receive an order. If you have concerns, contact us at support@nxtdrop.com.</p>
+                <p style="color: #494949; font-size: 18px;">Your order was cancelled.</p>
+                <p style="color: #727272; width: 80%; font-weight: 100; font-size: 8px; text-align: left;">For more information, contact us at support@nxtdrop.com.</p>
                 <a href="https://nxtdrop.com/signin"><button id="signin_btn">LOGIN</button></a>
             </div>
 
