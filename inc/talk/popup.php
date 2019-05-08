@@ -202,7 +202,7 @@
     }
 </script>
 
-<div class="talk-popup hover">
+<!--<div class="talk-popup hover">
     <div class="talk-header">
         <h2>NXTDROP CHAT</h2>
         <i class="fas fa-angle-down"></i>
@@ -210,6 +210,6 @@
     <div class="talk-messages">
 
     </div>
-    <textarea name="input" id="talk-input" style="resize: none;" placeholder="Say 'Hi' to the community..." <?php echo $disabled; ?>></textarea>
-    <button type="submit" name="send" id="talk-send" <?php echo $disabled; ?>>SEND</button>
-</div>
+    <textarea name="input" id="talk-input" style="resize: none;" placeholder="Say 'Hi' to the community..." <?php// echo $disabled; ?>></textarea>
+    <button type="submit" name="send" id="talk-send" <?php// echo $disabled; ?>>SEND</button>
+</div>-->
