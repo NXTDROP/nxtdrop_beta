@@ -70,9 +70,9 @@
                 $insertICode = $conn->query("INSERT INTO users_code (uid, invite_code, dateGenerated) VALUES ('$uid', '$iCode', '$iCodeDate')");
 
                 if($createProfile && $insertICode && $showInvite) {
-                    try {
+                    //try {
                         // Use Stripe's library to make requests...
-                        $acct = \Stripe\Account::create(array(
+                        /*$acct = \Stripe\Account::create(array(
                             "country" => "$country",
                             "type" => "custom", 
                             "email" => "$email",
@@ -84,21 +84,22 @@
 
                         $cus = \Stripe\Customer::create(array(
                             "email" => "$email",
-                        ));
+                        ));*/
 
-                        $cus_id = $cus->id;
+                        /*$cus_id = $cus->id;
                         $account_id = $acct->id;
                         $updateUsers = $conn->query("UPDATE users SET stripe_id = '$account_id', cus_id = '$cus_id' WHERE uid = '$uid';");
-                        $thebag = $conn->query("INSERT INTO thebag (uid, stripe_id) VALUES ('$uid', '$account_id')");
-                        if($updateUsers && $thebag) {
+                        $thebag = $conn->query("INSERT INTO thebag (uid, stripe_id) VALUES ('$uid', '$account_id')");*/
+                        $thebag = $conn->query("INSERT INTO thebag (uid) VALUES ('$uid')");
+                        if($thebag) {
                             $conn->commit();
                             session_start();
                             $_SESSION['uid'] = $uid;
                             $_SESSION['name'] = $name;
                             $_SESSION['username'] = $uName;
                             $_SESSION['email'] = $email;
-                            $_SESSION['stripe_acc'] = $account_id;
-                            $_SESSION['cus_id'] = $cus_id;
+                            /*$_SESSION['stripe_acc'] = $account_id;
+                            $_SESSION['cus_id'] = $cus_id;*/
                             $_SESSION['country'] = $country;
 
                             $createEmail = new Email($name, $email, 'hello@nxtdrop.com', 'Hi '.$uName.', welcome to NXTDROP', '');
@@ -126,7 +127,7 @@
                             }
                             $conn->commit();
                         }
-                    } catch (\Stripe\Error\RateLimit $e) {
+                    /*} catch (\Stripe\Error\RateLimit $e) {
                         // Too many requests made to the API too quickly
                         errorLog($e);
                         $conn->rollback();
@@ -194,7 +195,7 @@
                         // Something else happened, completely unrelated to Stripe
                         $conn->rollback();
                         die('DB');
-                    }
+                    }*/
                 }
                 else {
                     $conn->rollback();
